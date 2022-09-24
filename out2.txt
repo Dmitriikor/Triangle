@@ -1,0 +1,120 @@
+NEW Triangle:1
+triangle.a = 17 0
+triangle.b = -35 -25
+triangle.c = 27 1
+dot_counter =	0
+lengthAB =	57.6975
+lengthBC =	67.2309
+lengthCA =	10.0499
+triangle_area =	99
+
+point_in_triangle =	 17,0; -35,-25; 27,1; 
+
+NEW Triangle:2
+triangle.a = 17 0
+triangle.b = -35 -25
+triangle.c = -25 -11
+dot_counter =	0
+lengthAB =	57.6975
+lengthBC =	17.2047
+lengthCA =	43.4166
+triangle_area =	239
+
+point_in_triangle =	 17,0; -35,-25; -25,-11; 
+
+NEW Triangle:3
+triangle.a = 17 0
+triangle.b = -35 -25
+triangle.c = 22 20
+dot_counter =	0
+lengthAB =	57.6975
+lengthBC =	72.6223
+lengthCA =	20.6155
+triangle_area =	457.5
+
+point_in_triangle =	 17,0; -35,-25; 22,20; 
+
+NEW Triangle:4
+triangle.a = 17 0
+triangle.b = 27 1
+triangle.c = -25 -11
+dot_counter =	0
+lengthAB =	10.0499
+lengthBC =	53.3667
+lengthCA =	43.4166
+triangle_area =	34
+
+point_in_triangle =	 17,0; 27,1; -25,-11; 
+
+NEW Triangle:5
+triangle.a = 17 0
+triangle.b = 27 1
+triangle.c = 22 20
+dot_counter =	0
+lengthAB =	10.0499
+lengthBC =	19.6469
+lengthCA =	20.6155
+triangle_area =	97.5
+
+point_in_triangle =	 17,0; 27,1; 22,20; 
+
+NEW Triangle:6
+triangle.a = 17 0
+triangle.b = -25 -11
+triangle.c = 22 20
+dot_counter =	0
+lengthAB =	43.4166
+lengthBC =	56.3028
+lengthCA =	20.6155
+triangle_area =	392.5
+
+point_in_triangle =	 17,0; -25,-11; 22,20; 
+
+NEW Triangle:7
+triangle.a = -35 -25
+triangle.b = 27 1
+triangle.c = -25 -11
+dot_counter =	0
+lengthAB =	67.2309
+lengthBC =	53.3667
+lengthCA =	17.2047
+triangle_area =	304
+
+point_in_triangle =	 -35,-25; 27,1; -25,-11; 
+
+NEW Triangle:8
+triangle.a = -35 -25
+triangle.b = 27 1
+triangle.c = 22 20
+dot_counter =	1
+lengthAB =	67.2309
+lengthBC =	19.6469
+lengthCA =	72.6223
+triangle_area =	654
+
+point_in_triangle =	 17,0; -35,-25; 27,1; 22,20; 
+
+NEW Triangle:9
+triangle.a = -35 -25
+triangle.b = -25 -11
+triangle.c = 22 20
+dot_counter =	0
+lengthAB =	17.2047
+lengthBC =	56.3028
+lengthCA =	72.6223
+triangle_area =	174
+
+point_in_triangle =	 -35,-25; -25,-11; 22,20; 
+
+NEW Triangle:10
+triangle.a = 27 1
+triangle.b = -25 -11
+triangle.c = 22 20
+dot_counter =	1
+lengthAB =	53.3667
+lengthBC =	56.3028
+lengthCA =	19.6469
+triangle_area =	524
+
+point_in_triangle =	 17,0; 27,1; -25,-11; 22,20; 
+
