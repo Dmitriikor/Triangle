@@ -38,6 +38,11 @@ void goto_coords(Point a) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), b);
 }
 
+double step_is(unsigned coefficient) {
+	double step = 1.0 / coefficient;
+	return step;
+}
+
 
 // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main
 // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main
@@ -199,12 +204,14 @@ int main() {
 		std::cout << "x";
 	}
 
-	Point end;
+	Point end; // use to print axys
 	end.x = 0;
-	end.y = N + (N * shift()) + x_axis_thickness() + shift_h();
+	end.y = N + (N * shift()) + x_axis_thickness() + shift_h();  //+1 str
+	end.y = end.y + 1;
 	goto_coords(end);
 	std::cout << "\n";
 	std::cout << "END\n";
+	std::cout << "\n";
 
 	std::cout << "min_x " << min_x << "\n";
 	std::cout << "max_x " << max_x << "\n";
@@ -263,8 +270,77 @@ int main() {
 	draw_line_2(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), ZERO);
 
 
+
+
+	end.y += 17; // set cursor under y axys
+	goto_coords(end);
+	std::cout << "\n";
 	system("pause");
-	std::cin.get();
+	//std::cin.get();
+
+	switch (OS) {
+	case 1:
+		system("cls");
+		break;
+	case 2:
+		system("clear");
+		break;
+	}
+
+	Point ORIGIN;
+
+
+
+	Point point_1;
+	point_1.x = 1;
+	point_1.y = 1;
+	Point point_2;
+
+		/*Point point_1;*/
+		//std::cin >> point_1.x >> point_1.y;
+		/*Point point_2;*/
+		//std::cin >> point_2.x >> point_2.y;
+
+		point_1.x = max_x;
+		point_1.y = max_y;
+		point_2.x = min_x;
+		point_2.y = min_y;
+
+		double round_a_x = round(point_1.x, step_is(coefficient()));
+		double round_a_y = round(point_1.y, step_is(coefficient()));
+		double round_b_x = round(point_2.x, step_is(coefficient()));
+		double round_b_y = round(point_2.y, step_is(coefficient()));
+
+		ORIGIN.x = fabs(point_2.x) > fabs(point_1.x) ? fabs(point_2.x) : fabs(point_1.x);  // abs > fabs
+		ORIGIN.y = fabs(point_2.y) > fabs(point_1.y) ? fabs(point_2.y) : fabs(point_1.y);  // abs > fabs
+
+		ORIGIN.x = round(ORIGIN.x, step_is(coefficient())) / step_is(coefficient());
+		ORIGIN.y = round(ORIGIN.y, step_is(coefficient())) / step_is(coefficient());
+
+		if (coefficient() <= 2)
+			shift_w(4);
+		else
+			shift_w(6);
+		std::cout << std::fixed;
+		if (coefficient() >= 3)
+			std::cout << std::setprecision(2);
+		else
+			std::cout << std::setprecision(1);
+
+
+		for (int j = -(ORIGIN.y); j < ORIGIN.y + 1; j++) {  // axis Y
+			setCursorPosition(set_pos_x(0), ORIGIN.y + j);  //+2 äëÿ ïå÷àòè ïî öèôðå â setw
+			std::cout << fabs(j * step_is(coefficient())) << "\n";
+		}
+		for (int i = -(ORIGIN.x); i < ORIGIN.x + 1; i++)  // axis X
+		{
+			setCursorPosition(set_pos_x(i), ORIGIN.y);
+			std::cout << std::setw(shift_w()) << std::left << fabs(i * step_is(coefficient())) << "\n";
+		}
+		std::cout << "\n";
+
+
+
 
 
 	draw_line_4(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), ZERO, 1);

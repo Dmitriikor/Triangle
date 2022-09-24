@@ -5,6 +5,7 @@
 Point ORIGIN;
 size_t shift() {	size_t shift = 0; return shift; };
 size_t shift_w() { size_t shift_w = 3 + (shift() * 3); return shift_w; };
+void shift_w(size_t shiftset) { size_t shift_w = shiftset;};
 size_t shift_h() { size_t shift_h = 0 + (shift() * 1); return shift_h; };
 size_t indent() { size_t indent = 4; return indent; };
 int y_axis_thickness() { int y_axis_thickness = 2; return y_axis_thickness; };

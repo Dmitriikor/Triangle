@@ -10,6 +10,7 @@
 
 size_t shift();
 size_t shift_w();
+void shift_w(size_t shiftset);
 size_t shift_h();
 size_t indent();
 int y_axis_thickness();
