@@ -29,6 +29,7 @@ const int MAX_ = 2147483647;
 #include "Lines_draw_test.h"  
 #include "Triangle_test.h"
 
+unsigned int coefficient = 1;
 
 void goto_coords(Point a) {
 
@@ -179,7 +180,7 @@ int main() {
 
 	int start_y = max_y > 0 ? max_y : 0;
 	for (size_t i = 0; i < N; i++)
-		std::cout << std::setw(shift_w()) << start_y - (int)i << " " << "\n";
+		std::cout << std::setw(shift_w) << start_y - (int)i << " " << "\n";
 
 	indent_print();
 	Point ZERO;
@@ -187,9 +188,9 @@ int main() {
 
 	int start_x = min_x > 0 ? 0 : min_x;
 	for (size_t i = 0; i < M; i++)
-		std::cout << std::setw(shift_w()) << start_x + (int)i;
+		std::cout << std::setw(shift_w) << start_x + (int)i;
 	std::cout << "\n";
-	ZERO.x = ((abs(start_x)) * shift_w()) + indent() + y_axis_thickness(); //!!!!!SHIFT
+	ZERO.x = ((abs(start_x)) * shift_w) + indent + y_axis_thickness; //!!!!!SHIFT
 
 	std::cout << "\n";
 	
@@ -206,7 +207,7 @@ int main() {
 
 	Point end; // use to print axys
 	end.x = 0;
-	end.y = N + (N * shift()) + x_axis_thickness() + shift_h();  //+1 str
+	end.y = N + (N * shift) + x_axis_thickness() + shift_h;  //+1 str
 	end.y = end.y + 1;
 	goto_coords(end);
 	std::cout << "\n";
@@ -289,11 +290,7 @@ int main() {
 
 	Point ORIGIN;
 
-
-
 	Point point_1;
-	point_1.x = 1;
-	point_1.y = 1;
 	Point point_2;
 
 		/*Point point_1;*/
@@ -306,10 +303,10 @@ int main() {
 		point_2.x = min_x;
 		point_2.y = min_y;
 
-		double round_a_x = round(point_1.x, step_is(coefficient()));
-		double round_a_y = round(point_1.y, step_is(coefficient()));
-		double round_b_x = round(point_2.x, step_is(coefficient()));
-		double round_b_y = round(point_2.y, step_is(coefficient()));
+		double round_a_x = round(point_1.x, step_is(coefficient));
+		double round_a_y = round(point_1.y, step_is(coefficient));
+		double round_b_x = round(point_2.x, step_is(coefficient));
+		double round_b_y = round(point_2.y, step_is(coefficient));
 
 		ORIGIN.x = fabs(point_2.x) > fabs(point_1.x) ? fabs(point_2.x) : fabs(point_1.x);  // abs > fabs
 		ORIGIN.y = fabs(point_2.y) > fabs(point_1.y) ? fabs(point_2.y) : fabs(point_1.y);  // abs > fabs
@@ -320,32 +317,39 @@ int main() {
 		if (coefficient() <= 2)
 			shift_w(4);
 		else
-			shift_w(6);
+			shift_w(7);
 		std::cout << std::fixed;
+
 		if (coefficient() >= 3)
 			std::cout << std::setprecision(2);
 		else
-			std::cout << std::setprecision(1);
+			std::cout << std::setprecision(0);
 
-
-		for (int j = -(ORIGIN.y); j < ORIGIN.y + 1; j++) {  // axis Y
-			setCursorPosition(set_pos_x(0), ORIGIN.y + j);  //+2 äëÿ ïå÷àòè ïî öèôðå â setw
+		
+		for (int j = -(ORIGIN.y); j < ORIGIN.y + 1; j++) 
+		{  // axis Y
+			setCursorPosition(set_pos_x(ORIGIN.x), ORIGIN.y + j);  //+2 äëÿ ïå÷àòè ïî öèôðå â setw
 			std::cout << fabs(j * step_is(coefficient())) << "\n";
 		}
 		for (int i = -(ORIGIN.x); i < ORIGIN.x + 1; i++)  // axis X
 		{
-			setCursorPosition(set_pos_x(i), ORIGIN.y);
-			std::cout << std::setw(shift_w()) << std::left << fabs(i * step_is(coefficient())) << "\n";
+			Point pos;
+			pos.x = set_pos_x(ORIGIN.x+i);
+			pos.y = ORIGIN.y;
+			goto_coords_(pos);
+			std::cout << fabs(i * step_is(coefficient())) << "\n";
 		}
 		std::cout << "\n";
 
+	draw_line_4(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), ORIGIN, 1);
+	draw_line_4(final_triangle_arr[max_dot_index].get_B(), final_triangle_arr[max_dot_index].get_C(), ORIGIN, 1);
+	draw_line_4(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), ORIGIN, 1);
 
-
-
-
-	draw_line_4(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), ZERO, 1);
-	draw_line_4(final_triangle_arr[max_dot_index].get_B(), final_triangle_arr[max_dot_index].get_C(), ZERO, 1);
-	draw_line_4(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), ZERO, 1);
+	end.y = (ORIGIN.y*2)+5; // set cursor under y axys
+	goto_coords(end);
+	std::cout << "\n";
+	system("pause");
+	std::cin.get();
 
 	return 0;
 }
