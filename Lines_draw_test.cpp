@@ -69,8 +69,18 @@ void printPoint(const Point& point, const Point& ORIGIN, unsigned coefficient) {
             int k = point.x * 18;
     }*/
 
-    int con_x = (ORIGIN.x + (int)round(point.x * coefficient)) * shift_w;
-    int con_y = ORIGIN.y - (int)round(point.y * coefficient);
+    //int con_x = (ORIGIN.x + (int)round(point.x * coefficient)) * shift_w;
+    //int con_y = ORIGIN.y - (int)round(point.y * coefficient);
+    // 
+    int con_x_ = point.x * coefficient;
+    int con_y_ = point.y * coefficient;
+
+    int con_x__ = (int)round(con_x_);
+    int con_y__ = (int)round(con_y_);
+
+    int con_x = (ORIGIN.x + con_x__) * shift_w;
+    int con_y = ORIGIN.y - con_y__;
+
     /* if (con_x >= 10) {
                  setCursorPosition(con_x, con_y);
                  std::cout << "  " << std::endl;

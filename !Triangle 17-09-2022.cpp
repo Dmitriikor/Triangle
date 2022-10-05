@@ -352,12 +352,12 @@ int main() {
 	//std::cin.get();
 
 std::cout << "\n";
-Point P_a; P_a.x = 1; P_a.y = 3;
-Point P_b; P_b.x = 3; P_b.y = 6;
-Point P_c; P_c.x = 5; P_c.y = 3;
+Point P_a; P_a.x = 1; P_a.y = 10;
+Point P_b; P_b.x = 5; P_b.y = -5;
+Point P_c; P_c.x = 7; P_c.y = 2;
 Triangle test_Triangle_;
 test_Triangle_ = test_Triangle_.create_triangle(P_a, P_b, P_c);
-axys(test_Triangle_, 1, 1);
+axys(test_Triangle_, 0, true);
 std::cout << "\n";
 std::cin.get();
 	return 0;
