@@ -1,5 +1,6 @@
 ﻿#include "Lines_draw_test.h"
 
+
 //#include <stdio.h>
 //#include <time.h>
 //
@@ -31,14 +32,14 @@
 // 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), b);
 // }
 
-struct Point {
-    double x;
-    double y;
-
-    void Point_print(const Point& a) {
-        std::cout << x << " " << y << "\n";
-    }
-};
+//struct Point {
+//    double x;
+//    double y;
+//
+//    void Point_print(const Point& a) {
+//        std::cout << x << " " << y << "\n";
+//    }
+//};
 
 /////////////////////////
 Point ORIGIN;  // origin relative to the console  / Г­Г Г·. ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г® ГЄГ®Г­Г±Г®Г«ГЁ
@@ -185,18 +186,41 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
     }
 }
 
-int main() {
-    Point a;
-    a.x = 1;
-    a.y = 1;
-    Point b;
-    while (a.x != 0 && a.y != 0 && b.x != 0 && b.y != 0) {
-        /*Point a;*/
-        std::cin >> a.x >> a.y;
-        /*Point b;*/
-        std::cin >> b.x >> b.y;
 
-        system("clear");
+
+void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle) {
+        Point b;
+
+        Point loc_min = triangle.get_A();
+        Point loc_mid = triangle.get_B();
+        Point loc_max = triangle.get_C();
+
+        if (loc_min.x >= loc_mid.x && loc_min.x >= loc_max.x)
+            b.x = loc_min.x;
+        else if (loc_mid.x >= loc_min.x && loc_mid.x >= loc_max.x)
+            b.x = loc_mid.x;
+        else if (loc_max.x >= loc_min.x && loc_max.x >= loc_mid.x)
+            b.x = loc_max.x;
+
+
+        if (loc_min.y >= loc_mid.y && loc_min.y >= loc_max.y)
+            b.y = loc_min.y;
+        else if (loc_mid.y >= loc_min.y && loc_mid.y >= loc_max.y)
+            b.y = loc_mid.y;
+        else if (loc_max.y >= loc_min.y && loc_max.y >= loc_mid.y)
+            b.y = loc_max.y;
+
+        Point a;
+        a.x = 1;
+        a.y = 1;
+
+
+        /*Point a;*/
+        //std::cin >> a.x >> a.y;
+        /*Point b;*/
+        //std::cin >> b.x >> b.y;
+
+        system("cls");
 
         double round_a_x = round(a.x, step_is(coefficient));
         double round_a_y = round(a.y, step_is(coefficient));
@@ -220,8 +244,8 @@ int main() {
             std::cout << std::setprecision(0);
 
 
-        for (int j = -(ORIGIN.y); j < ORIGIN.y + 1; j++) { 
-            setCursorPosition(set_pos_x(0), ORIGIN.y + j); 
+        for (int j = -(ORIGIN.y); j < ORIGIN.y + 1; j++) {
+            setCursorPosition(set_pos_x(0), ORIGIN.y + j);
             std::cout << fabs(j * step_is(coefficient)) << "\n";
         }
         for (int i = -(ORIGIN.x); i < ORIGIN.x + 1; i++)  // axis X
@@ -231,11 +255,14 @@ int main() {
         }
         std::cout << "\n";
 
-        draw_line_4(a, b, ORIGIN, coefficient);
+        //draw_line_4(a, b, ORIGIN, coefficient);
 
 
         setCursorPosition(0, ORIGIN.y * 2 + 2);
-    }
+        if (draw_triangle) {
+			draw_line_4(triangle.get_A(), triangle.get_B(), ORIGIN, coefficient);
+			draw_line_4(triangle.get_B(), triangle.get_C(), ORIGIN, coefficient);
+			draw_line_4(triangle.get_C(), triangle.get_A(), ORIGIN, coefficient);
+        }
 
-    return 0;
-}
+    }
