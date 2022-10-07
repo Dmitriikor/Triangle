@@ -69,8 +69,8 @@ void printPoint(const Point& point, const Point& ORIGIN, unsigned coefficient) {
             int k = point.x * 18;
     }*/
 
-    //int con_x = (ORIGIN.x + (int)round(point.x * coefficient)) * shift_w;
-    //int con_y = ORIGIN.y - (int)round(point.y * coefficient);
+    int _con_x = (ORIGIN.x + (int)round(point.x * coefficient)) * shift_w;
+    int _con_y = ORIGIN.y - (int)round(point.y * coefficient);
     // 
     int con_x_ = point.x * coefficient;
     int con_y_ = point.y * coefficient;
@@ -123,6 +123,7 @@ void print_vert(Point& A, Point& B) {
 }
 
 void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned coefficient) {
+
     Point coords;
 
     double min = A.x;
@@ -153,8 +154,9 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
     }
 
     double k = (B.y - A.y) / (B.x - A.x);
-    double b = A.y - k * A.x;
-
+    double b_ = k * A.x;
+    double b = A.y - b_;
+    
     double step = step_is(coefficient);  // 1.0 / coefficient;
 
     double rounded_min = round(min, step);
@@ -162,35 +164,12 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
 
     unsigned N = (rounded_max - rounded_min) / step + 1;
 
-    if (N < abs(B.y) + abs(A.y)) {
-
-        bool start = false;
-        for (int i = 0; i < N; ++i) {
-            Point point;
-            point.x = rounded_min + i * step;
-            point.y = k * point.x + b;
-            // Point old;
-            // Point prt;
-            // if (start){
-            //     prt.x = old.x;
-            //     prt.y = int(old.y);
-            //     print_vert(old, prt);
-            //     prt.x= prt.x+1;
-            //     prt.y = old.y;
-            //     print_vert(prt, point);
-            // }
-            // old.x = point.x;
-            // old.y = point.y;
-            // start = true;
-            printPoint(point, ORIGIN, coefficient);
-        }
-        return;
-    }
-
+    
     for (int i = 0; i < N; ++i) {
         Point point;
         point.x = rounded_min + i * step;
         point.y = k * point.x + b;
+        
 
         printPoint(point, ORIGIN, coefficient);
     }
@@ -198,26 +177,104 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
 
 
 
-void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle) {
+
+
+    struct draw_line_2
+    {
+        static void goto_coords_(Point a) {
+            
+            COORD b;
+            //b.X = a.x;
+            b.X = a.x;
+            b.Y = a.y;
+            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), b);
+        }
+
+       static void draw_line_no_round(const Point& A, const Point& B, const Point& ORIGIN) {
+
+           if (A.x == B.x && A.y == B.y)
+           {
+               throw std::exception("Lines_draw_test.cpp draw_line_no_round Point A == Point B (NO LINE)");
+               return;
+           }
+
+            int x1, y1, x2, y2;
+            x1 = A.x;
+            y1 = A.y;
+            x2 = B.x;
+            y2 = B.y;
+
+            bool steep = false;
+            if (std::abs(x1 - x2) < std::abs(y1 - y2)) {
+                std::swap(x1, y1);
+                std::swap(x2, y2);
+                steep = true;
+            }
+            if (x1 > x2) {
+                std::swap(x1, x2);
+                std::swap(y1, y2);
+            }
+
+            for (int x = x1; x <= x2; x++) {
+                float k = (x - x1) / (float)(x2 - x1);
+                int y = y1 * (1. - k) + y2 * k;
+
+                Point coords;
+
+
+                if (steep) {
+                    coords.x = (ORIGIN.x + y) * shift_w;
+                    coords.y = ORIGIN.y - x;
+
+                    goto_coords_(coords);	/////  /////
+                    std::cout << "+";		/////  /////
+
+                }
+                else {
+                    coords.x = (ORIGIN.x + x) * shift_w;
+                    coords.y = ORIGIN.y - y;
+
+                    goto_coords_(coords);	/////  /////
+                    
+                    std::cout << "+";		/////  /////
+                }
+            }
+        }
+
+
+
+    };
+
+
+
+
+    // triangle, coefficient, bool draw_triangle=false, bool draw_round=true
+void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
+    if (coefficient == 0) 
+    {
+        throw std::exception("Lines_draw_test.cpp axys coefficient == 0");
+        return;
+    }
+
         Point b;
 
         Point loc_min = triangle.get_A();
         Point loc_mid = triangle.get_B();
         Point loc_max = triangle.get_C();
 
-        if (loc_min.x >= loc_mid.x && loc_min.x >= loc_max.x)
+        if (abs(loc_min.x) >= abs(loc_mid.x) && abs(loc_min.x) >= abs(loc_max.x))
             b.x = loc_min.x;
-        else if (loc_mid.x >= loc_min.x && loc_mid.x >= loc_max.x)
+        else if (abs(loc_mid.x) >= abs(loc_min.x) && abs(loc_mid.x) >= abs(loc_max.x))
             b.x = loc_mid.x;
-        else if (loc_max.x >= loc_min.x && loc_max.x >= loc_mid.x)
+        else if (abs(loc_max.x) >= abs(loc_min.x) && abs(loc_max.x) >= abs(loc_mid.x))
             b.x = loc_max.x;
 
 
-        if (loc_min.y >= loc_mid.y && loc_min.y >= loc_max.y)
+        if (abs(loc_min.y) >= abs(loc_mid.y) && abs(loc_min.y) >= abs(loc_max.y))
             b.y = loc_min.y;
-        else if (loc_mid.y >= loc_min.y && loc_mid.y >= loc_max.y)
+        else if (abs(loc_mid.y) >= abs(loc_min.y) && abs(loc_mid.y) >= abs(loc_max.y))
             b.y = loc_mid.y;
-        else if (loc_max.y >= loc_min.y && loc_max.y >= loc_mid.y)
+        else if (abs(loc_max.y) >= abs(loc_min.y) && abs(loc_max.y) >= abs(loc_mid.y))
             b.y = loc_max.y;
 
         Point a;
@@ -269,10 +326,23 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle) {
 
 
         setCursorPosition(0, ORIGIN.y * 2 + 2);
-        if (draw_triangle) {
+
+        if (draw_triangle && draw_round) 
+        {
 			draw_line_4(triangle.get_A(), triangle.get_B(), ORIGIN, coefficient);
 			draw_line_4(triangle.get_B(), triangle.get_C(), ORIGIN, coefficient);
 			draw_line_4(triangle.get_C(), triangle.get_A(), ORIGIN, coefficient);
         }
+        if (draw_triangle && !draw_round) 
+        {
+            Point A_ = triangle.get_A();
+            Point B_ = triangle.get_B();
+
+            draw_line_2::draw_line_no_round(triangle.get_A(), triangle.get_B(), ORIGIN);
+            draw_line_2::draw_line_no_round(triangle.get_B(), triangle.get_C(), ORIGIN);
+            draw_line_2::draw_line_no_round(triangle.get_C(), triangle.get_A(), ORIGIN);
+        }
+
+        setCursorPosition(0, ORIGIN.y * 2 + 2);
 
     }

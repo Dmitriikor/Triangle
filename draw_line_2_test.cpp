@@ -1,6 +1,6 @@
-//#include "draw_line_2_test.h"
-//
-//
+#include "draw_line_2_test.h"
+
+
 //void goto_coords_(Point a) {
 //
 //	COORD b;

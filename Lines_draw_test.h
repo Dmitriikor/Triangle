@@ -5,6 +5,14 @@
 
 #include <cmath>
 #include <iostream>
+#include <iomanip>
+#include <iostream>
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+#include <wingdi.h>
+
+
 #include "Point_test.h"
 #include "Is_equal_test.h"
 #include "Triangle_test.h"
@@ -35,6 +43,9 @@ unsigned int coefficient();
 void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned coefficient);
 
 //void indent_print();
-void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle=false);
+
+
+    // triangle, coefficient, bool draw_triangle=false, bool draw_round=true
+void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle=false, bool draw_round=true);
 
 #endif //!  LINES_DRAW_TEST_H__

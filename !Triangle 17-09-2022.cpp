@@ -350,15 +350,29 @@ int main() {
 	//std::cout << "\n";
 	//system("pause");
 	//std::cin.get();
+	
+	try
+	{
+		std::cout << "\n";
+		Point P_a; P_a.x = 10; P_a.y = -10;
+		Point P_b; P_b.x = 3; P_b.y = 3;
+		Point P_c; P_c.x = 10; P_c.y = -11;
+		Triangle test_Triangle_;
+		test_Triangle_ = test_Triangle_.create_triangle(P_a, P_b, P_c);
 
-std::cout << "\n";
-Point P_a; P_a.x = 1; P_a.y = 10;
-Point P_b; P_b.x = 5; P_b.y = -5;
-Point P_c; P_c.x = 7; P_c.y = 2;
-Triangle test_Triangle_;
-test_Triangle_ = test_Triangle_.create_triangle(P_a, P_b, P_c);
-axys(test_Triangle_, 0, true);
-std::cout << "\n";
-std::cin.get();
+		while (true) {
+			axys(test_Triangle_, 1, true, true);
+			std::cout << "\n";
+			std::cin.get();
+			axys(test_Triangle_, 1, true, false);
+			std::cin.get();
+		}
+	}
+	catch (const std::exception& exception)
+	{
+		std::cout << "exception :  " << exception.what() << std::endl;
+	}
+
+
 	return 0;
 }
