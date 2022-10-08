@@ -26,6 +26,7 @@
     <ClCompile Include="Point_test.cpp" />
     <ClCompile Include="Ray_test.cpp" />
     <ClCompile Include="!Triangle 17-09-2022.cpp" />
+    <ClCompile Include="Switch_cls_clear_from_os_type_test.cpp" />
     <ClCompile Include="Triangle_test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +36,7 @@
     <ClInclude Include="Lines_draw_test.h" />
     <ClInclude Include="Matrix_test.h" />
     <ClInclude Include="Point_test.h" />
+    <ClInclude Include="Switch_cls_clear_from_os_type_test.h" />
     <ClInclude Include="Triangle_test.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

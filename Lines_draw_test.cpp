@@ -12,8 +12,6 @@
 //#include <string>
 //#include <vector>
 
-
-#include <iomanip>
 // //#include <conio.h>
 // //#include <windows.h>
 // //#include <wingdi.h>
@@ -55,6 +53,14 @@ double step_is(unsigned coefficient) {
 int shift_w = 0;
 
 /////////////////////////
+
+void goto_coords(Point a) {
+
+	COORD b;
+	b.X = a.x;
+	b.Y = a.y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), b);
+}
 
 void setCursorPosition(int XPos, int YPos) {
     printf("\033[%d;%dH", YPos + 1, XPos + 1);
@@ -287,7 +293,7 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
         /*Point b;*/
         //std::cin >> b.x >> b.y;
 
-        system("cls");
+        //system("cls");
 
         double round_a_x = round(a.x, step_is(coefficient));
         double round_a_y = round(a.y, step_is(coefficient));
@@ -342,7 +348,179 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
             draw_line_2::draw_line_no_round(triangle.get_B(), triangle.get_C(), ORIGIN);
             draw_line_2::draw_line_no_round(triangle.get_C(), triangle.get_A(), ORIGIN);
         }
-
         setCursorPosition(0, ORIGIN.y * 2 + 2);
-
     }
+
+
+
+
+	void corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
+
+        // { some magic
+        shift_w = 4;
+        int indent = shift_w*2;
+        int y_axis_thickness = 2;
+        int x_axis_thickness = 1;
+        int shift_h = 1;
+        int shift = 0;
+        // } some magic
+
+		//} start of work wich axis 
+		// start of work with axis
+		// start of work with axis
+
+		size_t N;
+		size_t M;
+
+        Point MAX = triangle.get_A();
+        if (MAX.x < triangle.get_B_X())
+            MAX.x = triangle.get_B_X();
+        else if (MAX.x < triangle.get_C_X())
+            MAX.x = triangle.get_C_X();
+        if (MAX.y < triangle.get_B_Y())
+            MAX.y = triangle.get_B_Y();
+        else if (MAX.y < triangle.get_C_Y())
+            MAX.y = triangle.get_C_Y();
+
+
+        Point MIN = triangle.get_A();
+        if (MIN.x > triangle.get_B_X())
+            MIN.x = triangle.get_B_X();
+        else if (MIN.x > triangle.get_C_X())
+            MIN.x = triangle.get_C_X();
+        if (MIN.y > triangle.get_B_Y())
+            MIN.y = triangle.get_B_Y();
+        else if (MIN.y > triangle.get_C_Y())
+            MIN.y = triangle.get_C_Y();
+
+
+        int max_y = MAX.y;
+        int min_y = MIN.y;
+
+        int max_x = MAX.x;
+        int min_x = MIN.x;
+
+		if (min_y == max_y)
+			N = abs(max_y) + 1;
+		else
+			if (min_y >= 0 && max_y >= 0)
+				N = abs(max_y) + 1;
+			else if (min_y <= 0 && max_y <= 0)
+				N = abs(min_y) + 1;
+			else
+				N = abs(max_y) + abs(min_y) + 1;
+
+		if (max_x == min_x)
+			M = abs(max_x) + 1;
+		else if (max_x >= 0 && min_x >= 0)
+			M = abs(max_x) + 1;
+		else if (max_x <= 0 && min_x <= 0)
+			M = abs(min_x) + 1;
+		else
+			M = abs(max_x) + abs(min_x) + 1;
+
+		std::cout << "\n";
+
+		// {print y axis
+        std::string str_zero = { "0_ - "};
+		int start_y = max_y > 0 ? max_y : 0;
+        for (size_t i = 0; i < N; i++) {
+            if (start_y - (int)i != 0)
+            {
+                std::cout << std::setw(shift_w) << start_y - (int)i << " " << "\n";
+            }
+            else  std::cout << std::setw(shift_w) << str_zero << " " << "\n";
+            
+        }
+		// }end print y axis
+
+		//indent_print();
+		// print indent to start x axis near at y coluns
+
+		//{find actual console point of start coodrs
+		Point ZERO;
+        Point Find;
+        Find.x = 0;
+
+        std::string str;
+        char cons[20];
+
+        for (size_t i = 0; i < N; i++) {
+           
+            
+            Find.y = i;
+            goto_coords(Find);
+            std::cout << i;
+            ReadConsoleOutputW(/cons);
+            //std::getline(std::cin, str);
+            std::size_t found = str.find(str_zero);
+            if (found != std::string::npos)
+                std::cout << "first 'needle' found at: " << found << '\n';
+
+
+            /*
+            if (found != std::string::npos) {
+                ZERO.y = i;
+                break;
+            }*/
+            str.clear();
+            //std::cin.ignore(256);
+        }
+
+        //ZERO.y = start_y + y_axis_thickness;// +shift_w; //!x_axis_thickness
+		//}find actual console point of start coodrs
+
+		// {print x axys
+		int start_x = min_x > 0 ? 0 : min_x;
+        std::cout << std::setw(shift_w) << " ";
+		for (size_t i = 0; i < M; i++)
+			std::cout << std::setw(shift_w) << start_x + (int)i;
+		// }end print x axis
+
+
+		//{find actual console point of start coodrs
+		std::cout << "\n";
+		ZERO.x = ((abs(start_x)) * shift_w) + indent + y_axis_thickness; //!!!!!SHIFT
+		//}find actual console point of start coodrs
+
+		// {print on start coord "0"
+		std::cout << "\n";
+		goto_coords(ZERO);
+		std::cout << "0";
+		// }print on start coord "0"
+
+		// {Point end use for get new line after print axis
+		Point end; // use to print axys
+		end.x = 0;
+		end.y = N + (N * shift) + x_axis_thickness + shift_h;  //+1 str
+		end.y = end.y + 1;
+		goto_coords(end);
+		// }Point end use for get new line after print axis
+
+		std::cout << "\n";
+		std::cout << "END\n";
+		std::cout << "\n";
+
+		std::cout << "min_x " << min_x << "\n";
+		std::cout << "max_x " << max_x << "\n";
+		std::cout << "max_y " << max_y << "\n";
+		std::cout << "min_y " << min_y << "\n";
+
+		//}end of work wich axis 
+		//end of work with axis
+		//end of work with axis
+
+
+	}
+
+    /*
+    //{print points in the point_arr arr
+    for (size_t j = 0; j < n_points; j++) {
+        Point coord;
+        coord.x = ZERO.x + (point_arr[j].x * shift_w_);
+        coord.y = ZERO.y - point_arr[j].y;
+        goto_coords(coord);
+        std::cout << "x";
+    }
+    //}print points in the point_arr arr
+    */

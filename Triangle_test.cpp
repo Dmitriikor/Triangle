@@ -24,13 +24,33 @@ double Triangle::get_CA() const {
 const Point& Triangle::get_A() const {
 	return vertex.a;
 }
+const int Triangle::get_A_X() const {
+	return vertex.a.x;
+}
+const int Triangle::get_A_Y() const {
+	return vertex.a.y;
+}
 
 const Point& Triangle::get_B() const {
 	return vertex.b;
 }
 
+const int Triangle::get_B_X() const {
+	return vertex.b.x;
+}
+const int Triangle::get_B_Y() const {
+	return vertex.b.y;
+}
+
 const Point& Triangle::get_C() const {
 	return vertex.c;
+}
+
+const int Triangle::get_C_X() const {
+	return vertex.c.x;
+}
+const int Triangle::get_C_Y() const {
+	return vertex.c.y;
 }
 
 void Triangle::create(const Point& a, const Point& b, const Point& c) {

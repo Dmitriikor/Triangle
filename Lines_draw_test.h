@@ -9,13 +9,17 @@
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
-#include <windows.h>
 #include <wingdi.h>
+#include <exception>
+#include <string>
+#include <WinCon.h>
+#include <Windows.h>
 
 
 #include "Point_test.h"
 #include "Is_equal_test.h"
 #include "Triangle_test.h"
+
 /*
 size_t shift();
 size_t shift_w();
@@ -47,5 +51,8 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
 
     // triangle, coefficient, bool draw_triangle=false, bool draw_round=true
 void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle=false, bool draw_round=true);
+
+// triangle, coefficient, bool draw_triangle=false, bool draw_round=true
+void corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle = false, bool draw_round = true);
 
 #endif //!  LINES_DRAW_TEST_H__

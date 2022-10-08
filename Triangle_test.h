@@ -44,9 +44,21 @@ double get_CA() const;
 
 const Point& get_A() const;
 
-const Point& get_B() const; 
+const int get_A_X() const;
 
-const Point& get_C() const; 
+const int get_A_Y() const;
+
+const Point& get_B() const;
+
+const int get_B_X() const;
+
+const int get_B_Y() const;
+
+const Point& get_C() const;
+
+const int get_C_X() const;
+
+const int get_C_Y() const;
 
 void create(const Point& a, const Point& b, const Point& c); 
 
