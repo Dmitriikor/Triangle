@@ -1,12 +1,12 @@
 #ifndef RAY_TEST_H__
 #define RAY_TEST_H__
 
-using T = int;
-using pointer_type = T*;
+using TT = int;
+using pointer_type_Ray = TT*;
 
 class Ray {
 private:
-	T* data = nullptr;
+	TT* data = nullptr;
 
 	size_t capacity = 0;
 	size_t size = 0;
@@ -28,22 +28,22 @@ public:
 
 	Ray& operator=(const Ray& other);
 
-	const T& operator[](size_t index) const;
+	const TT& operator[](size_t index) const;
 
-	T& operator[](size_t index);
+	TT& operator[](size_t index);
 
 	//[index1; index2)
 	Ray operator()(size_t index_first, size_t index_behind_last) const;
 
 	bool is_empty() const;
 
-	const T& value(size_t index) const;
+	const TT& value(size_t index) const;
 
-	T& value(size_t index);
+	TT& value(size_t index);
 
-	void add_to_back(const T& value);
+	void add_to_back(const TT& value);
 
-	void add_to_start(const T& value);
+	void add_to_start(const TT& value);
 
 	void clear();
 

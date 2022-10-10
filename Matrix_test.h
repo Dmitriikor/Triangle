@@ -1,8 +1,8 @@
 #ifndef MATRIX_TEST_H__
 
 #define MATRIX_TEST_H__
-
-using T = int;
+#include <string>
+using T = std::string;
 using pointer_type = T*;
 
 

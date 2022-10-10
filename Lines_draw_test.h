@@ -9,13 +9,15 @@
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
-#include <wingdi.h>
+//#include <wingdi.h>
 #include <exception>
 #include <string>
-#include <WinCon.h>
+//#include <WinCon.h>
 #include <Windows.h>
 
+#include <string_view>
 
+#include "Matrix_test.h"
 #include "Point_test.h"
 #include "Is_equal_test.h"
 #include "Triangle_test.h"

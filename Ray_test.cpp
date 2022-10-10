@@ -12,7 +12,7 @@ void Ray::increase_capacity() {
 
 void Ray::expand_ray() {
 	increase_capacity();
-	T* temp = new T[capacity];
+	TT* temp = new TT[capacity];
 
 	for (size_t i = 0; i < size; i++) {
 		temp[i] = data[i];
@@ -26,15 +26,15 @@ bool  Ray::is_empty() const {
 	return (size == 0) ? true : false;
 }
 
-const T& Ray::value(size_t index) const {
+const TT& Ray::value(size_t index) const {
 	return data[index];
 }
 
-T& Ray::value(size_t index) {
+TT& Ray::value(size_t index) {
 	return data[index];
 }
 
-void Ray::add_to_back(const T& value) {
+void Ray::add_to_back(const TT& value) {
 	if (size == capacity) {
 		expand_ray();
 	}
@@ -43,7 +43,7 @@ void Ray::add_to_back(const T& value) {
 	++size;
 }
 
-void Ray::add_to_start(const T& value) {
+void Ray::add_to_start(const TT& value) {
 	if (size == capacity)
 		expand_ray();
 
@@ -57,7 +57,7 @@ void Ray::add_to_start(const T& value) {
 void Ray::clear() {
 	delete[] data;
 	capacity = 10u;
-	data = new T[capacity];
+	data = new TT[capacity];
 	size = 0;
 }
 
@@ -90,13 +90,13 @@ Ray Ray::operator()(size_t index_first, size_t index_behind_last) const {
 	return sub_data;
 }
 
-T& Ray::operator[](size_t index) {
+TT& Ray::operator[](size_t index) {
 	if (index >= size)
-		throw std::out_of_range("T& operator[](size_t index): index >= size");
+		throw std::out_of_range("TT& operator[](size_t index): index >= size");
 	return value(index);
 }
 
-const T& Ray::operator[](size_t index) const {
+const TT& Ray::operator[](size_t index) const {
 	return value(index);
 }
 
@@ -107,7 +107,7 @@ Ray& Ray::operator=(const Ray& other) {
 		size = other.size;
 		COEFFICIENT = other.COEFFICIENT;
 		delete[] data;
-		data = new T[capacity];
+		data = new TT[capacity];
 		for (size_t i = 0; i < other.size; ++i)
 			data[i] = other.data[i];
 	}
@@ -116,13 +116,13 @@ Ray& Ray::operator=(const Ray& other) {
 }
 
 Ray::Ray(const Ray& other) :capacity(other.capacity), size(other.size), COEFFICIENT(other.COEFFICIENT) {
-	data = new T[capacity];
+	data = new TT[capacity];
 	for (size_t i = 0; i < other.size; ++i)
 		data[i] = other.data[i];
 }
 
 Ray::Ray(size_t capacity, size_t coefficient) :capacity(capacity), size(0), COEFFICIENT(coefficient) {
-	data = new T[capacity];
+	data = new TT[capacity];
 }
 
 Ray::Ray(size_t capacity) :Ray(capacity, 2u) {

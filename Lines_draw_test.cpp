@@ -1,4 +1,5 @@
 ﻿#include "Lines_draw_test.h"
+#include <charconv>
 
 
 //#include <stdio.h>
@@ -421,15 +422,15 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
 
 		std::cout << "\n";
 
+        Matrix corner_print;
+
+        corner_print.create_matrix(N+1, M+1);
 		// {print y axis
-        std::string str_zero = { "0_ - "};
+        
 		int start_y = max_y > 0 ? max_y : 0;
-        for (size_t i = 0; i < N; i++) {
-            if (start_y - (int)i != 0)
-            {
-                std::cout << std::setw(shift_w) << start_y - (int)i << " " << "\n";
-            }
-            else  std::cout << std::setw(shift_w) << str_zero << " " << "\n";
+        for (size_t i = 0; i < N; i++) 
+        {
+                corner_print.set_at(i, 0, std::to_string((start_y - (int)i)));
             
         }
 		// }end print y axis
@@ -439,48 +440,35 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
 
 		//{find actual console point of start coodrs
 		Point ZERO;
-        Point Find;
-        Find.x = 0;
+        
 
-        std::string str;
-        char cons[20];
-
-        for (size_t i = 0; i < N; i++) {
-           
-            
-            Find.y = i;
-            goto_coords(Find);
-            std::cout << i;
-            ReadConsoleOutputW(/cons);
-            //std::getline(std::cin, str);
-            std::size_t found = str.find(str_zero);
-            if (found != std::string::npos)
-                std::cout << "first 'needle' found at: " << found << '\n';
-
-
-            /*
-            if (found != std::string::npos) {
-                ZERO.y = i;
-                break;
-            }*/
-            str.clear();
-            //std::cin.ignore(256);
-        }
-
-        //ZERO.y = start_y + y_axis_thickness;// +shift_w; //!x_axis_thickness
+        ZERO.y = start_y + 1;// +shift_w; //!x_axis_thickness
 		//}find actual console point of start coodrs
 
 		// {print x axys
 		int start_x = min_x > 0 ? 0 : min_x;
         std::cout << std::setw(shift_w) << " ";
-		for (size_t i = 0; i < M; i++)
-			std::cout << std::setw(shift_w) << start_x + (int)i;
+        for (size_t i = 0; i < M; i++)
+        {
+            //std::cout << std::setw(shift_w) << start_x + (int)i;
+            corner_print.set_at(N, i+1, std::to_string(start_x + (int)i));
+        }
 		// }end print x axis
 
 
+        std::cout << "\n";
+        for (size_t i = 0; i <= N; i++)
+        {
+            for (size_t j = 0; j <= M; j++) 
+            {
+                std::cout << "\t" << corner_print.get_at(i, j);
+            }
+            std::cout << "\n";
+        }
+
 		//{find actual console point of start coodrs
 		std::cout << "\n";
-		ZERO.x = ((abs(start_x)) * shift_w) + indent + y_axis_thickness; //!!!!!SHIFT
+		ZERO.x = ((abs(start_x))); //!!!!!SHIFT
 		//}find actual console point of start coodrs
 
 		// {print on start coord "0"
@@ -496,6 +484,9 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
 		end.y = end.y + 1;
 		goto_coords(end);
 		// }Point end use for get new line after print axis
+
+
+
 
 		std::cout << "\n";
 		std::cout << "END\n";
