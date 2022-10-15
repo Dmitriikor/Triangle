@@ -14,14 +14,16 @@
 #include <string>
 //#include <WinCon.h>
 #include <Windows.h>
+#include <utility>
 
 #include <string_view>
 
+#include "Ray_3_test.h"
 #include "Matrix_test.h"
 #include "Point_test.h"
 #include "Is_equal_test.h"
 #include "Triangle_test.h"
-
+#include "Ray_test.h"
 /*
 size_t shift();
 size_t shift_w();

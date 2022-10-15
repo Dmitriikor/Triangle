@@ -20,10 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="draw_line_2_test.cpp" />
+    <ClCompile Include="hello.cpp" />
     <ClCompile Include="Is_equal_test.cpp" />
     <ClCompile Include="Lines_draw_test.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix_test.cpp" />
     <ClCompile Include="Point_test.cpp" />
+    <ClCompile Include="Ray_3_test.cpp" />
     <ClCompile Include="Ray_test.cpp" />
     <ClCompile Include="!Triangle 17-09-2022.cpp" />
     <ClCompile Include="Switch_cls_clear_from_os_type_test.cpp" />
@@ -31,6 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw_line_2_test.h" />
+    <ClInclude Include="hello.h" />
+    <ClInclude Include="Ray_3_test.h" />
     <ClInclude Include="Ray_test.h" />
     <ClInclude Include="Is_equal_test.h" />
     <ClInclude Include="Lines_draw_test.h" />

@@ -353,6 +353,34 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
     }
 
 
+Point MAX;
+Point MIN;
+
+void min_max_points(Ray_3_ &points) {
+    size_t length = points.size();
+
+     MAX = points[0];
+     MIN = points[0];
+
+    for (size_t i = 0; i < length; i++)
+    {
+
+        if (MAX.x < points[i].x)
+            MAX.x = points[i].x;
+
+
+        if (MAX.y < points[i].y)
+            MAX.y = points[i].y;
+
+        if (MIN.x > points[i].x)
+            MIN.x = points[i].x;
+
+        if (MIN.y > points[i].y)
+            MIN.y = points[i].y;
+
+    }
+
+}
 
 
 	void corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
@@ -373,26 +401,6 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
 		size_t N;
 		size_t M;
 
-        Point MAX = triangle.get_A();
-        if (MAX.x < triangle.get_B_X())
-            MAX.x = triangle.get_B_X();
-        else if (MAX.x < triangle.get_C_X())
-            MAX.x = triangle.get_C_X();
-        if (MAX.y < triangle.get_B_Y())
-            MAX.y = triangle.get_B_Y();
-        else if (MAX.y < triangle.get_C_Y())
-            MAX.y = triangle.get_C_Y();
-
-
-        Point MIN = triangle.get_A();
-        if (MIN.x > triangle.get_B_X())
-            MIN.x = triangle.get_B_X();
-        else if (MIN.x > triangle.get_C_X())
-            MIN.x = triangle.get_C_X();
-        if (MIN.y > triangle.get_B_Y())
-            MIN.y = triangle.get_B_Y();
-        else if (MIN.y > triangle.get_C_Y())
-            MIN.y = triangle.get_C_Y();
 
 
         int max_y = MAX.y;
