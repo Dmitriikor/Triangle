@@ -46,13 +46,27 @@ Point ORIGIN;  // origin relative to the console  / Г­Г Г·. ГЄГ®Г®Г
 unsigned int coefficient = 1;
 /////////////////////////
 
+struct virtual_MAX
+{
+    int x = INT_MIN;
+    int y = INT_MIN;
+
+}virtual_MAX;
+
+struct virtual_MIN
+{
+     int x = INT_MAX;
+     int y = INT_MAX;
+}virtual_MIN;
+
+
 double step_is(unsigned coefficient) {
     double step = 1.0 / coefficient;
     return step;
 }
 /////////////////////////
-int shift_w = 0;
-
+int shift_w = -1;
+int shift_h = -1;
 /////////////////////////
 
 void goto_coords(Point a) {
@@ -353,45 +367,82 @@ void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool
     }
 
 
-Point MAX;
-Point MIN;
 
-void min_max_points(Ray_3_ &points) {
+
+void set_min_max_of_points_rey(Ray_3_ &points) 
+{
     size_t length = points.size();
-
-     MAX = points[0];
-     MIN = points[0];
 
     for (size_t i = 0; i < length; i++)
     {
+        
+        if (virtual_MAX.x < points[i].x)
+            virtual_MAX.x = points[i].x;
 
-        if (MAX.x < points[i].x)
-            MAX.x = points[i].x;
 
+        if (virtual_MAX.y < points[i].y)
+            virtual_MAX.y = points[i].y;
 
-        if (MAX.y < points[i].y)
-            MAX.y = points[i].y;
+        if (virtual_MIN.x > points[i].x)
+            virtual_MIN.x = points[i].x;
 
-        if (MIN.x > points[i].x)
-            MIN.x = points[i].x;
-
-        if (MIN.y > points[i].y)
-            MIN.y = points[i].y;
+        if (virtual_MIN.y > points[i].y)
+            virtual_MIN.y = points[i].y;
 
     }
-
 }
+
+void try_set_min_max_by(Point pt) 
+{
+    if (virtual_MAX.x < pt.x)
+        virtual_MAX.x = pt.x;
+
+    if (virtual_MAX.y < pt.y)
+        virtual_MAX.y = pt.y;
+
+    if (virtual_MIN.x > pt.x)
+        virtual_MIN.x = pt.x;
+
+    if (virtual_MIN.y > pt.y)
+        virtual_MIN.y = pt.y;
+    
+}
+
+void char_shift_w_h_cntr() {
+    size_t answ_w = 1;
+    size_t answ_h = 1;
+    if (virtual_MIN.y < 0 || virtual_MIN.x < 0) 
+    {
+        answ_w++; 
+        answ_h++;
+    }
+    size_t x = abs(virtual_MAX.x) > abs(virtual_MIN.x) ? abs(virtual_MAX.x) : abs(virtual_MIN.x);
+    for (; x >= 10; answ_w++) 
+    {
+        x = x / 10;
+    }
+    size_t y = abs(virtual_MAX.y) > abs(virtual_MIN.y) ? abs(virtual_MAX.y) : abs(virtual_MIN.y);
+    for (; y >= 10; answ_h++) 
+    {
+        y = y / 10;
+    }
+
+    shift_w = answ_w;
+    shift_h = answ_h;
+}
+
+
 
 
 	void corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
 
         // { some magic
-        shift_w = 4;
+       /* shift_w = 4;
         int indent = shift_w*2;
         int y_axis_thickness = 2;
         int x_axis_thickness = 1;
         int shift_h = 1;
-        int shift = 0;
+        int shift = 0;*/
         // } some magic
 
 		//} start of work wich axis 
@@ -401,13 +452,11 @@ void min_max_points(Ray_3_ &points) {
 		size_t N;
 		size_t M;
 
+        int max_y = virtual_MAX.y;
+        int min_y = virtual_MIN.y;
 
-
-        int max_y = MAX.y;
-        int min_y = MIN.y;
-
-        int max_x = MAX.x;
-        int min_x = MIN.x;
+        int max_x = virtual_MAX.x;
+        int min_x = virtual_MIN.x;
 
 		if (min_y == max_y)
 			N = abs(max_y) + 1;
@@ -430,17 +479,31 @@ void min_max_points(Ray_3_ &points) {
 
 		std::cout << "\n";
 
+
+
         Matrix corner_print;
 
-        corner_print.create_matrix(N+1, M+1);
+        corner_print.create_matrix(N + shift_h, M + shift_w);
 		// {print y axis
         
 		int start_y = max_y > 0 ? max_y : 0;
+        int size_h = shift_h;
+        int temp_N = N;
         for (size_t i = 0; i < N; i++) 
         {
-                corner_print.set_at(i, 0, std::to_string((start_y - (int)i)));
-            
+            int inpt = temp_N % 10;
+
+            std::stringstream t;
+            t << inpt;
+            char const* n_char = t.str().c_str();
+            temp_N = temp_N / 10;
+
+            corner_print.set_at(i+ size_h, 0, *n_char);
+            --size_h;
+          
         }
+
+
 		// }end print y axis
 
 		//indent_print();

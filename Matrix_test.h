@@ -2,7 +2,7 @@
 
 #define MATRIX_TEST_H__
 #include <string>
-using T = std::string;
+using T = char;
 using pointer_type = T*;
 
 

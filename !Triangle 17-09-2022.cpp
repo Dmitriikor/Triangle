@@ -17,10 +17,10 @@ std::streamsize MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
 using std::endl;
 
-const int MIN_ = -2147483648;
-const int MAX_ = 2147483647;
 
-#include <limits>
+#include <limits> // MAX_STREAMSIZE
+const int MIN_ = INT_MIN; 
+const int MAX_ = INT_MAX;
 
 #include "draw_line_2_test.h"
 #include "Point_test.h"
