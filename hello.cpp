@@ -306,9 +306,6 @@ void hello_draw_line_1(const Point& A, const Point& B)
 		max = A.x;
 	}
 
-	//  cd /root/Vs_Code/Matrix/
-	//  ./Line4
-
 	if (isEqual(min, max))
 	{
 		double start = A.y;

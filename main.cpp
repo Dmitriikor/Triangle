@@ -36,6 +36,8 @@ int main(int argc, char const* argv[])
 
 	draw_points();
 
+
+	while (true) {
 	Point to_line_1;
 	std::cout << "\n\t" << "input" << "\n";
 	std::cin >> to_line_1.x >> to_line_1.y;
@@ -43,10 +45,10 @@ int main(int argc, char const* argv[])
 	std::cout << "\n\t" << "input" << "\n";
 	std::cin >> to_line_2.x >> to_line_2.y;
 
-	hello_draw_line_1(to_line_1, to_line_2);
+		hello_draw_line_1(to_line_1, to_line_2);
 
-	draw_points(true);
-
+		draw_points(true);
+	}
 	std::cout << "end hello" << "\n";
 
 
