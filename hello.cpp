@@ -182,8 +182,6 @@ void hello_corner() {
 	std::cout << "\n" << "\t" << "ZERO.x = " << ZERO.x << " : ZERO.y = " << ZERO.y << "\n";
 	corner_print[ZERO.y][ZERO.x] = 'o';
 
-	hello_print_arr(N,M, corner_print);
-
 	int stop = 1;
 
 	//}end of work wich axis 
@@ -215,6 +213,5 @@ void hello_try_set_min_max_by(Point pt)
 
 	if (_MIN_.y > pt.y)
 		_MIN_.y = pt.y;
-
 }
 
