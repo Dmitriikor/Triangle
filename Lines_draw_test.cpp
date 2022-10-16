@@ -489,25 +489,28 @@ void char_shift_w_h_cntr() {
 		int start_y = max_y > 0 ? max_y : 0;
         int size_h = shift_h;
         int temp_N = N;
+        int temp_inpt;
         for (size_t i = 0; i < N; i++) 
         {
-            int inpt = temp_N % 10;
+            size_h = shift_h;
+            temp_inpt = start_y - i;
 
-            std::stringstream t;
-            t << inpt;
-            char const* n_char = t.str().c_str();
-            temp_N = temp_N / 10;
+            for (size_t j = 0; j < shift_h; j++)
+            {
+                int inpt = temp_inpt % 10;
+                temp_inpt = temp_inpt / 10;
+                int g = 0 + size_h;
+                if (inpt < 0)
+                    corner_print[i][0] = '-';
 
-            corner_print.set_at(i+ size_h, 0, *n_char);
-            --size_h;
+                corner_print[i][g] = '0' + abs(inpt);
+
+                --size_h;
+            }
           
         }
-
-
 		// }end print y axis
 
-		//indent_print();
-		// print indent to start x axis near at y coluns
 
 		//{find actual console point of start coodrs
 		Point ZERO;
@@ -518,12 +521,54 @@ void char_shift_w_h_cntr() {
 
 		// {print x axys
 		int start_x = min_x > 0 ? 0 : min_x;
-        std::cout << std::setw(shift_w) << " ";
+         
         for (size_t i = 0; i < M; i++)
         {
-            //std::cout << std::setw(shift_w) << start_x + (int)i;
-            corner_print.set_at(N, i+1, std::to_string(start_x + (int)i));
+            temp_inpt = min_x + i; // ?
+            if (temp_inpt >= 0)
+            {
+                for (int j = shift_w; j > 0; --j)
+                {
+                    if (j == shift_w)
+                    {
+                        corner_print[N][shift_h + (i * shift_w) + j] = '|';
+                    }
+                    else
+                    {
+                        int inpt = temp_inpt % 10;
+                        temp_inpt = temp_inpt / 10;
+                        corner_print[N][shift_h + (i * shift_w) + j] = '0' + abs(inpt);
+                    }
+                }
+            }
+            else
+            {
+                for (int j = shift_w; j > 0; --j)
+                {
+
+                    if (j == shift_w)
+                    {
+                        corner_print[N][shift_h + (i * shift_w) + j] = '|';
+                    }
+                    else
+                    {
+                        int inpt = temp_inpt % 10;
+                        temp_inpt = temp_inpt / 10;
+                        corner_print[N][shift_h + (i * shift_w) + j] = '0' + abs(inpt);
+                        corner_print[N][shift_h + (i * shift_w) + 1] = '-';
+
+                    }
+                }
+            }
         }
+    
+        //for (size_t i = 0; i < M; i++)
+        //{
+        //    //std::cout << std::setw(shift_w) << start_x + (int)i;
+        //    corner_print.set_at(N, i+1, std::to_string(start_x + (int)i));
+        //}
+
+
 		// }end print x axis
 
 
@@ -549,11 +594,11 @@ void char_shift_w_h_cntr() {
 		// }print on start coord "0"
 
 		// {Point end use for get new line after print axis
-		Point end; // use to print axys
-		end.x = 0;
-		end.y = N + (N * shift) + x_axis_thickness + shift_h;  //+1 str
-		end.y = end.y + 1;
-		goto_coords(end);
+		//Point end; // use to print axys
+		//end.x = 0;
+		//end.y = N + (N * shift) + x_axis_thickness + shift_h;  //+1 str
+		//end.y = end.y + 1;
+		//goto_coords(end);
 		// }Point end use for get new line after print axis
 
 

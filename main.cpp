@@ -12,18 +12,21 @@ int main(int argc, char const* argv[])
     Point d;
     Ray_3_ test___;
 
-    a.x = 101; a.y = 1;
+    a.x = 15; a.y = 1;
     test___.add_to_back(a);
     b.x = 0; b.y = 0;
     test___.add_to_back(b);
-    c.x = 3; c.y = -5000;
+    c.x = -5; c.y = -12;
     test___.add_to_back(c);
-    d.x = 1; d.y = 800;
+    d.x = 1; d.y = 10;
     test___.add_to_back(d);
 
     hello_min_max_points(test___);
 
     hello_char_w_cntr();
+
+    hello_corner();
+
     std::cout << "end helo" << "\n";
 
 
