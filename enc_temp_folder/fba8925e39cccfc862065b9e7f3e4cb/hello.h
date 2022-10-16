@@ -22,5 +22,4 @@ void hello_try_set_min_max_by(Point pt);
 
 void draw_points(bool draw_line = false);
 void hello_draw_line_1(const Point& A, const Point& B);
-
 #endif //!  HELLO_H__

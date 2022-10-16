@@ -14,7 +14,7 @@ Ray_3_ line_arr;
 
 bool cp_ar = false;
 
-void copy_arr(Ray_3_& points)
+void copy_arr(Ray_3_& points) 
 {
 	cp_ar = true;
 
@@ -25,7 +25,7 @@ void copy_arr(Ray_3_& points)
 	}
 }
 
-void hello_min_max_points(Ray_3_& points, bool run_copy_arr)
+void hello_min_max_points(Ray_3_& points, bool run_copy_arr) 
 {
 	size_t length = points.size();
 
@@ -146,9 +146,9 @@ void hello_corner() {
 			if (inpt > 0)
 				corner_print[i][1] = ' ';
 
-			if (inpt < 0)
+			if (inpt < 0) 
 				corner_print[i][1] = '-';
-
+			
 			if (j != 1)
 				corner_print[i][j] = '0' + abs(inpt);
 
@@ -226,7 +226,7 @@ void hello_print_arr() {
 void hello_try_set_min_max_by(Point pt)
 {
 	ptr_arr.add_to_back(pt);
-
+	
 	if (_MAX_.x < pt.x)
 		_MAX_.x = pt.x;
 
@@ -276,9 +276,9 @@ void draw_points(bool draw_line)
 		if (y < 0)
 			y1 = ZERO.y + abs(y);
 		else
-			y1 = ZERO.y - y;
+		y1 = ZERO.y - y;
 
-		corner_print.set_at(y1, x1, '*');
+		corner_print.set_at(y1,x1, '*');
 
 	}
 	std::cout << "\n";
@@ -309,8 +309,7 @@ void hello_draw_line_1(const Point& A, const Point& B)
 	//  cd /root/Vs_Code/Matrix/
 	//  ./Line4
 
-	if (isEqual(min, max))
-	{
+	if (isEqual(min, max)) {
 		double start = A.y;
 		double end = B.y;
 		if (A.y < B.y) {
@@ -320,8 +319,7 @@ void hello_draw_line_1(const Point& A, const Point& B)
 		double step = hello_step_is(coefficient);  // 1.0 / coefficient;
 		Point point;
 		point.x = A.x;
-		for (double y = start; y >= end; y -= step)
-		{
+		for (double y = start; y >= end; y -= step) {
 			point.y = y;
 
 			point.x = (int)hello_round(point.x, step);
@@ -343,17 +341,18 @@ void hello_draw_line_1(const Point& A, const Point& B)
 
 	unsigned N = (rounded_max - rounded_min) / step + 1;
 
-	for (int i = 0; i < N; ++i)
-	{
+
+	for (int i = 0; i < N; ++i) {
 		Point point;
 		point.x = rounded_min + i * step;
 		point.y = k * point.x + b;
 
-		point.x = (int)hello_round(point.x, step);
-		point.y = (int)hello_round(point.y, step);
+		 point.x = (int)hello_round(point.x, step);
+		 point.y = (int)hello_round(point.y, step);
 
 		line_arr.add_to_back(point);
 	}
+
 
 	size_t length = line_arr.size();
 	for (size_t i = 0; i < length; i++)

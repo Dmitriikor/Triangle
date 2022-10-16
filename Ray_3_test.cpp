@@ -270,7 +270,7 @@ Ray_3_& Ray_3_::get_own() {
 }
 
 Ray_3_& Ray_3_::operator=(const Ray_3_& other) {
-	std::cout << "operator=" << std::endl;
+	//std::cout << "operator=" << std::endl;
 	//this - адрес левого операнда
 	if (this != &other) {
 		LEFT = other.LEFT;
