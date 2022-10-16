@@ -141,7 +141,7 @@ void hello_corner() {
 	// {print x axys
 	int start_x = min_x > 0 ? 0 : min_x;
 
-	for (size_t i = 0; i <= max_x; i++)
+	for (size_t i = 0; i <= abs(max_x) + abs(min_x); i++)
 	{
 		int temp_inpt = min_x + i; // ?
 		bool neg = false;
@@ -202,3 +202,18 @@ void hello_print_arr(size_t N, size_t M, Matrix &corner_print) {
 	std::cout << "\n";
 }
 
+void hello_try_set_min_max_by(Point pt)
+{
+	if (_MAX_.x < pt.x)
+		_MAX_.x = pt.x;
+
+	if (_MAX_.y < pt.y)
+		_MAX_.y = pt.y;
+
+	if (_MIN_.x > pt.x)
+		_MIN_.x = pt.x;
+
+	if (_MIN_.y > pt.y)
+		_MIN_.y = pt.y;
+
+}

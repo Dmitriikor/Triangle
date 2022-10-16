@@ -14,5 +14,5 @@ void hello_min_max_points(Ray_3_& points);
 void hello_char_w_cntr();
 void hello_corner();
 void hello_print_arr(size_t N, size_t M, Matrix& corner_print);
-
+void hello_try_set_min_max_by(Point pt);
 #endif //!  HELLO_H__

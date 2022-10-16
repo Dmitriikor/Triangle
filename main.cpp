@@ -23,11 +23,21 @@ int main(int argc, char const* argv[])
 
     hello_min_max_points(test___);
 
+    Point pt;
+    pt.x = 20; pt.y = -15;
+
+    hello_try_set_min_max_by(pt);
+
     hello_char_w_cntr();
 
     hello_corner();
 
-    std::cout << "end helo" << "\n";
+
+
+
+
+
+    std::cout << "end hello" << "\n";
 
 
 
