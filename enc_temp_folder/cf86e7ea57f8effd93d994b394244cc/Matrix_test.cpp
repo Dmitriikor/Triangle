@@ -22,7 +22,7 @@
 
 			arr = new T * [N];
 			for (size_t i = 0; i < N; i++) {
-				arr[i] = new T[M];
+				arr[i] = new T[M]();
 			}
 		}
 		else {
