@@ -3,8 +3,33 @@
 Point _MAX_;
 Point _MIN_;
 
-void hello_min_max_points(Ray_3_& points) {
+size_t N;
+size_t M;
+Matrix corner_print;
+
+Point ZERO;
+
+Ray_3_ ptr_arr;
+bool cp_ar = false;
+
+void copy_arr(Ray_3_& points) 
+{
+	cp_ar = true;
+
 	size_t length = points.size();
+	for (size_t i = 0; i < length; i++)
+	{
+		ptr_arr.add_to_back(points[i]);
+	}
+}
+
+void hello_min_max_points(Ray_3_& points, bool run_copy_arr) 
+{
+	size_t length = points.size();
+
+	if (run_copy_arr)
+		copy_arr(points);
+
 
 	_MAX_ = points[0];
 	_MIN_ = points[0];
@@ -60,9 +85,6 @@ void hello_char_w_cntr() {
 
 }
 
-	size_t N;
-	size_t M;
-	Matrix corner_print;
 
 void hello_corner() {
 
@@ -122,9 +144,9 @@ void hello_corner() {
 			if (inpt > 0)
 				corner_print[i][1] = ' ';
 
-			if (inpt < 0) {
+			if (inpt < 0) 
 				corner_print[i][1] = '-';
-			}
+			
 			if (j != 1)
 				corner_print[i][j] = '0' + abs(inpt);
 
@@ -134,7 +156,6 @@ void hello_corner() {
 	// }end print y axis
 
 	//{find actual console point of start coodrs
-	Point ZERO;
 	ZERO.y = start_y;// +shift_w_; //!x_axis_thickness
 	//}find actual console point of start coodrs
 
@@ -202,6 +223,8 @@ void hello_print_arr() {
 
 void hello_try_set_min_max_by(Point pt)
 {
+	ptr_arr.add_to_back(pt);
+	
 	if (_MAX_.x < pt.x)
 		_MAX_.x = pt.x;
 
@@ -213,5 +236,94 @@ void hello_try_set_min_max_by(Point pt)
 
 	if (_MIN_.y > pt.y)
 		_MIN_.y = pt.y;
+	cp_ar = true;
 }
 
+double hello_round(double x, double step) {
+	double modulo = fmod(x, step);
+	if (modulo < step / 2)
+		return x - modulo;
+	return x - modulo + step;
+}
+
+
+void draw_points() 
+{
+	if (!cp_ar)
+		return;
+
+	size_t length = ptr_arr.size();
+
+	int x, y;
+	int x1, y1;
+	for (size_t i = 0; i < length; i++)
+	{
+		x = ptr_arr[i].x;
+		y = ptr_arr[i].y;
+
+		x1 = ZERO.x + (x * shift_w_);
+		if (y < 0)
+			y1 = ZERO.y + abs(y);
+		else
+		y1 = ZERO.y - y;
+
+		corner_print.set_at(y1,x1, '*');
+	}
+	std::cout << "\n";
+	hello_print_arr();
+	std::cout << "\n";
+}
+
+//void hello_draw_line_1() 
+//{
+//
+//	Point coords;
+//
+//	double min = A.x;
+//	double max = B.x;
+//	if (A.x > B.x) {
+//		min = B.x;
+//		max = A.x;
+//	}
+//
+//	//  cd /root/Vs_Code/Matrix/
+//	//  ./Line4
+//
+//	if (isEqual(min, max)) {
+//		double start = A.y;
+//		double end = B.y;
+//		if (A.y < B.y) {
+//			start = B.y;
+//			end = A.y;
+//		}
+//		double step = step_is(coefficient);  // 1.0 / coefficient;
+//		Point point;
+//		point.x = A.x;
+//		for (double y = start; y >= end; y -= step) {
+//			point.y = y;
+//			printPoint(point, ORIGIN, coefficient);
+//		}
+//		return;
+//	}
+//
+//	double k = (B.y - A.y) / (B.x - A.x);
+//	double b_ = k * A.x;
+//	double b = A.y - b_;
+//
+//	double step = step_is(coefficient);  // 1.0 / coefficient;
+//
+//	double rounded_min = hello_round(min, step);
+//	double rounded_max = hello_round(max, step);
+//
+//	unsigned N = (rounded_max - rounded_min) / step + 1;
+//
+//
+//	for (int i = 0; i < N; ++i) {
+//		Point point;
+//		point.x = rounded_min + i * step;
+//		point.y = k * point.x + b;
+//
+//
+//		printPoint(point, ORIGIN, coefficient);
+//	}
+//}
