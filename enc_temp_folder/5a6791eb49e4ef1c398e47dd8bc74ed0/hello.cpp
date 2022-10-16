@@ -223,10 +223,9 @@ void hello_print_arr() {
 	std::cout << "\n";
 }
 
-void hello_try_set_min_max_by(Point pt, bool save_point)
+void hello_try_set_min_max_by(Point pt)
 {
-	if (save_point)
-		ptr_arr.add_to_back(pt);
+	ptr_arr.add_to_back(pt);
 
 	if (_MAX_.x < pt.x)
 		_MAX_.x = pt.x;
