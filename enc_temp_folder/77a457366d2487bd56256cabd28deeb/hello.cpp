@@ -60,12 +60,10 @@ void hello_char_w_cntr() {
 
 }
 
-	size_t N;
-	size_t M;
-	Matrix corner_print;
-
 void hello_corner() {
 
+	size_t N;
+	size_t M;
 
 	int max_y = _MAX_.y;
 	int min_y = _MIN_.y;
@@ -91,6 +89,8 @@ void hello_corner() {
 		M = abs(min_x) + 1;
 	else
 		M = abs(max_x) + abs(min_x) + 1;
+
+	Matrix corner_print;
 
 	int indent = 1;
 	int axis_x_str = 1;
@@ -189,7 +189,7 @@ void hello_corner() {
 	//}end of work wich axis 
 }
 
-void hello_print_arr() {
+void hello_print_arr(size_t N, size_t M, Matrix &corner_print) {
 	std::cout << "\n";
 	for (size_t i = 0; i < N; i++)
 	{
@@ -217,4 +217,3 @@ void hello_try_set_min_max_by(Point pt)
 		_MIN_.y = pt.y;
 
 }
-

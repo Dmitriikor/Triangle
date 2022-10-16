@@ -28,11 +28,11 @@ int main(int argc, char const* argv[])
 
     hello_try_set_min_max_by(pt);
 
-    hello_char_w_cntr(); //rename
+    hello_char_w_cntr();
 
     hello_corner();
 
-    hello_print_arr();
+
 
 
 
