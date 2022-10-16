@@ -47,6 +47,10 @@ int main(int argc, char const* argv[])
 			std::cout << "\n\t" << "input" << "\n";
 			std::cin >> to_line_2.x >> to_line_2.y;
 
+			hello_try_set_min_max_by(to_line_1, false);
+
+			hello_try_set_min_max_by(to_line_2, false);
+
 			hello_draw_line_1(to_line_1, to_line_2);
 
 			draw_points(true);

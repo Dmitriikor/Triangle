@@ -90,7 +90,6 @@ void hello_char_w_cntr() {
 
 void hello_corner() {
 
-
 	int max_y = _MAX_.y;
 	int min_y = _MIN_.y;
 
@@ -229,16 +228,47 @@ void hello_try_set_min_max_by(Point pt, bool save_point)
 		ptr_arr.add_to_back(pt);
 
 	if (_MAX_.x < pt.x)
+	{
 		_MAX_.x = pt.x;
 
+		corner_print.clear_matrix();
+
+		hello_char_w_cntr(); //rename
+
+		hello_corner();
+	}
 	if (_MAX_.y < pt.y)
+	{
 		_MAX_.y = pt.y;
 
+		corner_print.clear_matrix();
+
+		hello_char_w_cntr(); //rename
+
+		hello_corner();
+	}
 	if (_MIN_.x > pt.x)
+	{
 		_MIN_.x = pt.x;
 
+		corner_print.clear_matrix();
+
+		hello_char_w_cntr(); //rename
+
+		hello_corner();
+	}
+
 	if (_MIN_.y > pt.y)
+	{
 		_MIN_.y = pt.y;
+
+		corner_print.clear_matrix();
+
+		hello_char_w_cntr(); //rename
+
+		hello_corner();
+	}
+
 	cp_ar = true;
 }
 

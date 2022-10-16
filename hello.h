@@ -16,7 +16,7 @@ void hello_min_max_points(Ray_3_& points, bool run_copy_arr = false);
 void hello_char_w_cntr();
 void hello_corner();
 void hello_print_arr();
-void hello_try_set_min_max_by(Point pt, bool save_point=true);
+void hello_try_set_min_max_by(Point pt, bool save_point = true);
 
 //void draw_points(Ray_3_ arr = ptr_arr);
 
