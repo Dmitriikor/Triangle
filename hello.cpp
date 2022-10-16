@@ -90,10 +90,6 @@ void hello_corner() {
 	else
 		M = abs(max_x) + abs(min_x) + 1;
 
-	std::cout << "\n";
-
-
-
 	Matrix corner_print;
 
 	int indent = 1;
@@ -112,10 +108,7 @@ void hello_corner() {
 		}
 	}
 
-
-
 	// {print y axis
-
 	int start_y = max_y > 0 ? max_y : 0;
 
 	for (size_t i = 0; i < N - axis_x_str; i++)
@@ -130,7 +123,6 @@ void hello_corner() {
 				corner_print[i][1] = ' ';
 
 			if (inpt < 0) {
-				//corner_print[i][j] = ' ';
 				corner_print[i][1] = '-';
 			}
 			if (j != 1)
@@ -141,20 +133,13 @@ void hello_corner() {
 	}
 	// }end print y axis
 
-
 	//{find actual console point of start coodrs
 	Point ZERO;
-
-
 	ZERO.y = start_y;// +shift_w_; //!x_axis_thickness
 	//}find actual console point of start coodrs
 
 	// {print x axys
 	int start_x = min_x > 0 ? 0 : min_x;
-
-
-	//for (int j = shift_h_; j > 0; --j)
-	//	corner_print[N - axis_x_str][j] = '*';
 
 	for (size_t i = 0; i <= max_x; i++)
 	{
@@ -188,34 +173,32 @@ void hello_corner() {
 			}
 		}
 	}
-
 	// }end print x axis
 
 	//{find actual console point of start coodrs
 	ZERO.x = ((abs(start_x * shift_w_)) + shift_h_ + (shift_w_ - 1)); //!!!!!SHIFT
 	//}find actual console point of start coodrs
+
 	std::cout << "\n" << "\t" << "ZERO.x = " << ZERO.x << " : ZERO.y = " << ZERO.y << "\n";
 	corner_print[ZERO.y][ZERO.x] = 'o';
 
+	hello_print_arr(N,M, corner_print);
 
+	int stop = 1;
+
+	//}end of work wich axis 
+}
+
+void hello_print_arr(size_t N, size_t M, Matrix &corner_print) {
 	std::cout << "\n";
 	for (size_t i = 0; i < N; i++)
 	{
 		for (size_t j = 0; j < M; j++)
 		{
-			//std::cout << corner_print.get_at(i, j);
 			std::cout << corner_print[i][j];
 		}
 		std::cout << "\n";
 	}
-
-	int stop = 1;
-
-	//}end of work wich axis 
-	//end of work with axis
-	//end of work with axis
-
-
+	std::cout << "\n";
 }
-
 
