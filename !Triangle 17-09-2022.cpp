@@ -32,7 +32,7 @@ const int MAX_ = INT_MAX;
 
 /*
 	//  { DELITE THIS 
-	int shift_w_ = 0;
+	int width_x = 0;
 	int x_axis_thickness() {  return 0;  } 
 	int indent = 0;
 	int y_axis_thickness = 0;
@@ -245,9 +245,9 @@ const int MAX_ = INT_MAX;
 //	//	ORIGIN.y = round(ORIGIN.y, step_is(coefficient())) / step_is(coefficient());
 //
 //	//	if (coefficient() <= 2)
-//	//		shift_w_(4);
+//	//		width_x(4);
 //	//	else
-//	//		shift_w_(7);
+//	//		width_x(7);
 //	//	std::cout << std::fixed;
 //
 //	//	if (coefficient() >= 3)

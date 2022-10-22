@@ -1,221 +1,220 @@
 #include "hello.h"
 
-Point _MAX_;
-Point _MIN_;
+Point MAX_VIRTUAL;
+Point MIN_VIRTUAL;
 
-size_t N;
-size_t M;
-Matrix corner_print;
+Matrix canvas;
 
-Point ZERO;
 
-Ray_3_ ptr_arr;
-Ray_3_ line_arr;
 
-bool cp_ar = false;
+//Point ZERO; //!!!
+Coordinates ZERO;
 
-void copy_arr(Ray_3_& points)
+Ray_3_ points_to_draw;		//свободные точки для рисования
+Ray_3_ line_points_to_draw;	//точки линий для рисования
+
+bool is_copied_array = false;
+
+int width_x = -1;
+int width_y = -1;
+
+
+
+void copy_arr(const Ray_3_& points)
 {
-	cp_ar = true;
+	is_copied_array = true;
 
 	size_t length = points.size();
 	for (size_t i = 0; i < length; i++)
 	{
-		ptr_arr.add_to_back(points[i]);
+		points_to_draw.add_to_back(points[i]);
 	}
 }
 
-void hello_min_max_points(Ray_3_& points, bool run_copy_arr)
+//private
+void initialize_min_max_points(const Ray_3_& points, bool is_need_to_copy_array)
 {
+	//if (is_need_to_copy_array)
+		//copy_arr(points);
+
 	size_t length = points.size();
+	MAX_VIRTUAL = points[0];
+	MIN_VIRTUAL = points[0];
 
-	if (run_copy_arr)
-		copy_arr(points);
-
-
-	_MAX_ = points[0];
-	_MIN_ = points[0];
-
-	for (size_t i = 0; i < length; i++)
+	for (size_t i = 1; i < length; i++)
 	{
 
-		if (_MAX_.x < points[i].x)
-			_MAX_.x = points[i].x;
+		if (points[i].x > MAX_VIRTUAL.x)
+			MAX_VIRTUAL.x = points[i].x;
+		else if (points[i].x < MIN_VIRTUAL.x)
+			MIN_VIRTUAL.x = points[i].x;
 
-
-		if (_MAX_.y < points[i].y)
-			_MAX_.y = points[i].y;
-
-		if (_MIN_.x > points[i].x)
-			_MIN_.x = points[i].x;
-
-		if (_MIN_.y > points[i].y)
-			_MIN_.y = points[i].y;
+		if (points[i].y > MAX_VIRTUAL.y)
+			MAX_VIRTUAL.y = points[i].y;
+		else if (points[i].y < MIN_VIRTUAL.y)
+			MIN_VIRTUAL.y = points[i].y;
 
 	}
 
-	std::cout << std::endl << _MAX_.x << " : " << _MAX_.y << std::endl;
-	std::cout << std::endl << _MIN_.x << " : " << _MIN_.y << std::endl;
-
+	/*std::cout << std::endl << MAX_VIRTUAL.x << " : " << MAX_VIRTUAL.y << std::endl;
+	std::cout << std::endl << MIN_VIRTUAL.x << " : " << MIN_VIRTUAL.y << std::endl;*/
 }
 
-int shift_w_ = -1;
-int shift_h_ = -1;
+void initialize_width() {
+	width_x = 1;
+	width_y = 1;
 
-void hello_char_w_cntr() {
-	size_t answ_w = 1;
-	size_t answ_h = 1;
-	if (_MIN_.y < 0 || _MIN_.x < 0)
-	{
-		answ_w++;
-		answ_h++;
-	}
-	size_t x = abs(_MAX_.x) > abs(_MIN_.x) ? abs(_MAX_.x) : abs(_MIN_.x);
-	for (; x >= 10; answ_w++) {
+	if (MIN_VIRTUAL.y < 0)
+		width_y++;
+
+	if (MIN_VIRTUAL.x < 0)
+		width_x++;
+
+	int x = abs(MAX_VIRTUAL.x) > abs(MIN_VIRTUAL.x) ? abs(MAX_VIRTUAL.x) : abs(MIN_VIRTUAL.x);
+	while (x >= 10) {
 		x = x / 10;
+		width_x++;
 	}
-	size_t y = abs(_MAX_.y) > abs(_MIN_.y) ? abs(_MAX_.y) : abs(_MIN_.y);
-	for (; y >= 10; answ_h++) {
+
+	int y = abs(MAX_VIRTUAL.y) > abs(MIN_VIRTUAL.y) ? abs(MAX_VIRTUAL.y) : abs(MIN_VIRTUAL.y);
+	while (y >= 10) {
+		width_y++;
 		y = y / 10;
 	}
 
-	shift_w_ = answ_w;
-	shift_h_ = answ_h;
-
-	std::cout << std::endl << shift_w_ << std::endl;
-	std::cout << std::endl << shift_h_ << std::endl;
+	/*std::cout << std::endl << width_x << std::endl;
+	std::cout << std::endl << width_y << std::endl;*/
 
 }
 
+int get_distance_between(int min_coord, int max_coord)
+{
+	if (min_coord >= 0 && max_coord >= 0)
+		return abs(max_coord);
 
-void hello_corner() {
+	if (min_coord <= 0 && max_coord <= 0)
+		return abs(min_coord);
 
-	int max_y = _MAX_.y;
-	int min_y = _MIN_.y;
+	return abs(max_coord) + abs(min_coord);
+}
 
-	int max_x = _MAX_.x;
-	int min_x = _MIN_.x;
+//!!! module sub-functions
+void print_corner() {
 
-	if (min_y == max_y)
-		N = abs(max_y) + 1;
-	else
-		if (min_y >= 0 && max_y >= 0)
-			N = abs(max_y) + 1;
-		else if (min_y <= 0 && max_y <= 0)
-			N = abs(min_y) + 1;
-		else
-			N = abs(max_y) + abs(min_y) + 1;
+	int max_y = MAX_VIRTUAL.y;
+	int min_y = MIN_VIRTUAL.y;
 
-	if (max_x == min_x)
-		M = abs(max_x) + 1;
-	else if (max_x >= 0 && min_x >= 0)
-		M = abs(max_x) + 1;
-	else if (max_x <= 0 && min_x <= 0)
-		M = abs(min_x) + 1;
-	else
-		M = abs(max_x) + abs(min_x) + 1;
+	int max_x = MAX_VIRTUAL.x;
+	int min_x = MIN_VIRTUAL.x;
 
-	int indent = 1;
-	int axis_x_str = 1;
+	int axis_x_indents = 1;
+	int axis_x_strings = 1;
 
-	N = N + axis_x_str;
-	M = M * (shift_w_ + indent) + shift_h_;
-
-	corner_print.create_matrix(N, M);
-
-	for (size_t i = 0; i < N; i++)
 	{
-		for (size_t j = 0; j < M; j++)
-		{
-			corner_print[i][j] = ' ';
-		}
+		size_t N, M;
+		N = get_distance_between(min_y, max_y) + 1;
+		M = get_distance_between(min_x, max_x) + 1;
+
+		N = N + axis_x_strings;
+		M = M * (width_x + axis_x_indents) + width_y;
+
+		canvas.create_matrix(N, M);
+		canvas.fill(' ');
 	}
 
 	// {print y axis
-	int start_y = max_y > 0 ? max_y : 0;
+	int start_i = max_y > 0 ? max_y : 0;
 
-	for (size_t i = 0; i < N - axis_x_str; i++)
+	for (size_t i = 0; i < canvas.get_N() - axis_x_strings; ++i)
 	{
-		int  temp_inpt = start_y - i;
+		int temp_y = start_i - i;
 
-		for (size_t j = shift_h_; j > 0; --j)
+		int abs_y = fabs(temp_y);
+		int j;
+		for (j = width_y - 1; j >= 0; --j)
 		{
-			int inpt = temp_inpt % 10;
-			temp_inpt = temp_inpt / 10;
-			if (inpt > 0)
-				corner_print[i][1] = ' ';
+			int digit = abs_y % 10;
 
-			if (inpt < 0)
-				corner_print[i][1] = '-';
+			canvas[i][j] = '0' + digit;
 
-			if (j != 1)
-				corner_print[i][j] = '0' + abs(inpt);
-
+			abs_y = abs_y / 10;
+			if (abs_y == 0)
+				break;
 		}
+
+		if (j == -1)
+			throw std::exception("hello.cpp -> print_corner -> WRONG WIDTH_Y");
+
+		if (temp_y < 0)
+			canvas[i][j - 1] = '-'; //!!! here was [i][1]
+		//else
+			//canvas[i][j - 1] = ' '; //!!! here was [i][1]
 
 	}
 	// }end print y axis
 
 	//{find actual console point of start coodrs
-	ZERO.y = start_y;// +shift_w_; //!x_axis_thickness
+	//zero is shifted by max_y from top
+	ZERO.i = start_i;// +width_x; //!x_axis_thickness
 	//}find actual console point of start coodrs
 
 	// {print x axys
-	int start_x = min_x > 0 ? 0 : min_x;
+	int start_x = min_x < 0 ? min_x : 0;
+	int N = abs(min_x) + abs(max_x) + 1;
+	int i_for_x = canvas.get_N() - axis_x_strings;
+	int width_x_with_indent = width_x + axis_x_indents;
 
-	for (size_t i = 0; i <= abs(max_x) + abs(min_x); i++)
+
+	for (size_t i = 0; i < N; i++)
 	{
-		int temp_inpt = min_x + i; // ?
-		bool neg = false;
-		bool sml = false;
+		int temp_x = min_x + i;
+		
+		canvas[i_for_x][width_y + (i * width_x_with_indent) + (width_x_with_indent - 1)] = '|';
 
-		for (int j = shift_w_; j > 0; --j)
+		int abs_x = fabs(temp_x);
+		int j;
+		for (j = width_x_with_indent - 2; j >= 0; --j)
 		{
-			if (j == shift_w_)
-			{
-				corner_print[N - axis_x_str][shift_h_ + (i * shift_w_) + j] = '|';
-			}
-			else
-			{
-				int inpt = temp_inpt % 10;
+			int digit = abs_x % 10;
 
-				if (inpt < 0)
-					neg = true;
+			canvas[i_for_x][width_y + (i * width_x_with_indent) + j] = '0' + digit;
 
-				if (temp_inpt <= 9 && !neg && j == shift_w_ - 1)
-					sml = true;
+			abs_x = abs_x / 10;
 
-				temp_inpt = temp_inpt / 10;
-				corner_print[N - axis_x_str][shift_h_ + (i * shift_w_) + j] = '0' + abs(inpt);
-
-				if (neg)
-					corner_print[N - axis_x_str][shift_h_ + (i * shift_w_) + 1] = '-';
-				if (sml)
-					corner_print[N - axis_x_str][shift_h_ + (i * shift_w_) + 1] = ' ';
-			}
+			if (abs_x == 0)
+				break;
 		}
+
+		if (j == -1)
+			throw std::exception("hello.cpp -> print_corner -> WRONG WIDTH_Y");
+
+		if (temp_x < 0)
+			canvas[i_for_x][(width_y + (i * width_x_with_indent) + j) - 1] = '-'; //!!! here was [i][1]
+		//else
+			//canvas[i][j - 1] = ' '; //!!! here was [i][1]
 	}
 	// }end print x axis
 
 	//{find actual console point of start coodrs
-	ZERO.x = ((abs(start_x * shift_w_)) + shift_h_ + (shift_w_ - 1)); //!!!!!SHIFT
+	ZERO.j = ((abs(start_x * width_x_with_indent)) + width_y + (width_x_with_indent - 1)); //!!!!!SHIFT
 	//}find actual console point of start coodrs
 
-	std::cout << "\n" << "\t" << "ZERO.x = " << ZERO.x << " : ZERO.y = " << ZERO.y << "\n";
-	corner_print[ZERO.y][ZERO.x] = 'o';
+	std::cout << "\n" << "\t" << "ZERO.j = " << ZERO.j << " : ZERO.i = " << ZERO.i << "\n";
+	canvas[ZERO.i][ZERO.j] = 'o';
 
 	int stop = 1;
 
 	//}end of work wich axis 
 }
 
-void hello_print_arr() {
+//!!!maybe in matrix
+void print_arr() {
 	std::cout << "\n";
-	for (size_t i = 0; i < N; i++)
+	for (size_t i = 0; i < canvas.get_N(); i++)
 	{
-		for (size_t j = 0; j < M; j++)
+		for (size_t j = 0; j < canvas.get_M(); j++)
 		{
-			std::cout << corner_print[i][j];
+			std::cout << canvas[i][j];
 		}
 		std::cout << "\n";
 	}
@@ -224,55 +223,55 @@ void hello_print_arr() {
 
 void hello_try_set_min_max_by(Point pt, bool save_point)
 {
-	if (save_point)
-		ptr_arr.add_to_back(pt);
+	//if (save_point)
+		//points_to_draw.add_to_back(pt);
 
-	if (_MAX_.x < pt.x)
+	if (MAX_VIRTUAL.x < pt.x)
 	{
-		_MAX_.x = pt.x;
+		MAX_VIRTUAL.x = pt.x;
 
-		corner_print.clear_matrix();
+		canvas.clear_matrix();
 
-		hello_char_w_cntr(); //rename
+		initialize_width(); //rename
 
-		hello_corner();
+		print_corner();
 	}
-	if (_MAX_.y < pt.y)
+	if (MAX_VIRTUAL.y < pt.y)
 	{
-		_MAX_.y = pt.y;
+		MAX_VIRTUAL.y = pt.y;
 
-		corner_print.clear_matrix();
+		canvas.clear_matrix();
 
-		hello_char_w_cntr(); //rename
+		initialize_width(); //rename
 
-		hello_corner();
+		print_corner();
 	}
-	if (_MIN_.x > pt.x)
+	if (MIN_VIRTUAL.x > pt.x)
 	{
-		_MIN_.x = pt.x;
+		MIN_VIRTUAL.x = pt.x;
 
-		corner_print.clear_matrix();
+		canvas.clear_matrix();
 
-		hello_char_w_cntr(); //rename
+		initialize_width(); //rename
 
-		hello_corner();
-	}
-
-	if (_MIN_.y > pt.y)
-	{
-		_MIN_.y = pt.y;
-
-		corner_print.clear_matrix();
-
-		hello_char_w_cntr(); //rename
-
-		hello_corner();
+		print_corner();
 	}
 
-	cp_ar = true;
+	if (MIN_VIRTUAL.y > pt.y)
+	{
+		MIN_VIRTUAL.y = pt.y;
+
+		canvas.clear_matrix();
+
+		initialize_width(); //rename
+
+		print_corner();
+	}
+
+	is_copied_array = true;
 }
 
-double hello_round(double x, double step) {
+double round_by_step(double x, double step) {
 	double modulo = fmod(x, step);
 	if (modulo < step / 2)
 		return x - modulo;
@@ -280,48 +279,36 @@ double hello_round(double x, double step) {
 }
 
 
-void draw_points(bool draw_line)
+void draw_points(bool is_need_to_draw_line)
 {
-	if (!cp_ar)
-		return;
+	//!!! MIN MAX is set?
+	//! throw;
 
-	Ray_3_ arr;
-
-	if (!draw_line)
-		arr = ptr_arr; //
-	else
-		arr = line_arr;
-
-
+	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
 	size_t length = arr.size();
 
-
-	int x, y;
-	int x1, y1;
 	for (size_t i = 0; i < length; i++)
 	{
-		x = arr[i].x;
-		y = arr[i].y;
+		Coordinates cell;
 
-		x1 = ZERO.x + (x * shift_w_);
-		if (y < 0)
-			y1 = ZERO.y + abs(y);
-		else
-			y1 = ZERO.y - y;
+		cell.i = ZERO.i - arr[i].y;
+		cell.j = ZERO.j + (arr[i].x * width_x);
 
-		corner_print.set_at(y1, x1, '*');
+		canvas.set_at(cell.i, cell.j, '*'); //@
 
 	}
 	std::cout << "\n";
-	hello_print_arr();
+	print_arr();
 	std::cout << "\n";
 }
 
 
-double hello_step_is(unsigned coefficient) {
+double get_step(unsigned coefficient) {
 	double step = 1.0 / coefficient;
 	return step;
 }
+
+
 
 
 void hello_draw_line_1(const Point& A, const Point& B)
@@ -345,17 +332,17 @@ void hello_draw_line_1(const Point& A, const Point& B)
 			start = B.y;
 			end = A.y;
 		}
-		double step = hello_step_is(coefficient);  // 1.0 / coefficient;
+		double step = get_step(coefficient);  // 1.0 / coefficient;
 		Point point;
 		point.x = A.x;
 		for (double y = start; y >= end; y -= step)
 		{
 			point.y = y;
 
-			point.x = (int)hello_round(point.x, step);
-			point.y = (int)hello_round(point.y, step);
+			point.x = (int)round_by_step(point.x, step);
+			point.y = (int)round_by_step(point.y, step);
 
-			line_arr.add_to_back(point);
+			line_points_to_draw.add_to_back(point);
 		}
 		return;
 	}
@@ -364,10 +351,10 @@ void hello_draw_line_1(const Point& A, const Point& B)
 	double b_ = k * A.x;
 	double b = A.y - b_;
 
-	double step = hello_step_is(coefficient);  // 1.0 / coefficient;
+	double step = get_step(coefficient);  // 1.0 / coefficient;
 
-	double rounded_min = hello_round(min, step);
-	double rounded_max = hello_round(max, step);
+	double rounded_min = round_by_step(min, step);
+	double rounded_max = round_by_step(max, step);
 
 	unsigned N = (rounded_max - rounded_min) / step + 1;
 
@@ -377,15 +364,15 @@ void hello_draw_line_1(const Point& A, const Point& B)
 		point.x = rounded_min + i * step;
 		point.y = k * point.x + b;
 
-		point.x = (int)hello_round(point.x, step);
-		point.y = (int)hello_round(point.y, step);
+		point.x = (int)round_by_step(point.x, step);
+		point.y = (int)round_by_step(point.y, step);
 
-		line_arr.add_to_back(point);
+		line_points_to_draw.add_to_back(point);
 	}
 
-	size_t length = line_arr.size();
+	size_t length = line_points_to_draw.size();
 	for (size_t i = 0; i < length; i++)
 	{
-		std::cout << "\n" << line_arr[i].x << " : " << line_arr[i].y;
+		std::cout << "\n" << line_points_to_draw[i].x << " : " << line_points_to_draw[i].y;
 	}
 }

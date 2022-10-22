@@ -14,7 +14,8 @@ int main(int argc, char const* argv[])
 		Point d;
 		Ray_3_ test___;
 
-		a.x = 15; a.y = 1;
+		//a = { 15, 1 };
+		a.x = -25; a.y = 1;
 		test___.add_to_back(a);
 		b.x = 0; b.y = 0;
 		test___.add_to_back(b);
@@ -23,18 +24,18 @@ int main(int argc, char const* argv[])
 		d.x = 1; d.y = 10;
 		test___.add_to_back(d);
 
-		hello_min_max_points(test___, true);
+		initialize_min_max_points(test___, true);
 
 		Point pt;
 		pt.x = 20; pt.y = -15;
 
 		hello_try_set_min_max_by(pt);
 
-		hello_char_w_cntr(); //rename
+		initialize_width(); //rename
 
-		hello_corner();
+		//print_corner();
 
-		hello_print_arr();
+		print_arr();
 
 		draw_points();
 

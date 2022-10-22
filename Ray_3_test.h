@@ -14,7 +14,7 @@
 using TTT = Point;
 using reference_type = TTT&;
 
-struct Ray_3_ {
+class Ray_3_ {
 private:
 
 	TTT* ray_ = nullptr;
@@ -71,7 +71,7 @@ public:
 
 	const TTT& operator[](size_t index) const;
 
-	void print();
+	void print() const;
 
 	void push_back(const TTT& value);
 
@@ -87,11 +87,9 @@ public:
 
 	void insert(size_t index, TTT& value);
 
-	size_t size();
+	size_t size() const;
 
-	size_t real_size();
-
-	size_t capacity();
+	size_t capacity() const;
 
 	void cut();
 
@@ -101,12 +99,7 @@ public:
 
 	~Ray_3_();
 
-	Ray_3_& get_own();
-
 	Ray_3_& operator=(const Ray_3_& other);
-
-
-
 };
 
 

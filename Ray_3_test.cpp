@@ -128,7 +128,7 @@ const TTT& Ray_3_::operator[](size_t index) const {
 	return get_element_(index);
 }
 
-void Ray_3_::print() {
+void Ray_3_::print() const {
 
 	std::cout << "\n";
 	for (size_t i = 0; i < LEFT + RIGHT; i++)
@@ -220,16 +220,12 @@ void Ray_3_::insert(size_t index, TTT& value) {
 	ray_[diff + index - 1] = value;
 }
 
-size_t Ray_3_::size() {
+size_t Ray_3_::size() const {
 	return F_LEFT + F_RIGHT;
 }
 
-size_t Ray_3_::real_size() {
+size_t Ray_3_::capacity() const {
 	return LEFT + RIGHT;
-}
-
-size_t Ray_3_::capacity() {
-	return real_size();
 }
 
 void Ray_3_::cut() {
@@ -260,13 +256,9 @@ void Ray_3_::clear() {
 }
 
 Ray_3_::~Ray_3_()  {
-	clear(); //костыль
+	clear();
 	//delete[] ray_; 
 	//std::cout << "\t ! \n";
-}
-
-Ray_3_& Ray_3_::get_own() {
-	return *this;
 }
 
 Ray_3_& Ray_3_::operator=(const Ray_3_& other) {

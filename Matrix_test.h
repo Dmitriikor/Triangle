@@ -6,6 +6,15 @@ using T = char;
 using pointer_type = T*;
 
 
+struct Coordinates {
+	size_t i;
+	size_t j;
+
+	//size_t& x = i;
+	//size_t& y = j;
+};
+
+
 class Matrix {
 private:
 	size_t N = 0;
@@ -54,9 +63,13 @@ public:
 
 	void create_matrix(size_t strings, size_t columns);
 
+	void fill(char symbol);
+
 	void set_at(const size_t N, const size_t M, const T& data);
+	void set_at(Coordinates cell, const T& data);
 
 	T& get_at(size_t N, size_t M);
+	T& get_at(Coordinates cell);
 
 	void clear_matrix();
 

@@ -624,7 +624,7 @@ void char_shift_w_h_cntr() {
     //{print points in the point_arr arr
     for (size_t j = 0; j < n_points; j++) {
         Point coord;
-        coord.x = ZERO.x + (point_arr[j].x * shift_w_);
+        coord.x = ZERO.x + (point_arr[j].x * width_x);
         coord.y = ZERO.y - point_arr[j].y;
         goto_coords(coord);
         std::cout << "x";
