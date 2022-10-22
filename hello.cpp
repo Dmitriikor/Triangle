@@ -18,6 +18,8 @@ bool is_copied_array = false;
 int width_x = -1;
 int width_y = -1;
 
+int axis_x_indents = 1;
+int axis_x_strings = 1;
 
 
 void copy_arr(const Ray_3_& points)
@@ -107,8 +109,6 @@ void print_corner() {
 	int max_x = MAX_VIRTUAL.x;
 	int min_x = MIN_VIRTUAL.x;
 
-	int axis_x_indents = 1;
-	int axis_x_strings = 1;
 
 	{
 		size_t N, M;
@@ -200,7 +200,7 @@ void print_corner() {
 	//}find actual console point of start coodrs
 
 	std::cout << "\n" << "\t" << "ZERO.j = " << ZERO.j << " : ZERO.i = " << ZERO.i << "\n";
-	canvas[ZERO.i][ZERO.j] = 'o';
+	canvas[ZERO.i][ZERO.j-1] = 'o';
 
 	int stop = 1;
 
@@ -292,10 +292,9 @@ void draw_points(bool is_need_to_draw_line)
 		Coordinates cell;
 
 		cell.i = ZERO.i - arr[i].y;
-		cell.j = ZERO.j + (arr[i].x * width_x);
+		cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents)))-1;
 
 		canvas.set_at(cell.i, cell.j, '*'); //@
-
 	}
 	std::cout << "\n";
 	print_arr();
