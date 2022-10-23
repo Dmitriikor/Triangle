@@ -4,8 +4,11 @@
 #include <iostream>
 #include <exception>
 
+
+
 int main(int argc, char const* argv[])
 {
+	go_debug(false);
 	try
 	{
 		Point a;
@@ -23,24 +26,25 @@ int main(int argc, char const* argv[])
 		test___.add_to_back(c);
 		d.x = 1; d.y = 10;
 		test___.add_to_back(d);
+		std::cout << "\n" << "start" << "\n";
 
-		initialize_min_max_points(test___, true);
+		initialize_min_max_points(test___);
 
 		Point pt;
-		pt.x = 20; pt.y = -15;
+		pt.x = 1; pt.y = 1;
 
 		hello_try_set_min_max_by(pt);
-
+	
 		initialize_width(); //rename
 
 		//print_corner();
+		//print_arr();
+		//draw_points();
 
 		print_arr();
 
-		draw_points();
-
-
-		while (true) {
+			while (true) {
+			
 			Point to_line_1;
 			std::cout << "\n\t" << "input" << "\n";
 			std::cin >> to_line_1.x >> to_line_1.y;
@@ -53,8 +57,39 @@ int main(int argc, char const* argv[])
 			hello_try_set_min_max_by(to_line_2, false);
 
 			hello_draw_line_1(to_line_1, to_line_2);
+			
+			draw_points();
+			draw_line();
 
-			draw_points(true);
+			print_arr();
+			
+			erase_lines();  //erase_lines_from_canvas 
+			erase_points(); //erase_points_from_canvas
+
+			print_arr();
+
+			hello_draw_line_1(test___[0], test___[3]);	// add_new_line_to_line_Ray
+			draw_line();								// add_line_to_canvas
+			print_arr();								// print_canvas 
+
+			//delite_lines();  //erase_lines_from_lines_Ray 
+			//delite_points(); //erase_lines_from_points_Ray 
+
+			Point er;
+			std::cout << "\n\t" << "input er" << "\n";
+			std::cin >> er.x >> er.y;
+			erase_point(er);
+
+			print_arr();
+			erase_line(test___[0], test___[3]);
+			print_arr();
+			draw_points();
+			print_arr();
+			canvas_clear();
+			print_arr();
+			canvas_print_zero();
+			print_arr();
+			int st = 0;
 		}
 		std::cout << "end hello" << "\n";
 	}

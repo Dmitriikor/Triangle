@@ -95,6 +95,25 @@ void Matrix::clear_matrix() {
 
 }
 
+bool Matrix::is_empty()
+{
+	if (arr == nullptr)
+		return true;
+	
+	return false;
+}
+
+void Matrix::Matrix_print()
+{
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
+		{
+			std::cout << arr[i][j];
+		}
+		std::cout << "\n";
+	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_v1_end

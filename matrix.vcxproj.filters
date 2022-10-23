@@ -54,6 +54,9 @@
     <ClCompile Include="corner_x_y_axys.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="utilities.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Triangle_test.h">
@@ -84,6 +87,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="hello.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

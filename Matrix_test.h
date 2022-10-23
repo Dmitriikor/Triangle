@@ -1,6 +1,8 @@
 #ifndef MATRIX_TEST_H__
 
 #define MATRIX_TEST_H__
+#include <stdexcept>
+#include <iostream>
 
 using T = char;
 using pointer_type = T*;
@@ -64,6 +66,8 @@ public:
 	void create_matrix(size_t strings, size_t columns);
 
 	void fill(char symbol);
+	bool is_empty();
+	void Matrix_print();
 
 	void set_at(const size_t N, const size_t M, const T& data);
 	void set_at(Coordinates cell, const T& data);
@@ -72,7 +76,7 @@ public:
 	T& get_at(Coordinates cell);
 
 	void clear_matrix();
-
+	
 };
 
 #endif //! MATRIX_TEST_H__
