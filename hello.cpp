@@ -11,7 +11,6 @@ Coordinates ZERO;
 bool earse_line_flag = false;
 
 
-Ray_3_ erase_line_arr;      //точки для затирания холста линиями
 Ray_3_ points_to_draw;		//свободные точки для рисования
 Ray_3_ line_points_to_draw;	//точки линий для рисования
 
@@ -285,8 +284,6 @@ void draw_points_(bool is_need_to_draw_line, char symbol)
 		cell.i = ZERO.i - arr[i].y;
 		cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents))) - axis_x_indents;
 
-
-
 		canvas_arr.set_at(cell.i, cell.j, symbol); //@
 	}
 	/*
@@ -347,21 +344,45 @@ void canvas_clear()
 
 void erase_line(const Point& A, const Point& B)
 {
-	earse_line_flag = true;
-	hello_draw_line_1(A, B);
+	Ray_3_ erase_line_arr;      //точки для затирания холста линиями
 
-	size_t length = erase_line_arr.size();
+	erase_line_arr = hello_draw_line_1(A, B);
 
-	for (size_t i = 0; i < length; i++)
+	size_t length_to_erase = erase_line_arr.size();
+	size_t length_to_line_arr = line_points_to_draw.size();
+
+	for (size_t i = 0; i < length_to_erase; i++)
 	{
 		erase_point(erase_line_arr[i]);
+		for (size_t j = 0; j < length_to_line_arr; j++)
+		{
+			if (erase_line_arr[i] == line_points_to_draw[j]) 
+			{
+				line_points_to_draw.remove(j);
+				length_to_line_arr = line_points_to_draw.size();
+				j = 0;
+			}
+		}
 	}
-	earse_line_flag = false;
 	erase_line_arr.clear();
 }
 
+void draw_line_1_(const Point& A, const Point& B)
+{
+	Ray_3_ lockal_draw_line_arr;
+	lockal_draw_line_arr = hello_draw_line_1(A, B);
 
-void hello_draw_line_1(const Point& A, const Point& B)
+	size_t length = lockal_draw_line_arr.size();
+
+	for (size_t i = 0; i < length; i++)
+	{
+		line_points_to_draw.add_to_back(lockal_draw_line_arr[i]);
+	}	
+	lockal_draw_line_arr.clear();
+}
+
+
+Ray_3_ hello_draw_line_1(const Point& A, const Point& B)
 {
 	Ray_3_ lockal_line_arr;
 
@@ -400,7 +421,7 @@ void hello_draw_line_1(const Point& A, const Point& B)
 			//else
 			lockal_line_arr.add_to_back(point);
 		}
-		return;
+		return lockal_line_arr;
 	}
 
 	double k = (B.y - A.y) / (B.x - A.x);
@@ -429,22 +450,7 @@ void hello_draw_line_1(const Point& A, const Point& B)
 		lockal_line_arr.add_to_back(point);
 	}
 
-		size_t length = lockal_line_arr.size();
-	if (earse_line_flag)
-	{
-		for (size_t i = 0; i < length; i++)
-		{
-			erase_line_arr.add_to_back(lockal_line_arr[i]);
-		}
-	}
-	else
-	{
-		for (size_t i = 0; i < length; i++)
-		{
-			line_points_to_draw.add_to_back(lockal_line_arr[i]);
-		}
-
-	}
+	return lockal_line_arr;
 
 	lockal_line_arr.clear();
 

@@ -9,8 +9,15 @@ struct Point {
 	double y;
 
 	void print() const;
+	bool operator==(const Point& other) const ;
+
+
+
+
 };
 
 double length(const Point& A, const Point& B);
+
+
 
 #endif //!POINT_TEST_H__

@@ -68,7 +68,7 @@ Ray_3_::Ray_3_(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
 Ray_3_::Ray_3_(const Ray_3_& other)
 /*:LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) */
 {
-	std::cout << "copy-constructor " << std::endl;
+	//std::cout << "copy-constructor " << std::endl;
 	LEFT = other.LEFT;
 	RIGHT = other.RIGHT;
 	F_LEFT = other.F_LEFT;

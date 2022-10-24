@@ -37,8 +37,8 @@ void erase_line(const Point& A, const Point& B);
 void canvas_clear();
 void canvas_print_zero();
 
-void hello_draw_line_1(const Point& A, const Point& B);
-
+Ray_3_ hello_draw_line_1(const Point& A, const Point& B);
+void draw_line_1_(const Point& A, const Point& B);
 
 
 
