@@ -359,8 +359,7 @@ void erase_line(const Point& A, const Point& B)
 			if (erase_line_arr[i] == line_points_to_draw[j]) 
 			{
 				line_points_to_draw.remove(j);
-				length_to_line_arr = line_points_to_draw.size();
-				j = 0;
+				--length_to_line_arr;
 			}
 		}
 	}
