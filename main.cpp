@@ -87,7 +87,7 @@ int main(int argc, char const* argv[])
 			canvas_clear();
 			draw_line();
 			print_arr();
-			erase_point_on_lines
+			//erase_point_on_lines
 			int st = 0;
 		}
 		std::cout << "end hello" << "\n";
