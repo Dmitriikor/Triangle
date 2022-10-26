@@ -10,7 +10,7 @@ struct Point {
 
 	void print() const;
 	bool operator==(const Point& other) const ;
-
+	char symbol = '.';
 
 
 

@@ -265,7 +265,7 @@ void draw_line()
 	draw_points_(true);
 }
 
-void draw_points_(bool is_need_to_draw_line, char symbol)
+void draw_points_(bool is_need_to_draw_line)
 {
 	//!!! MIN MAX is set?
 	//! throw;
@@ -284,7 +284,8 @@ void draw_points_(bool is_need_to_draw_line, char symbol)
 		cell.i = ZERO.i - arr[i].y;
 		cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents))) - axis_x_indents;
 
-		canvas_arr.set_at(cell.i, cell.j, symbol); //@
+		
+		canvas_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
 	}
 	/*
 	std::cout << "\n";
@@ -293,19 +294,19 @@ void draw_points_(bool is_need_to_draw_line, char symbol)
 	*/
 }
 
-void erase(bool is_need_to_erase_line)
-{
-	draw_points_(is_need_to_erase_line, ' ');
-}
-
-void erase_lines()
-{
-	erase(true);
-}
-void erase_points()
-{
-	erase(false);
-}
+//void erase(bool is_need_to_erase_line)
+//{
+//	draw_points_(is_need_to_erase_line, ' ');
+//}
+//
+//void erase_lines()
+//{
+//	erase(true);
+//}
+//void erase_points()
+//{
+//	erase(false);
+//}
 
 void erase_point(Point err)
 {
@@ -342,7 +343,24 @@ void canvas_clear()
 	create_corner();
 }
 
-void erase_line(const Point& A, const Point& B)
+void delite_point(const Point& dl)
+{
+	size_t length = line_points_to_draw.size();
+
+	for (size_t i = 0; i < length; i++)
+	{
+		if (dl == line_points_to_draw[i])
+		{
+			line_points_to_draw.remove(i);
+			--length;
+		}
+		erase_point(line_points_to_draw[i]);
+	}
+	delite_line(dl,dl);
+}
+
+
+void delite_line(const Point& A, const Point& B)
 {
 	Ray_3_ erase_line_arr;      //точки для затирания холста линиями
 
@@ -366,7 +384,7 @@ void erase_line(const Point& A, const Point& B)
 	erase_line_arr.clear();
 }
 
-void draw_line_1_(const Point& A, const Point& B)
+void draw_line_1_(const Point& A, const Point& B, char symbol)
 {
 	Ray_3_ lockal_draw_line_arr;
 	lockal_draw_line_arr = hello_draw_line_1(A, B);
@@ -375,6 +393,7 @@ void draw_line_1_(const Point& A, const Point& B)
 
 	for (size_t i = 0; i < length; i++)
 	{
+		lockal_draw_line_arr[i].symbol = symbol;
 		line_points_to_draw.add_to_back(lockal_draw_line_arr[i]);
 	}	
 	lockal_draw_line_arr.clear();

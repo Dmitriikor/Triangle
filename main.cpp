@@ -18,13 +18,13 @@ int main(int argc, char const* argv[])
 		Ray_3_ test___;
 
 		//a = { 15, 1 };
-		a.x = -25; a.y = 1;
+		a.x = -25; a.y = 1; a.symbol = '1';
 		test___.add_to_back(a);
-		b.x = 0; b.y = 0;
+		b.x = 0; b.y = 0; b.symbol = '2';
 		test___.add_to_back(b);
-		c.x = -5; c.y = -12;
+		c.x = -5; c.y = -12; c.symbol = '3';
 		test___.add_to_back(c);
-		d.x = 1; d.y = 10;
+		d.x = 1; d.y = 10; d.symbol = '4';
 		test___.add_to_back(d);
 		std::cout << "\n" << "start" << "\n";
 
@@ -48,15 +48,19 @@ int main(int argc, char const* argv[])
 			Point to_line_1;
 			std::cout << "\n\t" << "input" << "\n";
 			std::cin >> to_line_1.x >> to_line_1.y;
+	
 			Point to_line_2;
 			std::cout << "\n\t" << "input" << "\n";
 			std::cin >> to_line_2.x >> to_line_2.y;
+			std::cout << "\n\t" << "input smbl" << "\n";
+			std::cin >> to_line_2.symbol;
+
 
 			hello_try_set_min_max_by(to_line_1, false);
 
 			hello_try_set_min_max_by(to_line_2, false);
 
-			draw_line_1_(to_line_1, to_line_2);
+			draw_line_1_(to_line_1, to_line_2, to_line_2.symbol);
 			
 			//draw_points();
 
@@ -68,26 +72,27 @@ int main(int argc, char const* argv[])
 
 			//print_arr();
 
-			draw_line_1_(test___[0], test___[3]);		// add_new_line_to_line_Ray
+			draw_line_1_(test___[0], test___[3],'l');		// add_new_line_to_line_Ray
 			draw_line();								// add_line_to_canvas
 			print_arr();								// print_canvas 
 
 			//delite_lines();  //erase_lines_from_lines_Ray 
 			//delite_points(); //erase_lines_from_points_Ray 
 
-			/*Point er;
+			Point er;
 			std::cout << "\n\t" << "input er" << "\n";
 			std::cin >> er.x >> er.y;
-			erase_point(er);*/
+			//erase_point(er);
 
 			//print_arr();
 			//canvas_clear();
-			erase_line(test___[0], test___[3]);
+			delite_line(test___[0], test___[3]);
 			print_arr();
 			canvas_clear();
 			draw_line();
 			print_arr();
-			//erase_point_on_lines
+			delite_point(er);
+			print_arr();
 			int st = 0;
 		}
 		std::cout << "end hello" << "\n";
