@@ -5,14 +5,12 @@
 #include <iostream>
 
 struct Point {
-	double x;
-	double y;
+	double x= 0;
+	double y= 0;
 
 	void print() const;
 	bool operator==(const Point& other) const ;
 	char symbol = '.';
-
-
 
 };
 

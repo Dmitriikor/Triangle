@@ -38,8 +38,9 @@ void delite_point(const Point& dl);
 void canvas_clear();
 void canvas_print_zero();
 
-Ray_3_ hello_draw_line_1(const Point& A, const Point& B);
-void draw_line_1_(const Point& A, const Point& B, char symbol = '+');
+Ray_3_ calculate_line_round(const Point& A, const Point& B,  char symbol = '+');
+Ray_3_ calculate_line_swap(const Point& A, const Point& B,  char symbol = '+');
+void draw_line_1_(const Point& A, const Point& B, bool is_round = true,  char symbol = '+');
 
 
 

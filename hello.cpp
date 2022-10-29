@@ -167,7 +167,7 @@ void create_corner() {
 	for (size_t i = 0; i < N; i++)
 	{
 		int temp_x = min_x + i;
-		
+
 		canvas_arr[i_for_x][width_y + (i * width_x_with_indent) + (width_x_with_indent - 1)] = '|';
 
 		int abs_x = fabs(temp_x);
@@ -221,7 +221,7 @@ void print_arr() {
 
 	if (canvas_arr.is_empty())
 		create_corner();
-			//throw std::exception("exception in hello.cpp -> metod print_arr : canvas_arr.is_empty");
+	//throw std::exception("exception in hello.cpp -> metod print_arr : canvas_arr.is_empty");
 
 	canvas_arr.Matrix_print();
 	std::cout << "\n";
@@ -269,10 +269,10 @@ void draw_points_(bool is_need_to_draw_line)
 {
 	//!!! MIN MAX is set?
 	//! throw;
-	
+
 	if (canvas_arr.is_empty())
 		create_corner();
-			//throw std::exception("exception in hello.cpp -> metod draw_points : canvas_arr.is_empty");
+	//throw std::exception("exception in hello.cpp -> metod draw_points : canvas_arr.is_empty");
 
 	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
 	size_t length = arr.size();
@@ -284,7 +284,7 @@ void draw_points_(bool is_need_to_draw_line)
 		cell.i = ZERO.i - arr[i].y;
 		cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents))) - axis_x_indents;
 
-		
+
 		canvas_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
 	}
 	/*
@@ -316,18 +316,19 @@ void erase_point(Point err)
 	cell.j = (ZERO.j + (err.x * (width_x + axis_x_indents))) - axis_x_indents;
 
 	if (cell.i < canvas_arr.get_N() - axis_x_indents && (cell.j > width_y && cell.j < canvas_arr.get_M()))
-	canvas_arr.set_at(cell.i, cell.j, ' ');
-	else 
+		canvas_arr.set_at(cell.i, cell.j, ' ');
+	else
 		throw std::exception("exception in hello.cpp -> metod erase_point : cell coord");
 }
 
 
-double get_step(unsigned coefficient) {
+double get_step(unsigned coefficient) 
+{
 	double step = 1.0 / coefficient;
 	return step;
 }
 
-void canvas_print_zero() 
+void canvas_print_zero()
 {
 	canvas_arr[ZERO.i][ZERO.j - axis_x_indents] = '0';
 }
@@ -356,7 +357,7 @@ void delite_point(const Point& dl)
 		}
 		erase_point(line_points_to_draw[i]);
 	}
-	delite_line(dl,dl);
+	delite_line(dl, dl);
 }
 
 
@@ -364,43 +365,47 @@ void delite_line(const Point& A, const Point& B)
 {
 	Ray_3_ erase_line_arr;      //точки для затирания холста линиями
 
-	erase_line_arr = hello_draw_line_1(A, B);
-
-	size_t length_to_erase = erase_line_arr.size();
-	size_t length_to_line_arr = line_points_to_draw.size();
-
-	for (size_t i = 0; i < length_to_erase; i++)
+	for (size_t i = 0; i < 2; i++)
 	{
-		erase_point(erase_line_arr[i]);
-		for (size_t j = 0; j < length_to_line_arr; j++)
+
+		if (i == 0)
+			erase_line_arr = calculate_line_round(A, B);
+		else
+			erase_line_arr = calculate_line_swap(A, B);
+
+		size_t length_to_erase = erase_line_arr.size();
+		size_t length_to_line_arr = line_points_to_draw.size();
+
+		for (size_t i = 0; i < length_to_erase; i++)
 		{
-			if (erase_line_arr[i] == line_points_to_draw[j]) 
+			erase_point(erase_line_arr[i]);
+			for (size_t j = 0; j < length_to_line_arr; j++)
 			{
-				line_points_to_draw.remove(j);
-				--length_to_line_arr;
+				if (erase_line_arr[i] == line_points_to_draw[j])
+				{
+					line_points_to_draw.remove(j);
+					--length_to_line_arr;
+				}
 			}
 		}
+		erase_line_arr.clear();
 	}
-	erase_line_arr.clear();
 }
 
-void draw_line_1_(const Point& A, const Point& B, char symbol)
+void draw_line_1_(const Point& A, const Point& B, bool is_round, char symbol)
 {
-	Ray_3_ lockal_draw_line_arr;
-	lockal_draw_line_arr = hello_draw_line_1(A, B);
+	const Ray_3_& lockal_draw_line_arr = is_round ? calculate_line_round(A, B, symbol) : calculate_line_swap(A, B, symbol);
 
 	size_t length = lockal_draw_line_arr.size();
 
 	for (size_t i = 0; i < length; i++)
 	{
-		lockal_draw_line_arr[i].symbol = symbol;
 		line_points_to_draw.add_to_back(lockal_draw_line_arr[i]);
-	}	
-	lockal_draw_line_arr.clear();
+	}
 }
 
 
-Ray_3_ hello_draw_line_1(const Point& A, const Point& B)
+Ray_3_ calculate_line_round(const Point& A, const Point& B, char symbol)
 {
 	Ray_3_ lockal_line_arr;
 
@@ -437,6 +442,7 @@ Ray_3_ hello_draw_line_1(const Point& A, const Point& B)
 			//if (delite_line_flag)
 			//	delite_line_arr.add_to_back(point);
 			//else
+			point.symbol = symbol;
 			lockal_line_arr.add_to_back(point);
 		}
 		return lockal_line_arr;
@@ -465,6 +471,7 @@ Ray_3_ hello_draw_line_1(const Point& A, const Point& B)
 		//if (delite_line_flag)
 		//	delite_line_arr.add_to_back(point);
 		//else
+		point.symbol = symbol;
 		lockal_line_arr.add_to_back(point);
 	}
 
@@ -480,3 +487,59 @@ Ray_3_ hello_draw_line_1(const Point& A, const Point& B)
 		}
 	}
 }
+
+
+Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol)
+{
+
+	Ray_3_ lockal_line_arr;
+
+	if (A.x == B.x && A.y == B.y)
+	{
+		return calculate_line_round(A, B);
+	}
+
+	int x1, y1, x2, y2;
+	x1 = A.x;
+	y1 = A.y;
+	x2 = B.x;
+	y2 = B.y;
+
+	bool is_swap = false;
+	if (std::abs(x1 - x2) < std::abs(y1 - y2)) {
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+		is_swap = true;
+	}
+	if (x1 > x2) {
+		std::swap(x1, x2);
+		std::swap(y1, y2);
+	}
+
+	for (int x = x1; x <= x2; x++) {
+		float k = (x - x1) / (float)(x2 - x1);
+		float y = y1 * (1. - k) + y2 * k;
+
+		int coefficient = 1;
+		double step = get_step(coefficient);
+		y =  (int)utilities::round_by_step(y, step);
+
+		Point coords;
+		coords.symbol = symbol;
+
+		if (is_swap) {
+			coords.x = y;
+			coords.y = x;
+
+			lockal_line_arr.add_to_back(coords);
+		}
+		else {
+			coords.x = x;
+			coords.y = y;
+			lockal_line_arr.add_to_back(coords);
+		}
+	}
+	return lockal_line_arr;
+}
+
+

@@ -262,8 +262,6 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
             }
         }
 
-
-
     };
 
 
