@@ -4,7 +4,7 @@
 #define  HELLO_H__
 
 #include <iostream>
-
+#include <limits>
 
 #include "Ray_3_test.h"
 #include "Point_test.h"
@@ -43,8 +43,8 @@ Ray_3_ calculate_line_swap(const Point& A, const Point& B,  char symbol = '+');
 void draw_line_1_(const Point& A, const Point& B, bool is_round = true,  char symbol = '+');
 
 
+void create_axys();
 
-
-
+void max_min_init();
 
 #endif //!  HELLO_H__

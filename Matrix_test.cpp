@@ -82,12 +82,18 @@ T& Matrix::get_at(Coordinates cell) {
 }
 
 void Matrix::clear_matrix() {
-
-	for (size_t i = 0; i < N; i++) {
+	
+	/*for (size_t i = 0; i < N; i++) {
+		std::cout << N << " " << M << "\n";
 		delete[] arr[i];
 	}
 
-	delete[] arr;
+	delete[] arr;*/
+
+	for (size_t i = 0; i < N; i++) {
+		std::cout << N << " " << M << "\n";
+		arr[i] = nullptr;
+	}
 
 	arr = nullptr;
 	N = 0;

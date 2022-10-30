@@ -45,7 +45,7 @@ int main(int argc, char const* argv[])
 		print_arr();
 		*/
 			while (true) {
-			
+				max_min_init();
 			Point to_line_1;
 			std::cout << "\n\t" << "input" << "\n";
 			std::cin >> to_line_1.x >> to_line_1.y;
@@ -71,6 +71,10 @@ int main(int argc, char const* argv[])
 
 			draw_line();
 			print_arr();
+
+
+			create_axys();
+
 
 			//erase_lines();  //erase_lines_from_canvas 
 			//erase_points(); //erase_points_from_canvas
