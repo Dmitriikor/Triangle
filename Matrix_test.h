@@ -3,6 +3,7 @@
 #define MATRIX_TEST_H__
 #include <stdexcept>
 #include <iostream>
+#include <Windows.h>
 
 using T = char;
 using pointer_type = T*;
@@ -19,10 +20,10 @@ struct Coordinates {
 
 class Matrix {
 private:
-	size_t N = 0;
-	size_t M = 0;
-	T** arr = nullptr;
-
+	size_t N;
+	size_t M;
+	T** arr; //T** arr = nullptr;
+	int crt_cntr = 0;
 private:
 	struct str_i {
 		Matrix& my_matrix;
@@ -51,6 +52,12 @@ private:
 	};
 
 public:
+	Matrix();
+	Matrix(size_t N, size_t M);
+	~Matrix();
+	Matrix(const Matrix& other);
+
+
 	str_i operator[](size_t i) {
 		return str_i(*this, i);
 	}

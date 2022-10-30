@@ -5,6 +5,45 @@
 //Matrix_v1_start
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+
+Matrix::Matrix(): Matrix(0,0)
+{
+
+}
+
+
+Matrix::Matrix(size_t N, size_t M) : N(N), M(M)
+{
+	T** arr = nullptr;
+	//create_matrix(N, M);
+}
+
+Matrix::~Matrix()
+{
+	clear_matrix();
+}
+
+Matrix::Matrix(const Matrix& other)
+{
+	clear_matrix();
+
+	N = other.N;
+	M = other.M;
+
+	create_matrix(N, M);
+
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
+		{
+			arr[i][j] = other.arr[i][j];
+		}
+	}
+}
+
 size_t Matrix::get_N() const {
 	return N;
 }
@@ -15,9 +54,10 @@ size_t Matrix::get_M() const {
 
 void Matrix::create_matrix(size_t strings, size_t columns) {
 	if (arr == nullptr) {
-
+		crt_cntr++;
 		N = strings;
 		M = columns;
+		std::cout << "\n\t" << "Matrix " << "create" << " N = " << N << " M = " << M << "\n\n\n";
 
 		arr = new T * [N];
 		for (size_t i = 0; i < N; i++) {
@@ -82,23 +122,32 @@ T& Matrix::get_at(Coordinates cell) {
 }
 
 void Matrix::clear_matrix() {
-	
-	/*for (size_t i = 0; i < N; i++) {
-		std::cout << N << " " << M << "\n";
-		delete[] arr[i];
+	if (arr != nullptr)
+	{
+		--crt_cntr;
+		if(crt_cntr < 0 )
+			throw std::out_of_range("clear_matrix  crt_cntr < 0");
+
+		/*for (size_t i = 0; i < N; i++) {
+			arr[i] = nullptr;
+		}
+		arr = nullptr;*/
+		//Sleep(10000);
+		//std::cout << "\n\t" << "crt_cntr = " << crt_cntr << " N = " << N << " M = " << M << "\n\n\n";
+		//Matrix_print();
+
+		for (size_t i = 0; i < N; i++) {
+			//std::cout <<"\n\n\n\t"<< "i = " << i << " N = " << N << " M = " << M << "\n";
+			//Matrix_print();
+			delete[] arr[i];
+		}
+
+		delete[] arr;
+
+		arr = nullptr;
+		N = 0;
+		M = 0;
 	}
-
-	delete[] arr;*/
-
-	for (size_t i = 0; i < N; i++) {
-		std::cout << N << " " << M << "\n";
-		arr[i] = nullptr;
-	}
-
-	arr = nullptr;
-	N = 0;
-	M = 0;
-
 }
 
 bool Matrix::is_empty()

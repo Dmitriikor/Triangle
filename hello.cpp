@@ -65,11 +65,24 @@ void initialize_min_max_points(const Ray_3_& points)
 
 	for (size_t i = 1; i < length; i++)
 	{
-		hello_try_set_min_max_by(points[i], true);
+
+		if (points[i].x > MAX_VIRTUAL.x)
+			MAX_VIRTUAL.x = points[i].x;
+		else if (points[i].x < MIN_VIRTUAL.x)
+			MIN_VIRTUAL.x = points[i].x;
+
+		if (points[i].y > MAX_VIRTUAL.y)
+			MAX_VIRTUAL.y = points[i].y;
+		else if (points[i].y < MIN_VIRTUAL.y)
+			MIN_VIRTUAL.y = points[i].y;
+
+		//hello_try_set_min_max_by(points[i], true);
 	}
 
 	/*std::cout << std::endl << MAX_VIRTUAL.x << " : " << MAX_VIRTUAL.y << std::endl;
 	std::cout << std::endl << MIN_VIRTUAL.x << " : " << MIN_VIRTUAL.y << std::endl;*/
+
+	initialize_width();
 }
 
 void initialize_width() {
@@ -181,7 +194,7 @@ void y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int axis_locat
 //!!! module sub-functions
 void create_corner()
 {
-
+	initialize_min_max_points(points_to_draw);
 	int max_y = MAX_VIRTUAL.y;
 	int min_y = MIN_VIRTUAL.y;
 
@@ -197,7 +210,7 @@ void create_corner()
 		M = M * (width_x + axis_x_indents) + width_y;
 
 		canvas_arr.create_matrix(N, M);
-		canvas_arr.fill(' ');
+		canvas_arr.fill('+');
 	}
 
 	// {print y axis
@@ -221,17 +234,21 @@ void create_corner()
 	int start_x = min_x < 0 ? min_x : 0;
 
 
-	int N; 
-	if (min_x < 0)
-		N = abs(min_x) + abs(max_x) + 1;
+	int N__; 
+	if (min_x == max_x)
+	{
+		N__ = abs(min_x) + width_y;
+	}
+	else if (min_x < 0)
+		N__ = abs(min_x) + abs(max_x) + width_y;
 	else 
-		N =  max_x + axis_x_strings;
+		N__ =  max_x + width_y;
 
 	int i_for_x = canvas_arr.get_N() - axis_x_strings;
 
 	width_x_with_indent = width_x + axis_x_indents;
 
-	x_axis_filling(canvas_arr, N, start_x, i_for_x);
+	x_axis_filling(canvas_arr, N__, start_x, i_for_x);
 
 	// }end print x axis
 
@@ -263,8 +280,12 @@ void print_arr() {
 
 void hello_try_set_min_max_by(Point pt, bool save_point)
 {
+	save_point = true; ///////////!!!!!!!!!!!!!!!!!!!!!!! to do
 	if (save_point)
 		points_to_draw.add_to_back(pt);
+
+	initialize_min_max_points(points_to_draw);
+	/*
 	bool is_new_set = false;
 
 	if (MAX_VIRTUAL.x < pt.x)
@@ -289,7 +310,9 @@ void hello_try_set_min_max_by(Point pt, bool save_point)
 		is_new_set = true;
 	}
 	if (is_new_set = true)
+	*/
 	canvas_clear();
+	
 }
 
 void draw_points()
@@ -560,35 +583,38 @@ Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol)
 void create_axys()
 {
 
+	initialize_min_max_points(points_to_draw);
+
 	int max_y = MAX_VIRTUAL.y;
 	int min_y = MIN_VIRTUAL.y;
 
 	int max_x = MAX_VIRTUAL.x;
 	int min_x = MIN_VIRTUAL.x;
 
-	
-		int N, M;
-		int size_N, size_M;
-		size_N = fabs(min_y) > fabs(max_y) ? get_distance_between(min_y, 0)  : get_distance_between(0, max_y) ;
-		size_M = fabs(min_x) > fabs(max_x) ? get_distance_between(min_x, 0)  : get_distance_between(0, max_x) ;
+	int N, M;
+	int size_N, size_M;
+	size_N = fabs(min_y) > fabs(max_y) ? get_distance_between(min_y, 0) : get_distance_between(0, max_y);
+	size_M = fabs(min_x) > fabs(max_x) ? get_distance_between(min_x, 0) : get_distance_between(0, max_x);
 
 
-	int loc_width_x =  width_x + 1 + axis_x_indents;
-	int loc_width_y =  width_y + 1;
+	//int ll = size_M
+
+
+	int loc_width_x = width_x + axis_x_indents; //+1 
+	int loc_width_y = width_y +1;
 	width_x_with_indent = loc_width_x;
 	width_y_with_indent = loc_width_y;
 
 
-		N = (size_N *2) + axis_x_strings;
-		M = size_M * (loc_width_x);
-		int M_ = M + loc_width_y;
-		M = M*2;
-		M = M + loc_width_y + loc_width_y;
+	N = (size_N * 2) + axis_x_strings;
+	M = (size_M * loc_width_x) + loc_width_y + axis_x_indents;
+	int M_ = M;
+	M = M * 2;
 
-		if (axys_arr.is_empty()) {
-			axys_arr.create_matrix(N, M);
-			axys_arr.fill('+');
-		}
+	if (axys_arr.is_empty()) {
+		axys_arr.create_matrix(N, M);
+		axys_arr.fill('+');
+	}
 	//Point ORIGIN_Point;
 
 	//ORIGIN_Point.x = (M) + loc_width_y;
@@ -596,10 +622,10 @@ void create_axys()
 
 	//ORIGIN_Point.x = utilities::round_by_step(ORIGIN_Point.x, get_step(coefficient)) / get_step(coefficient);
 	//ORIGIN_Point.y = utilities::round_by_step(ORIGIN_Point.y, get_step(coefficient)) / get_step(coefficient);
-	
 
-	y_axis_filling(axys_arr, N, size_N, M_);
-	x_axis_filling(axys_arr, size_M*2 +1, -size_M, max_y);
+
+	y_axis_filling(axys_arr, N, size_N, M_ - axis_x_indents);
+	x_axis_filling(axys_arr, size_M * 2 + 1, -size_M, size_N);
 	//system("cls");
 	axys_arr.Matrix_print();
 

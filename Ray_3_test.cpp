@@ -61,7 +61,8 @@ Ray_3_::Ray_3_(size_t LEFT, size_t RIGHT) : Ray_3_(LEFT, RIGHT, 2u) {
 }
 
 Ray_3_::Ray_3_(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
-	:LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) {
+	:LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) 
+{
 
 }
 
