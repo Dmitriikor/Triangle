@@ -3,7 +3,7 @@
 Point MAX_VIRTUAL;
 Point MIN_VIRTUAL;
 
-void max_min_init() 
+void max_min_init()
 {
 	MAX_VIRTUAL.x = DBL_MIN;
 	MAX_VIRTUAL.y = DBL_MIN;
@@ -131,7 +131,9 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 	{
 		int temp_x = min_x + i;
 
-		arr[axis_location][width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1)] = '|';
+		//!!!
+		//arr[axis_location][width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1)] = '|';
+		arr.set_at(axis_location, width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1), '|');
 
 		int abs_x = fabs(temp_x);
 		int j;
@@ -139,7 +141,8 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 		{
 			int digit = abs_x % 10;
 
-			arr[axis_location][width_y_with_indent + (i * width_x_with_indent) + j] = '0' + digit;
+			//arr[axis_location][width_y_with_indent + (i * width_x_with_indent) + j] = '0' + digit;
+			arr.set_at(axis_location, width_y_with_indent + (i * width_x_with_indent) + j, '0' + digit);
 
 			abs_x = abs_x / 10;
 
@@ -151,7 +154,8 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 			throw std::exception("hello.cpp -> create_corner -> WRONG WIDTH_X");
 
 		if (temp_x < 0)
-			arr[axis_location][(width_y_with_indent + (i * width_x_with_indent) + j) - 1] = '-'; //!!! here was [i][1]
+			//arr[axis_location][(width_y_with_indent + (i * width_x_with_indent) + j) - 1] = '-'; //!!! here was [i][1]
+			arr.set_at(axis_location, (width_y_with_indent + (i * width_x_with_indent) + j) - 1, '-'); //!!! here was [i][1]
 		//else
 			//canvas_arr[i][j - 1] = ' '; //!!! here was [i][1]
 	}
@@ -169,7 +173,8 @@ void y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int axis_locat
 		{
 			int digit = abs_y % 10;
 
-			arr[i][axis_location + j] = '0' + digit;
+			//arr[i][axis_location + j] = '0' + digit;
+			arr.set_at(i, axis_location + j, '0' + digit);
 
 			abs_y = abs_y / 10;
 			if (abs_y == 0)
@@ -180,7 +185,8 @@ void y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int axis_locat
 			throw std::exception("hello.cpp -> create_corner -> WRONG WIDTH_Y");
 
 		if (temp_y < 0) {
-			arr[i][(axis_location + j) - 1] = '-'; //!!! here was [i][1]
+			//arr[i][(axis_location + j) - 1] = '-'; //!!! here was [i][1]
+			arr.set_at(i, (axis_location + j) - 1, '-'); //!!! here was [i][1]
 		}
 
 		//else
@@ -210,6 +216,7 @@ void create_corner()
 		M = M * (width_x + axis_x_indents) + width_y;
 
 		canvas_arr.create_matrix(N, M);
+
 		canvas_arr.fill('+');
 	}
 
@@ -219,7 +226,7 @@ void create_corner()
 	width_y_with_indent = width_y;
 	{
 		int N = canvas_arr.get_N() - axis_x_strings;
-		
+
 		y_axis_filling(canvas_arr, N, start_i, 0); //???????
 	}
 	// }end print y axis
@@ -231,29 +238,29 @@ void create_corner()
 
 	// {print x axys
 	{
-	int start_x = min_x < 0 ? min_x : 0;
+		int start_x = min_x < 0 ? min_x : 0;
 
 
-	int N__; 
-	if (min_x == max_x)
-	{
-		N__ = abs(min_x) + width_y;
-	}
-	else if (min_x < 0)
-		N__ = abs(min_x) + abs(max_x) + width_y;
-	else 
-		N__ =  max_x + width_y;
+		int N__;
+		if (min_x == max_x)
+		{
+			N__ = abs(min_x) + width_y;
+		}
+		else if (min_x < 0)
+			N__ = abs(min_x) + abs(max_x) + width_y;
+		else
+			N__ = max_x + width_y;
 
-	int i_for_x = canvas_arr.get_N() - axis_x_strings;
+		int i_for_x = canvas_arr.get_N() - axis_x_strings;
 
-	width_x_with_indent = width_x + axis_x_indents;
+		width_x_with_indent = width_x + axis_x_indents;
 
-	x_axis_filling(canvas_arr, N__, start_x, i_for_x);
+		x_axis_filling(canvas_arr, N__, start_x, i_for_x);
 
-	// }end print x axis
+		// }end print x axis
 
-	//{find actual console point of start coodrs
-	ZERO.j = ((abs(start_x * width_x_with_indent)) + width_y + (width_x_with_indent - 1));
+		//{find actual console point of start coodrs
+		ZERO.j = ((abs(start_x * width_x_with_indent)) + width_y + (width_x_with_indent - 1));
 	}
 	//}find actual console point of start coodrs
 
@@ -271,7 +278,7 @@ void print_arr() {
 	std::cout << "\n";
 
 	if (canvas_arr.is_empty())
-		canvas_arr.create_matrix(0,0);
+		canvas_arr.create_matrix(0, 0);
 	//throw std::exception("exception in hello.cpp -> metod print_arr : canvas_arr.is_empty");
 
 	canvas_arr.Matrix_print();
@@ -312,7 +319,7 @@ void hello_try_set_min_max_by(Point pt, bool save_point)
 	if (is_new_set = true)
 	*/
 	canvas_clear();
-	
+
 }
 
 void draw_points()
@@ -365,7 +372,7 @@ void erase_point(Point err)
 		throw std::exception("exception in hello.cpp -> metod erase_point : cell coord");
 }
 
-double get_step(unsigned coefficient) 
+double get_step(unsigned coefficient)
 {
 	double step = 1.0 / coefficient;
 	return step;
@@ -373,7 +380,7 @@ double get_step(unsigned coefficient)
 
 void canvas_print_zero()
 {
-	canvas_arr[ZERO.i][ZERO.j - axis_x_indents] = '0';
+	canvas_arr.set_at(ZERO.i, ZERO.j - axis_x_indents, '0'); //!!!
 }
 
 void canvas_clear()
@@ -557,9 +564,9 @@ Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol)
 		float k = (x - x1) / (float)(x2 - x1);
 		float y = y1 * (1. - k) + y2 * k;
 
-		
+
 		double step = get_step(coefficient);
-		y =  (int)utilities::round_by_step(y, step);
+		y = (int)utilities::round_by_step(y, step);
 
 		Point coords;
 		coords.symbol = symbol;
@@ -601,7 +608,7 @@ void create_axys()
 
 
 	int loc_width_x = width_x + axis_x_indents; //+1 
-	int loc_width_y = width_y +1;
+	int loc_width_y = width_y + 1;
 	width_x_with_indent = loc_width_x;
 	width_y_with_indent = loc_width_y;
 

@@ -23,7 +23,7 @@ private:
 	size_t N;
 	size_t M;
 	T** arr; //T** arr = nullptr;
-	int crt_cntr = 0;
+	//int crt_cntr = 0;
 private:
 	struct str_i {
 		Matrix& my_matrix;
@@ -54,17 +54,13 @@ private:
 public:
 	Matrix();
 	Matrix(size_t N, size_t M);
-	~Matrix();
 	Matrix(const Matrix& other);
+	~Matrix();
 
+	Matrix& operator=(const Matrix& other);
 
-	str_i operator[](size_t i) {
-		return str_i(*this, i);
-	}
-
-	const_str_i operator[](size_t i) const {
-		return const_str_i(*this, i);
-	}
+	str_i operator[](size_t i);
+	const_str_i operator[](size_t i) const;
 
 	size_t get_N() const;
 
