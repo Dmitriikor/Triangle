@@ -136,9 +136,9 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 		//arr[axis_location][width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1)] = '|';
 		arr.set_at(axis_location, width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1), '|');
 
-		std::cout << "\n"<< "min_x = " << min_x << "\n";
-		arr.Matrix_print();
-		std::cout << "\n";
+		//std::cout << "\n"<< "min_x = " << min_x << "\n";
+		//arr.Matrix_print();
+		//std::cout << "\n";
 
 		int abs_x = fabs(temp_x);
 		int j;
@@ -150,9 +150,9 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 
 			arr.set_at(axis_location, width_y_with_indent + (i * width_x_with_indent) + j, '0' + digit);
 
-			std::cout << "\n";
-			arr.Matrix_print();
-			std::cout << "\n";
+			//std::cout << "\n";
+			//arr.Matrix_print();
+			//std::cout << "\n";
 
 			abs_x = abs_x / 10;
 
@@ -303,7 +303,7 @@ void print_arr() {
 
 void hello_try_set_min_max_by(Point pt, bool save_point)
 {
-	//save_point = true; ///////////!!!!!!!!!!!!!!!!!!!!!!! to do
+	save_point = true; ///////////!!!!!!!!!!!!!!!!!!!!!!! to do
 	if (save_point)
 	{
 		points_to_draw.add_to_back(pt);
@@ -612,14 +612,17 @@ Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol)
 void create_axys()
 {
 
-	axys_arr.clear_matrix();
+	//axys_arr.clear_matrix();
 	initialize_min_max_points(points_to_draw);
 
+	/*
 	Point axys_min;
 	axys_min.x = fabs(MAX_VIRTUAL.x) >= fabs(MIN_VIRTUAL.x) ? -MAX_VIRTUAL.x : -MIN_VIRTUAL.x;
-	axys_min.y = -MAX_VIRTUAL.y;
+	axys_min.y = fabs(MAX_VIRTUAL.y) >= fabs(MIN_VIRTUAL.y) ? -MAX_VIRTUAL.y : -MIN_VIRTUAL.y;
 
-	hello_try_set_min_max_by(axys_min, false);
+	hello_try_set_min_max_by(axys_min);
+
+	*/
 
 	int max_y = MAX_VIRTUAL.y;
 	int min_y = MIN_VIRTUAL.y;
@@ -629,15 +632,25 @@ void create_axys()
 
 	int N, M;
 	int size_N, size_M;
-	size_N = fabs(min_y) >= fabs(max_y) ? get_distance_between(min_y, 0) : get_distance_between(0, max_y);
-	size_M = fabs(min_x) >= fabs(max_x) ? get_distance_between(min_x, 0) : get_distance_between(0, max_x);
+	size_N = fabs(min_y) > fabs(max_y) ? get_distance_between(min_y, 0) : get_distance_between(0, max_y);
+	size_M = fabs(min_x) > fabs(max_x) ? get_distance_between(min_x, 0) : get_distance_between(0, max_x);
+
+	if (fabs(min_y) == fabs(max_y))
+		size_N = fabs(max_y);
+	if (fabs(min_x) == fabs(max_x))
+		size_M = fabs(max_x);
 
 
 	//int ll = size_M
 
 
+	//if (min_x < 0)
+		//width_x = width_x - 1;
+
 	int loc_width_x = width_x + axis_x_indents; //+1 
 	int loc_width_y = width_y + 1;
+
+
 	width_x_with_indent = loc_width_x;
 	width_y_with_indent = loc_width_y;
 
@@ -646,11 +659,13 @@ void create_axys()
 	M = (size_M * loc_width_x) + (loc_width_y);
 	int M_ = M;
 	M = M * 2 + (loc_width_y);
+	
+		axys_arr.clear_matrix();
+		if (axys_arr.is_empty()) {
+			axys_arr.create_matrix(N, M);
+			axys_arr.fill('+');
+		}
 
-	if (axys_arr.is_empty()) {
-		axys_arr.create_matrix(N, M);
-		axys_arr.fill('+');
-	}
 	//Point ORIGIN_Point;
 
 	//ORIGIN_Point.x = (M) + loc_width_y;
@@ -664,9 +679,7 @@ void create_axys()
 	int or_y = M_+ width_x-1;
 
 	x_axis_filling(axys_arr, size_M * 2 + 1, -size_M, size_N);
-	y_axis_filling(axys_arr, N, size_N, M_-1 ); //- (loc_width_x + 1)
-
-
+	y_axis_filling(axys_arr, N, size_N, M_-1); //- (loc_width_x + 1)
 
 
 	ORIGIN.i = or_x;
@@ -675,6 +688,9 @@ void create_axys()
 	axys_arr[ORIGIN.i][ORIGIN.j] = '*';
 
 	//system("cls");
+	 
+	 //axys_arr.clear_matrix();
+	
 	axys_arr.Matrix_print();
 
 	axys_arr.clear_matrix();
