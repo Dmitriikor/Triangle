@@ -24,6 +24,8 @@ private:
 	size_t M;
 	T** arr; //T** arr = nullptr;
 	//int crt_cntr = 0;
+
+	void allocate(unsigned intN, unsigned int M);
 private:
 	struct str_i {
 		Matrix& my_matrix;

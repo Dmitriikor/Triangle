@@ -5,9 +5,10 @@
 #include <exception>
 
 
-
 int main(int argc, char const* argv[])
 {
+	std::ios_base::sync_with_stdio(false);
+
 	go_debug(false);
 	try
 	{
@@ -65,12 +66,12 @@ int main(int argc, char const* argv[])
 			//draw_points();
 
 			draw_line();
-			print_arr();
+			//print_arr();
 
 			draw_line_1_(to_line_1, to_line_2, true, to_line_2.symbol);
 
 			draw_line();
-			print_arr();
+			//print_arr();
 
 
 			create_axys();

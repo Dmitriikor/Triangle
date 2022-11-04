@@ -20,6 +20,7 @@ Matrix axys_arr;
 
 //Point ZERO; //!!!
 Coordinates ZERO;
+Coordinates ORIGIN;
 
 bool earse_line_flag = false;
 
@@ -618,7 +619,7 @@ void create_axys()
 
 
 	N = (size_N * 2) + axis_x_strings;
-	M = (size_M * loc_width_x) + loc_width_y + axis_x_indents;
+	M = (size_M * loc_width_x) + (loc_width_y*2);
 	int M_ = M;
 	M = M * 2;
 
@@ -633,9 +634,9 @@ void create_axys()
 
 	//ORIGIN_Point.x = utilities::round_by_step(ORIGIN_Point.x, get_step(coefficient)) / get_step(coefficient);
 	//ORIGIN_Point.y = utilities::round_by_step(ORIGIN_Point.y, get_step(coefficient)) / get_step(coefficient);
+	
 
-
-	y_axis_filling(axys_arr, N, size_N, M_ - axis_x_indents);
+	y_axis_filling(axys_arr, N, size_N, M_ - (loc_width_x+1));
 	x_axis_filling(axys_arr, size_M * 2 + 1, -size_M, size_N);
 	//system("cls");
 	axys_arr.Matrix_print();

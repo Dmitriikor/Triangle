@@ -18,7 +18,7 @@ Matrix::Matrix() : N(0), M(0), arr(nullptr)
 Matrix::Matrix(size_t N, size_t M) : N(N), M(M), arr(nullptr)
 {
 	//T** arr = nullptr;
-	create_matrix(N, M);
+	allocate(N, M);
 }
 
 Matrix::Matrix(const Matrix& other) : arr(nullptr)
@@ -74,6 +74,15 @@ Matrix::const_str_i Matrix::operator[](size_t i) const {
 }
 
 
+void Matrix::allocate(unsigned int N, unsigned int M)
+{
+	arr = new T * [N];
+	for (size_t i = 0; i < N; i++) {
+		arr[i] = new T[M];
+	}
+}
+
+
 size_t Matrix::get_N() const {
 	return N;
 }
@@ -92,10 +101,7 @@ void Matrix::create_matrix(size_t strings, size_t columns) {
 		M = columns;
 		std::cout << "\n\t" << "Matrix " << "create" << " N = " << N << " M = " << M << "\n\n\n";
 
-		arr = new T * [N];
-		for (size_t i = 0; i < N; i++) {
-			arr[i] = new T[M];
-		}
+		allocate(N,M);
 	}
 	else {
 		throw std::logic_error("logic_error in void create_matrix : MATRIX ALREADY EXIST");
