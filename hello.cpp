@@ -630,6 +630,11 @@ void create_axys()
 	int max_x = MAX_VIRTUAL.x;
 	int min_x = MIN_VIRTUAL.x;
 
+	if (min_x < 0)
+	{
+		width_x = width_x - 1;
+	}
+
 	int N, M;
 	int size_N, size_M;
 	size_N = fabs(min_y) > fabs(max_y) ? get_distance_between(min_y, 0) : get_distance_between(0, max_y);
