@@ -170,6 +170,7 @@ T& Matrix::get_at(Coordinates cell) {
 void Matrix::clear_matrix() {
 	if (arr != nullptr)
 	{
+		std::cout << "\n\t" << "~Matrix " << "delite" << " N = " << N << " M = " << M << "\n\n\n";
 		//--crt_cntr;
 		//if(crt_cntr < 0 )
 			//throw std::out_of_range("clear_matrix  crt_cntr < 0");

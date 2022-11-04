@@ -1,4 +1,4 @@
-#include "hello.h"
+п»ї#include "hello.h"
 
 Point MAX_VIRTUAL;
 Point MIN_VIRTUAL;
@@ -24,8 +24,8 @@ Coordinates ZERO;
 bool earse_line_flag = false;
 
 
-Ray_3_ points_to_draw;		//свободные точки для рисования
-Ray_3_ line_points_to_draw;	//точки линий для рисования
+Ray_3_ points_to_draw;		//Г±ГўГ®ГЎГ®Г¤Г­Г»ГҐ ГІГ®Г·ГЄГЁ Г¤Г«Гї Г°ГЁГ±Г®ГўГ Г­ГЁГї
+Ray_3_ line_points_to_draw;	//ГІГ®Г·ГЄГЁ Г«ГЁГ­ГЁГ© Г¤Г«Гї Г°ГЁГ±Г®ГўГ Г­ГЁГї
 
 bool is_copied_array = false;
 
@@ -135,6 +135,7 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 		//arr[axis_location][width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1)] = '|';
 		arr.set_at(axis_location, width_y_with_indent + (i * width_x_with_indent) + (width_x_with_indent - 1), '|');
 
+
 		int abs_x = fabs(temp_x);
 		int j;
 		for (j = width_x_with_indent - 2; j >= 0; --j)
@@ -207,17 +208,22 @@ void create_corner()
 	int max_x = MAX_VIRTUAL.x;
 	int min_x = MIN_VIRTUAL.x;
 
+
+
 	{
 		size_t N, M;
+
 		N = get_distance_between(min_y, max_y) + 1;
 		M = get_distance_between(min_x, max_x) + 1;
 
 		N = N + axis_x_strings;
-		M = M * (width_x + axis_x_indents) + width_y;
+		M = width_y + (M * (width_x + axis_x_indents)) + (width_x + axis_x_indents);
 
-		canvas_arr.create_matrix(N, M);
-
-		canvas_arr.fill('+');
+		if (N > canvas_arr.get_N() || M > canvas_arr.get_M())
+		{
+			canvas_arr.create_matrix(N, M);
+			canvas_arr.fill('+');
+		}
 	}
 
 	// {print y axis
@@ -244,17 +250,18 @@ void create_corner()
 		int N__;
 		if (min_x == max_x)
 		{
-			N__ = abs(min_x) + width_y;
+			N__ = abs(min_x) + 1;
 		}
 		else if (min_x < 0)
-			N__ = abs(min_x) + abs(max_x) + width_y;
+			N__ = abs(min_x) + abs(max_x) +1;
 		else
-			N__ = max_x + width_y;
+			N__ = max_x + 1;
 
 		int i_for_x = canvas_arr.get_N() - axis_x_strings;
 
 		width_x_with_indent = width_x + axis_x_indents;
 
+		std::cout <<"\n canvas_arr = " << canvas_arr.get_M() <<" N__ = " << N__ << " start_x = " << start_x << " i_for_x = " << i_for_x << "\n";
 		x_axis_filling(canvas_arr, N__, start_x, i_for_x);
 
 		// }end print x axis
@@ -294,7 +301,6 @@ void hello_try_set_min_max_by(Point pt, bool save_point)
 	initialize_min_max_points(points_to_draw);
 	/*
 	bool is_new_set = false;
-
 	if (MAX_VIRTUAL.x < pt.x)
 	{
 		MAX_VIRTUAL.x = pt.x;
@@ -310,7 +316,6 @@ void hello_try_set_min_max_by(Point pt, bool save_point)
 		MIN_VIRTUAL.x = pt.x;
 		is_new_set = true;
 	}
-
 	if (MIN_VIRTUAL.y > pt.y)
 	{
 		MIN_VIRTUAL.y = pt.y;
@@ -338,7 +343,7 @@ void draw_points_(bool is_need_to_draw_line)
 	//! throw;
 
 	if (canvas_arr.is_empty())
-		canvas_arr.create_matrix(0, 0);
+		canvas_arr.create_matrix(1, 1);
 	//throw std::exception("exception in hello.cpp -> metod draw_points : canvas_arr.is_empty");
 
 	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
@@ -410,7 +415,7 @@ void delite_point(const Point& dl)
 
 void delite_line(const Point& A, const Point& B)
 {
-	Ray_3_ erase_line_arr;      //точки для затирания холста линиями
+	Ray_3_ erase_line_arr;      //ГІГ®Г·ГЄГЁ Г¤Г«Гї Г§Г ГІГЁГ°Г Г­ГЁГї ГµГ®Г«Г±ГІГ  Г«ГЁГ­ГЁГїГ¬ГЁ
 
 	for (size_t i = 0; i < 2; i++)
 	{
@@ -535,7 +540,6 @@ Ray_3_ calculate_line_round(const Point& A, const Point& B, char symbol)
 
 Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol)
 {
-
 	Ray_3_ lockal_line_arr;
 
 	if (A.x == B.x && A.y == B.y)
