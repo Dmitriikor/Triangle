@@ -65,12 +65,12 @@ int main(int argc, char const* argv[])
 			
 			//draw_points();
 
-			draw_line();
+			//draw_line();
 			//print_arr();
 
 			draw_line_1_(to_line_1, to_line_2, true, to_line_2.symbol);
 
-			draw_line();
+			//draw_line();
 			//print_arr();
 
 
