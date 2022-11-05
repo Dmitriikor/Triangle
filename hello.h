@@ -44,6 +44,7 @@ void draw_line_1_(const Point& A, const Point& B, bool is_round = true,  char sy
 
 
 void create_axys();
+void draw_points_for_axys(bool is_need_to_draw_line);
 
 void max_min_init();
 

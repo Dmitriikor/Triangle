@@ -63,15 +63,15 @@ int main(int argc, char const* argv[])
 
 			draw_line_1_(to_line_1, to_line_2,false , to_line_2.symbol);
 			
-			//draw_points();
+			draw_points();
 
-			//draw_line();
-			//print_arr();
+			draw_line();
+			print_arr();
 
 			draw_line_1_(to_line_1, to_line_2, true, to_line_2.symbol);
 
-			//draw_line();
-			//print_arr();
+			draw_line();
+			print_arr();
 
 
 			create_axys();

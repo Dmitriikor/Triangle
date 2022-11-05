@@ -160,8 +160,12 @@ void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_locatio
 				break;
 		}
 
-		if (j == -1)
+		if (j == -1) 
+		{
+			arr.Matrix_print();
 			throw std::exception("hello.cpp -> create_corner -> WRONG WIDTH_X");
+		}
+
 
 		if (temp_x < 0)
 			//arr[axis_location][(width_y_with_indent + (i * width_x_with_indent) + j) - 1] = '-'; //!!! here was [i][1]
@@ -231,7 +235,7 @@ void create_corner()
 		if (N > canvas_arr.get_N() || M > canvas_arr.get_M())
 		{
 			canvas_arr.create_matrix(N, M);
-			canvas_arr.fill('+');
+			canvas_arr.fill(' ');
 		}
 	}
 
@@ -629,11 +633,13 @@ void create_axys()
 
 	int max_x = MAX_VIRTUAL.x;
 	int min_x = MIN_VIRTUAL.x;
-
-	if (min_x < 0)
+	/// <Костыльвания>
+	if ((min_x < 0 || min_y < 0) && (fabs(min_x)>=10 || fabs(min_y) >= 10))
 	{
 		width_x = width_x - 1;
 	}
+	width_y = width_x;
+	/// </Костыльвания>
 
 	int N, M;
 	int size_N, size_M;
@@ -664,12 +670,12 @@ void create_axys()
 	M = (size_M * loc_width_x) + (loc_width_y);
 	int M_ = M;
 	M = M * 2 + (loc_width_y);
-	
-		axys_arr.clear_matrix();
-		if (axys_arr.is_empty()) {
-			axys_arr.create_matrix(N, M);
-			axys_arr.fill('+');
-		}
+
+	axys_arr.clear_matrix();
+	if (axys_arr.is_empty()) {
+		axys_arr.create_matrix(N, M);
+		axys_arr.fill(' ');
+	}
 
 	//Point ORIGIN_Point;
 
@@ -678,27 +684,65 @@ void create_axys()
 
 	//ORIGIN_Point.x = utilities::round_by_step(ORIGIN_Point.x, get_step(coefficient)) / get_step(coefficient);
 	//ORIGIN_Point.y = utilities::round_by_step(ORIGIN_Point.y, get_step(coefficient)) / get_step(coefficient);
-	
+
 
 	int or_x = size_N;
-	int or_y = M_+ width_x-1;
+	int or_y = M_ + width_x - 1;
 
 	x_axis_filling(axys_arr, size_M * 2 + 1, -size_M, size_N);
-	y_axis_filling(axys_arr, N, size_N, M_-1); //- (loc_width_x + 1)
+	std::cout << "\n width_x = " << width_x << "  width_y = " << width_y << "\n";
+	y_axis_filling(axys_arr, N, size_N, M_ - 1); //- (loc_width_x + 1) -1, -1,
 
 
 	ORIGIN.i = or_x;
 	ORIGIN.j = or_y;
-	std::cout <<"\n" << ORIGIN.i << " " << or_x << " " << ORIGIN.j << " "<< or_y << "\n";
+	std::cout << "\n" << ORIGIN.i << " " << or_x << " " << ORIGIN.j << " " << or_y << "\n";
 	axys_arr[ORIGIN.i][ORIGIN.j] = '*';
 
 	//system("cls");
-	 
+
 	 //axys_arr.clear_matrix();
-	
+	draw_points_for_axys(true);
 	axys_arr.Matrix_print();
 
+
+
+	for (size_t i = 0; i < axys_arr.get_M() + 1; i++)
+	{
+		std::cout << "_";
+	}
+
+
+
+
+
 	axys_arr.clear_matrix();
+}
+
+void draw_points_for_axys(bool is_need_to_draw_line)
+{
+	if (canvas_arr.is_empty())
+		canvas_arr.create_matrix(1, 1);
+
+	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
+	size_t length = arr.size();
+
+
+	for (size_t i = 0; i < length; i++)
+	{
+		Coordinates cell;
+
+		cell.i = ORIGIN.i - arr[i].y;
+		cell.j = (ORIGIN.j + (arr[i].x * (width_x + axis_x_indents))); // -axis_x_indents;
+
+		if (cell.i >= axys_arr.get_N() || cell.j >= axys_arr.get_M())
+			throw std::exception("exception in hello.cpp -> metod draw_points_for_axys : cell >= canvas_arr");
+
+		axys_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
+	}
+}
+
+
 	//for (int j = -(ORIGIN_Point.j); j < ORIGIN_Point.j + 1; j++) 
 	//{
 	//	axys_arr[ORIGIN_Point.i, ORIGIN_Point.j + j];
@@ -731,4 +775,3 @@ void create_axys()
 	//	draw_line_2::draw_line_no_round(triangle.get_C(), triangle.get_A(), ORIGIN_Point);
 	//}
 	//setCursorPosition(0, ORIGIN_Point.j * 2 + 2);
-}
