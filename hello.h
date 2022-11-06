@@ -23,8 +23,8 @@ void print_arr();
 void hello_try_set_min_max_by(Point pt, bool save_point = true);
 
 //void draw_points(Ray_3_ arr = ptr_arr);
-
-void draw_points_(bool is_need_to_draw_line = false);
+void draw_points_(bool is_need_to_draw_line = false, bool is_axys = false);
+//void draw_points_(bool is_need_to_draw_line = false);
 void draw_points();
 void draw_line();
 
@@ -44,7 +44,7 @@ void draw_line_1_(const Point& A, const Point& B, bool is_round = true,  char sy
 
 
 void create_axys();
-void draw_points_for_axys(bool is_need_to_draw_line);
+//void draw_points_for_axys(bool is_need_to_draw_line);
 
 void max_min_init();
 

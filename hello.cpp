@@ -359,32 +359,67 @@ void draw_line()
 	draw_points_(true);
 }
 
-void draw_points_(bool is_need_to_draw_line)
+void draw_points_(bool is_need_to_draw_line, bool is_axys)
 {
-	//!!! MIN MAX is set?
-	//! throw;
-
 	if (canvas_arr.is_empty())
 		canvas_arr.create_matrix(1, 1);
-	//throw std::exception("exception in hello.cpp -> metod draw_points : canvas_arr.is_empty");
 
-	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
-	size_t length = arr.size();
+	size_t length;
 
+		const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
+		length = arr.size();
 
 	for (size_t i = 0; i < length; i++)
 	{
 		Coordinates cell;
 
-		cell.i = ZERO.i - arr[i].y;
-		cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents))) - axis_x_indents;
+		if (is_axys)
+		{
+			cell.i = ORIGIN.i - arr[i].y;
+			cell.j = (ORIGIN.j + (arr[i].x * (width_x + axis_x_indents)));
+			if (cell.i >= axys_arr.get_N() || cell.j >= axys_arr.get_M())
+				throw std::exception("exception in hello.cpp -> metod draw_points_for_axys : cell >= canvas_arr");
+			axys_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
+		}
+		else
+		{
+			cell.i = ZERO.i - arr[i].y;
+			cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents))) - axis_x_indents;
+			if (cell.i >= canvas_arr.get_N() || cell.j >= canvas_arr.get_M())
+				throw std::exception("exception in hello.cpp -> metod draw_points : cell >= canvas_arr");
+			canvas_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
+		}
 
-		if (cell.i >= canvas_arr.get_N() || cell.j >= canvas_arr.get_M())
-			throw std::exception("exception in hello.cpp -> metod draw_points : cell >= canvas_arr");
-
-		canvas_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
 	}
 }
+
+
+//void draw_points_(bool is_need_to_draw_line)
+//{
+//	//!!! MIN MAX is set?
+//	//! throw;
+//
+//	if (canvas_arr.is_empty())
+//		canvas_arr.create_matrix(1, 1);
+//	//throw std::exception("exception in hello.cpp -> metod draw_points : canvas_arr.is_empty");
+//
+//	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
+//	size_t length = arr.size();
+//
+//
+//	for (size_t i = 0; i < length; i++)
+//	{
+//		Coordinates cell;
+//
+//		cell.i = ZERO.i - arr[i].y;
+//		cell.j = (ZERO.j + (arr[i].x * (width_x + axis_x_indents))) - axis_x_indents;
+//
+//		if (cell.i >= canvas_arr.get_N() || cell.j >= canvas_arr.get_M())
+//			throw std::exception("exception in hello.cpp -> metod draw_points : cell >= canvas_arr");
+//
+//		canvas_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
+//	}
+//}
 
 void erase_point(Point err)
 {
@@ -702,7 +737,7 @@ void create_axys()
 	//system("cls");
 
 	 //axys_arr.clear_matrix();
-	draw_points_for_axys(true);
+	draw_points_(true, true);
 	axys_arr.Matrix_print();
 
 
@@ -719,28 +754,6 @@ void create_axys()
 	axys_arr.clear_matrix();
 }
 
-void draw_points_for_axys(bool is_need_to_draw_line)
-{
-	if (canvas_arr.is_empty())
-		canvas_arr.create_matrix(1, 1);
-
-	const Ray_3_& arr = is_need_to_draw_line ? line_points_to_draw : points_to_draw;
-	size_t length = arr.size();
-
-
-	for (size_t i = 0; i < length; i++)
-	{
-		Coordinates cell;
-
-		cell.i = ORIGIN.i - arr[i].y;
-		cell.j = (ORIGIN.j + (arr[i].x * (width_x + axis_x_indents))); // -axis_x_indents;
-
-		if (cell.i >= axys_arr.get_N() || cell.j >= axys_arr.get_M())
-			throw std::exception("exception in hello.cpp -> metod draw_points_for_axys : cell >= canvas_arr");
-
-		axys_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
-	}
-}
 
 
 	//for (int j = -(ORIGIN_Point.j); j < ORIGIN_Point.j + 1; j++) 
