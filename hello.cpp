@@ -16,7 +16,7 @@ void max_min_init()
 
 Matrix canvas_arr;
 
-Matrix axys_arr;
+
 
 //Point ZERO; //!!!
 Coordinates ZERO;
@@ -359,7 +359,7 @@ void draw_line()
 	draw_points_(true);
 }
 
-void draw_points_(bool is_need_to_draw_line, bool is_axys)
+void draw_points_(bool is_need_to_draw_line, bool is_axys, canvas_axys& a) //, Matrix & TT
 {
 	if (canvas_arr.is_empty())
 		canvas_arr.create_matrix(1, 1);
@@ -377,9 +377,11 @@ void draw_points_(bool is_need_to_draw_line, bool is_axys)
 		{
 			cell.i = ORIGIN.i - arr[i].y;
 			cell.j = (ORIGIN.j + (arr[i].x * (width_x + axis_x_indents)));
-			if (cell.i >= axys_arr.get_N() || cell.j >= axys_arr.get_M())
+
+			if (cell.i >= a.axys_arr.get_N() || cell.j >= a.axys_arr.get_M()) //TT.get_M()
 				throw std::exception("exception in hello.cpp -> metod draw_points_for_axys : cell >= canvas_arr");
-			axys_arr.set_at(cell.i, cell.j, arr[i].symbol); //@symbol
+
+			a.set_at(cell, arr[i].symbol); //@symbol
 		}
 		else
 		{
@@ -648,28 +650,19 @@ Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol)
 }
 
 
-void create_axys()
+void canvas_axys::create_axys(char axys_arr_fill_symbol)
 {
 
-	//axys_arr.clear_matrix();
 	initialize_min_max_points(points_to_draw);
-
-	/*
-	Point axys_min;
-	axys_min.x = fabs(MAX_VIRTUAL.x) >= fabs(MIN_VIRTUAL.x) ? -MAX_VIRTUAL.x : -MIN_VIRTUAL.x;
-	axys_min.y = fabs(MAX_VIRTUAL.y) >= fabs(MIN_VIRTUAL.y) ? -MAX_VIRTUAL.y : -MIN_VIRTUAL.y;
-
-	hello_try_set_min_max_by(axys_min);
-
-	*/
 
 	int max_y = MAX_VIRTUAL.y;
 	int min_y = MIN_VIRTUAL.y;
 
 	int max_x = MAX_VIRTUAL.x;
 	int min_x = MIN_VIRTUAL.x;
+
 	/// <Костыльвания>
-	if ((min_x < 0 || min_y < 0) && (fabs(min_x)>=10 || fabs(min_y) >= 10))
+	if ((min_x < 0 || min_y < 0) && (fabs(min_x) >= 10 || fabs(min_y) >= 10))
 	{
 		width_x = width_x - 1;
 	}
@@ -686,13 +679,6 @@ void create_axys()
 	if (fabs(min_x) == fabs(max_x))
 		size_M = fabs(max_x);
 
-
-	//int ll = size_M
-
-
-	//if (min_x < 0)
-		//width_x = width_x - 1;
-
 	int loc_width_x = width_x + axis_x_indents; //+1 
 	int loc_width_y = width_y + 1;
 
@@ -706,26 +692,18 @@ void create_axys()
 	int M_ = M;
 	M = M * 2 + (loc_width_y);
 
-	axys_arr.clear_matrix();
+	//axys_arr.clear_matrix();
+
 	if (axys_arr.is_empty()) {
 		axys_arr.create_matrix(N, M);
-		axys_arr.fill(' ');
+		axys_arr.fill(axys_arr_fill_symbol);
 	}
-
-	//Point ORIGIN_Point;
-
-	//ORIGIN_Point.x = (M) + loc_width_y;
-	//ORIGIN_Point.y = N; 
-
-	//ORIGIN_Point.x = utilities::round_by_step(ORIGIN_Point.x, get_step(coefficient)) / get_step(coefficient);
-	//ORIGIN_Point.y = utilities::round_by_step(ORIGIN_Point.y, get_step(coefficient)) / get_step(coefficient);
-
 
 	int or_x = size_N;
 	int or_y = M_ + width_x - 1;
 
 	x_axis_filling(axys_arr, size_M * 2 + 1, -size_M, size_N);
-	std::cout << "\n width_x = " << width_x << "  width_y = " << width_y << "\n";
+	//std::cout << "\n width_x = " << width_x << "  width_y = " << width_y << "\n";
 	y_axis_filling(axys_arr, N, size_N, M_ - 1); //- (loc_width_x + 1) -1, -1,
 
 
@@ -734,25 +712,20 @@ void create_axys()
 	std::cout << "\n" << ORIGIN.i << " " << or_x << " " << ORIGIN.j << " " << or_y << "\n";
 	axys_arr[ORIGIN.i][ORIGIN.j] = '*';
 
-	//system("cls");
-
-	 //axys_arr.clear_matrix();
-	draw_points_(true, true);
-	axys_arr.Matrix_print();
-
-
-
-	for (size_t i = 0; i < axys_arr.get_M() + 1; i++)
-	{
-		std::cout << "_";
-	}
-
-
-
-
-
-	axys_arr.clear_matrix();
 }
+
+
+
+canvas_axys::canvas_axys()
+{
+}
+
+canvas_axys::~canvas_axys()
+{
+}
+
+
+
 
 
 
