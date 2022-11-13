@@ -176,6 +176,10 @@ int main(int argc, char const* argv[])
 
 			Test_corner.print_corner(Test);
 
+			std::ofstream outfile("Matrix_path_out.txt");
+			Test.print_corner_to_file(outfile);
+
+
 			axys().create_axys(Test);
 			axys().draw_lines(Test);
 			Test_axys.print_axys(Test);

@@ -178,7 +178,7 @@ void canvas::y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int ax
 
 
 //!!! module sub-functions
-void corner::create_corner(canvas& this_)
+void corner::create_corner(canvas& this_, char axys_arr_fill_symbol)
 {
 	this_.add_points(this_.points_to_draw);
 	int max_y = this_.MAX_VIRTUAL.y;
@@ -201,7 +201,7 @@ void corner::create_corner(canvas& this_)
 		if (N > this_.corner_arr.get_N() || M > this_.corner_arr.get_M())
 		{
 			this_.corner_arr.create_matrix(N, M);
-			this_.corner_arr.fill(' ');
+			this_.corner_arr.fill(axys_arr_fill_symbol);
 		}
 	}
 

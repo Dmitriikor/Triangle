@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <Windows.h>
+#include <fstream>
 
 using T = char;
 using pointer_type = T*;
@@ -73,6 +74,8 @@ public:
 	void fill(char symbol);
 	bool is_empty();
 	void Matrix_print();
+	void print_to_file(std::ostream& output) const;
+
 
 	void set_at(const size_t N, const size_t M, const T& data);
 	void set_at(Coordinates cell, const T& data);

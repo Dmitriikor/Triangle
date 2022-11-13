@@ -218,10 +218,25 @@ void Matrix::Matrix_print()
 		for (size_t j = 0; j < M; j++)
 		{
 			std::cout << arr[i][j];
+		
 		}
 		std::cout << "\n";
 	}
 }
+void Matrix::print_to_file(std::ostream& output) const {
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
+		{
+			output  << arr[i][j];
+
+		}
+		std::cout << "\n";
+	}
+	
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_v1_end

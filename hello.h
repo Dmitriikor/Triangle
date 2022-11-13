@@ -86,6 +86,12 @@ public:
 
 		corner_arr.Matrix_print();
 	}
+	void print_corner_to_file(std::ostream& output)
+	{
+		corner_arr.print_to_file(output);
+	}
+
+
 	void print_axys()
 	{
 		axys_arr.Matrix_print();
@@ -102,7 +108,7 @@ class corner
 private:
 	
 public:
-	void create_corner(canvas& this_);
+	void create_corner(canvas& this_, char axys_arr_fill_symbol= ' ');
 	void delite_corner(canvas& this_);
 	void print_corner(canvas& this_)
 	{
