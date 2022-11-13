@@ -115,16 +115,17 @@ int main(int argc, char const* argv[])
 
 		
 			while (true) {
-			Point to_line_1;
-			std::cout << "\n\t" << "input" << "\n";
-			std::cin >> to_line_1.x >> to_line_1.y;
+			//	
+			//Point to_line_1;
+			//std::cout << "\n\t" << "input" << "\n";
+			//std::cin >> to_line_1.x >> to_line_1.y;
 	
-			Point to_line_2;
-			std::cout << "\n\t" << "input" << "\n";
-			std::cin >> to_line_2.x >> to_line_2.y;
-			std::cout << "\n\t" << "input smbl" << "\n";
-			std::cin >> to_line_2.symbol;
-			
+			//Point to_line_2;
+			//std::cout << "\n\t" << "input" << "\n";
+			//std::cin >> to_line_2.x >> to_line_2.y;
+			//std::cout << "\n\t" << "input smbl" << "\n";
+			//std::cin >> to_line_2.symbol;
+			//
 			//hello_try_set_min_max_by(to_line_1);
 
 			//hello_try_set_min_max_by(to_line_2);
@@ -158,7 +159,9 @@ int main(int argc, char const* argv[])
 			Test_corner.print_corner(Test);
 			Test_corner.draw_points(Test);
 			Test_corner.print_corner(Test);
-			Test_corner.draw_lines(to_line_1, to_line_2, true, '-', Test);
+			Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), true, 'o', Test);
+			Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_B(), final_triangle_arr[max_dot_index].get_C(), true, 'p', Test);
+			Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), true, 'l', Test);
 			Test_corner.print_corner(Test);
 			Test_corner.create_corner(Test);
 			Test_corner.print_corner(Test);
