@@ -70,7 +70,7 @@ int main(int argc, char const* argv[])
 	}
 
 	//to do
-	std::string path_out = "out2.txt";
+	std::string path_out = "out.txt";
 
 	delete[] point_arr;
 	size_t max_dot = 0;
