@@ -1,11 +1,12 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-std::streamsize MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
+std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 #include "Ray_3_test.h"
 #include "hello.h"
 #include "Point_test.h"
 #include "Triangle_test.h"
+#include "utilities.h"
 #include <exception>
 #include <limits>
 
@@ -16,6 +17,7 @@ int main(int argc, char const* argv[])
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	 
 
+
 	// {  test create & call base handwritten "libs"
 	Ray_3_ a;
 	Matrix b;
@@ -23,94 +25,10 @@ int main(int argc, char const* argv[])
 	Triangle d;
 	//  }  test create & call base handwritten "libs"
 
-
-	// { start dialoge
-	int OS;
-	std::cout << "Choise OS:\n \t1 Win, \n \t2 Ubuntu: \n";
-	std::cin >> OS;
-	std::string path_in;
-	std::string path_out;
-
-	switch (OS) {
-	case 1: {
-		path_in = { "points.txt" };
-		path_out = { "out2.txt" };
-		break;
-	}
-	case 2: {
-		path_in = { "Tiangle_RE/points.txt" };
-		path_out = { "Tiangle_RE/out2.txt" };
-		break;
-	}
-	default: {
-		std::cout << "PROGRAM OVER\n";
-		return 0;
-	}
-	}
-
-	std::cout << "Choise mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
-	int input_switch;
-	std::cin >> input_switch;
-	std::cin.ignore(MAX_STREAMSIZE, '\n');
-
-	if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
-		std::cout << "PROGRAM OVER\n";
-		return 0;
-	}
-
-	std::ifstream infile(path_in);
-	std::ofstream outfile(path_out);
+	std::cout << "Enter number of points:\n";
 	size_t n_points;
-
-	std::istream& input = input_switch == 1 ? infile : std::cin;
-
-	if (input_switch == 2 || input_switch == 3)
-		std::cout << "Enter number of points:\n";
-
-	input >> n_points;
-
-	if (input_switch == 2)
-		std::cout << "Enter points:\n";
-
-	int max_x = INT_MIN;
-	int max_y = INT_MIN;
-	int min_x = INT_MAX;
-	int min_y = INT_MAX;
-
-	Point* point_arr = new Point[n_points];
-
-	for (size_t i = 0; i < n_points; i++) {
-		Point temp;
-
-		if (input_switch == 3) {
-			//(rand()%range)±shift
-			srand(time(NULL) + (rand() % 225000));
-			temp.x = (rand() % 76) + (-38);  // 76 -38
-			//Sleep(1000);
-			srand(time(NULL) + (rand() % 155000));
-			temp.y = (rand() % 60) + (-30);  // 60 - 30
-			std::cout << temp.x << " " << temp.y << "\n";
-		}
-		else {
-			input >> temp.x >> temp.y;
-		}
-
-		if (temp.x > max_x)
-			max_x = temp.x;
-		if (temp.y > max_y)
-			max_y = temp.y;
-
-		if (temp.x < min_x)
-			min_x = temp.x;
-		if (temp.y < min_y)
-			min_y = temp.y;
-
-		point_arr[i] = temp;
-	}
-
-	//clear_cls(OS);
-
-	//  } start dialoge
+	std::cin >> n_points;
+	Point* point_arr = utilities::start_dialoge(MAX_STREAMSIZE, n_points);
 
 
 	int t1 = clock();
@@ -150,6 +68,9 @@ int main(int argc, char const* argv[])
 				final_triangle_arr[i].add_point_at_vector(point_arr[j]);
 			}
 	}
+
+	//to do
+	std::string path_out = "out2.txt";
 
 	delete[] point_arr;
 	size_t max_dot = 0;
