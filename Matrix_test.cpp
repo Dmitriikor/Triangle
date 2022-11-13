@@ -231,7 +231,7 @@ void Matrix::print_to_file(std::ostream& output) const {
 			output  << arr[i][j];
 
 		}
-		std::cout << "\n";
+		output << "\n";
 	}
 	
 }
