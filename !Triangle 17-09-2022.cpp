@@ -1,49 +1,49 @@
 ﻿// 14.09.22 H
 //FLODER NAME "Tiangle_RE"
-
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-
-std::streamsize MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
-
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
-#include <wingdi.h>
-
-#include <ctime>
-
-
-using std::endl;
-
-
-#include <limits> // MAX_STREAMSIZE
-const int MIN_ = INT_MIN; 
-const int MAX_ = INT_MAX;
-
-#include "draw_line_2_test.h"
-#include "Point_test.h"
-#include "Matrix_test.h"
-#include "Ray_test.h"
-#include "Lines_draw_test.h"  
-#include "Triangle_test.h"
-#include "Switch_cls_clear_from_os_type_test.h"
-
-/*
-	//  { DELITE THIS 
-	int width_x = 0;
-	int x_axis_thickness() {  return 0;  } 
-	int indent = 0;
-	int y_axis_thickness = 0;
-	void goto_coords(Point none) {  } ;
-	int shift = 0;
-	int shift_h = 0;
-	//  } DELITE THIS  
-*/
- //main // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main
- //main // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main
-
+//
+//#include <fstream>
+//#include <iomanip>
+//#include <iostream>
+//
+//std::streamsize MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
+//
+//#include <stdio.h>
+//#include <conio.h>
+//#include <windows.h>
+//#include <wingdi.h>
+//
+//#include <ctime>
+//
+//
+//using std::endl;
+//
+//
+//#include <limits> // MAX_STREAMSIZE
+//const int MIN_ = INT_MIN; 
+//const int MAX_ = INT_MAX;
+//
+//#include "draw_line_2_test.h"
+//#include "Point_test.h"
+//#include "Matrix_test.h"
+//#include "Ray_test.h"
+//#include "Lines_draw_test.h"  
+//#include "Triangle_test.h"
+//#include "Switch_cls_clear_from_os_type_test.h"
+//
+///*
+//	  { DELITE THIS 
+//	int width_x = 0;
+//	int x_axis_thickness() {  return 0;  } 
+//	int indent = 0;
+//	int y_axis_thickness = 0;
+//	void goto_coords(Point none) {  } ;
+//	int shift = 0;
+//	int shift_h = 0;
+//	  } DELITE THIS  
+//*/
+// //main // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main
+// //main // main // main // main // main // main // main // main // main // main // main // main // main // main // main // main
+//
 //int main() { 
 //
 //	// {  test create & call base handwritten "libs"
@@ -144,13 +144,6 @@ const int MAX_ = INT_MAX;
 //
 //
 //	int t1 = clock();
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //	// { work with Point arr, to create triangle and find max insade point

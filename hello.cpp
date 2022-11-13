@@ -29,6 +29,9 @@ void canvas::add_points(const Ray_3_& points)
 
 	for (size_t i = 1; i < length; i++)
 	{
+		//to do
+		points_to_draw[i].symbol = '+'; // Kostilvaniay to do
+
 
 		if (points[i].x > MAX_VIRTUAL.x)
 			MAX_VIRTUAL.x = points[i].x;

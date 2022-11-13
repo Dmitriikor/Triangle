@@ -4,9 +4,15 @@ const Point& Triangle::get_point_in(size_t index) const {
 	return point_in_triangle[index];
 }
 
-const std::vector<Point>& Triangle::get_points_inside() const {
+const Ray_3_ Triangle::get_points_inside_Ray() const {
 	return point_in_triangle;
 }
+
+
+
+//const std::vector<Point>& Triangle::get_points_inside() const {
+//	return point_in_triangle;
+//}
 
 double Triangle::get_AB() const {
 	return side.AB;
@@ -126,7 +132,7 @@ void Triangle::triangles_print_outfile(const Triangle triangle[], size_t index, 
 		triangle[i].print_to_file(outfile);
 
 		outfile << "point_in_triangle =\t ";
-		for (size_t j = 0; j < triangle[i].get_points_inside().size(); j++) {
+		for (size_t j = 0; j < triangle[i].get_points_inside_Ray().size(); j++) {
 			outfile << triangle[i].get_point_in(j).x << "," << triangle[i].get_point_in(j).y << "; ";
 		}
 		outfile << std::endl;
