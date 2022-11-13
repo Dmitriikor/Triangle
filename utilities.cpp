@@ -81,10 +81,10 @@ Point* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points,
 		if (input_switch == 3) {
 			//(rand()%range)±shift
 			srand(time(NULL) + (rand() % 225000));
-			temp.x = (rand() % 76) + (-38);  // 76 -38
+			temp.x = (rand() % 76) + (-40);  // 76 -38
 			//Sleep(1000);
 			srand(time(NULL) + (rand() % 155000));
-			temp.y = (rand() % 60) + (-30);  // 60 - 30
+			temp.y = (rand() % 60) + (-35);  // 60 - 30
 			std::cout << temp.x << " " << temp.y << "\n";
 		}
 		else {

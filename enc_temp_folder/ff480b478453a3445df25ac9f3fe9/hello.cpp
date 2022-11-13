@@ -627,8 +627,7 @@ void axys::create_axys(canvas& this_, char axys_arr_fill_symbol)
 	this_.ORIGIN.i = or_x;
 	this_.ORIGIN.j = or_y;
 	//std::cout << "\n" << this_.ORIGIN.i << " " << or_x << " " << this_.ORIGIN.j << " " << or_y << "\n";
-	// print on zero coords
-	//this_.axys_arr[this_.ORIGIN.i][this_.ORIGIN.j] = '*';
+	this_.axys_arr[this_.ORIGIN.i][this_.ORIGIN.j] = '*';
 
 }
 

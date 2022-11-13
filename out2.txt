@@ -1,120 +1,420 @@
 NEW Triangle:1
-triangle.a = 37 20
-triangle.b = -26 -6
-triangle.c = 2 -7
-dot_counter =	0
-lengthAB =	68.1542
-lengthBC =	28.0179
-lengthCA =	44.2041
-triangle_area =	395.5
+triangle.a = -2 -28
+triangle.b = 6 -27
+triangle.c = 13 15
+dot_counter =	1
+lengthAB =	8.06226
+lengthBC =	42.5793
+lengthCA =	45.5412
+triangle_area =	164.5
 
-point_in_triangle =	 37,20; -26,-6; 2,-7; 
+point_in_triangle =	 -2,-28; 6,-27; 13,15; 1,-26; 
 
 NEW Triangle:2
-triangle.a = 37 20
-triangle.b = -26 -6
-triangle.c = -36 26
-dot_counter =	1
-lengthAB =	68.1542
-lengthBC =	33.5261
-lengthCA =	73.2462
-triangle_area =	1138
+triangle.a = -2 -28
+triangle.b = 6 -27
+triangle.c = 14 -22
+dot_counter =	0
+lengthAB =	8.06226
+lengthBC =	9.43398
+lengthCA =	17.088
+triangle_area =	16
 
-point_in_triangle =	 37,20; -26,-6; -36,26; 2,18; 
+point_in_triangle =	 -2,-28; 6,-27; 14,-22; 
 
 NEW Triangle:3
-triangle.a = 37 20
-triangle.b = -26 -6
-triangle.c = 2 18
-dot_counter =	0
-lengthAB =	68.1542
-lengthBC =	36.8782
-lengthCA =	35.0571
-triangle_area =	392
+triangle.a = -2 -28
+triangle.b = 6 -27
+triangle.c = -1 15
+dot_counter =	1
+lengthAB =	8.06226
+lengthBC =	42.5793
+lengthCA =	43.0116
+triangle_area =	171.5
 
-point_in_triangle =	 37,20; -26,-6; 2,18; 
+point_in_triangle =	 -2,-28; 6,-27; -1,15; 1,-26; 
 
 NEW Triangle:4
-triangle.a = 37 20
-triangle.b = 2 -7
-triangle.c = -36 26
+triangle.a = -2 -28
+triangle.b = 6 -27
+triangle.c = -35 -8
 dot_counter =	1
-lengthAB =	44.2041
-lengthBC =	50.3289
-lengthCA =	73.2462
-triangle_area =	1090.5
+lengthAB =	8.06226
+lengthBC =	45.1885
+lengthCA =	38.5876
+triangle_area =	96.5
 
-point_in_triangle =	 37,20; 2,-7; -36,26; 2,18; 
+point_in_triangle =	 -2,-28; 6,-27; -35,-8; 1,-26; 
 
 NEW Triangle:5
-triangle.a = 37 20
-triangle.b = 2 -7
-triangle.c = 2 18
+triangle.a = -2 -28
+triangle.b = 6 -27
+triangle.c = 1 -26
 dot_counter =	0
-lengthAB =	44.2041
-lengthBC =	25
-lengthCA =	35.0571
-triangle_area =	437.5
+lengthAB =	8.06226
+lengthBC =	5.09902
+lengthCA =	3.60555
+triangle_area =	6.5
 
-point_in_triangle =	 37,20; 2,-7; 2,18; 
+point_in_triangle =	 -2,-28; 6,-27; 1,-26; 
 
 NEW Triangle:6
-triangle.a = 37 20
-triangle.b = -36 26
-triangle.c = 2 18
-dot_counter =	0
-lengthAB =	73.2462
-lengthBC =	38.833
-lengthCA =	35.0571
-triangle_area =	178
+triangle.a = -2 -28
+triangle.b = 13 15
+triangle.c = 14 -22
+dot_counter =	1
+lengthAB =	45.5412
+lengthBC =	37.0135
+lengthCA =	17.088
+triangle_area =	299
 
-point_in_triangle =	 37,20; -36,26; 2,18; 
+point_in_triangle =	 -2,-28; 13,15; 14,-22; 1,-26; 
 
 NEW Triangle:7
-triangle.a = -26 -6
-triangle.b = 2 -7
-triangle.c = -36 26
+triangle.a = -2 -28
+triangle.b = 13 15
+triangle.c = -1 15
 dot_counter =	0
-lengthAB =	28.0179
-lengthBC =	50.3289
-lengthCA =	33.5261
-triangle_area =	443
+lengthAB =	45.5412
+lengthBC =	14
+lengthCA =	43.0116
+triangle_area =	301
 
-point_in_triangle =	 -26,-6; 2,-7; -36,26; 
+point_in_triangle =	 -2,-28; 13,15; -1,15; 
 
 NEW Triangle:8
-triangle.a = -26 -6
-triangle.b = 2 -7
-triangle.c = 2 18
+triangle.a = -2 -28
+triangle.b = 13 15
+triangle.c = -35 -8
 dot_counter =	0
-lengthAB =	28.0179
-lengthBC =	25
-lengthCA =	36.8782
-triangle_area =	350
+lengthAB =	45.5412
+lengthBC =	53.2259
+lengthCA =	38.5876
+triangle_area =	859.5
 
-point_in_triangle =	 -26,-6; 2,-7; 2,18; 
+point_in_triangle =	 -2,-28; 13,15; -35,-8; 
 
 NEW Triangle:9
-triangle.a = -26 -6
-triangle.b = -36 26
-triangle.c = 2 18
+triangle.a = -2 -28
+triangle.b = 13 15
+triangle.c = 1 -26
 dot_counter =	0
-lengthAB =	33.5261
-lengthBC =	38.833
-lengthCA =	36.8782
-triangle_area =	568
+lengthAB =	45.5412
+lengthBC =	42.72
+lengthCA =	3.60555
+triangle_area =	49.5
 
-point_in_triangle =	 -26,-6; -36,26; 2,18; 
+point_in_triangle =	 -2,-28; 13,15; 1,-26; 
 
 NEW Triangle:10
-triangle.a = 2 -7
-triangle.b = -36 26
-triangle.c = 2 18
-dot_counter =	0
-lengthAB =	50.3289
-lengthBC =	38.833
-lengthCA =	25
-triangle_area =	475
+triangle.a = -2 -28
+triangle.b = 14 -22
+triangle.c = -1 15
+dot_counter =	1
+lengthAB =	17.088
+lengthBC =	39.9249
+lengthCA =	43.0116
+triangle_area =	341
 
-point_in_triangle =	 2,-7; -36,26; 2,18; 
+point_in_triangle =	 -2,-28; 14,-22; -1,15; 1,-26; 
+
+NEW Triangle:11
+triangle.a = -2 -28
+triangle.b = 14 -22
+triangle.c = -35 -8
+dot_counter =	1
+lengthAB =	17.088
+lengthBC =	50.9608
+lengthCA =	38.5876
+triangle_area =	259
+
+point_in_triangle =	 -2,-28; 14,-22; -35,-8; 1,-26; 
+
+NEW Triangle:12
+triangle.a = -2 -28
+triangle.b = 14 -22
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	17.088
+lengthBC =	13.6015
+lengthCA =	3.60555
+triangle_area =	7
+
+point_in_triangle =	 -2,-28; 14,-22; 1,-26; 
+
+NEW Triangle:13
+triangle.a = -2 -28
+triangle.b = -1 15
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	43.0116
+lengthBC =	41.0488
+lengthCA =	38.5876
+triangle_area =	719.5
+
+point_in_triangle =	 -2,-28; -1,15; -35,-8; 
+
+NEW Triangle:14
+triangle.a = -2 -28
+triangle.b = -1 15
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	43.0116
+lengthBC =	41.0488
+lengthCA =	3.60555
+triangle_area =	63.5
+
+point_in_triangle =	 -2,-28; -1,15; 1,-26; 
+
+NEW Triangle:15
+triangle.a = -2 -28
+triangle.b = -35 -8
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	38.5876
+lengthBC =	40.2492
+lengthCA =	3.60555
+triangle_area =	63
+
+point_in_triangle =	 -2,-28; -35,-8; 1,-26; 
+
+NEW Triangle:16
+triangle.a = 6 -27
+triangle.b = 13 15
+triangle.c = 14 -22
+dot_counter =	0
+lengthAB =	42.5793
+lengthBC =	37.0135
+lengthCA =	9.43398
+triangle_area =	150.5
+
+point_in_triangle =	 6,-27; 13,15; 14,-22; 
+
+NEW Triangle:17
+triangle.a = 6 -27
+triangle.b = 13 15
+triangle.c = -1 15
+dot_counter =	0
+lengthAB =	42.5793
+lengthBC =	14
+lengthCA =	42.5793
+triangle_area =	294
+
+point_in_triangle =	 6,-27; 13,15; -1,15; 
+
+NEW Triangle:18
+triangle.a = 6 -27
+triangle.b = 13 15
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	42.5793
+lengthBC =	53.2259
+lengthCA =	45.1885
+triangle_area =	927.5
+
+point_in_triangle =	 6,-27; 13,15; -35,-8; 
+
+NEW Triangle:19
+triangle.a = 6 -27
+triangle.b = 13 15
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	42.5793
+lengthBC =	42.72
+lengthCA =	5.09902
+triangle_area =	108.5
+
+point_in_triangle =	 6,-27; 13,15; 1,-26; 
+
+NEW Triangle:20
+triangle.a = 6 -27
+triangle.b = 14 -22
+triangle.c = -1 15
+dot_counter =	0
+lengthAB =	9.43398
+lengthBC =	39.9249
+lengthCA =	42.5793
+triangle_area =	185.5
+
+point_in_triangle =	 6,-27; 14,-22; -1,15; 
+
+NEW Triangle:21
+triangle.a = 6 -27
+triangle.b = 14 -22
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	9.43398
+lengthBC =	50.9608
+lengthCA =	45.1885
+triangle_area =	178.5
+
+point_in_triangle =	 6,-27; 14,-22; -35,-8; 
+
+NEW Triangle:22
+triangle.a = 6 -27
+triangle.b = 14 -22
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	9.43398
+lengthBC =	13.6015
+lengthCA =	5.09902
+triangle_area =	16.5
+
+point_in_triangle =	 6,-27; 14,-22; 1,-26; 
+
+NEW Triangle:23
+triangle.a = 6 -27
+triangle.b = -1 15
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	42.5793
+lengthBC =	41.0488
+lengthCA =	45.1885
+triangle_area =	794.5
+
+point_in_triangle =	 6,-27; -1,15; -35,-8; 
+
+NEW Triangle:24
+triangle.a = 6 -27
+triangle.b = -1 15
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	42.5793
+lengthBC =	41.0488
+lengthCA =	5.09902
+triangle_area =	101.5
+
+point_in_triangle =	 6,-27; -1,15; 1,-26; 
+
+NEW Triangle:25
+triangle.a = 6 -27
+triangle.b = -35 -8
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	45.1885
+lengthBC =	40.2492
+lengthCA =	5.09902
+triangle_area =	27
+
+point_in_triangle =	 6,-27; -35,-8; 1,-26; 
+
+NEW Triangle:26
+triangle.a = 13 15
+triangle.b = 14 -22
+triangle.c = -1 15
+dot_counter =	0
+lengthAB =	37.0135
+lengthBC =	39.9249
+lengthCA =	14
+triangle_area =	259
+
+point_in_triangle =	 13,15; 14,-22; -1,15; 
+
+NEW Triangle:27
+triangle.a = 13 15
+triangle.b = 14 -22
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	37.0135
+lengthBC =	50.9608
+lengthCA =	53.2259
+triangle_area =	899.5
+
+point_in_triangle =	 13,15; 14,-22; -35,-8; 
+
+NEW Triangle:28
+triangle.a = 13 15
+triangle.b = 14 -22
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	37.0135
+lengthBC =	13.6015
+lengthCA =	42.72
+triangle_area =	242.5
+
+point_in_triangle =	 13,15; 14,-22; 1,-26; 
+
+NEW Triangle:29
+triangle.a = 13 15
+triangle.b = -1 15
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	14
+lengthBC =	41.0488
+lengthCA =	53.2259
+triangle_area =	161
+
+point_in_triangle =	 13,15; -1,15; -35,-8; 
+
+NEW Triangle:30
+triangle.a = 13 15
+triangle.b = -1 15
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	14
+lengthBC =	41.0488
+lengthCA =	42.72
+triangle_area =	287
+
+point_in_triangle =	 13,15; -1,15; 1,-26; 
+
+NEW Triangle:31
+triangle.a = 13 15
+triangle.b = -35 -8
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	53.2259
+lengthBC =	40.2492
+lengthCA =	42.72
+triangle_area =	846
+
+point_in_triangle =	 13,15; -35,-8; 1,-26; 
+
+NEW Triangle:32
+triangle.a = 14 -22
+triangle.b = -1 15
+triangle.c = -35 -8
+dot_counter =	0
+lengthAB =	39.9249
+lengthBC =	41.0488
+lengthCA =	50.9608
+triangle_area =	801.5
+
+point_in_triangle =	 14,-22; -1,15; -35,-8; 
+
+NEW Triangle:33
+triangle.a = 14 -22
+triangle.b = -1 15
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	39.9249
+lengthBC =	41.0488
+lengthCA =	13.6015
+triangle_area =	270.5
+
+point_in_triangle =	 14,-22; -1,15; 1,-26; 
+
+NEW Triangle:34
+triangle.a = 14 -22
+triangle.b = -35 -8
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	50.9608
+lengthBC =	40.2492
+lengthCA =	13.6015
+triangle_area =	189
+
+point_in_triangle =	 14,-22; -35,-8; 1,-26; 
+
+NEW Triangle:35
+triangle.a = -1 15
+triangle.b = -35 -8
+triangle.c = 1 -26
+dot_counter =	0
+lengthAB =	41.0488
+lengthBC =	40.2492
+lengthCA =	41.0488
+triangle_area =	720
+
+point_in_triangle =	 -1,15; -35,-8; 1,-26; 
 
