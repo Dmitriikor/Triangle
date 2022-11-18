@@ -109,52 +109,55 @@ int main(int argc, char const* argv[])
 		std::cout << "\n" << "start" << "\n";
 
 		
-			//while (true) {
-				system("cls");
-		a.x = utilities::random_INT(-15, 15); a.y = utilities::random_INT(-15, 15); a.symbol = '+';
-		test___.add_to_back(a);
-		b.x = utilities::random_INT(-15, 15); b.y = utilities::random_INT(-15, 15); b.symbol = '+';
-		test___.add_to_back(b);
-		c.x = utilities::random_INT(-15, 15); c.y = utilities::random_INT(-15, 15); c.symbol = '+';
-		test___.add_to_back(c);
-		d.x = utilities::random_INT(-15, 15); d.y = utilities::random_INT(-15, 15); d.symbol = '+';
-		test___.add_to_back(d);
+		while (true) {
+			//	system("cls");
+			a.x = utilities::random_INT(-15, 15); a.y = utilities::random_INT(-15, 15); a.symbol = '+';
+			test___.add_to_back(a);
+			b.x = utilities::random_INT(-15, 15); b.y = utilities::random_INT(-15, 15); b.symbol = '+';
+			test___.add_to_back(b);
+			c.x = utilities::random_INT(-15, 15); c.y = utilities::random_INT(-15, 15); c.symbol = '+';
+			test___.add_to_back(c);
+			d.x = utilities::random_INT(-15, 15); d.y = utilities::random_INT(-15, 15); d.symbol = '+';
+			test___.add_to_back(d);
 
 
-		std::cout << "\n";
-		std::cout << "\n";
-		std::cout << "\n";
-		/*for (size_t i = 0; i < test___.size(); i++)
-		{
-			std::cout << test___[i].x << " , " << test___[i].y << " ; ";
-		}*/
+			std::cout << "\n";
+			std::cout << "\n";
+			std::cout << "\n";
+			/*for (size_t i = 0; i < test___.size(); i++)
+			{
+				std::cout << test___[i].x << " , " << test___[i].y << " ; ";
+			}*/
 
-				std::cout << "\n";
-				canvas Test_;
-				corner Test_corner;
-				axys Test_axys;
-				Test_.add_points(test___);
-				Test_corner.create_corner(Test_);
-				Test_corner.draw_points(Test_);
-				Test_corner.print_corner(Test_);
-				std::cout << "\n";
-				/*for (size_t i = 0; i < test___.size(); i++)
-				{
-					std::cout << test___[i].x << " , " << test___[i].y << " ; ";
-				}*/
-				system("cls");
-				std::cout << "\n";
-				Test_axys.create_axys(Test_);
-				Test_axys.draw_points(Test_);
-				Test_axys.print_axys(Test_);
+			std::cout << "\n";
+			//canvas Test_;
+			corner Test_corner;
+			axys Test_axys;
+			Test_corner.add_points(test___);
+			Test_corner.create_corner();
+			Test_corner.draw_points();
+			Test_corner.print_corner();
+			std::cout << "\n";
+			/*for (size_t i = 0; i < test___.size(); i++)
+			{
+				std::cout << test___[i].x << " , " << test___[i].y << " ; ";
+			}*/
+			//system("cls");
+			std::cout << "\n";
+			Test_axys.add_points(test___);
+			Test_axys.create_axys();
+			Test_axys.draw_points();
+			Test_axys.print_axys();
 
-				std::ofstream outfile_axys("axys_path_out.txt");
-				Test_.print_axys_to_file(outfile_axys);
-				
-				std::ofstream outfile_corner("corner_path_out.txt");
-				Test_.print_corner_to_file(outfile_corner);
-				std::cout << "end hello" << "\n";
 
+			std::ofstream outfile_corner("corner_path_out.txt");
+			Test_corner.print_corner_to_file(outfile_corner);
+
+			std::ofstream outfile_axys("axys_path_out.txt");
+			Test_axys.print_axys_to_file(outfile_axys);
+			std::cout << "end hello" << "\n";
+
+		}
 			////	
 			////Point to_line_1;
 			////std::cout << "\n\t" << "input" << "\n";
