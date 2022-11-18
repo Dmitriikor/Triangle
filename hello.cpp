@@ -353,7 +353,7 @@ void canvas::draw_points_(bool is_need_to_draw_line, bool is_axys, Matrix& TT) /
 	}
 }
 
-void canvas::erase_point(Point err)
+void canvas::erase_point(Point& err)
 {
 	Coordinates cell;
 
