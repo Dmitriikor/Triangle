@@ -18,7 +18,7 @@ namespace utilities
 
 	 int random_INT(int start, int end);
 
-	 Point* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = "points.txt", std::string path_out = "out.txt");
+	// Point* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = "points.txt", std::string path_out = "out.txt");
 
 };
 

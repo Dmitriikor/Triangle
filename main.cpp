@@ -28,7 +28,97 @@ int main(int argc, char const* argv[])
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	std::cin >> n_points;
-	Point* point_arr = utilities::start_dialoge(MAX_STREAMSIZE, n_points);
+	 
+	int OS_start_dialoge_type_;
+	std::cout << "Choise OS:\n \t1 Win, \n \t2 Ubuntu: \n \t3 Manual path to save:\n";
+	std::cin >> OS_start_dialoge_type_;
+	std::string path_in;
+	std::string path_out;
+
+	switch (OS_start_dialoge_type_) {
+	case 1: {
+		path_in = { "points.txt" };
+		path_out = { "out.txt" };
+		break;
+	}
+	case 2: {
+		path_in = { "Tiangle_RE/points.txt" };
+		path_out = { "Tiangle_RE/out2.txt" };
+		break;
+	}
+	case 3: {
+		//std::getline (std::cin,name);
+		std::cout << "\n Enter path_in \n\t";
+		std::getline(std::cin, path_in);
+		std::cout << "\n Enter path_out \n\t";
+		std::getline(std::cin, path_out);
+		break;
+	}
+	default: {
+		std::cout << "PROGRAM OVER\n";
+		return 0;
+	}
+	}
+
+
+	std::cout << "Choise mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
+	int input_switch;
+	std::cin >> input_switch;
+	std::cin.ignore(MAX_STREAMSIZE, '\n');
+
+	if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
+		std::cout << "PROGRAM OVER\n";
+		return 0;
+	}
+
+	std::ifstream infile(path_in);
+	std::ofstream outfile(path_out);
+
+
+	std::istream& input = input_switch == 1 ? infile : std::cin;
+
+	//if (input_switch == 2 || input_switch == 3)
+
+
+	if (input_switch == 2)
+		std::cout << "Enter points:\n";
+
+	int max_x = INT_MIN;
+	int max_y = INT_MIN;
+	int min_x = INT_MAX;
+	int min_y = INT_MAX;
+
+	Point* point_arr = new Point[n_points];
+
+	for (size_t i = 0; i < n_points; i++) {
+		Point temp;
+
+		if (input_switch == 3) {
+			//(rand()%range)±shift
+			//srand(time(NULL) + (rand() % 225000));
+			temp.x = utilities::random_INT(-20, 20);
+			//Sleep(1000);
+			//srand(time(NULL) + (rand() % 155000));
+			temp.y = utilities::random_INT(-20, 20);
+			std::cout << temp.x << " " << temp.y << "\n";
+		}
+		else {
+			input >> temp.x >> temp.y;
+		}
+
+		if (temp.x > max_x)
+			max_x = temp.x;
+		if (temp.y > max_y)
+			max_y = temp.y;
+
+		if (temp.x < min_x)
+			min_x = temp.x;
+		if (temp.y < min_y)
+			min_y = temp.y;
+
+		point_arr[i] = temp;
+	}
+
 
 
 	int t1 = clock();
@@ -70,7 +160,7 @@ int main(int argc, char const* argv[])
 	}
 
 	//to do
-	std::string path_out = "out.txt";
+	std::string path_out2 = "out.txt";
 
 	delete[] point_arr;
 	size_t max_dot = 0;
@@ -80,7 +170,7 @@ int main(int argc, char const* argv[])
 			max_dot = final_triangle_arr[i].get_dot_counter();
 			max_dot_index = i;
 		}
-		d.triangles_print_outfile(final_triangle_arr, n_triangles, path_out);
+		d.triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
 	}
 	final_triangle_arr[max_dot_index].print();
 	size_t cout_cntr = 15;
@@ -108,6 +198,8 @@ int main(int argc, char const* argv[])
 
 		std::cout << "\n" << "start" << "\n";
 
+			corner Test_corner;
+			axys Test_axys;
 		
 		while (true) {
 			//	system("cls");
@@ -124,37 +216,42 @@ int main(int argc, char const* argv[])
 			std::cout << "\n";
 			std::cout << "\n";
 			std::cout << "\n";
-			/*for (size_t i = 0; i < test___.size(); i++)
-			{
-				std::cout << test___[i].x << " , " << test___[i].y << " ; ";
-			}*/
+
 
 			std::cout << "\n";
 			//canvas Test_;
-			corner Test_corner;
-			axys Test_axys;
+
+			//for (size_t i = 0; i < test___.size(); i++)
+			//{
+			//	std::cout << test___[i].x << " , " << test___[i].y << " ; ";
+			//}
+
 			Test_corner.add_points(test___);
-			Test_corner.create_corner();
+
+			//std::cout << "\n";
+			//for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
+			//{
+			//	std::cout << Test_corner.points_to_draw()[i].x << " , " << Test_corner.points_to_draw()[i].y << " ; ";
+			//}
+			Test_corner.create();
 			Test_corner.draw_points();
-			Test_corner.print_corner();
+			Test_corner.print();
 			std::cout << "\n";
-			/*for (size_t i = 0; i < test___.size(); i++)
-			{
-				std::cout << test___[i].x << " , " << test___[i].y << " ; ";
-			}*/
+
 			//system("cls");
 			std::cout << "\n";
 			Test_axys.add_points(test___);
-			Test_axys.create_axys();
+			Test_axys.create();
 			Test_axys.draw_points();
-			Test_axys.print_axys();
+			Test_axys.print();
 
 
 			std::ofstream outfile_corner("corner_path_out.txt");
-			Test_corner.print_corner_to_file(outfile_corner);
+			Test_corner.print_to_file(outfile_corner);
 
 			std::ofstream outfile_axys("axys_path_out.txt");
-			Test_axys.print_axys_to_file(outfile_axys);
+			Test_axys.print_to_file(outfile_axys);
+			test___.clear();
 			std::cout << "end hello" << "\n";
 
 		}
@@ -199,38 +296,38 @@ int main(int argc, char const* argv[])
 
 			//Test.add_points(final_triangle_arr[max_dot_index].get_points_inside_Ray());
 			////Test.calculate_line_round(to_line_1, to_line_2);
-			//Test_corner.create_corner(Test);
-			//Test_corner.print_corner(Test);
+			//Test_corner.create(Test);
+			//Test_corner.print(Test);
 			//Test_corner.draw_lines(Test);
-			//Test_corner.print_corner(Test);
+			//Test_corner.print(Test);
 			//Test_corner.draw_points(Test);
-			//Test_corner.print_corner(Test);
+			//Test_corner.print(Test);
 			//Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), true, 'o', Test);
 			//Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_B(), final_triangle_arr[max_dot_index].get_C(), true, 'p', Test);
 			//Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), true, 'l', Test);
-			//Test_corner.print_corner(Test);
-			//Test_corner.create_corner(Test);
-			//Test_corner.print_corner(Test);
+			//Test_corner.print(Test);
+			//Test_corner.create(Test);
+			//Test_corner.print(Test);
 
 
 			//corner().draw_points(Test);
 
-			//Test.print_corner();
+			//Test.print();
 			//
 			//
-			//Test.print_axys();
+			//Test.print();
 
-			//Test_corner.print_corner(Test);
+			//Test_corner.print(Test);
 
 			//std::ofstream outfile("Matrix_path_out.txt");
-			//Test.print_corner_to_file(outfile);
+			//Test.print_to_file(outfile);
 
 
-			//axys().create_axys(Test);
+			//axys().create(Test);
 			//axys().draw_lines(Test);
-			//Test_axys.print_axys(Test);
+			//Test_axys.print(Test);
 			//axys().draw_points(Test);
-			//axys().print_axys(Test);
+			//axys().print(Test);
 
 			////erase_lines();  //erase_lines_from_canvas 
 			////erase_points(); //erase_points_from_canvas

@@ -390,7 +390,7 @@ void set_min_max_of_points_rey(Ray_3_ &points)
     }
 }
 
-void try_set_min_max_by(Point pt) 
+void update_min_max_by(Point pt) 
 {
     if (virtual_MAX.x < pt.x)
         virtual_MAX.x = pt.x;
