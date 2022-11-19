@@ -4,6 +4,9 @@
 #define  HELLO_H__
 
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
 #include <limits>
 
 #include "Ray_3_test.h"
@@ -29,7 +32,7 @@ protected:
 	Ray_3_ points_to_draw_;		//свободные точки для рисования
 	Ray_3_ line_points_to_draw_;	//точки линий для рисования
 
-	Matrix corner_arr_;
+
 	Matrix axys_arr_;
 
 	int width_x_ = -1;
@@ -63,10 +66,7 @@ protected:
 
 
 	//--------------------------------------------------------------------------------------------
-	Ray_3_& points_to_draw()
-	{
-		return 	points_to_draw_;
-	}
+
 
 	Ray_3_& line_points_to_draw()
 	{
@@ -128,10 +128,7 @@ protected:
 		return axys_arr_;
 	}
 
-	Matrix& corner_arr()
-	{
-		return corner_arr_;
-	}
+
 
 	//--------------------------------------------------------------------------------------------
 
@@ -140,15 +137,21 @@ protected:
 
 public:
 
+
+	Ray_3_& points_to_draw()			//  !!!!!!
+	{									//  !!!!!!
+		return 	points_to_draw_;		//  !!!!!!
+	}									//  !!!!!!
+
+
 	void add_points(const Ray_3_& points);
 	void insert(Point& pt)
 	{
 		update_min_max_by(pt);
 	}
-
-	void erase_point(Point& err);
-	void delite_line(const Point& A, const Point& B);
-	void delite_point(const Point& dl);
+	void add_lines(const Point& A, const Point& B, bool is_round, char symbol/*, canvas& this_*/);
+	void delite_line_(const Point& A, const Point& B, Matrix& arr);
+	void delite_point(const Point& dl, Matrix& arr);
 
 	void print()
 	{
@@ -163,29 +166,78 @@ public:
 
 
 
-class corner : protected canvas
+class corner : public canvas
 {
 	//friend class canvas;
 
 private:
-	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
+	Matrix corner_arr_;
+	std::string outfile_adress = "corner_path_out.txt";
+	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to canvas
 	void add_points_to_corner(/*canvas& this_*/);
 	void add_lines_to_corner(/*canvas& this_*/);
-	
-public:
 	void create(/*canvas& this_,*/ char axys_arr_fill_symbol= ' ');
-	void delite(/*canvas& this_*/);
-	void print(/*canvas& this_*/)
+	void erase_point_from_corner(Point& err);
+
+	Matrix& corner_arr()
 	{
+		return corner_arr_;
+	}
+public:
+	void fill(char fill_symbol)
+	{
+		 create(fill_symbol);
+	}
+	//void erase_point_from_corner(Point& err);
+	void print_all(/*canvas& this_*/)
+	{
+		corner_arr().clear_matrix();
+		create();
+		add_points_to_corner();
+		add_lines_to_corner();
 		/*this_.*/corner_arr().Matrix_print();
 	}
-
-	void add_lines(const Point& A, const Point& B, bool is_round, char symbol/*, canvas& this_*/);
-	void print_zero(/*canvas& this_*/);
-	void print_to_file(std::ostream& output)
+	void print_point(/*canvas& this_*/)
 	{
-		corner_arr().print_to_file(output);
+		corner_arr().clear_matrix();
+		create();
+		add_points_to_corner();
+		/*this_.*/corner_arr().Matrix_print();
 	}
+	void print_line(/*canvas& this_*/)
+	{
+		corner_arr().clear_matrix();
+		create();
+		add_lines_to_corner();
+		/*this_.*/corner_arr().Matrix_print();
+	}
+	void print_zero(/*canvas& this_*/);
+	void delite(Point& err)
+	{
+		 delite_line_(err, err, corner_arr());
+		 delite_point(err, corner_arr());
+		 erase_point_from_corner(err);
+	}
+	void delite_line(Point& A,  Point& B)
+	{
+		 delite_line_(A,B, corner_arr());
+		 delite_point(A, corner_arr());
+		 delite_point(B, corner_arr());
+
+		 delite(A);
+		 delite(B);
+	}
+
+	void change_file_path(std::string adress)
+	{
+		outfile_adress = adress;
+	}
+	void print_to_file()
+	{
+		std::ofstream outfile_corner(outfile_adress);
+		corner_arr().print_to_file(outfile_corner);
+	}
+	void clear(/*canvas& this_*/);
 };
 
 
@@ -198,6 +250,7 @@ private:
 
 	void draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
 public:
+	void erase_point_from_axys(Point& err);
 	void create(/*canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void delite(/*canvas& this_*/)
 	{

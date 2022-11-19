@@ -227,31 +227,59 @@ int main(int argc, char const* argv[])
 			//}
 
 			Test_corner.add_points(test___);
+			test___.clear();
 
-			//std::cout << "\n";
-			//for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
-			//{
-			//	std::cout << Test_corner.points_to_draw()[i].x << " , " << Test_corner.points_to_draw()[i].y << " ; ";
-			//}
-			Test_corner.create();
-			Test_corner.draw_points();
-			Test_corner.print();
+
+			Point tpm; tpm.x = -3; tpm.y = 3; tpm.symbol = 'o';
+			Test_corner.insert(tpm);
+			Test_corner.print_point();
+
+
+			Point tpm2; tpm2.x = -5; tpm2.y = 5; tpm2.symbol = '!';
+			Point tpm3; tpm3.x = 5; tpm3.y = -5; tpm3.symbol = '!';
+			Test_corner.add_lines(tpm2, tpm3,true,'-');
+			Test_corner.print_line();
+
+			Point tpm4; tpm4.x = -5; tpm4.y = -5; tpm4.symbol = '!';
+			Point tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!';
+			Test_corner.add_lines(tpm4, tpm5, true,'*');
+			Test_corner.print_line();
+
+			Point tpm6; tpm6.x = 0; tpm6.y = 0; tpm6.symbol = '!';
+			Test_corner.delite(tpm6);
+			Test_corner.print_all();
+
+			Test_corner.delite_line(tpm4, tpm5);
+			Test_corner.print_all();
+
+
 			std::cout << "\n";
+
+
+
+
+std::cout << "\n";
+			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
+			{
+				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
+			}
+std::cout << "\n";
+
 
 			//system("cls");
 			std::cout << "\n";
-			Test_axys.add_points(test___);
-			Test_axys.create();
-			Test_axys.draw_points();
-			Test_axys.print();
+			//Test_axys.add_points(test___);
+			//Test_axys.create();
+			//Test_axys.draw_points();
+			//Test_axys.print();
 
 
 			std::ofstream outfile_corner("corner_path_out.txt");
-			Test_corner.print_to_file(outfile_corner);
 
-			std::ofstream outfile_axys("axys_path_out.txt");
-			Test_axys.print_to_file(outfile_axys);
-			test___.clear();
+			Test_corner.print_to_file();
+
+			//std::ofstream outfile_axys("axys_path_out.txt");
+			//Test_axys.print_to_file(outfile_axys);
 			std::cout << "end hello" << "\n";
 
 		}
