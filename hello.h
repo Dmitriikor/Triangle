@@ -128,6 +128,10 @@ protected:
 		return axys_arr_;
 	}
 
+	Ray_3_& points_to_draw()			//  !!!!!!
+	{									//  !!!!!!
+		return 	points_to_draw_;		//  !!!!!!
+	}									//  !!!!!!
 
 
 	//--------------------------------------------------------------------------------------------
@@ -138,10 +142,6 @@ protected:
 public:
 
 
-	Ray_3_& points_to_draw()			//  !!!!!!
-	{									//  !!!!!!
-		return 	points_to_draw_;		//  !!!!!!
-	}									//  !!!!!!
 
 
 	void add_points(const Ray_3_& points);

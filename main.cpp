@@ -258,12 +258,12 @@ int main(int argc, char const* argv[])
 
 
 
-std::cout << "\n";
-			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
-			{
-				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
-			}
-std::cout << "\n";
+//std::cout << "\n";
+//			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
+//			{
+//				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
+//			}
+//std::cout << "\n";
 
 
 			//system("cls");
