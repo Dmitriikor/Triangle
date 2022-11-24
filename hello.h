@@ -121,8 +121,6 @@ protected:
 		return ORIGIN_;
 	}
 
-
-
 	Ray_3_& points_to_draw()			//  !!!!!!
 	{									//  !!!!!!
 		return 	points_to_draw_;		//  !!!!!!
@@ -155,6 +153,8 @@ public:
 
 
 };
+
+
 
 class Corner : public Canvas_console
 {
