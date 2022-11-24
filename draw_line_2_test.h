@@ -9,7 +9,7 @@
 //#include <wingdi.h>
 //
 //#include "Lines_draw_test.h"
-//void goto_coords_(Point a);
-//void draw_line_2(const Point& A, const Point& B, const Point& ZERO);
+//void goto_coords_(Dot a);
+//void draw_line_2(const Dot& A, const Dot& B, const Dot& ZERO);
 //
 //#endif //!DARW_LINE_2_TEST_H__

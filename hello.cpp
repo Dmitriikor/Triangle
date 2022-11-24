@@ -3,7 +3,7 @@
 
 
 
-void canvas::max_min_init()
+void Canvas::max_min_init()
 {
 	MAX_VIRTUAL().x = DBL_MIN;
 	MAX_VIRTUAL().y = DBL_MIN;
@@ -12,12 +12,12 @@ void canvas::max_min_init()
 	MIN_VIRTUAL().y = DBL_MAX;
 }
 
-void canvas::go_debug(bool is_debug)
+void Canvas::go_debug(bool is_debug)
 {
 	debug = is_debug;
 }
 
-void canvas::add_points(const Ray_3_& points)
+void Canvas::insert(const Ray_3_& points)
 {
 	//points_to_draw() = points;
 	size_t length_arr = points.size();
@@ -31,7 +31,7 @@ void canvas::add_points(const Ray_3_& points)
 	initialize_width();
 }
 
-void canvas::initialize_width() {
+void Canvas::initialize_width() {
 	width_x() = 1;
 	width_y() = 1;
 
@@ -58,7 +58,7 @@ void canvas::initialize_width() {
 
 }
 
-int canvas::get_distance_between(int min_coord, int max_coord)
+int Canvas::get_distance_between(int min_coord, int max_coord)
 {
 	if (min_coord >= 0 && max_coord >= 0)
 		return abs(max_coord);
@@ -69,7 +69,7 @@ int canvas::get_distance_between(int min_coord, int max_coord)
 	return abs(max_coord) + abs(min_coord);
 }
 
-void canvas::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_location)
+void Canvas::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_location)
 {
 	size_t N = axis_length;
 
@@ -120,7 +120,7 @@ void canvas::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis
 	}
 }
 
-void canvas::y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int axis_location)
+void Canvas::y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int axis_location)
 {
 	for (size_t i = 0; i < axis_length; ++i)
 	{
@@ -157,9 +157,12 @@ void canvas::y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int ax
 
 
 //!!! module sub-functions
-void corner::create(/*canvas& this_,*/ char axys_arr_fill_symbol)
+void Corner::create(/*Canvas& this_,*/ char axys_arr_fill_symbol)
 {
-	///*this_.*/add_points(/*this_.*/points_to_draw());
+	///*this_.*/insert(/*this_.*/points_to_draw());
+
+	//!!! Coordinates
+
 	int max_y = /*this_.*/MAX_VIRTUAL().y;
 	int min_y = /*this_.*/MIN_VIRTUAL().y;
 
@@ -200,7 +203,7 @@ void corner::create(/*canvas& this_,*/ char axys_arr_fill_symbol)
 	/*this_.*/ZERO().i = start_i;// +width_x(); //!x_axis_thickness
 	//}find actual console point of start coodrs
 
-	// {print x axys
+	// {print x Axys
 	{
 		int start_x = min_x < 0 ? min_x : 0;
 
@@ -239,36 +242,36 @@ void corner::create(/*canvas& this_,*/ char axys_arr_fill_symbol)
 }
 
 
-void canvas::add_lines(const Point& A, const Point& B, bool is_round, char symbol/*, canvas& this_*/)
+void Canvas::add_lines(const Dot& A, const Dot& B, bool is_round, char symbol/*, Canvas& this_*/)
 {
 	/*this_.*/update_min_max_by(A);
 	/*this_.*/update_min_max_by(B);
 
-	//delite(/*this_ */);
-	
+	//remove(/*this_ */);
+
 	/*this_.*/add_point_to_arr_for_print_line(A, B, true, symbol);
 	///*this_.*/draw_points_(true, false, /*this_.*/corner_arr());
 	//draw_points_or_line_corner(line_points_to_draw_, corner_arr());
 }
 
-void corner::add_lines_to_corner(/*canvas& this_*/)
+void Corner::add_lines_to_corner(/*Canvas& this_*/)
 {
 	draw_points_or_line_corner(line_points_to_draw_, corner_arr());
-		///*this_.*/draw_points_(true, false, /*this_.*/corner_arr());
+	///*this_.*/draw_points_(true, false, /*this_.*/corner_arr());
 }
 
-void corner::add_points_to_corner(/*canvas& this_*/)
+void Corner::add_points_to_corner(/*Canvas& this_*/)
 {
 	draw_points_or_line_corner(points_to_draw(), corner_arr());
 	///*this_.*/draw_points_(false, false, /*this_.*/corner_arr());
 }
 
-void corner::print_zero(/*canvas& this_*/)
+void Corner::print_zero(/*Canvas& this_*/)
 {
 	/*this_.*/corner_arr().set_at(/*this_.*/ZERO().i, /*this_.*/ZERO().j - /*this_.*/axis_x_indents(), '0'); //!!!
 }
 
-void corner::clear(/*canvas& this_*/)
+void Corner::clear(/*Canvas& this_*/)
 {
 	/*this_.*/corner_arr().clear_matrix();
 
@@ -277,7 +280,7 @@ void corner::clear(/*canvas& this_*/)
 	/*?*/  create(/*this_*/);  ///?
 }
 
-void canvas::set_min_max()
+void Canvas::set_min_max()
 {
 	size_t length = points_to_draw().size();
 	MAX_VIRTUAL() = points_to_draw()[0];
@@ -300,14 +303,14 @@ void canvas::set_min_max()
 	}
 }
 
-void canvas::update_min_max_by(Point pt)
+void Canvas::update_min_max_by(const Dot& pt)
 {
-		points_to_draw().add_to_back(pt);
-		set_min_max();
-		initialize_width();
+	points_to_draw().add_to_back(pt);
+	set_min_max();
+	initialize_width();
 }
- 
-void corner::draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr) //, Matrix & loc_arr
+
+void Corner::draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr) //, Matrix & loc_arr
 {
 	//if (loc_arr.is_empty())
 		//throw std::exception("!!!!");
@@ -321,16 +324,16 @@ void corner::draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr
 	{
 		Coordinates cell;
 
-			cell.i = ZERO().i - loc_arr_to_draw[i].y;
-			cell.j = (ZERO().j + (loc_arr_to_draw[i].x * (width_x() + axis_x_indents()))) - axis_x_indents();
-			if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M())
-				throw std::exception("exception in hello.cpp -> metod draw_points : cell >= corner_arr()");
-			loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol); //@symbol
-			
+		cell.i = ZERO().i - loc_arr_to_draw[i].y;
+		cell.j = (ZERO().j + (loc_arr_to_draw[i].x * (width_x() + axis_x_indents()))) - axis_x_indents();
+		if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M())
+			throw std::exception("exception in hello.cpp -> metod draw_points : cell >= corner_arr()");
+		loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol); //@symbol
+
 	}
 }
 
-void axys::draw_points_or_line_axys (Ray_3_& loc_arr_to_draw, Matrix& loc_arr) //, Matrix & loc_arr
+void Axys::draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr) //, Matrix & loc_arr
 {
 	//if (loc_arr.is_empty())
 		//throw std::exception("!!!!");
@@ -346,23 +349,23 @@ void axys::draw_points_or_line_axys (Ray_3_& loc_arr_to_draw, Matrix& loc_arr) /
 		Coordinates cell;
 
 
-			cell.i = ORIGIN().i - loc_arr_to_draw[i].y;
-			cell.j = (ORIGIN().j + (loc_arr_to_draw[i].x * (width_x() + axis_x_indents()+1))) + axis_x_indents();
+		cell.i = ORIGIN().i - loc_arr_to_draw[i].y;
+		cell.j = (ORIGIN().j + (loc_arr_to_draw[i].x * (width_x() + axis_x_indents() + 1))) + axis_x_indents();
 
-			if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M()) //loc_arr.get_M()
-				throw std::exception("exception in hello.cpp  -> metod draw_points_ is_axys");
+		if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M()) //loc_arr.get_M()
+			throw std::exception("exception in hello.cpp  -> metod draw_points_ is_axys");
 
-			loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol);
-			//set_at(cell, loc_arr_to_draw[i].symbol); //@symbol
+		loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol);
+		//set_at(cell, loc_arr_to_draw[i].symbol); //@symbol
 	}
 }
 
-void corner::erase_point_from_corner(Point& err)
+void Corner::erase_point_from_corner(const Dot& dot)
 {
 	Coordinates cell;
-	
-	cell.i = ZERO().i - err.y;
-	cell.j = (ZERO().j + (err.x * (width_x() + axis_x_indents()))) - axis_x_indents();
+
+	cell.i = ZERO().i - dot.y;
+	cell.j = (ZERO().j + (dot.x * (width_x() + axis_x_indents()))) - axis_x_indents();
 
 	if (cell.i < corner_arr().get_N() - axis_x_indents() && (cell.j > width_y() && cell.j < corner_arr().get_M()))
 		corner_arr().set_at(cell.i, cell.j, 'E');
@@ -372,7 +375,7 @@ void corner::erase_point_from_corner(Point& err)
 
 
 
-void axys::erase_point_from_axys(Point& err)
+void Axys::erase_point_from_axys(Dot& err)
 {
 	//erase_point(err, axys_arr());
 }
@@ -385,71 +388,82 @@ double get_step(unsigned coefficient)
 }
 
 
-void canvas::delite_point(const Point& dl, Matrix& arr)
+void Canvas::remove_point(const Dot& dot)
 {
-	size_t length = line_points_to_draw_.size();
-
-	for (size_t i = 0; i < length; i++)
+	//!!! REMOVE_FIRST_POINT_FROM_RAY(dot, line_points_to_draw()); -- NO CLASS MEMBER
+	for (size_t i = 0; i < points_to_draw().size(); i++)
 	{
-		if (dl == line_points_to_draw()[i])
+		if (dot == points_to_draw()[i])
 		{
-			line_points_to_draw().remove(i);
-			--length;
+			points_to_draw().remove(i);
+			break;
 		}
 	}
-	delite_line_(dl, dl, arr);
 }
 
-void canvas::delite_line_(const Point& A, const Point& B, Matrix& arr)
+void Canvas::remove_line_(const Dot& A, const Dot& B)
 {
+	//!!!
+	//remove_by_array(calculate_line_with_rounding(A, B));
+	//remove_by_array(calculate_line_swap(A, B));
+
 	Ray_3_ erase_line_arr;      //òî÷êè äëÿ çàòèðàíèÿ õîëñòà ëèíèÿìè
 
-	for (size_t i = 0; i < 2; i++)
-	{
+	erase_line_arr = calculate_line_with_rounding(A, B);
+	for (size_t i = 0; i < erase_line_arr.size(); ++i)
+		remove_point(erase_line_arr[i]);
 
-		if (i == 0)
-			erase_line_arr = calculate_line_round(A, B);
-		else
-			erase_line_arr = calculate_line_swap(A, B);
+	erase_line_arr = calculate_line_swap(A, B);
+	for (size_t i = 0; i < erase_line_arr.size(); ++i)
+		remove_point(erase_line_arr[i]);
 
-		size_t length_to_erase = erase_line_arr.size();
-		size_t length_to_line_arr = line_points_to_draw_.size();
-		if (length_to_erase <= line_points_to_draw().size())
-		{
+	//for (size_t i = 0; i < 2; i++)
+	//{
+	//	Ray_3_ erase_line_arr;      //òî÷êè äëÿ çàòèðàíèÿ õîëñòà ëèíèÿìè
 
-			for (size_t i = 0; i < length_to_erase; i++)
-			{
-				//erase_point(erase_line_arr[i], arr);
-				for (size_t j = 0; j < length_to_line_arr; j++)
-				{
-					if (erase_line_arr[i] == line_points_to_draw()[j])
-					{
-						line_points_to_draw().remove(j);
-						--length_to_line_arr;
-					}
+	//	if (i == 0)
+	//		erase_line_arr = calculate_line_with_rounding(A, B);
+	//	else
+	//		erase_line_arr = calculate_line_swap(A, B);
 
-				}
-			}
-			for (size_t i = 0; i < points_to_draw().size(); i++)
-			{
-				for (size_t j = 0; j < points_to_draw().size(); j++)
-				{
-					if (erase_line_arr[i] == points_to_draw()[j])
-					{
-						points_to_draw().remove(j);
-					}
-				}
-			}
-		}
+	//	for (size_t i = 0; i < erase_line_arr.size(); ++i)
+	//		remove_point(erase_line_arr[i]);
 
+	//	//if (count_to_erase <= line_points_to_draw().size())
+	//	//{
+	//	//removing from lines
+	//	//for (size_t i = 0; i < erase_line_arr.size(); ++i)
+	//	//{
+	//	//	//!!! REMOVE_FIRST_POINT_FROM_RAY(erase_line_arr[i], line_points_to_draw()); -- NO CLASS MEMBER
+	//	//	for (size_t j = 0; j < line_points_to_draw_.size(); ++j)
+	//	//	{
+	//	//		if (erase_line_arr[i] == line_points_to_draw()[j])
+	//	//		{
+	//	//			line_points_to_draw().remove(j);
+	//	//			break; // if point is unique, another way: --j
+	//	//		}
 
-		erase_line_arr.clear();
-	}
+	//	//	}
+	//	//}
+	//	//for (size_t i = 0; i < erase_line_arr.size(); ++i)
+	//	//{
+	//	//	//!!! REMOVE_FIRST_POINT_FROM_RAY(erase_line_arr[i], points_to_draw()); -- NO CLASS MEMBER
+	//	//	for (size_t j = 0; j < points_to_draw().size(); ++j)
+	//	//	{
+	//	//		if (erase_line_arr[i] == points_to_draw()[j])
+	//	//		{
+	//	//			points_to_draw().remove(j);
+	//	//			break; // if point is unique, another way: --j
+	//	//		}
+	//	//	}
+	//	//}
+	//	//}
+	//}
 }
 
-void canvas::add_point_to_arr_for_print_line(const Point& A, const Point& B, bool is_round, char symbol)
+void Canvas::add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round, char symbol)
 {
-	const Ray_3_& lockal_draw_line_arr = is_round ? calculate_line_round(A, B, symbol) : calculate_line_swap(A, B, symbol);
+	const Ray_3_& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
 
 	size_t length = lockal_draw_line_arr.size();
 
@@ -459,11 +473,11 @@ void canvas::add_point_to_arr_for_print_line(const Point& A, const Point& B, boo
 	}
 }
 
-Ray_3_ canvas::calculate_line_round(const Point& A, const Point& B, char symbol)
+Ray_3_ Canvas::calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol)
 {
 	Ray_3_ lockal_line_arr;
 
-	Point coords;
+	Dot coords;
 
 	double min = A.x;
 	double max = B.x;
@@ -481,7 +495,7 @@ Ray_3_ canvas::calculate_line_round(const Point& A, const Point& B, char symbol)
 			end = A.y;
 		}
 		double step = get_step(coefficient);  // 1.0 / coefficient;
-		Point point;
+		Dot point;
 		point.x = A.x;
 		for (double y = start; y >= end; y -= step)
 		{
@@ -491,8 +505,8 @@ Ray_3_ canvas::calculate_line_round(const Point& A, const Point& B, char symbol)
 			point.y = (int)utilities::round_by_step(point.y, step);
 
 
-			//if (delite_line_flag)
-			//	delite_line_arr.add_to_back(point);
+			//if (remove_line_flag)
+			//	remove_line_arr.add_to_back(point);
 			//else
 			point.symbol = symbol;
 			lockal_line_arr.add_to_back(point);
@@ -513,15 +527,15 @@ Ray_3_ canvas::calculate_line_round(const Point& A, const Point& B, char symbol)
 
 	for (int i = 0; i < N; ++i)
 	{
-		Point point;
+		Dot point;
 		point.x = rounded_min + i * step;
 		point.y = k * point.x + b;
 
 		point.x = (int)utilities::round_by_step(point.x, step);
 		point.y = (int)utilities::round_by_step(point.y, step);
 
-		//if (delite_line_flag)
-		//	delite_line_arr.add_to_back(point);
+		//if (remove_line_flag)
+		//	remove_line_arr.add_to_back(point);
 		//else
 		point.symbol = symbol;
 		lockal_line_arr.add_to_back(point);
@@ -541,13 +555,13 @@ Ray_3_ canvas::calculate_line_round(const Point& A, const Point& B, char symbol)
 }
 
 
-Ray_3_ canvas::calculate_line_swap(const Point& A, const Point& B, char symbol)
+Ray_3_ Canvas::calculate_line_swap(const Dot& A, const Dot& B, char symbol)
 {
 	Ray_3_ lockal_line_arr;
 
 	if (A.x == B.x && A.y == B.y)
 	{
-		return calculate_line_round(A, B);
+		return calculate_line_with_rounding(A, B);
 	}
 
 	int x1, y1, x2, y2;
@@ -575,7 +589,7 @@ Ray_3_ canvas::calculate_line_swap(const Point& A, const Point& B, char symbol)
 		double step = get_step(coefficient);
 		y = (int)utilities::round_by_step(y, step);
 
-		Point coords;
+		Dot coords;
 		coords.symbol = symbol;
 
 		if (is_swap) {
@@ -594,10 +608,10 @@ Ray_3_ canvas::calculate_line_swap(const Point& A, const Point& B, char symbol)
 }
 
 
-void axys::create(/*canvas& this_,*/ char axys_arr_fill_symbol)
+void Axys::create(/*Canvas& this_,*/ char axys_arr_fill_symbol)
 {
 
-	/*this_.*/add_points(/*this_.*/points_to_draw());
+	/*this_.*/insert(/*this_.*/points_to_draw());
 
 	int max_y = /*this_.*/MAX_VIRTUAL().y;
 	int min_y = /*this_.*/MIN_VIRTUAL().y;
@@ -623,7 +637,7 @@ void axys::create(/*canvas& this_,*/ char axys_arr_fill_symbol)
 	if (fabs(min_x) == fabs(max_x))
 		size_M = fabs(max_x);
 
-	int loc_width_x = /*this_.*/width_x() + /*this_.*/axis_x_indents() +1; //+1 
+	int loc_width_x = /*this_.*/width_x() + /*this_.*/axis_x_indents() + 1; //+1 
 	int loc_width_y = /*this_.*/width_y() + 1;
 
 
@@ -659,13 +673,13 @@ void axys::create(/*canvas& this_,*/ char axys_arr_fill_symbol)
 
 }
 
-void  axys::draw_lines(/*canvas& this_*/)
+void  Axys::draw_lines(/*Canvas& this_*/)
 {
 	draw_points_or_line_axys(line_points_to_draw(), axys_arr());
 	///*this_.*/draw_points_(true, true, /*this_.*/axys_arr());
 }
 
-void axys::draw_points(/*canvas& this_*/)
+void Axys::draw_points(/*Canvas& this_*/)
 {
 	draw_points_or_line_axys(points_to_draw(), axys_arr());
 	///*this_.*/draw_points_(false, true, /*this_.*/axys_arr());

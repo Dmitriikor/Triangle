@@ -29,13 +29,13 @@ bool Point::operator==(const Point& other) const {
 #include <iostream>
 #include <cmath>
 
-class Point {
+class Dot {
 public:
-	Point() :Point(0, 0) { }
+	Dot() :Dot(0, 0) { }
 
-	Point(int x, int y) { ++counter; set_x_y(x, y);  }
+	Dot(int x, int y) { ++counter; set_x_y(x, y);  }
 
-	~Point() { --counter; }
+	~Dot() { --counter; }
 
 	int print() const {
 		std::cout << x << " " << y << std::endl;
@@ -47,16 +47,16 @@ public:
 	}
 	//статический метод: как бы свободная функция внутри класса
 	static void print_type() {
-		std::cout << "Point 2D with counter." << std::endl;
+		std::cout << "Dot 2D with counter." << std::endl;
 	}
 
 	//.h
-	friend std::ostream& operator<<(std::ostream& out, const Point& p);
-	friend std::istream& operator>>(std::istream& in, Point& p);
+	friend std::ostream& operator<<(std::ostream& out, const Dot& p);
+	friend std::istream& operator>>(std::istream& in, Dot& p);
 
 	void set_x_y(int x, int y) {
-		Point::x = x;
-		Point::y = y;
+		Dot::x = x;
+		Dot::y = y;
 
 		length = pow(pow(x, 2) + pow(y, 2), 0.5);
 	}
@@ -68,61 +68,61 @@ private:
 	double length;
 
 public:
-	bool operator<(const Point& other) const;
-	bool operator>(const Point& other) const;
-	bool operator<=(const Point& other) const;
-	bool operator>=(const Point& other) const;
+	bool operator<(const Dot& other) const;
+	bool operator>(const Dot& other) const;
+	bool operator<=(const Dot& other) const;
+	bool operator>=(const Dot& other) const;
 
-	bool operator==(const Point& other) const;
-	bool operator!=(const Point& other) const;
+	bool operator==(const Dot& other) const;
+	bool operator!=(const Dot& other) const;
 
 };
 
 
-bool Point::operator<(const Point& other) const {
+bool Dot::operator<(const Dot& other) const {
 	if (this->length < other.length)
 		return true;
 	return false;
 }
 
-bool Point::operator>(const Point& other) const {
+bool Dot::operator>(const Dot& other) const {
 	return other < *this;
 }
 
-bool Point::operator<=(const Point& other) const {
+bool Dot::operator<=(const Dot& other) const {
 	return !(*this > other);
 }
 
-bool Point::operator>=(const Point& other) const {
+bool Dot::operator>=(const Dot& other) const {
 	return !(*this < other);
 }
 
-bool Point::operator==(const Point& other) const {
+bool Dot::operator==(const Dot& other) const {
 	return !(*this < other) && !(*this > other);
 }
 
-bool Point::operator!=(const Point& other) const {
+bool Dot::operator!=(const Dot& other) const {
 	return !(*this == other);
 }
 
 
 
 //.cpp
-int Point::counter = 0;
+int Dot::counter = 0;
 
 
 
 //.cpp
 
-std::ostream& operator<<(std::ostream& out, const Point& p) {
+std::ostream& operator<<(std::ostream& out, const Dot& p) {
 	out << "(" << p.x << "; " << p.y << ")" << std::endl;
-	out << "all = " << Point::counter << std::endl;
+	out << "all = " << Dot::counter << std::endl;
 
 	return out;
 }
 
 //.cpp
-std::istream& operator>>(std::istream& in, Point& p) {
+std::istream& operator>>(std::istream& in, Dot& p) {
 	in >> p.x >> p.y;
 
 	return in;
@@ -130,7 +130,7 @@ std::istream& operator>>(std::istream& in, Point& p) {
 
 
 int main() {
-	Point p1(1, 1), p2(-2, -2);
+	Dot p1(1, 1), p2(-2, -2);
 
 	std::cout << (p1 == p2);
 

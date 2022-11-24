@@ -4,7 +4,7 @@ const Point& Triangle::get_point_in(size_t index) const {
 	return point_in_triangle[index];
 }
 
-const Ray_3_ Triangle::get_points_inside_Ray() const {
+const Ray_template<Point> Triangle::get_points_inside_Ray() const {
 	return point_in_triangle;
 }
 

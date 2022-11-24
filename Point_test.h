@@ -4,14 +4,21 @@
 
 #include <iostream>
 
-struct Point {
-	double x= 0;
-	double y= 0;
+struct Point
+{
+	double x = 0;
+	double y = 0;
 
 	void print() const;
-	bool operator==(const Point& other) const ;
-	char symbol = '.';
+	bool operator==(const Point& other) const;
+};
 
+struct Dot : public Point
+{
+	//Dot() {} //!!! рнкэйн еякх мюдн
+	//Dot(const Point& p) :Point(p) { } //!!! рнкэйн еякх мюдн
+
+	char symbol = '.';
 };
 
 double length(const Point& A, const Point& B);

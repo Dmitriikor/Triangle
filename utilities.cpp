@@ -11,16 +11,15 @@ double utilities::round_by_step(double x, double step) {
 
 int utilities::random_INT(int start, int end)
 {
-	int rand;
 	std::random_device rnd;
 	std::uniform_int_distribution<int> dist(start, end);
-	rand = dist(rnd);
-	return rand;
+
+	return dist(rnd);
 }
 
  
 
-//Point* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in, std::string path_out)
+//Dot* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in, std::string path_out)
 //{
 	// { start dialoge
 	 

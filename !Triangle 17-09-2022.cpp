@@ -36,7 +36,7 @@
 //	int x_axis_thickness() {  return 0;  } 
 //	int indent = 0;
 //	int y_axis_thickness = 0;
-//	void goto_coords(Point none) {  } ;
+//	void goto_coords(Dot none) {  } ;
 //	int shift = 0;
 //	int shift_h = 0;
 //	  } DELITE THIS  
@@ -49,7 +49,7 @@
 //	// {  test create & call base handwritten "libs"
 //	Ray a;
 //	Matrix b;
-//	Point c;
+//	Dot c;
 //	Triangle d;
 //	//  }  test create & call base handwritten "libs"
 //
@@ -107,10 +107,10 @@
 //	int min_x = MAX_;
 //	int min_y = MAX_;
 //
-//	Point* point_arr = new Point[n_points];
+//	Dot* point_arr = new Dot[n_points];
 //
 //	for (size_t i = 0; i < n_points; i++) { 
-//		Point temp;
+//		Dot temp;
 //
 //		if (input_switch == 3) { 
 //			//(rand()%range)±shift
@@ -146,7 +146,7 @@
 //	int t1 = clock();
 //
 //
-//	// { work with Point arr, to create triangle and find max insade point
+//	// { work with Dot arr, to create triangle and find max insade point
 //	Triangle* triangle_arr = new Triangle[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
 //	size_t n_triangles = 0;
 //	for (size_t i = 0; i < n_points; i++) 
@@ -194,14 +194,14 @@
 //	final_triangle_arr[max_dot_index].print();
 //	size_t cout_cntr = 15;
 //
-//	// } work with Point arr, to create triangle and find max insade point
+//	// } work with Dot arr, to create triangle and find max insade point
 //
 //
 //
 //	//draw_line_2(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), ZERO);
 //	//draw_line_2(final_triangle_arr[max_dot_index].get_B(), final_triangle_arr[max_dot_index].get_C(), ZERO);
 //	//draw_line_2(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), ZERO);
-//	//end.y += 17; // set cursor under y axys
+//	//end.y += 17; // set cursor under y Axys
 //	//goto_coords(end);
 //	//std::cout << "\n";
 //	//system("pause");
@@ -211,14 +211,14 @@
 //
 //
 //
-//	//Point ORIGIN;
+//	//Dot ORIGIN;
 //
-//	//Point point_1;
-//	//Point point_2;
+//	//Dot point_1;
+//	//Dot point_2;
 //
-//	//	/*Point point_1;*/
+//	//	/*Dot point_1;*/
 //	//	//std::cin >> point_1.x >> point_1.y;
-//	//	/*Point point_2;*/
+//	//	/*Dot point_2;*/
 //	//	//std::cin >> point_2.x >> point_2.y;
 //
 //	//	point_1.x = max_x;
@@ -256,7 +256,7 @@
 //	//	 } 
 //	//	for (int i = -(ORIGIN.x); i < ORIGIN.x + 1; i++)  // axis X
 //	//	{
-//	//		Point pos;
+//	//		Dot pos;
 //	//		pos.x = set_pos_x(ORIGIN.x+i);
 //	//		pos.y = ORIGIN.y;
 //	//		goto_coords_(pos);
@@ -265,7 +265,7 @@
 //	//	std::cout << "\n";
 //
 //
-//	//end.y = (ORIGIN.y*2)+5; // set cursor under y axys
+//	//end.y = (ORIGIN.y*2)+5; // set cursor under y Axys
 //	//goto_coords(end);
 //	//std::cout << "\n";
 //	//system("pause");
@@ -279,26 +279,26 @@
 //	try
 //	{
 //		std::cout << "\n";
-//		Point P_a; P_a.x = 10; P_a.y = -10;
-//		Point P_b; P_b.x = 3; P_b.y = 3;
-//		Point P_c; P_c.x = 10; P_c.y = -11;
+//		Dot P_a; P_a.x = 10; P_a.y = -10;
+//		Dot P_b; P_b.x = 3; P_b.y = 3;
+//		Dot P_c; P_c.x = 10; P_c.y = -11;
 //		Triangle test_Triangle_;
 //		test_Triangle_ = test_Triangle_.create_triangle(P_a, P_b, P_c);
 //
 //		while (true) { 
-//			corner(test_Triangle_, 1, true, false);
+//			Corner(test_Triangle_, 1, true, false);
 //			std::cout << "\n";
 //			std::cin.get();
 //			clear_cls(OS);
-//			corner(test_Triangle_, 1, true, true);;
+//			Corner(test_Triangle_, 1, true, true);;
 //			std::cout << "\n";
 //			std::cin.get();
 //			clear_cls(OS);
-//			axys(test_Triangle_, 1, true, true);
+//			Axys(test_Triangle_, 1, true, true);
 //			std::cout << "\n";
 //			std::cin.get();
 //			clear_cls(OS);
-//			axys(test_Triangle_, 1, true, false);
+//			Axys(test_Triangle_, 1, true, false);
 //			std::cout << "\n";
 //			std::cin.get();
 //			clear_cls(OS);

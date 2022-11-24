@@ -1,7 +1,7 @@
 #include "draw_line_2_test.h"
 
 
-//void goto_coords_(Point a) {
+//void goto_coords_(Dot a) {
 //
 //	COORD b;
 //	b.X = a.x;
@@ -9,7 +9,7 @@
 //	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), b);
 //}
 //
-//void draw_line_2(const Point& A, const Point& B, const Point& ZERO) {
+//void draw_line_2(const Dot& A, const Dot& B, const Dot& ZERO) {
 //	int x1, y1, x2, y2;
 //	x1 = A.x;
 //	y1 = A.y;
@@ -31,7 +31,7 @@
 //		float k = (x - x1) / (float)(x2 - x1);
 //		int y = y1 * (1. - k) + y2 * k;
 //
-//		Point coords;
+//		Dot coords;
 //
 //
 //		if (steep) {

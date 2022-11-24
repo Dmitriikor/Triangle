@@ -268,10 +268,10 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
 
 
     // triangle, coefficient, bool draw_triangle=false, bool draw_round=true
-void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
+void Axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
     if (coefficient == 0) 
     {
-        throw std::exception("Lines_draw_test.cpp axys coefficient == 0");
+        throw std::exception("Lines_draw_test.cpp Axys coefficient == 0");
         return;
     }
 
@@ -432,7 +432,7 @@ void char_shift_w_h_cntr() {
 
 
 
-	void corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
+	void Corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
 
         // { some magic
        /* shift_w = 4;
@@ -517,7 +517,7 @@ void char_shift_w_h_cntr() {
         ZERO.y = start_y + 1;// +shift_w; //!x_axis_thickness
 		//}find actual console point of start coodrs
 
-		// {print x axys
+		// {print x Axys
 		int start_x = min_x > 0 ? 0 : min_x;
          
         for (size_t i = 0; i < M; i++)
@@ -592,7 +592,7 @@ void char_shift_w_h_cntr() {
 		// }print on start coord "0"
 
 		// {Point end use for get new line after print axis
-		//Point end; // use to print axys
+		//Point end; // use to print Axys
 		//end.x = 0;
 		//end.y = N + (N * shift) + x_axis_thickness + shift_h;  //+1 str
 		//end.y = end.y + 1;

@@ -11,7 +11,7 @@
 
 #include "Point_test.h"
 
-using TTT = Point;
+using TTT = Dot;
 using reference_type = TTT&;
 
 class Ray_3_ {

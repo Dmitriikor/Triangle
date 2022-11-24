@@ -1,7 +1,9 @@
 #ifndef RAY_TEST_H__
 #define RAY_TEST_H__
 
-using TT = int;
+#include "Point_test.h"
+
+using TT = Point;
 using pointer_type_Ray = TT*;
 
 class Ray {

@@ -1,5 +1,4 @@
-﻿
-#ifndef HELLO_H__
+﻿#ifndef HELLO_H__
 
 #define  HELLO_H__
 
@@ -16,12 +15,8 @@
 
 #include "utilities.h"
 
- class  canvas
+class Canvas
 {
-	//friend class corner;
-	//friend class axys;
-	//class corner;
-
 protected:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
@@ -31,7 +26,6 @@ protected:
 
 	Ray_3_ points_to_draw_;		//свободные точки для рисования
 	Ray_3_ line_points_to_draw_;	//точки линий для рисования
-
 
 	Matrix axys_arr_;
 
@@ -47,7 +41,7 @@ protected:
 	int coefficient = 1;
 
 	bool debug;
-	void set_at(Coordinates cell, char symbol )
+	void set_at(Coordinates cell, char symbol)
 	{
 		axys_arr_.set_at(cell.i, cell.j, symbol);
 	}
@@ -60,8 +54,8 @@ protected:
 	void y_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_location);
 	int get_distance_between(int min_coord, int max_coord);
 	//void draw_points_(bool is_need_to_draw_line, bool is_axys, Matrix& TT);
-	void add_point_to_arr_for_print_line(const Point& A, const Point& B, bool is_round = true, char symbol = '+'); //add point to arr for print
-	void update_min_max_by(Point pt);
+	void add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round = true, char symbol = '+'); //add point to arr for print
+	void update_min_max_by(const Dot& pt);
 	void set_min_max();
 
 
@@ -70,7 +64,7 @@ protected:
 
 	Ray_3_& line_points_to_draw()
 	{
-		return 	line_points_to_draw_;
+		return line_points_to_draw_;
 	}
 
 	Point& MAX_VIRTUAL()
@@ -118,9 +112,10 @@ protected:
 	{
 		return ZERO_;
 	}
+
 	Coordinates& ORIGIN()
 	{
-		return  ORIGIN_;
+		return ORIGIN_;
 	}
 
 	Matrix& axys_arr()
@@ -136,22 +131,18 @@ protected:
 
 	//--------------------------------------------------------------------------------------------
 
-	Ray_3_ calculate_line_round(const Point& A, const Point& B, char symbol = '+');
-	Ray_3_ calculate_line_swap(const Point& A, const Point& B, char symbol = '+');
+	Ray_3_ calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+');
+	Ray_3_ calculate_line_swap(const Dot& A, const Dot& B, char symbol = '+');
 
 public:
-
-
-
-
-	void add_points(const Ray_3_& points);
-	void insert(Point& pt)
+	void insert(const Ray_3_& points);
+	void insert(const Dot& pt)
 	{
 		update_min_max_by(pt);
 	}
-	void add_lines(const Point& A, const Point& B, bool is_round, char symbol/*, canvas& this_*/);
-	void delite_line_(const Point& A, const Point& B, Matrix& arr);
-	void delite_point(const Point& dl, Matrix& arr);
+	void add_lines(const Dot& A, const Dot& B, bool is_round, char symbol/*, Canvas& this_*/); //!!! is_round
+	void remove_line_(const Dot& A, const Dot& B);
+	void remove_point(const Dot& dl);
 
 	void print()
 	{
@@ -166,18 +157,18 @@ public:
 
 
 
-class corner : public canvas
+class Corner : public Canvas
 {
-	//friend class canvas;
+	//friend class Canvas;
 
 private:
 	Matrix corner_arr_;
 	std::string outfile_adress = "corner_path_out.txt";
-	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to canvas
-	void add_points_to_corner(/*canvas& this_*/);
-	void add_lines_to_corner(/*canvas& this_*/);
-	void create(/*canvas& this_,*/ char axys_arr_fill_symbol= ' ');
-	void erase_point_from_corner(Point& err);
+	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
+	void add_points_to_corner(/*Canvas& this_*/);
+	void add_lines_to_corner(/*Canvas& this_*/);
+	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
+	void erase_point_from_corner(const Dot& err);
 
 	Matrix& corner_arr()
 	{
@@ -186,10 +177,10 @@ private:
 public:
 	void fill(char fill_symbol)
 	{
-		 create(fill_symbol);
+		create(fill_symbol);
 	}
-	//void erase_point_from_corner(Point& err);
-	void print_all(/*canvas& this_*/)
+	//void erase_point_from_corner(Dot& err);
+	void print_all(/*Canvas& this_*/)
 	{
 		corner_arr().clear_matrix();
 		create();
@@ -197,35 +188,31 @@ public:
 		add_lines_to_corner();
 		/*this_.*/corner_arr().Matrix_print();
 	}
-	void print_point(/*canvas& this_*/)
+	void print_point(/*Canvas& this_*/)
 	{
 		corner_arr().clear_matrix();
 		create();
 		add_points_to_corner();
 		/*this_.*/corner_arr().Matrix_print();
 	}
-	void print_line(/*canvas& this_*/)
+	void print_line(/*Canvas& this_*/)
 	{
 		corner_arr().clear_matrix();
 		create();
 		add_lines_to_corner();
 		/*this_.*/corner_arr().Matrix_print();
 	}
-	void print_zero(/*canvas& this_*/);
-	void delite(Point& err)
+	void print_zero(/*Canvas& this_*/);
+	void remove(const Dot& dot_to_erase)
 	{
-		 delite_line_(err, err, corner_arr());
-		 delite_point(err, corner_arr());
-		 erase_point_from_corner(err);
+		remove_line_(dot_to_erase, dot_to_erase);
+		remove_point(dot_to_erase);
+		erase_point_from_corner(dot_to_erase);
 	}
-	void delite_line(Point& A,  Point& B)
-	{
-		 delite_line_(A,B, corner_arr());
-		 delite_point(A, corner_arr());
-		 delite_point(B, corner_arr());
 
-		 delite(A);
-		 delite(B);
+	void remove_line(const Dot& A, const Dot& B)
+	{
+		remove_line_(A, B);
 	}
 
 	void change_file_path(std::string adress)
@@ -237,31 +224,31 @@ public:
 		std::ofstream outfile_corner(outfile_adress);
 		corner_arr().print_to_file(outfile_corner);
 	}
-	void clear(/*canvas& this_*/);
+	void clear(/*Canvas& this_*/);
 };
 
 
- 
-class axys : protected canvas
+
+class Axys : protected Canvas
 {
-	//friend class canvas;
+	//friend class Canvas;
 
 private:
 
 	void draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
 public:
-	void erase_point_from_axys(Point& err);
-	void create(/*canvas& this_,*/ char axys_arr_fill_symbol = ' ');
-	void delite(/*canvas& this_*/)
+	void erase_point_from_axys(Dot& err);
+	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
+	void remove(/*Canvas& this_*/)
 	{
 		/*this_.*/axys_arr().clear_matrix();
 	}
-	void print(/*canvas& this_*/)
+	void print(/*Canvas& this_*/)
 	{
 		/*this_.*/axys_arr().Matrix_print();
 	}
-	void draw_lines(/*canvas& this_*/);
-	void draw_points(/*canvas& this_*/);
+	void draw_lines(/*Canvas& this_*/);
+	void draw_points(/*Canvas& this_*/);
 	void print_to_file(std::ostream& output)
 	{
 		axys_arr().print_to_file(output);

@@ -30,9 +30,9 @@ void draw_line_4(const Point& A, const Point& B, const Point& ORIGIN, unsigned c
 
 
     // triangle, coefficient, bool draw_triangle=false, bool draw_round=true
-void axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle=false, bool draw_round=true);
+void Axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle=false, bool draw_round=true);
 
 // triangle, coefficient, bool draw_triangle=false, bool draw_round=true
-void corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle = false, bool draw_round = true);
+void Corner(Triangle& triangle, unsigned int coefficient, bool draw_triangle = false, bool draw_round = true);
 
 #endif //!  LINES_DRAW_TEST_H__

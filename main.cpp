@@ -21,7 +21,7 @@ int main(int argc, char const* argv[])
 	// {  test create & call base handwritten "libs"
 	Ray_3_ a;
 	Matrix b;
-	Point c;
+	Dot c;
 	Triangle d;
 	//  }  test create & call base handwritten "libs"
 
@@ -88,10 +88,10 @@ int main(int argc, char const* argv[])
 	int min_x = INT_MAX;
 	int min_y = INT_MAX;
 
-	Point* point_arr = new Point[n_points];
+	Dot* point_arr = new Dot[n_points];
 
 	for (size_t i = 0; i < n_points; i++) {
-		Point temp;
+		Dot temp;
 
 		if (input_switch == 3) {
 			//(rand()%range)±shift
@@ -124,7 +124,7 @@ int main(int argc, char const* argv[])
 	int t1 = clock();
 
 
-	// { work with Point arr, to create triangle and find max insade point
+	// { work with Dot arr, to create triangle and find max insade point
 	Triangle* triangle_arr = new Triangle[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	size_t n_triangles = 0;
 	for (size_t i = 0; i < n_points; i++)
@@ -175,7 +175,7 @@ int main(int argc, char const* argv[])
 	final_triangle_arr[max_dot_index].print();
 	size_t cout_cntr = 15;
 
-	// } work with Point arr, to create triangle and find max insade point
+	// } work with Dot arr, to create triangle and find max insade point
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -185,10 +185,10 @@ int main(int argc, char const* argv[])
 	try
 	{
 		
-		Point a;
-		Point b;
-		Point c;
-		Point d;
+		Dot a;
+		Dot b;
+		Dot c;
+		Dot d;
 		Ray_3_ test___;
 
 		int rnd = utilities::random_INT(0, 90);
@@ -198,8 +198,8 @@ int main(int argc, char const* argv[])
 
 		std::cout << "\n" << "start" << "\n";
 
-			corner Test_corner;
-			axys Test_axys;
+			Corner Test_corner;
+			Axys Test_axys;
 		
 		while (true) {
 			//	system("cls");
@@ -219,37 +219,37 @@ int main(int argc, char const* argv[])
 
 
 			std::cout << "\n";
-			//canvas Test_;
+			//Canvas Test_;
 
 			//for (size_t i = 0; i < test___.size(); i++)
 			//{
 			//	std::cout << test___[i].x << " , " << test___[i].y << " ; ";
 			//}
 
-			Test_corner.add_points(test___);
+			Test_corner.insert(test___);
 			test___.clear();
 
 
-			Point tpm; tpm.x = -3; tpm.y = 3; tpm.symbol = 'o';
+			Dot tpm; tpm.x = -3; tpm.y = 3; tpm.symbol = 'o';
 			Test_corner.insert(tpm);
 			Test_corner.print_point();
 
 
-			Point tpm2; tpm2.x = -5; tpm2.y = 5; tpm2.symbol = '!';
-			Point tpm3; tpm3.x = 5; tpm3.y = -5; tpm3.symbol = '!';
+			Dot tpm2; tpm2.x = -5; tpm2.y = 5; tpm2.symbol = '!';
+			Dot tpm3; tpm3.x = 5; tpm3.y = -5; tpm3.symbol = '!';
 			Test_corner.add_lines(tpm2, tpm3,true,'-');
 			Test_corner.print_line();
 
-			Point tpm4; tpm4.x = -5; tpm4.y = -5; tpm4.symbol = '!';
-			Point tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!';
+			Dot tpm4; tpm4.x = -5; tpm4.y = -5; tpm4.symbol = '!';
+			Dot tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!';
 			Test_corner.add_lines(tpm4, tpm5, true,'*');
 			Test_corner.print_line();
 
-			Point tpm6; tpm6.x = 0; tpm6.y = 0; tpm6.symbol = '!';
-			Test_corner.delite(tpm6);
+			Dot tpm6; tpm6.x = 0; tpm6.y = 0; tpm6.symbol = '!';
+			Test_corner.remove(tpm6);
 			Test_corner.print_all();
 
-			Test_corner.delite_line(tpm4, tpm5);
+			Test_corner.remove_line(tpm4, tpm5);
 			Test_corner.print_all();
 
 
@@ -268,7 +268,7 @@ int main(int argc, char const* argv[])
 
 			//system("cls");
 			std::cout << "\n";
-			//Test_axys.add_points(test___);
+			//Test_axys.insert(test___);
 			//Test_axys.create();
 			//Test_axys.draw_points();
 			//Test_axys.print();
@@ -284,11 +284,11 @@ int main(int argc, char const* argv[])
 
 		}
 			////	
-			////Point to_line_1;
+			////Dot to_line_1;
 			////std::cout << "\n\t" << "input" << "\n";
 			////std::cin >> to_line_1.x >> to_line_1.y;
 	
-			////Point to_line_2;
+			////Dot to_line_2;
 			////std::cout << "\n\t" << "input" << "\n";
 			////std::cin >> to_line_2.x >> to_line_2.y;
 			////std::cout << "\n\t" << "input smbl" << "\n";
@@ -313,17 +313,17 @@ int main(int argc, char const* argv[])
 
 
 
-			//canvas Test_;
+			//Canvas Test_;
 			// 
 			// 
-			//corner Test_corner_; // to do
+			//Corner Test_corner_; // to do
 
-			//canvas Test;
-			//corner Test_corner;
-			//axys Test_axys;
+			//Canvas Test;
+			//Corner Test_corner;
+			//Axys Test_axys;
 
-			//Test.add_points(final_triangle_arr[max_dot_index].get_points_inside_Ray());
-			////Test.calculate_line_round(to_line_1, to_line_2);
+			//Test.insert(final_triangle_arr[max_dot_index].get_points_inside_Ray());
+			////Test.calculate_line_with_rounding(to_line_1, to_line_2);
 			//Test_corner.create(Test);
 			//Test_corner.print(Test);
 			//Test_corner.draw_lines(Test);
@@ -338,7 +338,7 @@ int main(int argc, char const* argv[])
 			//Test_corner.print(Test);
 
 
-			//corner().draw_points(Test);
+			//Corner().draw_points(Test);
 
 			//Test.print();
 			//
@@ -351,11 +351,11 @@ int main(int argc, char const* argv[])
 			//Test.print_to_file(outfile);
 
 
-			//axys().create(Test);
-			//axys().draw_lines(Test);
+			//Axys().create(Test);
+			//Axys().draw_lines(Test);
 			//Test_axys.print(Test);
-			//axys().draw_points(Test);
-			//axys().print(Test);
+			//Axys().draw_points(Test);
+			//Axys().print(Test);
 
 			////erase_lines();  //erase_lines_from_canvas 
 			////erase_points(); //erase_points_from_canvas
@@ -369,17 +369,17 @@ int main(int argc, char const* argv[])
 			////draw_line();								// add_line_to_canvas
 			////print_arr();								// print_canvas 
 
-			////delite_lines();  //erase_lines_from_lines_Ray 
-			////delite_points(); //erase_lines_from_points_Ray 
+			////remove_lines();  //erase_lines_from_lines_Ray 
+			////remove_points(); //erase_lines_from_points_Ray 
 			///*
-			//Point er;
+			//Dot er;
 			//std::cout << "\n\t" << "input er" << "\n";
 			//std::cin >> er.x >> er.y;
 			////erase_point(er);
 			//*/
 			////print_arr();
 			////canvas_clear();
-			////delite_line(test___[0], test___[3]);
+			////remove_line(test___[0], test___[3]);
 			////print_arr();
 			//int st = 0;
 		//}
