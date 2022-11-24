@@ -21,13 +21,19 @@ protected:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
 
-	Coordinates ZERO_;
-	Coordinates ORIGIN_;
 
 	Ray_3_ points_to_draw_;		//свободные точки для рисования
-	Ray_3_ line_points_to_draw_;	//точки линий для рисования
+	//Ray_3_ line_points_to_draw_;	//точки линий для рисования
 
-	Matrix axys_arr_;
+};
+
+
+
+class Canvas_console : public Canvas
+{
+protected:
+	Coordinates ZERO_;
+	Coordinates ORIGIN_;
 
 	int width_x_ = -1;
 	int width_y_ = -1;
@@ -41,10 +47,7 @@ protected:
 	int coefficient = 1;
 
 	bool debug;
-	void set_at(Coordinates cell, char symbol)
-	{
-		axys_arr_.set_at(cell.i, cell.j, symbol);
-	}
+
 
 	void max_min_init();
 	void initialize_width();
@@ -62,10 +65,10 @@ protected:
 	//--------------------------------------------------------------------------------------------
 
 
-	Ray_3_& line_points_to_draw()
-	{
-		return line_points_to_draw_;
-	}
+	//Ray_3_& line_points_to_draw()
+	//{
+	//	return line_points_to_draw_;
+	//}
 
 	Point& MAX_VIRTUAL()
 	{
@@ -118,10 +121,7 @@ protected:
 		return ORIGIN_;
 	}
 
-	Matrix& axys_arr()
-	{
-		return axys_arr_;
-	}
+
 
 	Ray_3_& points_to_draw()			//  !!!!!!
 	{									//  !!!!!!
@@ -152,12 +152,11 @@ public:
 
 	}
 	void go_debug(bool is_debug = false);
+
+
 };
 
-
-
-
-class Corner : public Canvas
+class Corner : public Canvas_console
 {
 	//friend class Canvas;
 
@@ -229,14 +228,23 @@ public:
 
 
 
-class Axys : protected Canvas
+class Axys : protected Canvas_console
 {
 	//friend class Canvas;
 
 private:
+	Matrix axys_arr_;
 
 	void draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
 public:
+	Matrix& axys_arr()
+	{
+		return axys_arr_;
+	}
+	void set_at(Coordinates cell, char symbol)
+	{
+		axys_arr_.set_at(cell.i, cell.j, symbol);
+	}
 	void erase_point_from_axys(Dot& err);
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void remove(/*Canvas& this_*/)
