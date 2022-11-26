@@ -1,5 +1,14 @@
 
 
+
+
+
+
+
+
+//template<typename T>
+//concept C1 = sizeof(T) != sizeof(int);
+
 #include "Ray_3_test.h"
 
 

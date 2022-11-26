@@ -10,9 +10,12 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include <exception>
 #include <limits>
 
+
 int main(int argc, char const* argv[])
 {
-	std::ios_base::sync_with_stdio(false);
+	utilities::fast_print();
+	//std::ios_base::sync_with_stdio(false);
+	//std::cin.tie(NULL);
 	 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	 
@@ -197,64 +200,58 @@ int main(int argc, char const* argv[])
 		//a = { 15, 1 };
 
 		std::cout << "\n" << "start" << "\n";
-
 			Corner Test_corner;
+			Corner Test_corner_2;
 			Axys Test_axys;
 		
 		while (true) {
-			//	system("cls");
-			a.x = utilities::random_INT(-15, 15); a.y = utilities::random_INT(-15, 15); a.symbol = '+';
+
+			system("cls");
+			int st_x_rnd_lmt = -20; int ed_x_rnd_lmt = 20;
+			int st_y_rnd_lmt = -10; int ed_y_rnd_lmt = 10;
+
+			a.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); a.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); a.symbol = '^';
 			test___.add_to_back(a);
-			b.x = utilities::random_INT(-15, 15); b.y = utilities::random_INT(-15, 15); b.symbol = '+';
+			b.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); b.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); b.symbol = '^';
 			test___.add_to_back(b);
-			c.x = utilities::random_INT(-15, 15); c.y = utilities::random_INT(-15, 15); c.symbol = '+';
+			c.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); c.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); c.symbol = '^';
 			test___.add_to_back(c);
-			d.x = utilities::random_INT(-15, 15); d.y = utilities::random_INT(-15, 15); d.symbol = '+';
+			d.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); d.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); d.symbol = '^';
 			test___.add_to_back(d);
 
 
-			std::cout << "\n";
-			std::cout << "\n";
-			std::cout << "\n";
-
-
-			std::cout << "\n";
-			//Canvas Test_;
-
-			//for (size_t i = 0; i < test___.size(); i++)
-			//{
-			//	std::cout << test___[i].x << " , " << test___[i].y << " ; ";
-			//}
 
 			Test_corner.insert(test___);
 			test___.clear();
 
 
-			Dot tpm; tpm.x = -3; tpm.y = 3; tpm.symbol = 'o';
+			Dot tpm; tpm.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); tpm.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); tpm.symbol = 'o';
 			Test_corner.insert(tpm);
-			Test_corner.print_point();
-
 
 			Dot tpm2; tpm2.x = -5; tpm2.y = 5; tpm2.symbol = '!';
 			Dot tpm3; tpm3.x = 5; tpm3.y = -5; tpm3.symbol = '!';
-			Test_corner.add_lines(tpm2, tpm3,true,'-');
-			Test_corner.print_line();
+			Test_corner_2.add_lines(tpm2, tpm3,true,'-');
+
 
 			Dot tpm4; tpm4.x = -5; tpm4.y = -5; tpm4.symbol = '!';
-			Dot tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!';
-			Test_corner.add_lines(tpm4, tpm5, true,'*');
-			Test_corner.print_line();
+			Dot tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!'; 
+			Test_corner_2.add_lines(tpm4, tpm5, true,'*');
 
-			Dot tpm6; tpm6.x = 0; tpm6.y = 0; tpm6.symbol = '!';
-			Test_corner.remove(tpm6);
-			Test_corner.print_all();
 
-			Test_corner.remove_line(tpm4, tpm5);
-			Test_corner.print_all();
+			Corner Test_corner_3;
+			Test_corner += Test_corner_2;
+			Test_corner_3 += Test_corner;
+			
 
+			Test_axys += Test_corner_3;
+			Test_axys.print();
+			Corner Test_corner_4 = Test_corner_3;
+			Test_corner_3.print();
+			Test_corner_4.print();
 
 			std::cout << "\n";
 
+			std::cin.get();
 
 
 
@@ -265,13 +262,8 @@ int main(int argc, char const* argv[])
 //			}
 //std::cout << "\n";
 
-
-			//system("cls");
 			std::cout << "\n";
-			//Test_axys.insert(test___);
-			//Test_axys.create();
-			//Test_axys.draw_points();
-			//Test_axys.print();
+
 
 
 			std::ofstream outfile_corner("corner_path_out.txt");
@@ -283,106 +275,7 @@ int main(int argc, char const* argv[])
 			std::cout << "end hello" << "\n";
 
 		}
-			////	
-			////Dot to_line_1;
-			////std::cout << "\n\t" << "input" << "\n";
-			////std::cin >> to_line_1.x >> to_line_1.y;
-	
-			////Dot to_line_2;
-			////std::cout << "\n\t" << "input" << "\n";
-			////std::cin >> to_line_2.x >> to_line_2.y;
-			////std::cout << "\n\t" << "input smbl" << "\n";
-			////std::cin >> to_line_2.symbol;
-			////
-			////hello_try_set_min_max_by(to_line_1);
-
-			////hello_try_set_min_max_by(to_line_2);
-
-			////draw_line_1_(to_line_1, to_line_2,false , to_line_2.symbol);
-			//
-			////draw_points();
-
-			////draw_line();
-			////print_arr();
-
-			////draw_line_1_(to_line_1, to_line_2, true, to_line_2.symbol);
-
-			////draw_line();
-			////print_arr();
-
-
-
-
-			//Canvas Test_;
-			// 
-			// 
-			//Corner Test_corner_; // to do
-
-			//Canvas Test;
-			//Corner Test_corner;
-			//Axys Test_axys;
-
-			//Test.insert(final_triangle_arr[max_dot_index].get_points_inside_Ray());
-			////Test.calculate_line_with_rounding(to_line_1, to_line_2);
-			//Test_corner.create(Test);
-			//Test_corner.print(Test);
-			//Test_corner.draw_lines(Test);
-			//Test_corner.print(Test);
-			//Test_corner.draw_points(Test);
-			//Test_corner.print(Test);
-			//Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_A(), final_triangle_arr[max_dot_index].get_B(), true, 'o', Test);
-			//Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_B(), final_triangle_arr[max_dot_index].get_C(), true, 'p', Test);
-			//Test_corner.draw_lines(final_triangle_arr[max_dot_index].get_C(), final_triangle_arr[max_dot_index].get_A(), true, 'l', Test);
-			//Test_corner.print(Test);
-			//Test_corner.create(Test);
-			//Test_corner.print(Test);
-
-
-			//Corner().draw_points(Test);
-
-			//Test.print();
-			//
-			//
-			//Test.print();
-
-			//Test_corner.print(Test);
-
-			//std::ofstream outfile("Matrix_path_out.txt");
-			//Test.print_to_file(outfile);
-
-
-			//Axys().create(Test);
-			//Axys().draw_lines(Test);
-			//Test_axys.print(Test);
-			//Axys().draw_points(Test);
-			//Axys().print(Test);
-
-			////erase_lines();  //erase_lines_from_canvas 
-			////erase_points(); //erase_points_from_canvas
-
-			////print_arr();
-
-			////draw_line_1_(test___[0], test___[3], false, '-');
-			////draw_line();								// add_line_to_canvas
-			////print_arr();
-			////draw_line_1_(test___[0], test___[3], true, '+');// add_new_line_to_line_Ray
-			////draw_line();								// add_line_to_canvas
-			////print_arr();								// print_canvas 
-
-			////remove_lines();  //erase_lines_from_lines_Ray 
-			////remove_points(); //erase_lines_from_points_Ray 
-			///*
-			//Dot er;
-			//std::cout << "\n\t" << "input er" << "\n";
-			//std::cin >> er.x >> er.y;
-			////erase_point(er);
-			//*/
-			////print_arr();
-			////canvas_clear();
-			////remove_line(test___[0], test___[3]);
-			////print_arr();
-			//int st = 0;
-		//}
+			
 		std::cout << "end hello" << "\n";
 	}
 		catch (const std::exception& exception)
