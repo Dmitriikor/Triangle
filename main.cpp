@@ -244,9 +244,9 @@ int main(int argc, char const* argv[])
 			
 
 			Test_axys += Test_corner_3;
+			Test_corner_3.print();
 			Test_axys.print();
 			Corner Test_corner_4 = Test_corner_3;
-			Test_corner_3.print();
 			Test_corner_4.print();
 
 			std::cout << "\n";

@@ -171,6 +171,7 @@ public:
 		create();
 		add_points_to_corner();
 		/*this_.*/corner_arr().Matrix_print();
+		//corner_arr().print_to_raw();
 	}
 	void print_zero(/*Canvas& this_*/);
 	void remove(const Dot& dot_to_erase)

@@ -26,35 +26,37 @@ void utilities::fast_print()
 
 void utilities::fastscan(std::istream& cin)
 {
-	//variable to indicate sign of input number
+	// variable to indicate sign of input number
 	bool negative = false;
-	register int c;
-	int digit_counter = 0;
-	int number = 0;
-	int long long number_int = 0;
+	int long long number_int;
+	int digit_counter;
 
 	// extract current character from buffer
-	c = getchar();
-	if (c == '-')
+	char c = getchar();
+	if (c == '-' || c == '+')
 	{
 		// number is negative
-		negative = true;
+		if (c == '-')
+			negative = true;
 
 		// extract the next character from the buffer
 		c = getchar();
 	}
 
 	// if scanned input has a negative sign
-	std::cout << "\n\t";
-	if (negative)
-		std::cout << "-";
+	//std::cout << "\n\t" << (negative ? "-" : "");
+
+	number_int = 0;
+	digit_counter = 0;
 	// Keep on extracting characters if they are integers
 	// i.e ASCII Value lies from '0'(48) to '9' (57)
-	for (; (c > 47 && c < 58); c = getchar())
+	while (c >= '0' && c <= '9')
 	{
-		std::cout << number * 10 + c - 48;
-		number_int = number_int * 10 + c - 48;
+		//std::cout << c - '0';
+		int digit = c - '0';
+		number_int = number_int * 10 + digit;
 		++digit_counter;
+		c = getchar();
 	}
 	// if scanned input has a negative sign, negate the
 	// value of the input number
@@ -65,12 +67,12 @@ void utilities::fastscan(std::istream& cin)
 	std::cout << "\n\t" << digit_counter << "\n";
 }
 
- 
+
 
 //Dot* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in, std::string path_out)
 //{
 	// { start dialoge
-	 
+
 
 	//clear_cls(OS);
 

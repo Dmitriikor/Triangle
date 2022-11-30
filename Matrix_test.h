@@ -1,10 +1,12 @@
 #ifndef MATRIX_TEST_H__
 
 #define MATRIX_TEST_H__
+#include <Windows.h>
+
 #include <stdexcept>
 #include <iostream>
-#include <Windows.h>
 #include <fstream>
+#include <string>
 
 using T = char;
 using pointer_type = T*;
@@ -26,7 +28,7 @@ private:
 	T** arr; //T** arr = nullptr;
 	//int crt_cntr = 0;
 
-	void allocate(unsigned intN, unsigned int M);
+	static T** allocate(size_t N, size_t M);
 private:
 	struct str_i {
 		Matrix& my_matrix;
@@ -36,7 +38,7 @@ private:
 			//str_i::i = i;
 		}
 
-		T& operator[](size_t j) /*const*/ {
+		T& operator[](size_t j) {
 			return my_matrix.arr[i][j];
 		}
 	};
@@ -56,7 +58,11 @@ private:
 
 public:
 	Matrix();
+
+	//Matrix(size_t N, size_t M, const T& value = T());
 	Matrix(size_t N, size_t M);
+	Matrix(size_t N, size_t M, const T& value);
+
 	Matrix(const Matrix& other);
 	~Matrix();
 
@@ -66,16 +72,20 @@ public:
 	const_str_i operator[](size_t i) const;
 
 	size_t get_N() const;
-
 	size_t get_M() const;
 
-	void create_matrix(size_t strings, size_t columns);
+	//после всех
+	//void resize(size_t strings, size_t columns, const T& value = T());
+	//void resize(size_t strings, size_t columns);
+	//void resize(size_t strings, size_t columns, const T& value);
 
-	void fill(char symbol);
+	void fill(const T& value);
+
 	bool is_empty();
-	void Matrix_print();
-	void print_to_file(std::ostream& output) const;
 
+	void print() const;
+	void print(std::ofstream& output) const;
+	void print(std::ostream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
 	void set_at(Coordinates cell, const T& data);
@@ -83,7 +93,10 @@ public:
 	T& get_at(size_t N, size_t M);
 	T& get_at(Coordinates cell);
 
-	void clear_matrix();
+	const T& get_at(size_t N, size_t M) const;
+	const T& get_at(Coordinates cell) const;
+
+	void clear();
 	
 };
 

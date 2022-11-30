@@ -26,13 +26,16 @@ Matrix::Matrix(const Matrix& other) : arr(nullptr)
 	N = other.N;
 	M = other.M;
 
-	create_matrix(N, M);
-
-	for (size_t i = 0; i < N; i++)
+	if (N != 0 && M != 0)
 	{
-		for (size_t j = 0; j < M; j++)
+		create_matrix(N, M);
+
+		for (size_t i = 0; i < N; i++)
 		{
-			arr[i][j] = other.arr[i][j];
+			for (size_t j = 0; j < M; j++)
+			{
+				arr[i][j] = other.arr[i][j];
+			}
 		}
 	}
 }
@@ -74,12 +77,15 @@ Matrix::const_str_i Matrix::operator[](size_t i) const {
 }
 
 
-void Matrix::allocate(unsigned int N, unsigned int M)
+T** Matrix::allocate(size_t N, size_t M)
 {
-	arr = new T * [N];
+	T** new_arr = new T * [N]();
+
 	for (size_t i = 0; i < N; i++) {
-		arr[i] = new T[M];
+		new_arr[i] = new T[M]();
 	}
+
+	return new_arr;
 }
 
 
@@ -91,25 +97,25 @@ size_t Matrix::get_M() const {
 	return M;
 }
 
-void Matrix::create_matrix(size_t strings, size_t columns) {
-	if (strings == 0 || columns == 0)
-		throw std::logic_error("logic_error in void create_matrix : strings == 0 or columns == 0 => MATRIX 0x0");
-
-	if (arr == nullptr) {
-		//crt_cntr++;
-		N = strings;
-		M = columns;
-		//std::cout << "\n\t" << "Matrix " << "create" << " N = " << N << " M = " << M << "\n\n\n";
-
-		allocate(N,M);
-	}
-	else {
-		throw std::logic_error("logic_error in void create_matrix : MATRIX ALREADY EXIST");
-		//std::cout << "\n\t\nMATRIX ALREADY EXIST\n\n";
-		//return NULL;
-	}
-	//return arr;
-}
+//void Matrix::resize(size_t strings, size_t columns) {
+//	if (strings == 0 || columns == 0)
+//		throw std::logic_error("logic_error in void create_matrix : strings == 0 or columns == 0 => MATRIX 0x0");
+//
+//	if (arr == nullptr) {
+//		//crt_cntr++;
+//		N = strings;
+//		M = columns;
+//		//std::cout << "\n\t" << "Matrix " << "create" << " N = " << N << " M = " << M << "\n\n\n";
+//
+//		allocate(N,M);
+//	}
+//	else {
+//		throw std::logic_error("logic_error in void create_matrix : MATRIX ALREADY EXIST");
+//		//std::cout << "\n\t\nMATRIX ALREADY EXIST\n\n";
+//		//return NULL;
+//	}
+//	//return arr;
+//}
 
 void Matrix::fill(char symbol)
 {
@@ -137,7 +143,7 @@ void Matrix::fill(char symbol)
 //	}
 //}
 
-#include <string>
+
 
 void Matrix::set_at(size_t i, size_t j, const T& data) {
 	if (i >= N)
@@ -173,7 +179,7 @@ T& Matrix::get_at(Coordinates cell) {
 	return get_at(cell.i, cell.j);
 }
 
-void Matrix::clear_matrix() {
+void Matrix::clear() {
 	if (arr != nullptr)
 	{
 		//std::cout << "\n\t" << "~Matrix " << "remove" << " N = " << N << " M = " << M << "\n\n\n";
@@ -218,7 +224,7 @@ void Matrix::Matrix_print()
 		for (size_t j = 0; j < M; j++)
 		{
 			std::cout << arr[i][j];
-		
+
 		}
 		std::cout << "\n";
 	}
@@ -228,12 +234,12 @@ void Matrix::print_to_file(std::ostream& output) const {
 	{
 		for (size_t j = 0; j < M; j++)
 		{
-			output  << arr[i][j];
+			output << arr[i][j];
 
 		}
 		output << "\n";
 	}
-	
+
 }
 
 

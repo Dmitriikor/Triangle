@@ -38,6 +38,7 @@
     <ClInclude Include="draw_line_2_test.h" />
     <ClInclude Include="hello.h" />
     <ClInclude Include="Ray_3_test.h" />
+    <ClInclude Include="Ray_template.h" />
     <ClInclude Include="Ray_test.h" />
     <ClInclude Include="Is_equal_test.h" />
     <ClInclude Include="Lines_draw_test.h" />
