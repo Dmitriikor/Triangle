@@ -49,6 +49,8 @@ public:
 
 	Ray_template(const Ray_template& other);
 
+	Ray_template(const char *symbl);
+
 	// LEFT
 	void add_to_first(const T& value);
 
@@ -60,6 +62,7 @@ public:
 	const T& at_(size_t index) const;
 
 	T& operator[](size_t index);
+
 
 	const T& operator[](size_t index) const;
 
@@ -184,6 +187,13 @@ Ray_template<T>::Ray_template<T>(const Ray_template<T>& other)
 
 	for (size_t i = LEFT - F_LEFT; i < LEFT + F_RIGHT; ++i)
 		ray_[i] = other.ray_[i];
+}
+
+template <typename T>
+Ray_template<T>::Ray_template(const char* symbl)
+{
+	for (i=0; symbl[i] != '\0';++i)
+		ray_.add_to_back(symbl[i]);
 }
 
 template <typename T>

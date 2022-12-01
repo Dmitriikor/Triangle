@@ -217,7 +217,7 @@ bool Matrix::is_empty()
 	return false;
 }
 
-void Matrix::Matrix_print()
+void Matrix::print() const
 {
 	for (size_t i = 0; i < N; i++)
 	{
@@ -229,7 +229,7 @@ void Matrix::Matrix_print()
 		std::cout << "\n";
 	}
 }
-void Matrix::print_to_file(std::ostream& output) const {
+void Matrix::print(std::ofstream& output) const {
 	for (size_t i = 0; i < N; i++)
 	{
 		for (size_t j = 0; j < M; j++)

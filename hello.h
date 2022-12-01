@@ -8,6 +8,8 @@
 #include <string>
 #include <limits>
 
+#include "Ray_template.h"
+
 #include "Ray_3_test.h"
 #include "Point_test.h"
 #include "Matrix_test.h"
@@ -169,8 +171,9 @@ public:
 	{
 		corner_arr().clear_matrix();
 		create();
+		std::ostream& test__ = std::cout;
 		add_points_to_corner();
-		/*this_.*/corner_arr().Matrix_print();
+		/*this_.*/corner_arr().print(test__);
 		//corner_arr().print_to_raw();
 	}
 	void print_zero(/*Canvas& this_*/);
@@ -183,21 +186,29 @@ public:
 	{
 		remove_line_total(A, B);
 	}
-	void change_file_path(std::string adress)
+
+	void change_file_path(Ray_template <char> adress)
 	{
 		outfile_adress = adress;
 	}
+
 	void print_to_file()
 	{
-		std::ofstream outfile_corner(outfile_adress);
-		corner_arr().print_to_file(outfile_corner);
+		char outfile_adress_2[100];
+		for (int i = 0; i < outfile_adress.size(); ++i)
+			outfile_adress_2[i] = outfile_adress[i];
+
+		outfile_adress_2[outfile_adress.size()] = '\0';
+
+		std::ofstream outfile_corner(outfile_adress_2); //////////////////////////////////////////////???????????????????????????????????????????????
+		corner_arr().print(outfile_corner);
 	}
 	void clear(/*Canvas& this_*/);
 
 private:
 
 	Matrix corner_arr_;
-	std::string outfile_adress = "corner_path_out.txt";
+	Ray_template <char> outfile_adress = "corner_path_out.txt" ;
 
 	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
 	void add_points_to_corner(/*Canvas& this_*/);

@@ -29,6 +29,7 @@ private:
 	//int crt_cntr = 0;
 
 	static T** allocate(size_t N, size_t M);
+
 private:
 	struct str_i {
 		Matrix& my_matrix;
@@ -55,7 +56,6 @@ private:
 			return my_matrix.arr[i][j];
 		}
 	};
-
 public:
 	Matrix();
 
