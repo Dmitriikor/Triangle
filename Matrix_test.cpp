@@ -35,6 +35,13 @@ void Matrix::resaize(size_t N_, size_t M_)
 	arr = allocate(N_, M_);
 }
 
+void Matrix::resaize_and_save(size_t N_, size_t M_)
+{
+
+
+
+}
+
 Matrix::Matrix(const Matrix& other) : arr(nullptr)
 {
 	N = other.N;
