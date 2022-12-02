@@ -49,7 +49,7 @@ public:
 
 	Ray_template(const Ray_template& other);
 
-	Ray_template(const char *symbl);
+	Ray_template(const char* symbl);
 
 	// LEFT
 	void add_to_first(const T& value);
@@ -96,9 +96,6 @@ public:
 
 	Ray_template& operator=(const Ray_template& other);
 };
-
-
-
 
 template <typename T>
 void Ray_template<T>::create_() {
@@ -189,12 +186,6 @@ Ray_template<T>::Ray_template<T>(const Ray_template<T>& other)
 		ray_[i] = other.ray_[i];
 }
 
-template <typename T>
-Ray_template<T>::Ray_template(const char* symbl)
-{
-	for (i=0; symbl[i] != '\0';++i)
-		ray_.add_to_back(symbl[i]);
-}
 
 template <typename T>
 void Ray_template<T>::add_to_first(const T& value) {
@@ -210,6 +201,8 @@ void Ray_template<T>::add_to_first(const T& value) {
 	++F_LEFT;
 }
 
+
+
 template <typename T>
 void Ray_template<T>::add_to_back(const T& value) {
 	if (ray_ == nullptr)
@@ -222,6 +215,29 @@ void Ray_template<T>::add_to_back(const T& value) {
 	ray_[LEFT + F_RIGHT] = value;
 	++F_RIGHT;
 }
+
+template <typename T>
+Ray_template<T>::Ray_template(const char* symbl)
+{
+	LEFT = 1;
+	RIGHT = 1;
+	COEFFICIENT = 2;
+
+	create_();
+	int i;
+	for (i = 0; symbl[i] != '\0'; ++i)
+	{
+
+		if (F_RIGHT == RIGHT) {
+			RIGHT_increase_();
+		}
+
+		ray_[LEFT + F_RIGHT] = symbl[i];
+		++F_RIGHT;
+	}
+	shrink_to_fit();
+}
+
 
 template <typename T>
 T& Ray_template<T>::at_(size_t index) {
@@ -264,7 +280,8 @@ void Ray_template<T>::print() const {
 	for (size_t i = 0; i < LEFT - F_LEFT; i++)
 		std::cout << std::setw(2) << "." << " ";
 	for (size_t i = LEFT - F_LEFT; i < LEFT + F_RIGHT; i++)
-		std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
+		std::cout << std::setw(2) << ray_[i] << " ";
+	//std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
 	for (size_t i = F_RIGHT; i < RIGHT; i++)
 		std::cout << std::setw(2) << "." << " ";
 	std::cout << "\n";

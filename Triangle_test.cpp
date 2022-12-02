@@ -1,16 +1,16 @@
 #include "Triangle_test.h"
 
-const Point& Triangle::get_point_in(size_t index) const {
+const Dot& Triangle::get_point_in(size_t index) const {
 	return point_in_triangle[index];
 }
 
-const Ray_template<Point> Triangle::get_points_inside_Ray() const {
+const Ray_3_ Triangle::get_points_inside_Ray() const {
 	return point_in_triangle;
 }
 
 
 
-//const std::vector<Point>& Triangle::get_points_inside() const {
+//const std::vector<Dot>& Triangle::get_points_inside() const {
 //	return point_in_triangle;
 //}
 
@@ -27,7 +27,7 @@ double Triangle::get_CA() const {
 }
 
 
-const Point& Triangle::get_A() const {
+const Dot& Triangle::get_A() const {
 	return vertex.a;
 }
 const int Triangle::get_A_X() const {
@@ -37,7 +37,7 @@ const int Triangle::get_A_Y() const {
 	return vertex.a.y;
 }
 
-const Point& Triangle::get_B() const {
+const Dot& Triangle::get_B() const {
 	return vertex.b;
 }
 
@@ -48,7 +48,7 @@ const int Triangle::get_B_Y() const {
 	return vertex.b.y;
 }
 
-const Point& Triangle::get_C() const {
+const Dot& Triangle::get_C() const {
 	return vertex.c;
 }
 
@@ -59,7 +59,7 @@ const int Triangle::get_C_Y() const {
 	return vertex.c.y;
 }
 
-void Triangle::create(const Point& a, const Point& b, const Point& c) {
+void Triangle::create(const Dot& a, const Dot& b, const Dot& c) {
 	vertex.a = a;
 	vertex.b = b;
 	vertex.c = c;
@@ -78,7 +78,7 @@ size_t Triangle::get_dot_counter() const {
 	return (*this).dot_counter;
 }
 
-void Triangle::add_point_at_vector(const Point& point) {
+void Triangle::add_point_at_vector(const Dot& point) {
 	point_in_triangle.push_back(point);
 	dot_counter += 1;
 }
@@ -140,7 +140,7 @@ void Triangle::triangles_print_outfile(const Triangle triangle[], size_t index, 
 	}
 }
 
-Triangle Triangle::create_triangle(const Point& a, const Point& b, const Point& c) {
+Triangle Triangle::create_triangle(const Dot& a, const Dot& b, const Dot& c) {
 	Triangle temp_abc;
 
 	temp_abc.create(a, b, c);
@@ -148,7 +148,7 @@ Triangle Triangle::create_triangle(const Point& a, const Point& b, const Point& 
 	return temp_abc;
 }
 
-bool Triangle::is_inside(const Point& point, const Triangle& abc) {
+bool Triangle::is_inside(const Dot& point, const Triangle& abc) {
 	Triangle t1 = create_triangle(abc.get_A(), abc.get_B(), point);
 	Triangle t2 = create_triangle(abc.get_B(), abc.get_C(), point);
 	Triangle t3 = create_triangle(abc.get_C(), abc.get_A(), point);
@@ -159,9 +159,9 @@ bool Triangle::is_inside(const Point& point, const Triangle& abc) {
 	return false;
 }
 
-void Triangle::points_print(const Point p[], int n) {
+void Triangle::points_print(const Dot p[], int n) {
 	for (size_t i = 0; i < n; i++) {
-		Point coords = p[i];
+		Dot coords = p[i];
 		std::cout << "point N_ " << i + 1 << " = \t" << coords.x << " \t" << coords.y << "\n";
 	}
 }

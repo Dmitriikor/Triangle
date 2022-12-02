@@ -66,6 +66,8 @@ public:
 	Matrix(const Matrix& other);
 	~Matrix();
 
+	void resaize(size_t N, size_t M);
+
 	Matrix& operator=(const Matrix& other);
 
 	str_i operator[](size_t i);

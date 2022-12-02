@@ -268,7 +268,7 @@ int main(int argc, char const* argv[])
 
 			std::ofstream outfile_corner("corner_path_out.txt");
 
-			Test_corner.print_to_file();
+			//Test_corner.print_to_file();
 
 			//std::ofstream outfile_axys("axys_path_out.txt");
 			//Test_axys.print_to_file(outfile_axys);

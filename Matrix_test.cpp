@@ -17,7 +17,17 @@ Matrix::Matrix() : N(0), M(0), arr(nullptr)
 
 Matrix::Matrix(size_t N, size_t M) : N(N), M(M), arr(nullptr)
 {
-	//T** arr = nullptr;
+	if (arr != nullptr)
+	{
+		resaize(N,M);
+	}
+
+	allocate(N, M);
+}
+void Matrix::resaize(size_t N, size_t M)
+{
+	clear();
+
 	allocate(N, M);
 }
 
@@ -28,7 +38,7 @@ Matrix::Matrix(const Matrix& other) : arr(nullptr)
 
 	if (N != 0 && M != 0)
 	{
-		create_matrix(N, M);
+		allocate(N, M);
 
 		for (size_t i = 0; i < N; i++)
 		{
@@ -42,19 +52,19 @@ Matrix::Matrix(const Matrix& other) : arr(nullptr)
 
 Matrix::~Matrix()
 {
-	clear_matrix();
+	clear();
 }
 
 Matrix& Matrix::operator=(const Matrix& other)
 {
 	if (this != &other)
 	{
-		clear_matrix();
+		clear();
 
 		N = other.N;
 		M = other.M;
 
-		create_matrix(N, M);
+		allocate(N, M);
 
 		for (size_t i = 0; i < N; i++)
 		{
@@ -117,13 +127,13 @@ size_t Matrix::get_M() const {
 //	//return arr;
 //}
 
-void Matrix::fill(char symbol)
+void Matrix::fill(const T& value)
 {
 	for (size_t i = 0; i < N; i++)
 	{
 		for (size_t j = 0; j < M; j++)
 		{
-			arr[i][j] = symbol;
+			arr[i][j] = value;
 		}
 	}
 }
@@ -193,11 +203,11 @@ void Matrix::clear() {
 		arr = nullptr;*/
 		//Sleep(10000);
 		//std::cout << "\n\t" << "crt_cntr = " << crt_cntr << " N = " << N << " M = " << M << "\n\n\n";
-		//Matrix_print();
+		//print();
 
 		for (size_t i = 0; i < N; i++) {
 			//std::cout <<"\n\n\n\t"<< "i = " << i << " N = " << N << " M = " << M << "\n";
-			//Matrix_print();
+			//print();
 			delete[] arr[i];
 		}
 

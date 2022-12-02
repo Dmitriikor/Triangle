@@ -169,11 +169,10 @@ public:
 	}
 	void print(/*Canvas& this_*/)
 	{
-		corner_arr().clear_matrix();
+		corner_arr().clear();
 		create();
-		std::ostream& test__ = std::cout;
 		add_points_to_corner();
-		/*this_.*/corner_arr().print(test__);
+		/*this_.*/corner_arr().print();
 		//corner_arr().print_to_raw();
 	}
 	void print_zero(/*Canvas& this_*/);
@@ -192,7 +191,7 @@ public:
 		outfile_adress = adress;
 	}
 
-	void print_to_file()
+	void print(std::ostream& output)
 	{
 		char outfile_adress_2[100];
 		for (int i = 0; i < outfile_adress.size(); ++i)
@@ -247,20 +246,20 @@ public:
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void remove(/*Canvas& this_*/)
 	{
-		/*this_.*/axys_arr().clear_matrix();
+		/*this_.*/axys_arr().clear();
 	}
 	void print(/*Canvas& this_*/)
 	{
-		axys_arr().clear_matrix();
+		axys_arr().clear();
 		create();
 		draw_points();
-		axys_arr().Matrix_print();
+		axys_arr().print();
 	}
 	 
 	void draw_points(/*Canvas& this_*/);
-	void print_to_file(std::ostream& output)
+	void print(std::ostream& output)
 	{
-		axys_arr().print_to_file(output);
+		axys_arr().print(output);
 	}
 };
 

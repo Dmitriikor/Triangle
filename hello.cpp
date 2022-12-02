@@ -147,7 +147,7 @@ void Canvas_console::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, 
 		arr.set_at(axis_location, width_y_with_indent() + (i * width_x_with_indent()) + (width_x_with_indent() - 1), '|');
 
 		//std::cout << "\n"<< "min_x = " << min_x << "\n";
-		//arr.Matrix_print();
+		//arr.print();
 		//std::cout << "\n";
 
 		int abs_x = fabs(temp_x);
@@ -161,7 +161,7 @@ void Canvas_console::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, 
 			arr.set_at(axis_location, width_y_with_indent() + (i * width_x_with_indent()) + j, '0' + digit);
 
 			//std::cout << "\n";
-			//arr.Matrix_print();
+			//arr.print();
 			//std::cout << "\n";
 
 			abs_x = abs_x / 10;
@@ -172,7 +172,7 @@ void Canvas_console::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, 
 
 		if (j == -1)
 		{
-			arr.Matrix_print();
+			arr.print();
 			throw std::exception("hello.cpp -> create -> WRONG WIDTH_X");
 		}
 
@@ -233,7 +233,7 @@ void Corner::create(/*Canvas_console& this_,*/ char axys_arr_fill_symbol)
 
 	int max_x = /*this_.*/MAX_VIRTUAL().x;
 	int min_x = /*this_.*/MIN_VIRTUAL().x;
-	std::cout << "\n" << max_y<< " " << min_y << " ; " << max_x << " " << min_x;
+	//std::cout << "\n" << max_y<< " " << min_y << " ; " << max_x << " " << min_x;
 
 
 	{
@@ -247,7 +247,7 @@ void Corner::create(/*Canvas_console& this_,*/ char axys_arr_fill_symbol)
 
 		if (N > /*this_.*/corner_arr().get_N() || M > /*this_.*/corner_arr().get_M())
 		{
-			/*this_.*/corner_arr().create_matrix(N, M);
+			/*this_.*/corner_arr().resaize(N, M);
 			/*this_.*/corner_arr().fill(axys_arr_fill_symbol);
 		}
 	}
@@ -332,7 +332,7 @@ void Corner::print_zero(/*Canvas_console& this_*/)
 
 void Corner::clear(/*Canvas_console& this_*/)
 {
-	/*this_.*/corner_arr().clear_matrix();
+	/*this_.*/corner_arr().clear();
 
 	/*this_.*/initialize_width();
 
@@ -676,10 +676,10 @@ void Axys::create(/*Canvas_console& this_,*/ char axys_arr_fill_symbol)
 	int M_ = M;
 	M = M * 2 + (loc_width_y);
 
-	//axys_arr().clear_matrix();
+	//axys_arr().clear();
 
 	if (/*this_.*/axys_arr().is_empty()) {
-		/*this_.*/axys_arr().create_matrix(N, M);
+		/*this_.*/axys_arr().resaize(N, M);
 		/*this_.*/axys_arr().fill(axys_arr_fill_symbol);
 	}
 
