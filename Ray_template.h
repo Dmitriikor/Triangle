@@ -1,5 +1,7 @@
 #ifndef RAY_TEMPLATE_H_ 
 
+#define RAY_TEMPLATE_H_ 
+
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
@@ -160,8 +162,7 @@ Ray_template<T>::Ray_template<T>(size_t LEFT, size_t RIGHT) : Ray_template<T>(LE
 
 template <typename T>
 Ray_template<T>::Ray_template<T>(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
-	: LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT)
-{
+	: LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT){
 
 }
 

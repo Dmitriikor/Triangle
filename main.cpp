@@ -7,6 +7,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Point_test.h"
 #include "Triangle_test.h"
 #include "utilities.h"
+#include "Ray_template.h"
 #include <exception>
 #include <limits>
 
@@ -22,12 +23,12 @@ int main(int argc, char const* argv[])
 
 
 	// {  test create & call base handwritten "libs"
-	Ray_3_ a;
-	Matrix b;
-	Dot c;
-	Triangle d;
+	//Ray_3_ a;
+	//Matrix b;
+	//Dot c;
 	//  }  test create & call base handwritten "libs"
 
+	Triangle d;
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	std::cin >> n_points;
@@ -173,7 +174,7 @@ int main(int argc, char const* argv[])
 			max_dot = final_triangle_arr[i].get_dot_counter();
 			max_dot_index = i;
 		}
-		d.triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
+		Triangle::triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
 	}
 	final_triangle_arr[max_dot_index].print();
 	size_t cout_cntr = 15;
@@ -244,9 +245,9 @@ int main(int argc, char const* argv[])
 			
 
 			Test_axys += Test_corner_3;
-			Test_corner_3.print();
-			Test_axys.print();
 			Corner Test_corner_4 = Test_corner_3;
+			Test_axys.print();
+			Test_corner_3.print();
 			Test_corner_4.print();
 
 			std::cout << "\n";

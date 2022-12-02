@@ -5,7 +5,7 @@
 #include <vector> //!!!RAY
 #include <fstream>
 #include <cmath>
-
+#include "Ray_template.h"
 #include "Point_test.h"
 #include "Is_equal_test.h"
 #include "Ray_3_test.h"
@@ -18,7 +18,7 @@ private:
 		double CA;
 	} side;
 
-	Ray_3_ point_in_triangle;
+	Ray_template <Dot> point_in_triangle;
 
 	//std::vector<Dot> point_in_triangle;
 	size_t dot_counter;
@@ -38,7 +38,7 @@ public:
 const Dot& get_point_in(size_t index) const;
 
 //const std::vector<Dot>& get_points_inside() const;
-const Ray_3_ get_points_inside_Ray() const;
+const Ray_template <Dot> get_points_inside_Ray() const;
 
 double get_AB() const; 
 
@@ -78,7 +78,7 @@ void print() const;
 
 void print_to_file(std::ostream& output)const;
 
-void triangles_print_outfile(const Triangle triangle[], size_t index, const std::string& path_out);
+static void triangles_print_outfile(const Triangle triangle[], size_t index, const std::string& path_out);
 
 Triangle create_triangle(const Dot& a, const Dot& b, const Dot& c);
 

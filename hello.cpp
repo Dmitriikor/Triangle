@@ -247,7 +247,7 @@ void Corner::create(/*Canvas_console& this_,*/ char axys_arr_fill_symbol)
 
 		if (N > /*this_.*/corner_arr().get_N() || M > /*this_.*/corner_arr().get_M())
 		{
-			/*this_.*/corner_arr().resaize(N, M);
+			/*this_.*/corner_arr() = Matrix(N, M);
 			/*this_.*/corner_arr().fill(axys_arr_fill_symbol);
 		}
 	}
@@ -679,7 +679,7 @@ void Axys::create(/*Canvas_console& this_,*/ char axys_arr_fill_symbol)
 	//axys_arr().clear();
 
 	if (/*this_.*/axys_arr().is_empty()) {
-		/*this_.*/axys_arr().resaize(N, M);
+		/*this_.*/axys_arr() = Matrix(N, M);
 		/*this_.*/axys_arr().fill(axys_arr_fill_symbol);
 	}
 
