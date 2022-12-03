@@ -28,8 +28,9 @@ private:
 	T** arr; //T** arr = nullptr;
 	//int crt_cntr = 0;
 
-	static T** allocate(size_t N, size_t M);
 
+	static T** allocate(size_t N, size_t M);
+	T** resaize_and_save(size_t N_, size_t M_);
 private:
 	struct str_i {
 		Matrix& my_matrix;

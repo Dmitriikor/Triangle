@@ -35,10 +35,29 @@ void Matrix::resaize(size_t N_, size_t M_)
 	arr = allocate(N_, M_);
 }
 
-void Matrix::resaize_and_save(size_t N_, size_t M_)
+
+Matrix::Matrix(size_t N_, size_t M_)
 {
+	arr = resaize_and_save(N_, M_);
+	N = N_;
+	M = M_;
+	
+}
 
 
+T** Matrix::resaize_and_save( size_t N_, size_t M_)
+{
+	int old_N = N;
+	int old_M = M;
+	T** new_arr = allocate(N_, M_);
+	for (size_t i = 0; i < old_N; i++)
+	{
+		for (size_t j = 0; j < old_M; j++) 
+		{
+
+		}
+	}
+	 
 
 }
 
