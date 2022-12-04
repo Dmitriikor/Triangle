@@ -150,6 +150,8 @@ public:
 	virtual void remove_line(const Dot& A, const Dot& B) {}
 
 	void go_debug(bool is_debug = false);
+
+
 	~Canvas_console() 
 	{
 		

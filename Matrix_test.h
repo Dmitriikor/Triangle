@@ -30,7 +30,7 @@ private:
 
 
 	static T** allocate(size_t N, size_t M);
-	T** resaize_and_save(size_t N_, size_t M_);
+
 private:
 	struct str_i {
 		Matrix& my_matrix;
@@ -67,7 +67,7 @@ public:
 	Matrix(const Matrix& other);
 	~Matrix();
 
-	void resaize(size_t N, size_t M);
+	void resize(size_t N_, size_t M_);
 
 	Matrix& operator=(const Matrix& other);
 

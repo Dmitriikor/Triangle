@@ -14,68 +14,81 @@ Matrix::Matrix() : N(0), M(0), arr(nullptr)
 
 }
 
-
-Matrix::Matrix(size_t N, size_t M) : N(N), M(M), arr(nullptr)
+Matrix::Matrix(size_t N, size_t M) : N(N), M(M)
 {
-	if (arr != nullptr)
+	if (N == 0 || M == 0)
 	{
-		resaize(N,M);
+		//!!set_empty
+		N = M = 0;
+		arr = nullptr;
+		return;
 	}
 
 	arr = allocate(N, M);
 }
 
-void Matrix::resaize(size_t N_, size_t M_)
+void Matrix::resize(size_t N_, size_t M_)
 {
-	for (size_t i = 0; i < N; i++) {
-		delete[] arr[i];
-	}
-	delete[] arr;
+	T** new_arr;
+	new_arr = allocate(N_, M_);
 
-	arr = allocate(N_, M_);
-}
-
-
-Matrix::Matrix(size_t N_, size_t M_)
-{
-	arr = resaize_and_save(N_, M_);
-	N = N_;
-	M = M_;
-	
-}
-
-
-T** Matrix::resaize_and_save( size_t N_, size_t M_)
-{
-	int old_N = N;
-	int old_M = M;
-	T** new_arr = allocate(N_, M_);
-	for (size_t i = 0; i < old_N; i++)
+	for (size_t i = 0; i < N_; i++)
 	{
-		for (size_t j = 0; j < old_M; j++) 
+		for (size_t j = 0; j < M_; j++)
 		{
-
+			if (N > i && M > j) {
+				new_arr[i][j] = arr[i][j];
+			}
 		}
 	}
-	 
-
+	clear();
+	N = N_;
+	M = M_;
+	arr = new_arr;
 }
 
-Matrix::Matrix(const Matrix& other) : arr(nullptr)
+
+
+//Matrix::Matrix(size_t N_, size_t M_)
+//{
+//	arr = resize_and_save(N_, M_);
+//	N = N_;
+//	M = M_;
+//	
+//}
+//
+//
+//T** Matrix::resize_and_save( size_t N_, size_t M_)
+//{
+//	int old_N = N;
+//	int old_M = M;
+//	T** new_arr = allocate(N_, M_);
+//	for (size_t i = 0; i < old_N; i++)
+//	{
+//		for (size_t j = 0; j < old_M; j++) 
+//		{
+//
+//		}
+//	}
+//	 
+//
+//}
+
+Matrix::Matrix(const Matrix& other) : N(other.N), M(other.M)
 {
-	N = other.N;
-	M = other.M;
-
-	if (N != 0 && M != 0)
+	if (N == 0) // && M == 0 или other.arr == nullptr
 	{
-		arr = allocate(N, M);
+		arr = nullptr;
+		return;
+	}
 
-		for (size_t i = 0; i < N; i++)
+	arr = allocate(N, M);
+	//!!! copy-function
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
 		{
-			for (size_t j = 0; j < M; j++)
-			{
-				arr[i][j] = other.arr[i][j];
-			}
+			arr[i][j] = other.arr[i][j];
 		}
 	}
 }
@@ -91,16 +104,20 @@ Matrix& Matrix::operator=(const Matrix& other)
 	{
 		clear();
 
-		N = other.N;
-		M = other.M;
-
-		arr = allocate(N, M);
-
-		for (size_t i = 0; i < N; i++)
+		if (other.arr != nullptr)
 		{
-			for (size_t j = 0; j < M; j++)
+			N = other.N;
+			M = other.M;
+
+			arr = allocate(N, M);
+
+			//!!! copy-function
+			for (size_t i = 0; i < N; i++)
 			{
-				arr[i][j] = other.arr[i][j];
+				for (size_t j = 0; j < M; j++)
+				{
+					arr[i][j] = other.arr[i][j];
+				}
 			}
 		}
 	}
@@ -119,15 +136,13 @@ Matrix::const_str_i Matrix::operator[](size_t i) const {
 
 T** Matrix::allocate(size_t N_, size_t M_)
 {
-	
-		T** new_arr = new T * [N_]();
+	T** new_arr = new T * [N_]();
 
-		for (size_t i = 0; i < N_; i++) {
-			new_arr[i] = new T[M_]();
-		}
+	for (size_t i = 0; i < N_; i++) {
+		new_arr[i] = new T[M_]();
+	}
 
-		return new_arr;
-	
+	return new_arr;
 }
 
 
@@ -269,7 +284,9 @@ void Matrix::print() const
 		std::cout << "\n";
 	}
 }
-void Matrix::print(std::ofstream& output) const {
+
+void Matrix::print(std::ofstream& output) const 
+{
 	for (size_t i = 0; i < N; i++)
 	{
 		for (size_t j = 0; j < M; j++)
