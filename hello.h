@@ -113,12 +113,6 @@ protected:
 		return ORIGIN_;
 	}
 
-	Ray_3_& points_to_draw()			//  !!!!!!
-	{									//  !!!!!!
-		return 	points_to_draw_;		//  !!!!!!
-	}									//  !!!!!!
-
-
 	//--------------------------------------------------------------------------------------------
 
 	Ray_3_ calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+');
@@ -162,9 +156,7 @@ public:
 
 class Corner : public Canvas_console
 {
-
 public:
-
 	void fill(char fill_symbol)
 	{
 		create(fill_symbol);
@@ -187,12 +179,10 @@ public:
 	{
 		remove_line_total(A, B);
 	}
-
 	void change_file_path(Ray_template <char> adress)
 	{
 		outfile_adress = adress;
 	}
-
 	void print(std::ostream& output)
 	{
 		
@@ -204,43 +194,28 @@ public:
 
 		std::ofstream outfile_corner(outfile_adress_2); //////////////////////////////////////////////???????????????????????????????????????????????
 		corner_arr().print(outfile_corner);
+		delete[] outfile_adress_2;
 	}
 	void clear(/*Canvas& this_*/);
 
 private:
-
 	Matrix corner_arr_;
 	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' };
-
 	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
 	void add_points_to_corner(/*Canvas& this_*/);
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void erase_point_from_corner(const Dot& err);
-
 	Matrix& corner_arr()
 	{
 		return corner_arr_;
 	}
-
 };
 
 
 
 class Axys : public Canvas_console
 {
-	//friend class Canvas;
-
-private:
-	Matrix axys_arr_;
-
-	void draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
 public:
-
-
-	Matrix& axys_arr()
-	{
-		return axys_arr_;
-	}
 	void set_at(Coordinates cell, char symbol)
 	{
 		axys_arr_.set_at(cell.i, cell.j, symbol);
@@ -258,12 +233,16 @@ public:
 		draw_points();
 		axys_arr().print();
 	}
-	 
 	void draw_points(/*Canvas& this_*/);
 	void print(std::ostream& output)
 	{
 		axys_arr().print(output);
 	}
+
+private:
+
+	Matrix axys_arr_;
+	void draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
 };
 
 
