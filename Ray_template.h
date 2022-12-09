@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
-//#include <utility>
+#include <initializer_list>
 
 template <typename T>
 class Ray_template {
@@ -40,8 +40,9 @@ private:
 
 	const T& get_element_(size_t index) const;
 
+	template<typename T>
+	friend void print(const Ray_template<T>& Ray);
 public:
-
 
 	Ray_template();
 	//LEFT, RIGHT
@@ -51,7 +52,9 @@ public:
 
 	Ray_template(const Ray_template& other);
 
-	Ray_template(const char* symbl);
+	Ray_template(const std::initializer_list<T>& li);
+
+	Ray_template(const T* val, size_t size);
 
 	// LEFT
 	void add_to_first(const T& value);
@@ -67,8 +70,6 @@ public:
 
 
 	const T& operator[](size_t index) const;
-
-	void print() const;
 
 	void push_back(const T& value);
 
@@ -162,7 +163,7 @@ Ray_template<T>::Ray_template<T>(size_t LEFT, size_t RIGHT) : Ray_template<T>(LE
 
 template <typename T>
 Ray_template<T>::Ray_template<T>(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
-	: LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT){
+	: LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) {
 
 }
 
@@ -186,6 +187,26 @@ Ray_template<T>::Ray_template<T>(const Ray_template<T>& other)
 	for (size_t i = LEFT - F_LEFT; i < LEFT + F_RIGHT; ++i)
 		ray_[i] = other.ray_[i];
 }
+template <typename T>
+Ray_template<T>::Ray_template(const std::initializer_list<T>& li)
+{
+	LEFT = 1;
+	RIGHT = 1;
+	COEFFICIENT = 2;
+	create_();
+
+	for (auto it = li.begin(); it != li.end(); it++)
+	{
+		if (F_RIGHT == RIGHT) {
+			RIGHT_increase_();
+		}
+
+		ray_[LEFT + F_RIGHT] = *it;
+		++F_RIGHT;
+	}
+	shrink_to_fit();
+}
+
 
 
 template <typename T>
@@ -218,7 +239,7 @@ void Ray_template<T>::add_to_back(const T& value) {
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(const char* symbl)
+Ray_template<T>::Ray_template(const T* val, size_t size)
 {
 	LEFT = 1;
 	RIGHT = 1;
@@ -226,14 +247,14 @@ Ray_template<T>::Ray_template(const char* symbl)
 
 	create_();
 	int i;
-	for (i = 0; symbl[i] != '\0'; ++i)
+	for (i = 0; i < size; ++i)
 	{
 
 		if (F_RIGHT == RIGHT) {
 			RIGHT_increase_();
 		}
 
-		ray_[LEFT + F_RIGHT] = symbl[i];
+		ray_[LEFT + F_RIGHT] = val[i];
 		++F_RIGHT;
 	}
 	shrink_to_fit();
@@ -260,32 +281,6 @@ T& Ray_template<T>::operator[](size_t index) {
 template <typename T>
 const T& Ray_template<T>::operator[](size_t index) const {
 	return get_element_(index);
-}
-
-template <typename T>
-void Ray_template<T>::print() const {
-
-	std::cout << "\n";
-	for (size_t i = 0; i < LEFT + RIGHT; i++)
-		std::cout << std::setw(2) << i << " ";
-	std::cout << "\n";
-
-	for (size_t i = 0; i < LEFT - F_LEFT; i++)
-		std::cout << std::setw(2) << "_" << " ";
-	for (size_t i = 0; i < F_LEFT + F_RIGHT; i++)
-		std::cout << std::setw(2) << i << " ";
-	for (size_t i = F_RIGHT; i < RIGHT; i++)
-		std::cout << std::setw(2) << "_" << " ";
-	std::cout << "\n";
-
-	for (size_t i = 0; i < LEFT - F_LEFT; i++)
-		std::cout << std::setw(2) << "." << " ";
-	for (size_t i = LEFT - F_LEFT; i < LEFT + F_RIGHT; i++)
-		std::cout << std::setw(2) << ray_[i] << " ";
-	//std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
-	for (size_t i = F_RIGHT; i < RIGHT; i++)
-		std::cout << std::setw(2) << "." << " ";
-	std::cout << "\n";
 }
 
 template <typename T>
@@ -433,5 +428,34 @@ Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
 
 	return *this;
 }
+
+template <typename T>
+void print(const Ray_template<T>& Ray) {
+
+	std::cout << "\n";
+	for (size_t i = 0; i < Ray.LEFT + Ray.RIGHT; i++)
+		std::cout << std::setw(2) << i << " ";
+	std::cout << "\n";
+
+	for (size_t i = 0; i < Ray.LEFT - Ray.F_LEFT; i++)
+		std::cout << std::setw(2) << "_" << " ";
+	for (size_t i = 0; i < Ray.F_LEFT + Ray.F_RIGHT; i++)
+		std::cout << std::setw(2) << i << " ";
+	for (size_t i = Ray.F_RIGHT; i < Ray.RIGHT; i++)
+		std::cout << std::setw(2) << "_" << " ";
+	std::cout << "\n";
+
+	for (size_t i = 0; i < Ray.LEFT - Ray.F_LEFT; i++)
+		std::cout << std::setw(2) << "." << " ";
+	for (size_t i = Ray.LEFT - Ray.F_LEFT; i < Ray.LEFT + Ray.F_RIGHT; i++)
+		std::cout << std::setw(2) << Ray[i] << " ";
+	//std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
+	for (size_t i = Ray.F_RIGHT; i < Ray.RIGHT; i++)
+		std::cout << std::setw(2) << "." << " ";
+	std::cout << "\n";
+}
+
+
+
 
 #endif // !RAY_TEMPLATE_H_ 

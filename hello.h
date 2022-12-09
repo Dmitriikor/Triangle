@@ -195,7 +195,8 @@ public:
 
 	void print(std::ostream& output)
 	{
-		char outfile_adress_2[100];
+		
+		T* outfile_adress_2 = new T[outfile_adress.size()];
 		for (int i = 0; i < outfile_adress.size(); ++i)
 			outfile_adress_2[i] = outfile_adress[i];
 
@@ -209,7 +210,7 @@ public:
 private:
 
 	Matrix corner_arr_;
-	Ray_template <char> outfile_adress = "corner_path_out.txt" ;
+	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' };
 
 	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
 	void add_points_to_corner(/*Canvas& this_*/);

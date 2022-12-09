@@ -32,13 +32,19 @@ void Matrix::resize(size_t N_, size_t M_)
 	T** new_arr;
 	new_arr = allocate(N_, M_);
 
-	for (size_t i = 0; i < N_; i++)
+	int min_N_lim = N;
+	if (N_ < N) min_N_lim = N_;
+	int min_M_lim = M;
+	if (M_ < M) min_M_lim = M_;
+
+	std::cout << "\n";
+	for (size_t i = 0; i < min_N_lim; i++)
 	{
-		for (size_t j = 0; j < M_; j++)
+
+		for (size_t j = 0; j < min_M_lim; j++)
 		{
-			if (N > i && M > j) {
-				new_arr[i][j] = arr[i][j];
-			}
+			new_arr[i][j] = arr[i][j];
+
 		}
 	}
 	clear();
