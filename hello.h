@@ -224,7 +224,7 @@ public:
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void remove(/*Canvas& this_*/)
 	{
-		/*this_.*/axys_arr().clear();
+		/*this_.*/axys_arr_.clear();
 	}
 	void print(/*Canvas& this_*/)
 	{

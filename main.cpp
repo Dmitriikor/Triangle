@@ -8,6 +8,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Triangle_test.h"
 #include "utilities.h"
 #include "Ray_template.h"
+#include "Matrix.h"
 #include <exception>
 #include <limits>
 
@@ -27,6 +28,8 @@ int main(int argc, char const* argv[])
 	//Matrix b;
 	//Dot c;
 	//  }  test create & call base handwritten "libs"
+
+	Matrix<char> test_once(1, 35);
 
 	Triangle d;
 	std::cout << "Enter number of points:\n";
