@@ -22,7 +22,7 @@ struct Coordinates {
 };
 
 template <typename T>
-class Matrix {
+class Matrix_TEMPLATE {
 private:
 	size_t N;
 	size_t M;
@@ -32,7 +32,7 @@ private:
 private:
 
 	template <class str_i_T>
-	struct  str_i {
+	static struct  str_i {
 		Matrix& my_matrix;
 		size_t i;
 
@@ -57,20 +57,20 @@ private:
 		}
 	};
 public:
-	Matrix();
-	Matrix(size_t N, size_t M);
-	Matrix(size_t N, size_t M, const T& value);
-	Matrix(const Matrix& other);
-	~Matrix();
+	Matrix_TEMPLATE();
+	Matrix_TEMPLATE(size_t N, size_t M);
+	MaMatrix_TEMPLATEtrix(size_t N, size_t M, const T& value);
+	Matrix_TEMPLATE(const Matrix_TEMPLATE& other);
+	~Matrix_TEMPLATE();
 
 
-	Matrix& operator=(const Matrix& other);
+	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
 
 
 
-	Matrix<T>::str_i Matrix<T>::operator[](size_t i);
+	Matrix_TEMPLATE<T> str_i Matrix_TEMPLATE<T>::operator[](size_t i);
 	
-	str_i Matrix<T>::operator[](size_t i) const;
+	str_i Matrix_TEMPLATE<T>::operator[](size_t i) const;
 
 
 
@@ -112,12 +112,12 @@ public:
 //Matrix_v1_start
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-Matrix<T>::Matrix() : N(0), M(0), arr(nullptr)
+Matrix_TEMPLATE<T>::Matrix_TEMPLATE() : N(0), M(0), arr(nullptr)
 {
 
 }
 template <typename T>
-Matrix<T>::Matrix(size_t N, size_t M) : N(N), M(M)
+Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M) : N(N), M(M)
 {
 	if (N == 0 || M == 0)
 	{
@@ -130,7 +130,7 @@ Matrix<T>::Matrix(size_t N, size_t M) : N(N), M(M)
 	arr = allocate(N, M);
 }
 template <typename T>
-void Matrix<T>::resize(size_t N_, size_t M_)
+void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
 {
 	T** new_arr;
 	new_arr = allocate(N_, M_);
@@ -156,7 +156,7 @@ void Matrix<T>::resize(size_t N_, size_t M_)
 	arr = new_arr;
 }
 template <typename T>
-Matrix<T>::Matrix(const Matrix& other) : N(other.N), M(other.M)
+Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE& other) : N(other.N), M(other.M)
 {
 	if (N == 0)
 	{
@@ -175,12 +175,12 @@ Matrix<T>::Matrix(const Matrix& other) : N(other.N), M(other.M)
 	}
 }
 template <typename T>
-Matrix<T>::~Matrix()
+Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 {
 	clear();
 }
 template <typename T>
-Matrix<T>& Matrix<T>::operator=(const Matrix& other)
+Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE& other)
 {
 	if (this != &other)
 	{
@@ -208,19 +208,19 @@ Matrix<T>& Matrix<T>::operator=(const Matrix& other)
 }
 
 
+ 
 template <typename T>
-template <class str_i_T>
-Matrix<T>::str_i Matrix<T>::operator[](size_t i) {
+Matrix_TEMPLATE<T>::str_i Matrix_TEMPLATE<T>::operator[](size_t i) {
 	return str_i(*this, i);
 }
 template <typename T>
-Matrix<T>::const_str_i Matrix<T>::operator[](size_t i) const {
+Matrix_TEMPLATE<T>::const_str_i Matrix_TEMPLATE<T>::operator[](size_t i) const {
 	return const_str_i(*this, i);
 }
 
 
 template <typename T>
-T** Matrix<T>::allocate(size_t N_, size_t M_)
+T** Matrix_TEMPLATE<T>::allocate(size_t N_, size_t M_)
 {
 	T** new_arr = new T * [N_]();
 
@@ -231,16 +231,16 @@ T** Matrix<T>::allocate(size_t N_, size_t M_)
 	return new_arr;
 }
 template <typename T>
-size_t Matrix<T>::get_N() const {
+size_t Matrix_TEMPLATE<T>::get_N() const {
 	return N;
 }
 template <typename T>
-size_t Matrix<T>::get_M() const {
+size_t Matrix_TEMPLATE<T>::get_M() const {
 	return M;
 }
 
 template <typename T>
-void Matrix<T>::fill(const T& value)
+void Matrix_TEMPLATE<T>::fill(const T& value)
 {
 	for (size_t i = 0; i < N; i++)
 	{
@@ -251,7 +251,7 @@ void Matrix<T>::fill(const T& value)
 	}
 }
 template <typename T>
-void Matrix<T>::set_at(size_t i, size_t j, const T& data) {
+void Matrix_TEMPLATE<T>::set_at(size_t i, size_t j, const T& data) {
 	if (i >= N)
 		throw std::out_of_range("out_of_range in void set_at : metod i = " + std::to_string(i) + " > matrix N = " + std::to_string(N));
 
@@ -264,11 +264,11 @@ void Matrix<T>::set_at(size_t i, size_t j, const T& data) {
 	arr[i][j] = data;
 }
 template <typename T>
-void Matrix<T>::set_at(Coordinates cell, const T& data) {
+void Matrix_TEMPLATE<T>::set_at(Coordinates cell, const T& data) {
 	set_at(cell.i, cell.j, data);
 }
 template <typename T>
-T& Matrix<T>::get_at(size_t i, size_t j) {
+T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) {
 	if (i >= N)
 		throw std::out_of_range("out_of_range in void get_at : metod i = " + std::to_string(i) + " > matrix N = " + std::to_string(N));
 
@@ -281,11 +281,11 @@ T& Matrix<T>::get_at(size_t i, size_t j) {
 	return arr[i][j];
 }
 template <typename T>
-T& Matrix<T>::get_at(Coordinates cell) {
+T& Matrix_TEMPLATE<T>::get_at(Coordinates cell) {
 	return get_at(cell.i, cell.j);
 }
 template <typename T>
-void Matrix<T>::clear() {
+void Matrix_TEMPLATE<T>::clear() {
 	if (arr != nullptr)
 	{
 		for (size_t i = 0; i < N; i++) {
@@ -299,7 +299,7 @@ void Matrix<T>::clear() {
 	}
 }
 template <typename T>
-bool Matrix<T>::is_empty()
+bool Matrix_TEMPLATE<T>::is_empty()
 {
 	if (arr == nullptr)
 		return true;
@@ -307,7 +307,7 @@ bool Matrix<T>::is_empty()
 	return false;
 }
 template <typename T>
-void Matrix<T>::print() const
+void Matrix_TEMPLATE<T>::print() const
 {
 	for (size_t i = 0; i < N; i++)
 	{
@@ -319,7 +319,7 @@ void Matrix<T>::print() const
 	}
 }
 template <typename T>
-void Matrix<T>::print(std::ofstream& output) const
+void Matrix_TEMPLATE<T>::print(std::ofstream& output) const
 {
 	for (size_t i = 0; i < N; i++)
 	{
