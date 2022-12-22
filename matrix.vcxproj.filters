@@ -95,7 +95,7 @@
     <ClInclude Include="Ray_template.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix.h">
+    <ClInclude Include="Matrix_TEMPLATE.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
