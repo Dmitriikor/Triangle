@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <initializer_list>
+#include <utility>
 
 template <typename T>
 class Ray_template {
@@ -42,6 +43,10 @@ private:
 
 	template<typename T>
 	friend void print(const Ray_template<T>& Ray);
+
+	
+	void MOVE_(Ray_template<T>& other);
+
 public:
 
 	Ray_template();
@@ -52,10 +57,13 @@ public:
 
 	Ray_template(const Ray_template& other);
 
+	Ray_template(Ray_template&& other);
+
 	Ray_template(const std::initializer_list<T>& li);
 
 	Ray_template(const T* val, size_t size);
 
+	~Ray_template();
 	// LEFT
 	void add_to_first(const T& value);
 
@@ -68,8 +76,12 @@ public:
 
 	T& operator[](size_t index);
 
-
 	const T& operator[](size_t index) const;
+
+	Ray_template& operator=(const Ray_template& other);
+
+	Ray_template& operator=(Ray_template&& other);
+
 
 	void push_back(const T& value);
 
@@ -95,9 +107,7 @@ public:
 
 	void clear();
 
-	~Ray_template();
 
-	Ray_template& operator=(const Ray_template& other);
 };
 
 template <typename T>
@@ -187,27 +197,50 @@ Ray_template<T>::Ray_template<T>(const Ray_template<T>& other)
 	for (size_t i = LEFT - F_LEFT; i < LEFT + F_RIGHT; ++i)
 		ray_[i] = other.ray_[i];
 }
+
+template <typename T>
+Ray_template<T>::Ray_template(Ray_template<T>&& other)
+{
+	MOVE_(other);
+	//std::cout << "\n\t MOVE \n";
+	//LEFT = other.LEFT;
+	//RIGHT = other.RIGHT;
+	//F_LEFT = other.F_LEFT;
+	//F_RIGHT = other.F_RIGHT;
+	//saved_LEFT = other.saved_LEFT;
+	//saved_RIGHT = other.saved_RIGHT;
+
+	//COEFFICIENT = other.COEFFICIENT;
+
+
+	//ray_ = other.ray_;
+
+
+	//other.ray_ = nullptr;
+	//other.LEFT = 0;
+	//other.RIGHT = 0;
+	//other.F_LEFT = 0;
+	//other.F_RIGHT = 0;
+	//other.saved_LEFT = 0;
+	//other.saved_RIGHT = 0;
+	//other.COEFFICIENT = 0;
+}
+
 template <typename T>
 Ray_template<T>::Ray_template(const std::initializer_list<T>& li)
 {
 	LEFT = 1;
-	RIGHT = 1;
+	RIGHT = li.size();
 	COEFFICIENT = 2;
 	create_();
 
 	for (auto it = li.begin(); it != li.end(); it++)
 	{
-		if (F_RIGHT == RIGHT) {
-			RIGHT_increase_();
-		}
-
 		ray_[LEFT + F_RIGHT] = *it;
 		++F_RIGHT;
 	}
-	shrink_to_fit();
+	//shrink_to_fit();
 }
-
-
 
 template <typename T>
 void Ray_template<T>::add_to_first(const T& value) {
@@ -242,22 +275,16 @@ template <typename T>
 Ray_template<T>::Ray_template(const T* val, size_t size)
 {
 	LEFT = 1;
-	RIGHT = 1;
+	RIGHT = size;
 	COEFFICIENT = 2;
-
 	create_();
-	int i;
-	for (i = 0; i < size; ++i)
+
+	for (size_t i = 0; i < size; ++i)
 	{
-
-		if (F_RIGHT == RIGHT) {
-			RIGHT_increase_();
-		}
-
 		ray_[LEFT + F_RIGHT] = val[i];
 		++F_RIGHT;
 	}
-	shrink_to_fit();
+	//shrink_to_fit();
 }
 
 
@@ -428,6 +455,40 @@ Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
 
 	return *this;
 }
+
+template <typename T>
+Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other)
+{
+	MOVE_(other);
+	return *this;
+
+}
+
+template <typename T>
+void Ray_template<T>::MOVE_(Ray_template<T>& other)
+{
+	//std::cout << "\n\t MOVE \n";
+	LEFT = other.LEFT;
+	RIGHT = other.RIGHT;
+	F_LEFT = other.F_LEFT;
+	F_RIGHT = other.F_RIGHT;
+	saved_LEFT = other.saved_LEFT;
+	saved_RIGHT = other.saved_RIGHT;
+
+	COEFFICIENT = other.COEFFICIENT;
+
+	ray_ = other.ray_;
+
+	other.ray_ = nullptr;
+	other.LEFT = 0;
+	other.RIGHT = 0;
+	other.F_LEFT = 0;
+	other.F_RIGHT = 0;
+	other.saved_LEFT = 0;
+	other.saved_RIGHT = 0;
+	other.COEFFICIENT = 0;
+}
+
 
 template <typename T>
 void print(const Ray_template<T>& Ray) {

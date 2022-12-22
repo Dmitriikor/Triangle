@@ -228,15 +228,15 @@ public:
 	}
 	void print(/*Canvas& this_*/)
 	{
-		axys_arr().clear();
+		axys_arr_.clear();
 		create();
 		draw_points();
-		axys_arr().print();
+		axys_arr_.print();
 	}
 	void draw_points(/*Canvas& this_*/);
 	void print(std::ostream& output)
 	{
-		axys_arr().print(output);
+		axys_arr_.print(output);
 	}
 
 private:

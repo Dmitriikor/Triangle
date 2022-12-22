@@ -11,7 +11,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Matrix_TEMPLATE.h"
 #include <exception>
 #include <limits>
-
+#include <utility>
 
 int main(int argc, char const* argv[])
 {
@@ -30,6 +30,10 @@ int main(int argc, char const* argv[])
 	//  }  test create & call base handwritten "libs"
 
 	Matrix_TEMPLATE<char> test_once(1, 35);
+	Ray_template<int> test_move_1;
+	Ray_template<int> test_move_2 = std::move(test_move_1);
+
+	test_move_1 = std::move(test_move_2);
 
 	Triangle d;
 	std::cout << "Enter number of points:\n";
