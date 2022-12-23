@@ -1,5 +1,5 @@
 ﻿#include "hello.h"
-#include <string>;
+#include <string>
 
 Canvas_console::Canvas_console()
 {

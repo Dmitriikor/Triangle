@@ -82,6 +82,7 @@ public:
 
 	Ray_template& operator=(Ray_template&& other);
 
+	void operator=(std::nullptr_t);
 
 	void push_back(const T& value);
 
@@ -162,23 +163,23 @@ const T& Ray_template<T>::get_element_(size_t index) const {
 }
 
 template <typename T>
-Ray_template<T>::Ray_template<T>() :Ray_template<T>(10u, 10u, 2) {
+Ray_template<T>::Ray_template() :Ray_template<T>(10u, 10u, 2) {
 
 }
 
 template <typename T>
-Ray_template<T>::Ray_template<T>(size_t LEFT, size_t RIGHT) : Ray_template<T>(LEFT, RIGHT, 2u) {
+Ray_template<T>::Ray_template(size_t LEFT, size_t RIGHT) : Ray_template<T>(LEFT, RIGHT, 2u) {
 
 }
 
 template <typename T>
-Ray_template<T>::Ray_template<T>(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
+Ray_template<T>::Ray_template(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
 	: LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) {
 
 }
 
 template <typename T>
-Ray_template<T>::Ray_template<T>(const Ray_template<T>& other)
+Ray_template<T>::Ray_template(const Ray_template<T>& other)
 /*:LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) */
 {
 	//std::cout << "copy-constructor " << std::endl;
@@ -463,6 +464,12 @@ Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other)
 	MOVE_(other);
 	return *this;
 
+}
+
+template <typename T>
+void Ray_template<T>::operator=(std::nullptr_t)
+{
+	ray_ = nullptr;
 }
 
 template <typename T>

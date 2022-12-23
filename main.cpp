@@ -46,7 +46,7 @@ int main(int argc, char const* argv[])
 
 
 
-	Triangle_hi d;
+	//Triangle_hi d;
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	std::cin >> n_points;

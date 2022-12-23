@@ -8,8 +8,6 @@ const Ray_template <Dot> Triangle_hi::get_points_inside_Ray() const {
 	return point_in_triangle;
 }
 
-
-
 //const std::vector<Dot>& Triangle_hi::get_points_inside() const {
 //	return point_in_triangle;
 //}
@@ -141,9 +139,9 @@ void Triangle_hi::triangles_print_outfile(const Triangle_hi triangle[], size_t i
 }
 
 Triangle_hi Triangle_hi::create_triangle(const Dot& a, const Dot& b, const Dot& c) {
-	Triangle_hi temp_abc;
+	Triangle_hi temp_abc(a, b, c);
 
-	temp_abc.create(a, b, c);
+	//temp_abc.create(a, b, c);
 
 	return temp_abc;
 }
