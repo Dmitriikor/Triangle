@@ -30,10 +30,21 @@ int main(int argc, char const* argv[])
 	//  }  test create & call base handwritten "libs"
 
 	Matrix_TEMPLATE<char> test_once(1, 35);
+
 	Ray_template<int> test_move_1;
 	Ray_template<int> test_move_2 = std::move(test_move_1);
+	Ray_template<int> test_move_3 (20,30);
+	test_move_3.add_to_back(5);
+	test_move_3.add_to_first(4);
+	std::cout << test_move_3[0];
+	std::cout << test_move_3[1];
 
-	test_move_1 = std::move(test_move_2);
+	print(test_move_3);
+	test_move_3 = std::move(test_move_3);
+	test_move_1 = std::move(test_move_3);
+	print(test_move_1);
+
+
 
 	Triangle d;
 	std::cout << "Enter number of points:\n";

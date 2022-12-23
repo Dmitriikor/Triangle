@@ -459,6 +459,7 @@ Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
 template <typename T>
 Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other)
 {
+	
 	MOVE_(other);
 	return *this;
 
@@ -467,26 +468,28 @@ Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other)
 template <typename T>
 void Ray_template<T>::MOVE_(Ray_template<T>& other)
 {
-	//std::cout << "\n\t MOVE \n";
-	LEFT = other.LEFT;
-	RIGHT = other.RIGHT;
-	F_LEFT = other.F_LEFT;
-	F_RIGHT = other.F_RIGHT;
-	saved_LEFT = other.saved_LEFT;
-	saved_RIGHT = other.saved_RIGHT;
+	if (this != &other) {
+		std::cout << "\n\t MOVE \n";
+		LEFT = other.LEFT;
+		RIGHT = other.RIGHT;
+		F_LEFT = other.F_LEFT;
+		F_RIGHT = other.F_RIGHT;
+		saved_LEFT = other.saved_LEFT;
+		saved_RIGHT = other.saved_RIGHT;
 
-	COEFFICIENT = other.COEFFICIENT;
+		COEFFICIENT = other.COEFFICIENT;
 
-	ray_ = other.ray_;
+		ray_ = other.ray_;
 
-	other.ray_ = nullptr;
-	other.LEFT = 0;
-	other.RIGHT = 0;
-	other.F_LEFT = 0;
-	other.F_RIGHT = 0;
-	other.saved_LEFT = 0;
-	other.saved_RIGHT = 0;
-	other.COEFFICIENT = 0;
+		other.ray_ = nullptr;
+		other.LEFT = 0;
+		other.RIGHT = 0;
+		other.F_LEFT = 0;
+		other.F_RIGHT = 0;
+		other.saved_LEFT = 0;
+		other.saved_RIGHT = 0;
+		other.COEFFICIENT = 0;
+	}
 }
 
 
@@ -508,8 +511,9 @@ void print(const Ray_template<T>& Ray) {
 
 	for (size_t i = 0; i < Ray.LEFT - Ray.F_LEFT; i++)
 		std::cout << std::setw(2) << "." << " ";
-	for (size_t i = Ray.LEFT - Ray.F_LEFT; i < Ray.LEFT + Ray.F_RIGHT; i++)
-		std::cout << std::setw(2) << Ray[i] << " ";
+	for (size_t i = Ray.LEFT - Ray.F_LEFT; i < Ray.LEFT + Ray.F_RIGHT; i++) {
+		std::cout << std::setw(2) << Ray.ray_[i] << " ";
+	}
 	//std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
 	for (size_t i = Ray.F_RIGHT; i < Ray.RIGHT; i++)
 		std::cout << std::setw(2) << "." << " ";
