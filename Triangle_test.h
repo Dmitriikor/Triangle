@@ -10,7 +10,35 @@
 #include "Is_equal_test.h"
 #include "Ray_3_test.h"
 
-class Triangle {
+
+class Triangle_low {
+
+protected:
+	struct Vertex {
+		Dot a;
+		Dot b;
+		Dot c;
+	} vertex;
+
+public:
+	Dot& get_a()
+	{
+		return vertex.a;
+	}
+	Dot& get_b()
+	{
+		return vertex.b;
+	}
+	Dot& get_c()
+	{
+		return vertex.c;
+	}
+
+};
+
+
+class Triangle_hi : protected Triangle_low  {
+
 private:
 	struct Side {
 		double AB;
@@ -24,11 +52,7 @@ private:
 	size_t dot_counter;
 	double area;
 
-	struct Vertex {
-		Dot a;
-		Dot b;
-		Dot c;
-	} vertex;
+
 
 	double count_area() const;
 
@@ -78,11 +102,11 @@ void print() const;
 
 void print_to_file(std::ostream& output)const;
 
-static void triangles_print_outfile(const Triangle triangle[], size_t index, const std::string& path_out);
+static void triangles_print_outfile(const Triangle_hi triangle[], size_t index, const std::string& path_out);
 
-Triangle create_triangle(const Dot& a, const Dot& b, const Dot& c);
+Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c);
 
-bool is_inside(const Dot& point, const Triangle& abc);
+bool is_inside(const Dot& point, const Triangle_hi& abc);
 
 void points_print(const Dot p[], int n);
 };

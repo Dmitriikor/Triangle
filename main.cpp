@@ -46,7 +46,7 @@ int main(int argc, char const* argv[])
 
 
 
-	Triangle d;
+	Triangle_hi d;
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	std::cin >> n_points;
@@ -147,7 +147,7 @@ int main(int argc, char const* argv[])
 
 
 	// { work with Dot arr, to create triangle and find max insade point
-	Triangle* triangle_arr = new Triangle[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
+	Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	size_t n_triangles = 0;
 	for (size_t i = 0; i < n_points; i++)
 	{
@@ -155,7 +155,7 @@ int main(int argc, char const* argv[])
 		{
 			for (size_t k = j + 1; k < n_points; k++)  //!!! < n
 			{
-				Triangle temp_abc = d.create_triangle(point_arr[i], point_arr[j], point_arr[k]);
+				Triangle_hi temp_abc = d.create_triangle(point_arr[i], point_arr[j], point_arr[k]);
 
 				if (isEqual(temp_abc.get_area(), 0))
 					break;
@@ -168,7 +168,7 @@ int main(int argc, char const* argv[])
 		}
 	}
 
-	Triangle* final_triangle_arr = new Triangle[n_triangles];
+	Triangle_hi* final_triangle_arr = new Triangle_hi[n_triangles];
 	for (size_t i = 0; i < n_triangles; i++)
 		final_triangle_arr[i] = triangle_arr[i];
 	delete[] triangle_arr;
@@ -192,7 +192,7 @@ int main(int argc, char const* argv[])
 			max_dot = final_triangle_arr[i].get_dot_counter();
 			max_dot_index = i;
 		}
-		Triangle::triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
+		Triangle_hi::triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
 	}
 	final_triangle_arr[max_dot_index].print();
 	size_t cout_cntr = 15;

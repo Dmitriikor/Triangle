@@ -469,7 +469,7 @@ template <typename T>
 void Ray_template<T>::MOVE_(Ray_template<T>& other)
 {
 	if (this != &other) {
-		std::cout << "\n\t MOVE \n";
+		//std::cout << "\n\t MOVE \n";
 		LEFT = other.LEFT;
 		RIGHT = other.RIGHT;
 		F_LEFT = other.F_LEFT;
