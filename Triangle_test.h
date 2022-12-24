@@ -21,15 +21,15 @@ protected:
 	} vertex;
 
 public:
-	Dot& get_a()
+	const Dot& get_a() const
 	{
 		return vertex.a;
 	}
-	Dot& get_b()
+	const Dot& get_b() const
 	{
 		return vertex.b;
 	}
-	Dot& get_c()
+	const Dot& get_c() const
 	{
 		return vertex.c;
 	}
