@@ -34,10 +34,10 @@ public:
 		return vertex.c;
 	}
 
-	//Triangle_low()
-	//{
+	Triangle_low()
+	{
 
-	//}
+	}
 
 	Triangle_low(Dot a, Dot b, Dot c)
 	{
@@ -60,28 +60,24 @@ private:
 
 	Ray_template <Dot> point_in_triangle;
 
-	Ray_template <int> ppoint;
-
 	//std::vector<Dot> point_in_triangle;
 
 	size_t dot_counter;
 	double area;
 	bool is_treangle;
 
-
-
 	double count_area() const;
 
 public:
-	bool is_treangle_()
+	bool is_treangle_() const 
 	{
 		return is_treangle;
 	}
 
-	//Triangle_hi()
-	//{
+	Triangle_hi()
+	{
 
-	//};
+	};
 
 	Triangle_hi(Dot a, Dot b, Dot c) : Triangle_low(a,b,c)
 	{
@@ -129,7 +125,9 @@ public:
 			point_in_triangle.add_to_back(other_.point_in_triangle[i]);
 		}
 
-		area = other_.area;
+		area = other_.area; //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
+							//Предупреждение	C26495	Переменная "Triangle_hi::area" не инициализирована.Всегда инициализируйте переменную - член(type.6).matrix	Z : \с++\Triangle\Triangle_test.h	106
+
 
 		is_treangle = other_.is_treangle;
 
@@ -161,6 +159,31 @@ public:
 
 		is_treangle = other_.is_treangle;
 
+		return *this;
+	}
+
+	Triangle_hi& operator = (Triangle_hi&& other_)
+	{
+		if (this == &other_)
+			return *this;
+
+		vertex.a = other_.vertex.a;
+		vertex.b = other_.vertex.b;
+		vertex.c = other_.vertex.c;
+
+		side.AB = other_.side.AB;
+		side.BC = other_.side.BC;
+		side.CA = other_.side.CA;
+
+		dot_counter = other_.dot_counter;
+
+		point_in_triangle = other_.point_in_triangle;
+		other_.point_in_triangle = nullptr;
+
+		area = other_.area;
+
+		is_treangle = other_.is_treangle;
+
 	}
 
 	Triangle_hi(Triangle_hi&& other_) : Triangle_low(other_.vertex.a, other_.vertex.b, other_.vertex.c)
@@ -186,10 +209,6 @@ public:
 
 	};
 
-
-
-
-
 	~Triangle_hi()
 	{
 		vertex.a.x = 0;
@@ -210,6 +229,9 @@ public:
 
 		is_treangle = false;
 	};
+
+
+
 
 const Dot& get_point_in(size_t index) const;
 

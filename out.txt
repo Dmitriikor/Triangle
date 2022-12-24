@@ -1,12 +1,12 @@
 NEW Triangle_hi:1
-triangle.a = -4 7
-triangle.b = 16 20
-triangle.c = -20 -5
+triangle.a = 19 17
+triangle.b = -11 -9
+triangle.c = -1 8
 dot_counter =	0
-lengthAB =	23.8537
-lengthBC =	43.8292
-lengthCA =	20
-triangle_area =	16
+lengthAB =	39.6989
+lengthBC =	19.7231
+lengthCA =	21.9317
+triangle_area =	125
 
-point_in_triangle =	 -4,7; 16,20; -20,-5; 
+point_in_triangle =	 19,17; -11,-9; -1,8; 
 

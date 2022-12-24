@@ -202,6 +202,11 @@ Ray_template<T>::Ray_template(const Ray_template<T>& other)
 template <typename T>
 Ray_template<T>::Ray_template(Ray_template<T>&& other)
 {
+//Серьезность		Код		Описание																	Проект				Файл						Строка	Состояние подавления
+//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).matrix	Z : \с++\Triangle\Ray_template.h	203
+
+
+
 	MOVE_(other);
 	//std::cout << "\n\t MOVE \n";
 	//LEFT = other.LEFT;
@@ -240,7 +245,7 @@ Ray_template<T>::Ray_template(const std::initializer_list<T>& li)
 		ray_[LEFT + F_RIGHT] = *it;
 		++F_RIGHT;
 	}
-	//shrink_to_fit();
+	shrink_to_fit();
 }
 
 template <typename T>

@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <fstream>
 std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
-#include "Ray_3_test.h"
+//#include "Ray_3_test.h"
 #include "hello.h"
 #include "Point_test.h"
 #include "Triangle_test.h"
@@ -144,9 +144,10 @@ int main(int argc, char const* argv[])
 
 
 	int t1 = clock();
-
+	Dot test_holder;
 
 	// { work with Dot arr, to create triangle and find max insade point
+	Triangle_hi d;
 	Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	size_t n_triangles = 0;
 	for (size_t i = 0; i < n_points; i++)
@@ -211,7 +212,8 @@ int main(int argc, char const* argv[])
 		Dot b;
 		Dot c;
 		Dot d;
-		Ray_3_ test___;
+		//Ray_3_ test___;
+		Ray_template<Dot> test___;
 
 		int rnd = utilities::random_INT(0, 90);
 		std::cout << "\n" << rnd << "\n";
@@ -268,6 +270,7 @@ int main(int argc, char const* argv[])
 			Test_corner_3.print();
 			Test_corner_4.print();
 
+			Test_corner_3.print(1);
 			std::cout << "\n";
 
 			std::cin.get();

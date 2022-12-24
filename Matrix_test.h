@@ -79,7 +79,6 @@ public:
 
 	//после всех
 	//void resize(size_t strings, size_t columns, const T& value = T());
-	//void resize(size_t strings, size_t columns);
 	//void resize(size_t strings, size_t columns, const T& value);
 
 	void fill(const T& value);

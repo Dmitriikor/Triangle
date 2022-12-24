@@ -11,6 +11,7 @@
 #include "Ray_template.h"
 
 #include "Ray_3_test.h"
+
 #include "Point_test.h"
 #include "Matrix_test.h"
 #include "Is_equal_test.h"
@@ -23,7 +24,7 @@ public:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
 
-	Ray_3_ points_to_draw_;		//свободные точки для рисования
+	Ray_template<Dot> points_to_draw_;		//свободные точки для рисования
 	//Ray_3_ line_points_to_draw_;	//точки линий для рисования
 
 };
@@ -129,8 +130,10 @@ public:
 	}
 
 
+	template <typename T>
+	void insert(const Ray_template<T>& points);
 
-	void insert(const Ray_3_& points);
+
 	void insert(const Dot& pt)
 	{
 		update_min_max_by(pt);
@@ -183,16 +186,19 @@ public:
 	{
 		outfile_adress = adress;
 	}
-	void print(std::ostream& output)
+	void print(int a/*std::ostream& output*/)
 	{
-		
-		T* outfile_adress_2 = new T[outfile_adress.size()];
+		T* outfile_adress_2 = new T[outfile_adress.size()+1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
+																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".matrix	Z : \с++\Triangle\hello.h	196
+
+
 		for (int i = 0; i < outfile_adress.size(); ++i)
 			outfile_adress_2[i] = outfile_adress[i];
 
 		outfile_adress_2[outfile_adress.size()] = '\0';
 
 		std::ofstream outfile_corner(outfile_adress_2); //////////////////////////////////////////////???????????????????????????????????????????????
+
 		corner_arr().print(outfile_corner);
 		delete[] outfile_adress_2;
 	}
@@ -201,7 +207,8 @@ public:
 private:
 	Matrix corner_arr_;
 	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' };
-	void draw_points_or_line_corner(Ray_3_& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
+	template <typename T>
+	void draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
 	void add_points_to_corner(/*Canvas& this_*/);
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void erase_point_from_corner(const Dot& err);
@@ -242,7 +249,8 @@ public:
 private:
 
 	Matrix axys_arr_;
-	void draw_points_or_line_axys(Ray_3_& loc_arr_to_draw, Matrix& loc_arr);
+	template <typename T>
+	void draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr);
 };
 
 
