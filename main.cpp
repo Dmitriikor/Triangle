@@ -270,7 +270,9 @@ int main(int argc, char const* argv[])
 			Test_corner_3.print();
 			Test_corner_4.print();
 
-			Test_corner_3.print(1);
+			Corner Test_corner_0 = Test_corner_4;
+			Test_corner_0 += Test_axys;
+			Test_corner_0.print(1);
 			std::cout << "\n";
 
 			std::cin.get();

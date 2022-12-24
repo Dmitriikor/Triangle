@@ -10,7 +10,7 @@
 
 #include "Ray_template.h"
 
-#include "Ray_3_test.h"
+//#include "Ray_3_test.h"
 
 #include "Point_test.h"
 #include "Matrix_test.h"
@@ -25,7 +25,6 @@ public:
 	Point MIN_VIRTUAL_;
 
 	Ray_template<Dot> points_to_draw_;		//свободные точки для рисования
-	//Ray_3_ line_points_to_draw_;	//точки линий для рисования
 
 };
 
@@ -62,62 +61,12 @@ protected:
 	void remove_no_rounding_line(const Dot& A, const Dot& B);
 	void remove_rounding_line(const Dot& A, const Dot& B);
 
-	//--------------------------------------------------------------------------------------------
-
-	Point& MAX_VIRTUAL()
-	{
-		return MAX_VIRTUAL_;
-	}
-
-	Point& MIN_VIRTUAL()
-	{
-		return MIN_VIRTUAL_;
-	}
-
-	int& width_x()
-	{
-		return width_x_;
-	}
-
-	int& width_y()
-	{
-		return width_y_;
-	}
-
-	int& width_x_with_indent()
-	{
-		return width_x_with_indent_;
-	}
-
-	int& width_y_with_indent()
-	{
-		return width_y_with_indent_;
-	}
-
-	int& axis_x_indents()
-	{
-		return axis_x_indents_;
-	}
-
-	int& axis_x_strings()
-	{
-		return axis_x_strings_;
-	}
-
 	Coordinates& ZERO() ///!!!
 	{
 		return ORIGIN_;
 	}
-
-	Coordinates& ORIGIN()  ///!!!
-	{
-		return ORIGIN_;
-	}
-
-	//--------------------------------------------------------------------------------------------
-
-	Ray_3_ calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+');
-	Ray_3_ calculate_line_swap(const Dot& A, const Dot& B, char symbol = '+');
+	Ray_template<Dot> calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+');
+	Ray_template<Dot> calculate_line_swap(const Dot& A, const Dot& B, char symbol = '+');
 
 public:
 	Canvas_console();
@@ -139,7 +88,7 @@ public:
 		update_min_max_by(pt);
 	}
 	void check_and_insert_point(const Dot& pt);
-	void add_lines(const Dot& A, const Dot& B, bool is_round, char symbol/*, Canvas& this_*/); //!!! is_round
+	void add_lines(const Dot& A, const Dot& B, bool is_round, char symbol ); //!!! is_round
 	void remove_line_total(const Dot& A, const Dot& B);
 	void remove_point(const Dot& dl);
 
@@ -164,7 +113,7 @@ public:
 	{
 		create(fill_symbol);
 	}
-	void print(/*Canvas& this_*/)
+	void print( )
 	{
 		corner_arr().clear();
 		create();
@@ -172,7 +121,7 @@ public:
 		/*this_.*/corner_arr().print();
 		//corner_arr().print_to_raw();
 	}
-	void print_zero(/*Canvas& this_*/);
+	void print_zero( );
 	void remove(const Dot& dot_to_erase)
 	{
 		remove_line_total(dot_to_erase, dot_to_erase);
@@ -202,14 +151,14 @@ public:
 		corner_arr().print(outfile_corner);
 		delete[] outfile_adress_2;
 	}
-	void clear(/*Canvas& this_*/);
+	void clear( );
 
 private:
 	Matrix corner_arr_;
 	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' };
 	template <typename T>
 	void draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
-	void add_points_to_corner(/*Canvas& this_*/);
+	void add_points_to_corner( );
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void erase_point_from_corner(const Dot& err);
 	Matrix& corner_arr()
@@ -228,19 +177,19 @@ public:
 		axys_arr_.set_at(cell.i, cell.j, symbol);
 	}
 	void erase_point_from_axys(Dot& err);
-	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
-	void remove(/*Canvas& this_*/)
+	void create( char axys_arr_fill_symbol = ' ');
+	void remove( )
 	{
 		/*this_.*/axys_arr_.clear();
 	}
-	void print(/*Canvas& this_*/)
+	void print( )
 	{
 		axys_arr_.clear();
 		create();
 		draw_points();
 		axys_arr_.print();
 	}
-	void draw_points(/*Canvas& this_*/);
+	void draw_points( );
 	void print(std::ostream& output)
 	{
 		axys_arr_.print(output);
