@@ -82,7 +82,7 @@ public:
 
 	Ray_template& operator=(Ray_template&& other);
 
-	void operator=(std::nullptr_t);
+	void operator=(std::nullptr_t); //////////////////////////////!!!!!!!!!
 
 	void push_back(const T& value);
 
