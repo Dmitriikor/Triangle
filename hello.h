@@ -135,7 +135,7 @@ public:
 	{
 		outfile_adress = adress;
 	}
-	void print(int a/*std::ostream& output*/)
+	void print(int a/*std::ostream& output*/)/////////////////////////////////////////////////!!!!!!!!!!!
 	{
 		T* outfile_adress_2 = new T[outfile_adress.size()+1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
 																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".matrix	Z : \с++\Triangle\hello.h	196
