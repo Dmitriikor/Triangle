@@ -7,11 +7,10 @@
 #include <fstream>
 #include <string>
 #include <limits>
+#include <stdexcept>
+
 
 #include "Ray_template.h"
-
-//#include "Ray_3_test.h"
-
 #include "Point_test.h"
 #include "Matrix_test.h"
 #include "Is_equal_test.h"
