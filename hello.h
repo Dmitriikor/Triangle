@@ -71,24 +71,30 @@ protected:
 public:
 	Canvas_console();
 
-	Canvas_console(const Canvas_console& other);
+	//Canvas_console(const Canvas_console& other) = default; //!!! system copy-cobstructor
 
 	void operator+=(const Canvas_console& other)
 	{
-		insert(other.points_to_draw_);
+		insert(other.points_to_draw_); //another method (private)
+
+		//!!! ONLY HERE (Canvas)
+		//set_min_max(); //!!! max and min is from this or other (NOT checking ALL OF IT)
+		//initialize_width(); //!!! same 
 	}
 
+	//!!! operator + 
 
 	template <typename T>
-	void insert(const Ray_template<T>& points);
+	void insert(const Ray_template<T>& points); //!!! так можно, но тут не нужно => перегрузка
 
 
 	void insert(const Dot& pt)
 	{
-		update_min_max_by(pt);
+		update_min_max_by(pt); //!!! more effective
 	}
+
 	void check_and_insert_point(const Dot& pt);
-	void add_lines(const Dot& A, const Dot& B, bool is_round, char symbol ); //!!! is_round
+	void add_lines(const Dot& A, const Dot& B, bool is_round, char symbol); //!!! is_round
 	void remove_line_total(const Dot& A, const Dot& B);
 	void remove_point(const Dot& dl);
 
@@ -98,10 +104,7 @@ public:
 	void go_debug(bool is_debug = false);
 
 
-	~Canvas_console() 
-	{
-		
-	};
+	//~Canvas_console() = default; //!!! system
 };
 
 
@@ -113,7 +116,7 @@ public:
 	{
 		create(fill_symbol);
 	}
-	void print( )
+	void print()
 	{
 		corner_arr().clear();
 		create();
@@ -121,7 +124,7 @@ public:
 		/*this_.*/corner_arr().print();
 		//corner_arr().print_to_raw();
 	}
-	void print_zero( );
+	void print_zero();
 	void remove(const Dot& dot_to_erase)
 	{
 		remove_line_total(dot_to_erase, dot_to_erase);
@@ -137,7 +140,7 @@ public:
 	}
 	void print(int a/*std::ostream& output*/)/////////////////////////////////////////////////!!!!!!!!!!!
 	{
-		T* outfile_adress_2 = new T[outfile_adress.size()+1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
+		T* outfile_adress_2 = new T[outfile_adress.size() + 1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
 																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".matrix	Z : \с++\Triangle\hello.h	196
 
 
@@ -151,14 +154,14 @@ public:
 		corner_arr().print(outfile_corner);
 		delete[] outfile_adress_2;
 	}
-	void clear( );
+	void clear();
 
 private:
 	Matrix corner_arr_;
-	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' };
+	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' }; //!!! string
 	template <typename T>
 	void draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
-	void add_points_to_corner( );
+	void add_points_to_corner();
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void erase_point_from_corner(const Dot& err);
 	Matrix& corner_arr()
@@ -177,19 +180,19 @@ public:
 		axys_arr_.set_at(cell.i, cell.j, symbol);
 	}
 	void erase_point_from_axys(Dot& err);
-	void create( char axys_arr_fill_symbol = ' ');
-	void remove( )
+	void create(char axys_arr_fill_symbol = ' ');
+	void remove()
 	{
 		/*this_.*/axys_arr_.clear();
 	}
-	void print( )
+	void print()
 	{
 		axys_arr_.clear();
 		create();
 		draw_points();
 		axys_arr_.print();
 	}
-	void draw_points( );
+	void draw_points();
 	void print(std::ostream& output)
 	{
 		axys_arr_.print(output);

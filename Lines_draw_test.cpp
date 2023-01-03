@@ -215,7 +215,7 @@
 //
 //           if (A.x == B.x && A.y == B.y)
 //           {
-//               throw std::exception("Lines_draw_test.cpp draw_line_no_round Point A == Point B (NO LINE)");
+//               throw std::runtime_error("Lines_draw_test.cpp draw_line_no_round Point A == Point B (NO LINE)");
 //               return;
 //           }
 //
@@ -271,7 +271,7 @@
 //void Axys(Triangle& triangle, unsigned int coefficient, bool draw_triangle, bool draw_round) {
 //    if (coefficient == 0) 
 //    {
-//        throw std::exception("Lines_draw_test.cpp Axys coefficient == 0");
+//        throw std::runtime_error("Lines_draw_test.cpp Axys coefficient == 0");
 //        return;
 //    }
 //

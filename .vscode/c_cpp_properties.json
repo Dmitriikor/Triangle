@@ -10,8 +10,9 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\MinGW\\mingw64\\bin\\gcc.exe",
-            "intelliSenseMode": "clang-x64"
+            "compilerPath": "C:\\MinGW\\mingw64\\bin\\g++.exe",
+            "intelliSenseMode": "clang-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

@@ -1,11 +1,11 @@
 #include "Point_test.h"
-
+#include <cmath>
 void Point::print() const {
 	std::cout << x << " " << y << "\n";
 }
 
 double length(const Point& A, const Point& B) {
-	return pow(pow(B.x - A.x, 2) + pow(B.y - A.y, 2), 0.5);  //!!!
+	return std::std::pow(std::pow(B.x - A.x, 2) + std::pow(B.y - A.y, 2), 0.5);  //!!!
 }
 
 bool Point_isEqual(double a, double b) {
@@ -21,6 +21,10 @@ bool Point::operator==(const Point& other) const {
 	return false;
 }
 
+std::ostream& operator<<(std::ostream& out, const Dot& p)
+{
+	return std::cout << p.symbol;
+}
 
 
 /*
@@ -58,7 +62,7 @@ public:
 		Dot::x = x;
 		Dot::y = y;
 
-		length = pow(pow(x, 2) + pow(y, 2), 0.5);
+		length = std::pow(std::pow(x, 2) + std::pow(y, 2), 0.5);
 	}
 
 private:

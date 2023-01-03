@@ -12,6 +12,8 @@ template <typename T>
 class Ray_template {
 private:
 
+	//!!! initialization in itializer-list (in constructors)
+
 	T* ray_ = nullptr;
 
 	size_t LEFT = 0;
@@ -41,12 +43,12 @@ private:
 
 	const T& get_element_(size_t index) const;
 
-	template<typename T>
+	//template<typename T>
 	friend void print(const Ray_template<T>& Ray);
 
-	
-	void MOVE_(Ray_template<T>& other);
 
+	void MOVE_(Ray_template<T>& other);
+	void SWAP_(Ray_template& other);
 public:
 
 	Ray_template();
@@ -200,14 +202,14 @@ Ray_template<T>::Ray_template(const Ray_template<T>& other)
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(Ray_template<T>&& other)
+Ray_template<T>::Ray_template(Ray_template<T>&& other) :Ray_template()
 {
-//Серьезность		Код		Описание																	Проект				Файл						Строка	Состояние подавления
-//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).matrix	Z : \с++\Triangle\Ray_template.h	203
+	//Серьезность		Код		Описание																	Проект				Файл						Строка	Состояние подавления
+	//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).matrix	Z : \с++\Triangle\Ray_template.h	203
 
 
-
-	MOVE_(other);
+	SWAP_(other);
+	//MOVE_(other);
 	//std::cout << "\n\t MOVE \n";
 	//LEFT = other.LEFT;
 	//RIGHT = other.RIGHT;
@@ -465,43 +467,65 @@ Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
 template <typename T>
 Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other)
 {
-	
-	MOVE_(other);
+	if (this != &other)
+	{
+		clear();
+		SWAP_(other);
+		//MOVE_(other);
+	}
+
 	return *this;
 
 }
 
 template <typename T>
-void Ray_template<T>::operator=(std::nullptr_t)
+void Ray_template<T>::SWAP_(Ray_template<T>& other)
 {
-	ray_ = nullptr;
+	std::swap(LEFT, other.LEFT);
+	std::swap(RIGHT, other.RIGHT);
+	std::swap(F_LEFT, other.F_LEFT);
+	std::swap(F_RIGHT, other.F_RIGHT);
+	std::swap(saved_LEFT, other.saved_LEFT);
+	std::swap(saved_RIGHT, other.saved_RIGHT);
+
+	std::swap(COEFFICIENT, other.COEFFICIENT);
+
+	std::swap(ray_, other.ray_);
 }
+
+//!!! erase from code
+//template <typename T>
+//void Ray_template<T>::operator=(std::nullptr_t)
+//{
+//	ray_ = nullptr;
+//}
 
 template <typename T>
 void Ray_template<T>::MOVE_(Ray_template<T>& other)
 {
-	if (this != &other) {
+	//if (this != &other) { //!!! not needed
 		//std::cout << "\n\t MOVE \n";
-		LEFT = other.LEFT;
-		RIGHT = other.RIGHT;
-		F_LEFT = other.F_LEFT;
-		F_RIGHT = other.F_RIGHT;
-		saved_LEFT = other.saved_LEFT;
-		saved_RIGHT = other.saved_RIGHT;
+	LEFT = other.LEFT;
+	RIGHT = other.RIGHT;
+	F_LEFT = other.F_LEFT;
+	F_RIGHT = other.F_RIGHT;
+	saved_LEFT = other.saved_LEFT;
+	saved_RIGHT = other.saved_RIGHT;
 
-		COEFFICIENT = other.COEFFICIENT;
+	COEFFICIENT = other.COEFFICIENT;
 
-		ray_ = other.ray_;
+	ray_ = other.ray_;
 
-		other.ray_ = nullptr;
-		other.LEFT = 0;
-		other.RIGHT = 0;
-		other.F_LEFT = 0;
-		other.F_RIGHT = 0;
-		other.saved_LEFT = 0;
-		other.saved_RIGHT = 0;
-		other.COEFFICIENT = 0;
-	}
+	//!!! default_initialize - like in default-costructor
+	other.ray_ = nullptr;
+	other.LEFT = 0;
+	other.RIGHT = 0;
+	other.F_LEFT = 0;
+	other.F_RIGHT = 0;
+	other.saved_LEFT = 0;
+	other.saved_RIGHT = 0;
+	other.COEFFICIENT = 0;
+	//}
 }
 
 

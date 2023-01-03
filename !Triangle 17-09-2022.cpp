@@ -304,7 +304,7 @@
 //			clear_cls(OS);
 //		 } 
 //	 } 
-//	catch (const std::exception& exception)
+//	catch (const std::runtime_error& exception)
 //	{
 //		std::cout << "exception :  " << exception.what() << std::endl;
 //	 } 

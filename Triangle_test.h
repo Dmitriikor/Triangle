@@ -34,10 +34,9 @@ public:
 		return vertex.c;
 	}
 
-	Triangle_low()
-	{
+	//!!! set'еры
 
-	}
+	Triangle_low() = default;
 
 	Triangle_low(Dot a, Dot b, Dot c)
 	{
@@ -48,7 +47,7 @@ public:
 };
 
 
-class Triangle_hi : public Triangle_low  
+class Triangle_hi : public Triangle_low
 {
 
 private:
@@ -64,26 +63,23 @@ private:
 
 	size_t dot_counter;
 	double area;
-	bool is_treangle;
+	bool is_triangle;
 
 	double count_area() const;
 
 public:
-	bool is_treangle_() const 
+	bool is_triangle_() const //!!! is_triangle without '_'
 	{
-		return is_treangle;
+		return is_triangle;
 	}
 
-	Triangle_hi()
+	Triangle_hi() :Triangle_low(), side({ 0, 0, 0 }), dot_counter(0), area(0), is_triangle(0)
 	{
 
-	};
+	}
 
-	Triangle_hi(Dot a, Dot b, Dot c) : Triangle_low(a,b,c)
+	Triangle_hi(Dot a, Dot b, Dot c) : Triangle_low(a, b, c)
 	{
-		/*vertex.a = a;
-		vertex.b = b;
-		vertex.c = c;*/
 
 		side.AB = length(a, b);
 		side.BC = length(b, c);
@@ -93,122 +89,79 @@ public:
 		area = count_area();
 		point_in_triangle.clear();
 
-
 		if ((side.AB + side.BC > side.CA) &&
 			(side.AB + side.CA > side.BC) &&
 			(side.BC + side.CA > side.AB))
-			is_treangle = true;
+			is_triangle = true;
 		else
-			is_treangle = false;
+			is_triangle = false;
 
 	};
 
-	Triangle_hi(const Triangle_hi &other_) : Triangle_low(other_.vertex.a, other_.vertex.b, other_.vertex.c)
+	//Triangle_hi(const Triangle_hi& other) //!!! other
+	//	: Triangle_low(other), side(other.side), dot_counter(other.dot_counter), point_in_triangle(other.point_in_triangle),
+	//	area(other.area), is_triangle(other.is_triangle)
+	//{
+	//	
+	//};
+
+	Triangle_hi(Triangle_hi&& other) = default;
+
+	Triangle_hi& operator = (const Triangle_hi& other)
 	{
-		if (this == &other_)
-			return;
-
-		/*vertex.a = other_.vertex.a;
-		vertex.b = other_.vertex.b;
-		vertex.c = other_.vertex.c;*/
-
-		side.AB = other_.side.AB;
-		side.BC = other_.side.BC;
-		side.CA = other_.side.CA;
-
-		dot_counter = other_.dot_counter;
-
-		int length = other_.point_in_triangle.size();
-
-		for (size_t i = 0; i < length; i++)
-		{
-			point_in_triangle.add_to_back(other_.point_in_triangle[i]);
-		}
-
-		area = other_.area; //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-							//Предупреждение	C26495	Переменная "Triangle_hi::area" не инициализирована.Всегда инициализируйте переменную - член(type.6).matrix	Z : \с++\Triangle\Triangle_test.h	106
-
-
-		is_treangle = other_.is_treangle;
-
-	};
-
-	Triangle_hi& operator = (const Triangle_hi& other_)
-	{
-		if (this == &other_)
+		if (this == &other)
 			return *this;
 
-		vertex.a = other_.vertex.a;
-		vertex.b = other_.vertex.b;
-		vertex.c = other_.vertex.c;
+		vertex.a = other.vertex.a;
+		vertex.b = other.vertex.b;
+		vertex.c = other.vertex.c;
 
-		side.AB = other_.side.AB;
-		side.BC = other_.side.BC;
-		side.CA = other_.side.CA;
+		side.AB = other.side.AB;
+		side.BC = other.side.BC;
+		side.CA = other.side.CA;
 
-		dot_counter = other_.dot_counter;
+		dot_counter = other.dot_counter;
 
-		int length = other_.point_in_triangle.size();
+		int length = other.point_in_triangle.size();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			point_in_triangle.add_to_back(other_.point_in_triangle[i]);
+			point_in_triangle.add_to_back(other.point_in_triangle[i]);
 		}
 
-		area = other_.area;
+		area = other.area;
 
-		is_treangle = other_.is_treangle;
+		is_triangle = other.is_triangle;
 
 		return *this;
 	}
 
-	Triangle_hi& operator = (Triangle_hi&& other_)  //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
+	Triangle_hi& operator = (Triangle_hi&& other)  //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
 													//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).matrix	Z : \с++\Triangle\Triangle_test.h	165
 	{
-		if (this == &other_)
+		if (this == &other)
 			return *this;
 
-		vertex.a = other_.vertex.a;
-		vertex.b = other_.vertex.b;
-		vertex.c = other_.vertex.c;
+		vertex.a = other.vertex.a;
+		vertex.b = other.vertex.b;
+		vertex.c = other.vertex.c;
 
-		side.AB = other_.side.AB;
-		side.BC = other_.side.BC;
-		side.CA = other_.side.CA;
+		side.AB = other.side.AB;
+		side.BC = other.side.BC;
+		side.CA = other.side.CA;
 
-		dot_counter = other_.dot_counter;
+		dot_counter = other.dot_counter;
 
-		point_in_triangle = other_.point_in_triangle;
-		other_.point_in_triangle = nullptr;
+		point_in_triangle = other.point_in_triangle;
+		other.point_in_triangle = nullptr;
 
-		area = other_.area;
+		area = other.area;
 
-		is_treangle = other_.is_treangle;
+		is_triangle = other.is_triangle;
 
 	}
 
-	Triangle_hi(Triangle_hi&& other_) : Triangle_low(other_.vertex.a, other_.vertex.b, other_.vertex.c)
-	{
-		if (this == &other_)
-			return;
 
-		/*vertex.a = other_.vertex.a;
-		vertex.b = other_.vertex.b;
-		vertex.c = other_.vertex.c;*/
-
-		side.AB = other_.side.AB;
-		side.BC = other_.side.BC;
-		side.CA = other_.side.CA;
-
-		dot_counter = other_.dot_counter;
-		area = other_.area;
-
-		point_in_triangle = other_.point_in_triangle;
-		other_.point_in_triangle = nullptr;
-
-		is_treangle = other_.is_treangle;
-
-	};
 
 	~Triangle_hi()
 	{
@@ -228,61 +181,61 @@ public:
 
 		area = 0;
 
-		is_treangle = false;
+		is_triangle = false;
 	};
 
 
 
 
-const Dot& get_point_in(size_t index) const;
+	const Dot& get_point_in(size_t index) const;
 
-//const std::vector<Dot>& get_points_inside() const;
-const Ray_template <Dot> get_points_inside_Ray() const;
+	//const std::vector<Dot>& get_points_inside() const;
+	const Ray_template <Dot> get_points_inside_Ray() const;
 
-double get_AB() const; 
+	double get_AB() const;
 
-double get_BC() const;  
+	double get_BC() const;
 
-double get_CA() const;  
+	double get_CA() const;
 
-const Dot& get_A() const;
+	const Dot& get_A() const;
 
-const int get_A_X() const;
+	const int get_A_X() const;
 
-const int get_A_Y() const;
+	const int get_A_Y() const;
 
-const Dot& get_B() const;
+	const Dot& get_B() const;
 
-const int get_B_X() const;
+	const int get_B_X() const;
 
-const int get_B_Y() const;
+	const int get_B_Y() const;
 
-const Dot& get_C() const;
+	const Dot& get_C() const;
 
-const int get_C_X() const;
+	const int get_C_X() const;
 
-const int get_C_Y() const;
+	const int get_C_Y() const;
 
-void create(const Dot& a, const Dot& b, const Dot& c); 
+	void create(const Dot& a, const Dot& b, const Dot& c);
 
-size_t get_dot_counter() const; 
+	size_t get_dot_counter() const;
 
-void add_point_at_vector(const Dot& point);  
+	void add_point_at_vector(const Dot& point);
 
-double get_area() const; 
+	double get_area() const;
 
-bool is_triangle() const; 
+	bool is_triangle_check() const;
 
-void print() const;
+	void print() const;
 
-void print_to_file(std::ostream& output)const;
+	void print_to_file(std::ostream& output)const;
 
-static void triangles_print_outfile(const Triangle_hi triangle[], size_t index, const std::string& path_out);
+	static void triangles_print_outfile(const Triangle_hi triangle[], size_t index, const std::string& path_out);
 
-Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c);
+	Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c);
 
-bool is_inside(const Dot& point, const Triangle_hi& abc);
+	bool is_inside(const Dot& point, const Triangle_hi& abc);
 
-void points_print(const Dot p[], int n);
+	void points_print(const Dot p[], int n);
 };
 #endif //! TRIANGLE_TEST_H__

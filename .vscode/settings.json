@@ -43,8 +43,12 @@
         "ostream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "ctime": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "sstream": "cpp"
     },
     "terminal.integrated.detectLocale": "on",
-    "files.encoding": "windows1251"
+    "files.encoding": "utf8"
 }

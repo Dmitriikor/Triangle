@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <limits>
 std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 //#include "Ray_3_test.h"
 #include "hello.h"
@@ -10,17 +11,19 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Ray_template.h"
 #include "Matrix_TEMPLATE.h"
 #include <exception>
-#include <limits>
 #include <utility>
 
+
+		
+	
 int main(int argc, char const* argv[])
 {
 	utilities::fast_print();
 	//std::ios_base::sync_with_stdio(false);
 	//std::cin.tie(NULL);
-	 
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	 
+
 
 
 	// {  test create & call base handwritten "libs"
@@ -31,7 +34,29 @@ int main(int argc, char const* argv[])
 
 	Matrix_TEMPLATE<char> test_once(1, 35);
 
+	/*
 	Ray_template<int> test_move_1;
+	Ray_template<int> test_move_2;
+
+	print(test_move_1);
+	print(test_move_2);
+	std::cout << "---------------------------------------\n";
+
+	test_move_1.add_to_back(5);
+	test_move_1.add_to_first(4);
+
+	print(test_move_1);
+	print(test_move_2);
+	std::cout << "---------------------------------------\n";
+
+	test_move_2 = std::move(test_move_1);
+
+	print(test_move_1);
+	print(test_move_2);
+	std::cout << "---------------------------------------\n";
+	*/
+
+	/*Ray_template<int> test_move_1;
 	Ray_template<int> test_move_2 = std::move(test_move_1);
 	Ray_template<int> test_move_3 (20,30);
 	test_move_3.add_to_back(5);
@@ -41,16 +66,20 @@ int main(int argc, char const* argv[])
 
 	print(test_move_3);
 	test_move_3 = std::move(test_move_3);
-	test_move_1 = std::move(test_move_3);
 	print(test_move_1);
+	test_move_1 = std::move(test_move_3);
+	print(test_move_1);*/
 
+	Triangle_hi t = Triangle_hi({ 1, 2 }, { 3,4 }, { 5,6 });
+
+	Triangle_hi t_2 = std::move(t);
 
 
 	//Triangle_hi d;
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	std::cin >> n_points;
-	 
+
 	int OS_start_dialoge_type_;
 	std::cout << "Choise OS:\n \t1 Win, \n \t2 Ubuntu: \n \t3 Manual path to save:\n";
 	std::cin >> OS_start_dialoge_type_;
@@ -161,7 +190,7 @@ int main(int argc, char const* argv[])
 				if (isEqual(temp_abc.get_area(), 0))
 					break;
 
-				if (temp_abc.is_triangle()) {
+				if (temp_abc.is_triangle_()) {
 					triangle_arr[n_triangles] = temp_abc;
 					++n_triangles;
 				}
@@ -187,7 +216,7 @@ int main(int argc, char const* argv[])
 
 	delete[] point_arr;
 	size_t max_dot = 0;
-	size_t max_dot_index;
+	size_t max_dot_index = 0;
 	for (size_t i = 0; i < n_triangles; i++) {
 		if (final_triangle_arr[i].get_dot_counter() > max_dot) {
 			max_dot = final_triangle_arr[i].get_dot_counter();
@@ -195,11 +224,12 @@ int main(int argc, char const* argv[])
 		}
 		Triangle_hi::triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
 	}
+
 	final_triangle_arr[max_dot_index].print();
 	size_t cout_cntr = 15;
 
 	// } work with Dot arr, to create triangle and find max insade point
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -207,7 +237,7 @@ int main(int argc, char const* argv[])
 	//go_debug(false);
 	try
 	{
-		
+
 		Dot a;
 		Dot b;
 		Dot c;
@@ -221,10 +251,10 @@ int main(int argc, char const* argv[])
 		//a = { 15, 1 };
 
 		std::cout << "\n" << "start" << "\n";
-			Corner Test_corner;
-			Corner Test_corner_2;
-			Axys Test_axys;
-		
+		Corner Test_corner;
+		Corner Test_corner_2;
+		Axys Test_axys;
+
 		while (true) {
 
 			system("cls");
@@ -251,18 +281,18 @@ int main(int argc, char const* argv[])
 
 			Dot tpm2; tpm2.x = -5; tpm2.y = 5; tpm2.symbol = '!';
 			Dot tpm3; tpm3.x = 5; tpm3.y = -5; tpm3.symbol = '!';
-			Test_corner_2.add_lines(tpm2, tpm3,true,'-');
+			Test_corner_2.add_lines(tpm2, tpm3, true, '-');
 
 
 			Dot tpm4; tpm4.x = -5; tpm4.y = -5; tpm4.symbol = '!';
-			Dot tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!'; 
-			Test_corner_2.add_lines(tpm4, tpm5, true,'*');
+			Dot tpm5; tpm5.x = 5; tpm5.y = 5; tpm5.symbol = '!';
+			Test_corner_2.add_lines(tpm4, tpm5, true, '*');
 
 
 			Corner Test_corner_3;
 			Test_corner += Test_corner_2;
 			Test_corner_3 += Test_corner;
-			
+
 
 			Test_axys += Test_corner_3;
 			Corner Test_corner_4 = Test_corner_3;
@@ -279,12 +309,12 @@ int main(int argc, char const* argv[])
 
 
 
-//std::cout << "\n";
-//			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
-//			{
-//				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
-//			}
-//std::cout << "\n";
+			//std::cout << "\n";
+			//			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
+			//			{
+			//				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
+			//			}
+			//std::cout << "\n";
 
 			std::cout << "\n";
 
@@ -299,13 +329,13 @@ int main(int argc, char const* argv[])
 			std::cout << "end hello" << "\n";
 
 		}
-			
+
 		std::cout << "end hello" << "\n";
 	}
-		catch (const std::exception& exception)
+	catch (const std::runtime_error& exception)
 	{
 		std::cout << "\n\texception :  " << exception.what() << std::endl;
-	 } 
+	}
 
 
 	return 0;

@@ -86,7 +86,7 @@ double Triangle_hi::get_area() const {
 }
 
 
-bool Triangle_hi::is_triangle() const {
+bool Triangle_hi::is_triangle_check() const {
 	if ((side.AB + side.BC > side.CA) &&
 		(side.AB + side.CA > side.BC) &&
 		(side.BC + side.CA > side.AB))
@@ -117,7 +117,7 @@ void Triangle_hi::print_to_file(std::ostream& output) const {
 
 double Triangle_hi::count_area() const {
 	double p = (side.AB + side.BC + side.CA) / 2;
-	double s = pow(p * (p - side.AB) * (p - side.BC) * (p - side.CA), 0.5);  //!!!
+	double s = std::pow(p * (p - side.AB) * (p - side.BC) * (p - side.CA), 0.5);  //!!!
 	return s;
 }
 
