@@ -1,6 +1,6 @@
 ﻿#include "hello.h"
 #include <string>
-
+#include <float.h>
 Canvas_console::Canvas_console()
 {
 

@@ -1,4 +1,6 @@
 #include "Switch_cls_clear_from_os_type_test.h"
+#include <stdexcept>
+
 void clear_cls(int OS) 
 {
 

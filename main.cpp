@@ -18,7 +18,9 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 	
 int main(int argc, char const* argv[])
 {
-	utilities::fast_print();
+	//utilities::fast_print(); //dont worck in g++/gcc
+
+
 	//std::ios_base::sync_with_stdio(false);
 	//std::cin.tie(NULL);
 	
@@ -145,7 +147,7 @@ int main(int argc, char const* argv[])
 		Dot temp;
 
 		if (input_switch == 3) {
-			//(rand()%range)±shift
+			//(rand()%range)ï¿½shift
 			//srand(time(NULL) + (rand() % 225000));
 			temp.x = utilities::random_INT(-20, 20);
 			//Sleep(1000);

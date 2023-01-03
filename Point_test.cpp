@@ -5,7 +5,7 @@ void Point::print() const {
 }
 
 double length(const Point& A, const Point& B) {
-	return std::std::pow(std::pow(B.x - A.x, 2) + std::pow(B.y - A.y, 2), 0.5);  //!!!
+	return std::pow(std::pow(B.x - A.x, 2) + std::pow(B.y - A.y, 2), 0.5);  //!!!
 }
 
 bool Point_isEqual(double a, double b) {
@@ -45,11 +45,11 @@ public:
 		std::cout << x << " " << y << std::endl;
 	}
 
-	//статический метод - метод работы со статическими данными
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	static int get_counter() {
 		return counter;
 	}
-	//статический метод: как бы свободная функция внутри класса
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	static void print_type() {
 		std::cout << "Dot 2D with counter." << std::endl;
 	}
