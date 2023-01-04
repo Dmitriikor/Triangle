@@ -114,7 +114,7 @@ int main(int argc, char const* argv[])
 	}
 
 
-	std::cout << "Choise mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
+	std::cout << "Choose mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
 	int input_switch;
 	std::cin >> input_switch;
 	std::cin.ignore(MAX_STREAMSIZE, '\n');
@@ -177,7 +177,7 @@ int main(int argc, char const* argv[])
 	int t1 = clock();
 	Dot test_holder;
 
-	// { work with Dot arr, to create triangle and find max insade point
+	// { work with Dot arr, to create triangle and find max inside point
 	Triangle_hi d;
 	Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	size_t n_triangles = 0;

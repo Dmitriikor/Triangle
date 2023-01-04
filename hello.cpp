@@ -55,9 +55,32 @@ void Canvas_console::insert(const Ray_template<T_temp>& points)
 
 void Canvas_console::update_min_max_by(const Dot& pt)
 {
+	size_t old_long = points_to_draw_.size();
+
 	check_and_insert_point(pt);
-	set_min_max(); //!!! compare with old min & max
-	initialize_width();
+	if (old_long == points_to_draw_.size())
+		return;
+
+	bool is_update = false;
+	if (pt.x > MAX_VIRTUAL_.x) {
+		MAX_VIRTUAL_.x = pt.x;
+		is_update = true;
+	}
+	if (pt.y > MAX_VIRTUAL_.y) {
+		MAX_VIRTUAL_.y = pt.y;
+		is_update = true;
+	}
+	if (pt.x < MIN_VIRTUAL_.x) {
+		MIN_VIRTUAL_.x = pt.x;
+		is_update = true;
+	}
+	if (pt.y < MIN_VIRTUAL_.y) {
+		MIN_VIRTUAL_.y = pt.y;
+		is_update = true;
+	}
+	if (is_update == true){
+		initialize_width();
+	}
 }
 
 void Canvas_console::check_and_insert_point(const Dot& pt)
@@ -74,6 +97,18 @@ void Canvas_console::check_and_insert_point(const Dot& pt)
 	points_to_draw_.add_to_back(pt);
 }
 
+bool Canvas_console::is_point_in_arr(const Dot& pt)
+{
+	size_t length = points_to_draw_.size();
+	for (size_t i = 0; i < length; i++)
+	{
+		if (points_to_draw_[i] == pt)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 void Canvas_console::initialize_width() {
 	width_x_ = 1;
@@ -336,7 +371,7 @@ void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix
 		cell.i = ZERO().i - loc_arr_to_draw[i].y;
 		cell.j = (ZERO().j + (loc_arr_to_draw[i].x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
 		if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M())
-			throw std::runtime_error("exception in hello.cpp -> metod draw_points : cell >= corner_arr()");
+			throw std::runtime_error("exception in hello.cpp -> method draw_points : cell >= corner_arr()");
 
 		loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol); //@symbol
 
@@ -368,7 +403,7 @@ void Axys::draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix& lo
 		cell.j = (ORIGIN_.j + (loc_arr_to_draw[i].x * (width_x_ + axis_x_indents_ + 1))) + axis_x_indents_;
 
 		if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M()) //loc_arr.get_M()
-			throw std::runtime_error("exception in hello.cpp  -> metod draw_points_ is_axys");
+			throw std::runtime_error("exception in hello.cpp  -> method draw_points_ is_axys");
 
 		loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol);
 	}
@@ -384,7 +419,7 @@ void Corner::erase_point_from_corner(const Dot& dot)
 	if (cell.i < corner_arr().get_N() - axis_x_indents_ && (cell.j > width_y_ && cell.j < corner_arr().get_M()))
 		corner_arr().set_at(cell.i, cell.j, 'E');
 	else
-		throw std::runtime_error("exception in hello.cpp -> metod erase_point : cell coord");
+		throw std::runtime_error("exception in hello.cpp -> method erase_point : cell coord");
 }
 
 

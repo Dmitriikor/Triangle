@@ -14,7 +14,6 @@
 #include "Point_test.h"
 #include "Matrix_test.h"
 #include "Is_equal_test.h"
-
 #include "utilities.h"
 
 class Canvas
@@ -23,7 +22,7 @@ public:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
 
-	Ray_template<Dot> points_to_draw_;		//свободные точки для рисования
+	Ray_template<Dot> points_to_draw_;		//free dots to draw
 
 };
 
@@ -55,7 +54,7 @@ protected:
 	void add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round = true, char symbol = '+'); //add point to arr for print
 	void update_min_max_by(const Dot& pt);
 	void set_min_max();
-
+	bool is_point_in_arr(const Dot& pt);
 
 	void remove_no_rounding_line(const Dot& A, const Dot& B);
 	void remove_rounding_line(const Dot& A, const Dot& B);
@@ -70,11 +69,47 @@ protected:
 public:
 	Canvas_console();
 
-	//Canvas_console(const Canvas_console& other) = default; //!!! system copy-cobstructor
+	//Canvas_console(const Canvas_console& other) = default; //!!! system copy-constructor
 
 	void operator+=(const Canvas_console& other)
 	{
-		insert(other.points_to_draw_); //another method (private)
+
+		for (size_t i = 0; i < other.points_to_draw_.size(); i++)
+		{
+		points_to_draw_.add_to_back(other.points_to_draw_[i]);
+		}
+		if (width_x_ < other.width_x_)
+			width_x_ = other.width_x_;
+
+		if (width_y_ < other.width_y_)
+			width_y_ = other.width_y_;
+
+		if (axis_x_indents_ < other.axis_x_indents_)
+			axis_x_indents_ = other.axis_x_indents_;
+
+		if (axis_x_strings_ < other.axis_x_strings_)
+			axis_x_strings_ = other.axis_x_strings_;
+
+		if (width_x_with_indent_ < other.width_x_with_indent_)
+			width_x_with_indent_ = other.width_x_with_indent_;
+
+		if (width_y_with_indent_ < other.width_y_with_indent_)
+			width_y_with_indent_ = other.width_y_with_indent_;
+
+
+		if (MAX_VIRTUAL_.x < other.MAX_VIRTUAL_.x)
+			MAX_VIRTUAL_.x = other.MAX_VIRTUAL_.x;
+
+		if (MAX_VIRTUAL_.y < other.MAX_VIRTUAL_.y)
+			MAX_VIRTUAL_.y = other.MAX_VIRTUAL_.y;
+
+		if (MIN_VIRTUAL_.x > other.MIN_VIRTUAL_.x)
+			MIN_VIRTUAL_.x = other.MIN_VIRTUAL_.x;
+
+		if (MIN_VIRTUAL_.y > other.MIN_VIRTUAL_.y)
+			MIN_VIRTUAL_.y = other.MIN_VIRTUAL_.y;
+
+
 
 		//!!! ONLY HERE (Canvas)
 		//set_min_max(); //!!! max and min is from this or other (NOT checking ALL OF IT)
@@ -84,7 +119,7 @@ public:
 	//!!! operator + 
 
 	template <typename T>
-	void insert(const Ray_template<T>& points); //!!! так можно, но тут не нужно => перегрузка
+	void insert(const Ray_template<T>& points); //!!! so it is possible, but it is not necessary here => overload
 
 
 	void insert(const Dot& pt)
@@ -129,7 +164,7 @@ public:
 		remove_line_total(dot_to_erase, dot_to_erase);
 		erase_point_from_corner(dot_to_erase);
 	}
-	void remove_line(const Dot& A, const Dot& B)
+	void remove_line(const Dot& A, const Dot& B) 
 	{
 		remove_line_total(A, B);
 	}
