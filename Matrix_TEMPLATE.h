@@ -91,6 +91,12 @@ public:
 		str_i operator[](size_t i);
 	const_str_i operator[](size_t i) const;
 
+	///!!! operator+=
+	///!!! return Matrix_TEMPLATE <T> operator +
+	///!!! constructor std::move()
+	///!!! operator std::move()
+	///!!! void Matrix_TEMPLATE<T>::print(std::ostream& output) const
+
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -409,6 +415,13 @@ void Matrix_TEMPLATE<T>::print(std::ofstream& output) const
 		}
 		output << "\n";
 	}
+}
+
+template<typename T>
+inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
+{
+
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
