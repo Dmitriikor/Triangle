@@ -3,7 +3,7 @@
 #include <fstream>
 #include <limits>
 std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
-//#include "Ray_3_test.h"
+///#include "Ray_3_test.h"
 #include "hello.h"
 #include "Point_test.h"
 #include "Triangle_test.h"
@@ -34,7 +34,24 @@ int main(int argc, char const* argv[])
 	//Dot c;
 	//  }  test create & call base handwritten "libs"
 
-	Matrix_TEMPLATE<char> test_once(1, 35);
+	Matrix_TEMPLATE<char> test_once(1, 2, 'o');
+	test_once.print();
+	std::cout << std::endl;
+	test_once.resize(2,4,'q');
+	std::cout << std::endl;
+	test_once.print();
+	std::cout << std::endl;
+	test_once.resize(2, 8, 'w');
+	std::cout << std::endl;
+	test_once.print();
+	test_once.resize(3, 3, 'e');
+	std::cout << std::endl;
+	test_once.print();
+	test_once.resize(1, 1, 'r');
+	std::cout << std::endl;
+	test_once.print();
+
+	return 99;
 
 	/*
 	Ray_template<int> test_move_1;
@@ -179,7 +196,7 @@ int main(int argc, char const* argv[])
 
 	// { work with Dot arr, to create triangle and find max inside point
 	Triangle_hi d;
-	Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  // 1*2*3*(n_points-2)*(n_points-1)*n_points;
+	Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  /// 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	size_t n_triangles = 0;
 	for (size_t i = 0; i < n_points; i++)
 	{
@@ -205,7 +222,7 @@ int main(int argc, char const* argv[])
 		final_triangle_arr[i] = triangle_arr[i];
 	delete[] triangle_arr;
 
-	size_t hit = 0;
+	///size_t hit = 0;
 	for (size_t i = 0; i < n_triangles; i++) {
 		for (size_t j = 0; j < n_points; j++)
 			if (d.is_inside(point_arr[j], final_triangle_arr[i])) {
