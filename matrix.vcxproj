@@ -19,30 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="corner_x_y_axys.cpp" />
-    <ClCompile Include="draw_line_2_test.cpp" />
     <ClCompile Include="hello.cpp" />
     <ClCompile Include="Is_equal_test.cpp" />
-    <ClCompile Include="Lines_draw_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix_test.cpp" />
     <ClCompile Include="Point_test.cpp" />
     <ClCompile Include="Ray_3_test.cpp" />
-    <ClCompile Include="Ray_test.cpp" />
-    <ClCompile Include="!Triangle 17-09-2022.cpp" />
     <ClCompile Include="Switch_cls_clear_from_os_type_test.cpp" />
     <ClCompile Include="Triangle_test.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="draw_line_2_test.h" />
     <ClInclude Include="hello.h" />
     <ClInclude Include="Matrix_TEMPLATE.h" />
     <ClInclude Include="Ray_3_test.h" />
     <ClInclude Include="Ray_template.h" />
-    <ClInclude Include="Ray_test.h" />
     <ClInclude Include="Is_equal_test.h" />
-    <ClInclude Include="Lines_draw_test.h" />
     <ClInclude Include="Matrix_test.h" />
     <ClInclude Include="Point_test.h" />
     <ClInclude Include="Switch_cls_clear_from_os_type_test.h" />
@@ -135,6 +127,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +143,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -9,9 +9,14 @@
 #include <fstream>
 #include <string>
 
+#include <thread>
+#include <mutex>
+
+
 ///using T = char;
 ///using pointer_type = T*;
-
+/// 
+ 
 
 struct Coordinates_TEMPLATE {
 	size_t i;
@@ -27,6 +32,10 @@ public:
 	Matrix_TEMPLATE(size_t N, size_t M);
 	Matrix_TEMPLATE(size_t N, size_t M, const T& value);
 	Matrix_TEMPLATE(const Matrix_TEMPLATE& other);
+
+	Matrix_TEMPLATE(Matrix_TEMPLATE&& other);
+	Matrix_TEMPLATE& operator=(Matrix_TEMPLATE&& other);
+
 	~Matrix_TEMPLATE();
 
 	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
@@ -42,7 +51,7 @@ public:
 	void fill(const T& value);
 	bool is_empty();
 
-	void print() const;
+	void print();
 	void print(std::ofstream& output) const;
 	void print(std::ostream& output) const;
 
@@ -86,15 +95,19 @@ private:
 		}
 	};
 
+	mutable std::recursive_mutex lockit;
+	//std::thread* DefenseThread;
+	void  do_something();
+
 public:
 
-		str_i operator[](size_t i);
+	str_i operator[](size_t i);
 	const_str_i operator[](size_t i) const;
 
 	///!!! operator+=
 	///!!! return Matrix_TEMPLATE <T> operator +
-	///!!! constructor std::move()
-	///!!! operator std::move()
+	///!!!• constructor std::move()
+	///!!!• operator std::move()
 	///!!! void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 
 };
@@ -160,7 +173,7 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 	T** new_arr;
 	new_arr = allocate(N_, M_);
 
-	
+
 	int min_N_lim = (N_ < N) ? N_ : N;
 	int min_M_lim = (M_ < M) ? M_ : M;
 
@@ -174,8 +187,8 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 		for (size_t j = 0; j < M_; j++)
 			if (new_arr[i][j] == T())
 				new_arr[i][j] = value;
-			
-		
+
+
 	}
 
 	clear();
@@ -232,6 +245,32 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE<T>& other) : N(other.N
 	}
 }
 
+
+template<typename T>
+Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other)
+{
+	std::swap(N, other.N);
+	std::swap(M, other.M);
+
+	clear();
+
+	std::swap(arr, other.arr);
+}
+
+template<typename T>
+inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other)
+{
+	std::swap(N, other.N);
+	std::swap(M, other.M);
+
+	clear();
+
+	std::swap(arr, other.arr);
+
+
+	return *this;
+}
+
 template <typename T>
 Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 {
@@ -241,25 +280,30 @@ Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 template <typename T>
 Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
 {
-	if (this != &other)
+	if (this == &other)
 	{
-		clear();
+		return *this;
+	}
 
-		if (other.arr != nullptr)
+	if (other.arr == nullptr)
+	{
+		return *this;
+	}
+
+	clear();
+
+	N = other.N;
+	M = other.M;
+
+	arr = allocate(N, M);
+
+	//!!! copy-function
+
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
 		{
-			N = other.N;
-			M = other.M;
-
-			arr = allocate(N, M);
-
-			//!!! copy-function
-			for (size_t i = 0; i < N; i++)
-			{
-				for (size_t j = 0; j < M; j++)
-				{
-					arr[i][j] = other.arr[i][j];
-				}
-			}
+			arr[i][j] = other.arr[i][j];
 		}
 	}
 
@@ -391,9 +435,37 @@ bool Matrix_TEMPLATE<T>::is_empty()
 	return false;
 }
 
+
 template <typename T>
-void Matrix_TEMPLATE<T>::print() const
+void Matrix_TEMPLATE<T>::do_something()
 {
+	//std::lock_guard<std::recursive_mutex> lockit(std::recursive_mutex);
+		for (size_t i = 0; i < N; i++)
+		{
+			for (size_t j = 0; j < M; j++)
+			{
+				std::cout << arr[i][j];
+			}
+			std::cout << "\n";
+		}
+
+}
+#include "windows.h" 
+#include "Windows.h" 
+
+template <typename T>
+void Matrix_TEMPLATE<T>::print()
+{
+	//std::lock_guard<std::recursive_mutex> lockit(std::recursive_mutex);
+	std::thread* DefenseThread;
+
+	//Sleep(1000);
+	DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
+
+	DefenseThread->join();
+
+
+	/*
 	for (size_t i = 0; i < N; i++)
 	{
 		for (size_t j = 0; j < M; j++)
@@ -402,27 +474,36 @@ void Matrix_TEMPLATE<T>::print() const
 		}
 		std::cout << "\n";
 	}
+	*/
 }
 
-template <typename T>
-void Matrix_TEMPLATE<T>::print(std::ofstream& output) const
-{
-	for (size_t i = 0; i < N; i++)
-	{
-		for (size_t j = 0; j < M; j++)
-		{
-			output << arr[i][j];
-		}
-		output << "\n";
-	}
-}
+//template <typename T>
+//void Matrix_TEMPLATE<T>::print(std::ofstream& output) const
+//{
+//	for (size_t i = 0; i < N; i++)
+//	{
+//		for (size_t j = 0; j < M; j++)
+//		{
+//			output << arr[i][j];
+//		}
+//		output << "\n";
+//	}
+//}
+
+
+
 
 template<typename T>
 inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 {
 
 
+	///thr = std::move(std::thread{do_something});
+
+
 }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_v1_end

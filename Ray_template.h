@@ -59,7 +59,7 @@ public:
 
 	Ray_template(const Ray_template& other);
 
-	Ray_template(Ray_template&& other);
+	Ray_template(Ray_template&& other) noexcept;
 
 	Ray_template(const std::initializer_list<T>& li);
 
@@ -184,7 +184,7 @@ template <typename T>
 Ray_template<T>::Ray_template(const Ray_template<T>& other)
 /*:LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) */
 {
-	//std::cout << "copy-constructor " << std::endl;
+	///std::cout << "copy-constructor " << std::endl;
 	LEFT = other.LEFT;
 	RIGHT = other.RIGHT;
 	F_LEFT = other.F_LEFT;
@@ -202,11 +202,8 @@ Ray_template<T>::Ray_template(const Ray_template<T>& other)
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(Ray_template<T>&& other) :Ray_template()
+Ray_template<T>::Ray_template(Ray_template<T>&& other) noexcept  :Ray_template()
 {
-	//Серьезность		Код		Описание																	Проект				Файл						Строка	Состояние подавления
-	//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).matrix	Z : \с++\Triangle\Ray_template.h	203
-
 
 	SWAP_(other);
 	//MOVE_(other);

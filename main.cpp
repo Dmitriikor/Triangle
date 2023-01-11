@@ -14,42 +14,48 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include <utility>
 
 
+#include "windows.h" 
+#include "Windows.h" 
 		
 	
 int main(int argc, char const* argv[])
 {
-	//utilities::fast_print(); //dont worck in g++/gcc
+	///utilities::fast_print(); //don't work in g++/gcc
 
 
-	//std::ios_base::sync_with_stdio(false);
-	//std::cin.tie(NULL);
+	///std::ios_base::sync_with_stdio(false);
+	///std::cin.tie(NULL);
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-	// {  test create & call base handwritten "libs"
-	//Ray_3_ a;
-	//Matrix b;
-	//Dot c;
-	//  }  test create & call base handwritten "libs"
+	/// {  test create & call base handwritten "libs"
+	///Ray_3_ a;
+	///Matrix b;
+	///Dot c;
+	///  }  test create & call base handwritten "libs"
 
-	Matrix_TEMPLATE<char> test_once(1, 2, 'o');
-	test_once.print();
+	Matrix_TEMPLATE<char> test_once_1(1, 2, 'o');
+	Matrix_TEMPLATE<char> test_once_2(1, 2, 'o');
+	Matrix_TEMPLATE<char> test_once_3(1, 2, 'o');
+	Matrix_TEMPLATE<char> test_once_4(1, 2, 'o');
+	test_once_1.print();
 	std::cout << std::endl;
-	test_once.resize(2,4,'q');
+	test_once_2.resize(2,4,'q');
 	std::cout << std::endl;
-	test_once.print();
+	test_once_2.print();
 	std::cout << std::endl;
-	test_once.resize(2, 8, 'w');
+	test_once_3.resize(2, 8, 'w');
 	std::cout << std::endl;
-	test_once.print();
-	test_once.resize(3, 3, 'e');
+	test_once_3.print();
+	test_once_4.resize(3, 3, 'e');
 	std::cout << std::endl;
-	test_once.print();
-	test_once.resize(1, 1, 'r');
+	test_once_4.print();
+	test_once_4.resize(1, 1, 'r');
 	std::cout << std::endl;
-	test_once.print();
+	test_once_4.print();
+	Sleep(10000);
 
 	return 99;
 
@@ -94,7 +100,7 @@ int main(int argc, char const* argv[])
 	Triangle_hi t_2 = std::move(t);
 
 
-	//Triangle_hi d;
+	///Triangle_hi d;
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	std::cin >> n_points;
@@ -117,7 +123,7 @@ int main(int argc, char const* argv[])
 		break;
 	}
 	case 3: {
-		//std::getline (std::cin,name);
+		///std::getline (std::cin,name);
 		std::cout << "\n Enter path_in \n\t";
 		std::getline(std::cin, path_in);
 		std::cout << "\n Enter path_out \n\t";
@@ -147,7 +153,7 @@ int main(int argc, char const* argv[])
 
 	std::istream& input = input_switch == 1 ? infile : std::cin;
 
-	//if (input_switch == 2 || input_switch == 3)
+	///if (input_switch == 2 || input_switch == 3)
 
 
 	if (input_switch == 2)
@@ -164,11 +170,11 @@ int main(int argc, char const* argv[])
 		Dot temp;
 
 		if (input_switch == 3) {
-			//(rand()%range)�shift
-			//srand(time(NULL) + (rand() % 225000));
+			///(rand()%range)�shift
+			///srand(time(NULL) + (rand() % 225000));
 			temp.x = utilities::random_INT(-20, 20);
-			//Sleep(1000);
-			//srand(time(NULL) + (rand() % 155000));
+			///Sleep(1000);
+			///srand(time(NULL) + (rand() % 155000));
 			temp.y = utilities::random_INT(-20, 20);
 			std::cout << temp.x << " " << temp.y << "\n";
 		}
@@ -247,13 +253,13 @@ int main(int argc, char const* argv[])
 	final_triangle_arr[max_dot_index].print();
 	size_t cout_cntr = 15;
 
-	// } work with Dot arr, to create triangle and find max insade point
+	// } work with Dot arr, to create triangle and find max inside point
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-	//go_debug(false);
+	///go_debug(false);
 	try
 	{
 
@@ -261,7 +267,7 @@ int main(int argc, char const* argv[])
 		Dot b;
 		Dot c;
 		Dot d;
-		//Ray_3_ test___;
+		///Ray_3_ test___;
 		Ray_template<Dot> test___;
 
 		int rnd = utilities::random_INT(0, 90);
@@ -289,7 +295,7 @@ int main(int argc, char const* argv[])
 			d.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); d.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); d.symbol = '^';
 			test___.add_to_back(d);
 
-
+			
 
 			Test_corner.insert(test___);
 			test___.clear();
@@ -328,12 +334,12 @@ int main(int argc, char const* argv[])
 
 
 
-			//std::cout << "\n";
-			//			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
-			//			{
-			//				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
-			//			}
-			//std::cout << "\n";
+			///std::cout << "\n";
+			///			for (size_t i = 0; i < Test_corner.points_to_draw().size(); i++)
+			///			{
+			///				std::cout << Test_corner.points_to_draw()[i].x << "," << Test_corner.points_to_draw()[i].y << ";  ";
+			///			}
+			///std::cout << "\n";
 
 			std::cout << "\n";
 
@@ -341,10 +347,10 @@ int main(int argc, char const* argv[])
 
 			std::ofstream outfile_corner("corner_path_out.txt");
 
-			//Test_corner.print_to_file();
+			///Test_corner.print_to_file();
 
-			//std::ofstream outfile_axys("axys_path_out.txt");
-			//Test_axys.print_to_file(outfile_axys);
+			///std::ofstream outfile_axys("axys_path_out.txt");
+			///Test_axys.print_to_file(outfile_axys);
 			std::cout << "end hello" << "\n";
 
 		}
