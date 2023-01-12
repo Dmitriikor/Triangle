@@ -177,6 +177,8 @@ inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) :
 template <typename T>
 void Matrix_TEMPLATE<T>::resize_and_override(size_t N_, size_t M_, const T& value)
 {
+
+
 	resize(N_, M_);
 	fill(value);
 }
@@ -200,25 +202,16 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 	int min_M_lim = (M_ < M) ? M_ : M;
 
 	for (size_t i = 0; i < min_N_lim; i++)
-		for (size_t j = 0; j < min_M_lim; j++) {
-			std::lock_guard<std::mutex> _(get_cout_mutex());
+		for (size_t j = 0; j < min_M_lim; j++) 
 			new_arr[i][j] = arr[i][j];
-		}
+
 
 
 	for (size_t i = 0; i < N_; i++)
-	{
 		for (size_t j = 0; j < M_; j++) 
-		{
 			if (new_arr[i][j] == T())
-			{
-				std::lock_guard<std::mutex> _(get_cout_mutex());
 				new_arr[i][j] = value;
-			}
-		}
 
-
-	}
 
 	clear();
 	N = N_;
@@ -237,7 +230,7 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
 		clear();
 		return;
 	}
-	std::lock_guard<std::mutex> _(get_cout_mutex());
+
 	T** new_arr;
 	new_arr = allocate(N_, M_);
 
@@ -273,7 +266,6 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE<T>& other) : N(other.N
 		}
 	}
 }
-
 
 template<typename T>
 Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other)
@@ -467,20 +459,10 @@ bool Matrix_TEMPLATE<T>::is_empty()
 	return false;
 }
 
-
 //std::mutex Matrix_TEMPLATE<T>::lockit;
-
-
-
-
-
-
-
 template <typename T>
 void Matrix_TEMPLATE<T>::do_something()
 {
-	//printsT("Hello enter", std::this_thread::get_id(), '\n');
-
 	std::lock_guard<std::mutex> _(get_cout_mutex());
 	std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
 		for (size_t i = 0; i < N; i++)
@@ -504,36 +486,7 @@ void Matrix_TEMPLATE<T>::print()
 	//Sleep(1000);
 
 	DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
-
-	
-
-
-	/*
-	for (size_t i = 0; i < N; i++)
-	{
-		for (size_t j = 0; j < M; j++)
-		{
-			std::cout << arr[i][j];
-		}
-		std::cout << "\n";
-	}
-	*/
 }
-
-//template <typename T>
-//void Matrix_TEMPLATE<T>::print(std::ofstream& output) const
-//{
-//	for (size_t i = 0; i < N; i++)
-//	{
-//		for (size_t j = 0; j < M; j++)
-//		{
-//			output << arr[i][j];
-//		}
-//		output << "\n";
-//	}
-//}
-
-
 
 
 template<typename T>
@@ -552,3 +505,51 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #endif //! MATRIX_TEMPLATE_H__
+
+
+
+//#include <iostream>
+//#include <mutex>
+//
+//std::ostream&
+//print_one(std::ostream& os)
+//{
+//	return os;
+//}
+//
+//template <class A0, class ...Args>
+//std::ostream&
+//print_one(std::ostream& os, const A0& a0, const Args& ...args)
+//{
+//	os << a0;
+//	return print_one(os, args...);
+//}
+//
+//template <class ...Args>
+//std::ostream&
+//print(std::ostream& os, const Args& ...args)
+//{
+//	return print_one(os, args...);
+//}
+//
+//std::mutex&
+//get_cout_mutex()
+//{
+//	static std::mutex m;
+//	return m;
+//}
+//
+//template <class ...Args>
+//std::ostream&
+//print(const Args& ...args)
+//{
+//	std::lock_guard<std::mutex> _(get_cout_mutex());
+//	return print(std::cout, args...);
+//}
+//
+//
+//void exec()
+//{
+//	print("Hello ", std::this_thread::get_id(), '\n');
+//	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//}
