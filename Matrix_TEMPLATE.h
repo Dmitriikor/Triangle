@@ -62,7 +62,7 @@ public:
 	bool is_empty();
 
 	void print();
-	void print(std::ofstream& output) const;
+	//void print(std::ofstream& output) const;
 	void print(std::ostream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
@@ -105,6 +105,7 @@ private:
 		}
 	};
 
+
 	std::thread* DefenseThread;
 	//mutable;
 	//static std::mutex lockit;
@@ -112,6 +113,7 @@ private:
 	std::mutex& get_cout_mutex();
 	//std::thread* DefenseThread;
 	void  do_something();
+
 
 public:
 
@@ -177,9 +179,22 @@ inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) :
 template <typename T>
 void Matrix_TEMPLATE<T>::resize_and_override(size_t N_, size_t M_, const T& value)
 {
+	if (N == N_ && M == M_)
+		return;
 
+	if (N_ == 0 || M_ == 0)
+	{
+		clear();
+		return;
+	}
 
-	resize(N_, M_);
+	T** new_arr;
+	new_arr = allocate(N_, M_);
+
+	clear();
+
+	arr = new_arr;
+
 	fill(value);
 }
 
