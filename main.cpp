@@ -49,13 +49,27 @@ int main(int argc, char const* argv[])
 	test_once_3.resize(2, 8, 'w');
 	std::cout << std::endl;
 	test_once_3.print();
+
 	test_once_4.resize(3, 3, 'e');
 	std::cout << std::endl;
 	test_once_4.print();
-	test_once_4.resize(1, 1, 'r');
+	test_once_4.resize(10, 10, 'r');
 	std::cout << std::endl;
 	test_once_4.print();
-	Sleep(10000);
+
+	bool run_ = true;
+	int cntr = 0;
+
+	while (run_ = true)
+	{
+		cntr++;
+		Sleep(1);
+		if (cntr >= 10)
+			break;
+		
+	}
+	std::cout << "\n" << cntr << "\n";
+	
 
 	return 99;
 

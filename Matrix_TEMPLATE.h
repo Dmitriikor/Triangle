@@ -13,6 +13,16 @@
 #include <mutex>
 
 
+
+
+//template <class ...Args>
+//std::ostream& printsT(const Args& ...args)
+//{
+//	std::lock_guard<std::mutex> _(get_cout_mutex());
+//	return print(std::cout, args...);
+//}
+
+
 ///using T = char;
 ///using pointer_type = T*;
 /// 
@@ -95,7 +105,11 @@ private:
 		}
 	};
 
-	mutable std::recursive_mutex lockit;
+	std::thread* DefenseThread;
+	//mutable;
+	//static std::mutex lockit;
+	mutable std::mutex m;
+	std::mutex& get_cout_mutex();
 	//std::thread* DefenseThread;
 	void  do_something();
 
@@ -115,6 +129,15 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_v1_start
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+template <typename T>
+std::mutex& Matrix_TEMPLATE<T>::get_cout_mutex()
+{
+	static std::mutex m;
+	return m;
+}
+
+
 
 template <typename T>
 Matrix_TEMPLATE<T>::Matrix_TEMPLATE() : N(0), M(0), arr(nullptr)
@@ -169,7 +192,6 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 		clear();
 		return;
 	}
-
 	T** new_arr;
 	new_arr = allocate(N_, M_);
 
@@ -178,15 +200,22 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 	int min_M_lim = (M_ < M) ? M_ : M;
 
 	for (size_t i = 0; i < min_N_lim; i++)
-		for (size_t j = 0; j < min_M_lim; j++)
+		for (size_t j = 0; j < min_M_lim; j++) {
+			std::lock_guard<std::mutex> _(get_cout_mutex());
 			new_arr[i][j] = arr[i][j];
+		}
 
 
 	for (size_t i = 0; i < N_; i++)
 	{
-		for (size_t j = 0; j < M_; j++)
+		for (size_t j = 0; j < M_; j++) 
+		{
 			if (new_arr[i][j] == T())
+			{
+				std::lock_guard<std::mutex> _(get_cout_mutex());
 				new_arr[i][j] = value;
+			}
+		}
 
 
 	}
@@ -208,7 +237,7 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
 		clear();
 		return;
 	}
-
+	std::lock_guard<std::mutex> _(get_cout_mutex());
 	T** new_arr;
 	new_arr = allocate(N_, M_);
 
@@ -274,6 +303,9 @@ inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other
 template <typename T>
 Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 {
+	std::lock_guard<std::mutex> _(get_cout_mutex());
+	std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
+	DefenseThread->join();
 	clear();
 }
 
@@ -436,10 +468,21 @@ bool Matrix_TEMPLATE<T>::is_empty()
 }
 
 
+//std::mutex Matrix_TEMPLATE<T>::lockit;
+
+
+
+
+
+
+
 template <typename T>
 void Matrix_TEMPLATE<T>::do_something()
 {
-	//std::lock_guard<std::recursive_mutex> lockit(std::recursive_mutex);
+	//printsT("Hello enter", std::this_thread::get_id(), '\n');
+
+	std::lock_guard<std::mutex> _(get_cout_mutex());
+	std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
 		for (size_t i = 0; i < N; i++)
 		{
 			for (size_t j = 0; j < M; j++)
@@ -448,21 +491,21 @@ void Matrix_TEMPLATE<T>::do_something()
 			}
 			std::cout << "\n";
 		}
-
 }
+
 #include "windows.h" 
 #include "Windows.h" 
 
 template <typename T>
 void Matrix_TEMPLATE<T>::print()
 {
-	//std::lock_guard<std::recursive_mutex> lockit(std::recursive_mutex);
-	std::thread* DefenseThread;
+	//std::lock_guard<std::mutex> lockit(std::mutex);
 
 	//Sleep(1000);
+
 	DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
 
-	DefenseThread->join();
+	
 
 
 	/*
@@ -502,7 +545,6 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 
 
 }
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
