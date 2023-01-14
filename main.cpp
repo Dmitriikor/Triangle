@@ -16,8 +16,8 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 
 #include "windows.h" 
 #include "Windows.h" 
-		
-	
+
+
 int main(int argc, char const* argv[])
 {
 	///utilities::fast_print(); //don't work in g++/gcc
@@ -25,7 +25,7 @@ int main(int argc, char const* argv[])
 
 	///std::ios_base::sync_with_stdio(false);
 	///std::cin.tie(NULL);
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -35,48 +35,45 @@ int main(int argc, char const* argv[])
 	///Matrix b;
 	///Dot c;
 	///  }  test create & call base handwritten "libs"
-
-	Matrix_TEMPLATE<char> test_once_1(1, 2, 'o');
-	Matrix_TEMPLATE<char> test_once_2(1, 2, 'o');
-	Matrix_TEMPLATE<char> test_once_3(1, 2, 'o');
-	Matrix_TEMPLATE<char> test_once_4(1, 2, 'o');
-
-	test_once_1.print();
-	std::cout << std::endl;
-
-	test_once_2.resize(10,10,'q');
-	test_once_2.print();
-	std::cout << std::endl;
-
-
-	test_once_3.resize(20, 20, 'w');
-	test_once_3.print();
-	std::cout << std::endl;
-
-	test_once_4.resize(30, 30, 'e');
-	test_once_4.print();
-	std::cout << std::endl;
-
-	test_once_4.resize(40, 40, 'r');
-	test_once_4.print();
-	std::cout << std::endl;
-
-	bool run_ = true;
-	int cntr = 0;
-
-	while (run_ = true)
 	{
-		cntr++;
-		//std::cout << "\n\t\t\t" << cntr << "\n";
-		Sleep(1);
-		if (cntr >= 10)
-			break;
-		
-	}
-	//std::cout << "\n" << cntr << "\n";
-	
+		Matrix_TEMPLATE test_once_1(1, 2, 'o');
+		Matrix_TEMPLATE test_once_2(1, 2, 'o');
+		Matrix_TEMPLATE test_once_3(1, 2, 'o');
+		Matrix_TEMPLATE<char> test_once_4(1, 2, 'o');
 
-	return 99;
+		test_once_1.print();
+		std::cout << std::endl;
+
+		std::cout << "\t\t\t\n\n" << "1" << "\n";
+
+		test_once_2.resize(10, 10, 'q');
+		test_once_2.print();
+		std::cout << std::endl;
+
+		std::cout << "\t\t\t\n\n" << "2" << "\n";
+
+		test_once_3.resize(20, 20, 'w');
+		test_once_3.print();
+		std::cout << std::endl;
+
+		std::cout << "\t\t\t\n\n" << "3" << "\n";
+
+		test_once_4.resize(30, 30, 'e');
+		test_once_4.print();
+		std::cout << std::endl;
+
+		std::cout << "\t\t\t\n\n" << "4" << "\n";
+
+		test_once_4.resize(50, 50, 'r');
+		std::cout << std::endl;
+
+		std::cout << "\t\t\t\n\n" << "5" << "\n";
+		test_once_4.print();
+
+
+	}
+
+
 
 	/*
 	Ray_template<int> test_move_1;
@@ -122,13 +119,18 @@ int main(int argc, char const* argv[])
 	///Triangle_hi d;
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
-	std::cin >> n_points;
+	//std::cin >> n_points;
+
+	n_points = 3;
 
 	int OS_start_dialoge_type_;
 	std::cout << "Choise OS:\n \t1 Win, \n \t2 Ubuntu: \n \t3 Manual path to save:\n";
-	std::cin >> OS_start_dialoge_type_;
+	//std::cin >> OS_start_dialoge_type_;
 	std::string path_in;
 	std::string path_out;
+
+	OS_start_dialoge_type_ = 1;
+
 
 	switch (OS_start_dialoge_type_) {
 	case 1: {
@@ -158,8 +160,11 @@ int main(int argc, char const* argv[])
 
 	std::cout << "Choose mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
 	int input_switch;
-	std::cin >> input_switch;
-	std::cin.ignore(MAX_STREAMSIZE, '\n');
+	//std::cin >> input_switch;
+	//std::cin.ignore(MAX_STREAMSIZE, '\n');
+
+	input_switch = 3;
+
 
 	if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
 		std::cout << "PROGRAM OVER\n";
@@ -299,9 +304,11 @@ int main(int argc, char const* argv[])
 		Corner Test_corner_2;
 		Axys Test_axys;
 
-		while (true) {
+		bool is_cont = true;
+		while (is_cont == true) {
 
-			system("cls");
+			//system("cls");
+
 			int st_x_rnd_lmt = -20; int ed_x_rnd_lmt = 20;
 			int st_y_rnd_lmt = -10; int ed_y_rnd_lmt = 10;
 
@@ -314,7 +321,7 @@ int main(int argc, char const* argv[])
 			d.x = utilities::random_INT(st_x_rnd_lmt, ed_x_rnd_lmt); d.y = utilities::random_INT(st_y_rnd_lmt, ed_y_rnd_lmt); d.symbol = '^';
 			test___.add_to_back(d);
 
-			
+
 
 			Test_corner.insert(test___);
 			test___.clear();
@@ -349,8 +356,10 @@ int main(int argc, char const* argv[])
 			Test_corner_0.print(1);
 			std::cout << "\n";
 
-			std::cin.get();
+			//std::cin.get();
 
+			std::cout << "\t\n" << "is_cont" << "\n";
+			std::cin >> is_cont;
 
 
 			///std::cout << "\n";
