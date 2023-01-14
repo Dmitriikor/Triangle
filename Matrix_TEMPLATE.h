@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 
+#include <atomic>
 #include <thread>
 #include <mutex>
 
@@ -26,7 +27,7 @@
 ///using T = char;
 ///using pointer_type = T*;
 /// 
- 
+
 
 struct Coordinates_TEMPLATE {
 	size_t i;
@@ -113,7 +114,9 @@ private:
 	std::mutex& get_cout_mutex();
 	//std::thread* DefenseThread;
 	void  do_something();
-
+	std::scoped_lock<std::mutex> lockit(std::mutex);
+	bool KEEP_GOING = true;
+	bool is_thread = false;
 
 public:
 
@@ -179,87 +182,121 @@ inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) :
 template <typename T>
 void Matrix_TEMPLATE<T>::resize_and_override(size_t N_, size_t M_, const T& value)
 {
-	if (N == N_ && M == M_)
-		return;
-
-	if (N_ == 0 || M_ == 0)
+	while (true)
 	{
-		clear();
-		return;
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
+			if (N == N_ && M == M_)
+				return;
+
+			if (N_ == 0 || M_ == 0)
+			{
+				clear();
+				return;
+			}
+
+			T** new_arr;
+			new_arr = allocate(N_, M_);
+
+			clear();
+
+			arr = new_arr;
+
+			fill(value);
+			break;
+		}
 	}
-
-	T** new_arr;
-	new_arr = allocate(N_, M_);
-
-	clear();
-
-	arr = new_arr;
-
-	fill(value);
+	KEEP_GOING = true;
 }
 
 template <typename T>
 void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 {
-	if (N == N_ && M == M_)
-		return;
-
-	if (N_ == 0 || M_ == 0)
+	while (true)
 	{
-		clear();
-		return;
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
+
+			if (N == N_ && M == M_)
+				return;
+
+			if (N_ == 0 || M_ == 0)
+			{
+				clear();
+				return;
+			}
+
+			T** new_arr;
+			new_arr = allocate(N_, M_);
+
+
+			int min_N_lim = (N_ < N) ? N_ : N;
+			int min_M_lim = (M_ < M) ? M_ : M;
+
+			for (size_t i = 0; i < min_N_lim; i++)
+				for (size_t j = 0; j < min_M_lim; j++)
+					new_arr[i][j] = arr[i][j];
+
+
+
+			for (size_t i = 0; i < N_; i++)
+				for (size_t j = 0; j < M_; j++)
+					if (new_arr[i][j] == T())
+						new_arr[i][j] = value;
+
+
+			clear();
+			N = N_;
+			M = M_;
+			arr = new_arr;
+			break;
+		}
 	}
-	T** new_arr;
-	new_arr = allocate(N_, M_);
-
-
-	int min_N_lim = (N_ < N) ? N_ : N;
-	int min_M_lim = (M_ < M) ? M_ : M;
-
-	for (size_t i = 0; i < min_N_lim; i++)
-		for (size_t j = 0; j < min_M_lim; j++) 
-			new_arr[i][j] = arr[i][j];
-
-
-
-	for (size_t i = 0; i < N_; i++)
-		for (size_t j = 0; j < M_; j++) 
-			if (new_arr[i][j] == T())
-				new_arr[i][j] = value;
-
-
-	clear();
-	N = N_;
-	M = M_;
-	arr = new_arr;
+	KEEP_GOING = true;
 }
 
 template <typename T>
 void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
 {
-	if (N == N_ && M == M_)
-		return;
-
-	if (N_ == 0 || M_ == 0)
+	while (true)
 	{
-		clear();
-		return;
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
+
+			if (N == N_ && M == M_)
+				return;
+
+			if (N_ == 0 || M_ == 0)
+			{
+				clear();
+				return;
+			}
+
+
+
+
+
+			T** new_arr;
+			new_arr = allocate(N_, M_);
+
+			int min_N_lim = (N_ < N) ? N_ : N;
+			int min_M_lim = (M_ < M) ? M_ : M;
+
+			for (size_t i = 0; i < min_N_lim; i++)
+				for (size_t j = 0; j < min_M_lim; j++)
+					new_arr[i][j] = arr[i][j];
+
+			clear();
+			N = N_;
+			M = M_;
+			arr = new_arr;
+			break;
+		}
 	}
-
-	T** new_arr;
-	new_arr = allocate(N_, M_);
-
-	int min_N_lim = (N_ < N) ? N_ : N;
-	int min_M_lim = (M_ < M) ? M_ : M;
-
-	for (size_t i = 0; i < min_N_lim; i++)
-		for (size_t j = 0; j < min_M_lim; j++)
-			new_arr[i][j] = arr[i][j];
-
-	clear();
-	N = N_;
-	M = M_;
-	arr = new_arr;
+	KEEP_GOING = true;
 }
 
 template <typename T>
@@ -310,10 +347,16 @@ inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other
 template <typename T>
 Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 {
-	std::lock_guard<std::mutex> _(get_cout_mutex());
-	std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
-	DefenseThread->join();
-	clear();
+
+	if (is_thread != false) {
+		std::lock_guard<std::mutex> _(get_cout_mutex());
+		std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
+		DefenseThread->join();
+	}
+		//DefenseThread->join();
+
+		clear();
+
 }
 
 template <typename T>
@@ -474,20 +517,29 @@ bool Matrix_TEMPLATE<T>::is_empty()
 	return false;
 }
 
-//std::mutex Matrix_TEMPLATE<T>::lockit;
+
+
+
 template <typename T>
 void Matrix_TEMPLATE<T>::do_something()
 {
+
+	//	std::scoped_lock<std::mutex> lockit(std::mutex);
+
 	std::lock_guard<std::mutex> _(get_cout_mutex());
+
 	std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
-		for (size_t i = 0; i < N; i++)
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
 		{
-			for (size_t j = 0; j < M; j++)
-			{
-				std::cout << arr[i][j];
-			}
-			std::cout << "\n";
+			std::cout << arr[i][j];
 		}
+		std::cout << "\n";
+	}
+
+	KEEP_GOING = true;
+
 }
 
 #include "windows.h" 
@@ -496,13 +548,25 @@ void Matrix_TEMPLATE<T>::do_something()
 template <typename T>
 void Matrix_TEMPLATE<T>::print()
 {
-	//std::lock_guard<std::mutex> lockit(std::mutex);
+	while (true)
+	{
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
+			break;
+		}
+	}
 
-	//Sleep(1000);
+	if (is_thread == false) 
+	{
+		DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
+		is_thread = true;
+	}
+	else
+		do_something();
 
-	DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
+
 }
-
 
 template<typename T>
 inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const

@@ -40,22 +40,26 @@ int main(int argc, char const* argv[])
 	Matrix_TEMPLATE<char> test_once_2(1, 2, 'o');
 	Matrix_TEMPLATE<char> test_once_3(1, 2, 'o');
 	Matrix_TEMPLATE<char> test_once_4(1, 2, 'o');
+
 	test_once_1.print();
 	std::cout << std::endl;
-	test_once_2.resize(2,4,'q');
-	std::cout << std::endl;
+
+	test_once_2.resize(10,10,'q');
 	test_once_2.print();
 	std::cout << std::endl;
-	test_once_3.resize(2, 8, 'w');
-	std::cout << std::endl;
-	test_once_3.print();
 
-	test_once_4.resize(3, 3, 'e');
+
+	test_once_3.resize(20, 20, 'w');
+	test_once_3.print();
 	std::cout << std::endl;
+
+	test_once_4.resize(30, 30, 'e');
 	test_once_4.print();
-	test_once_4.resize(10, 10, 'r');
 	std::cout << std::endl;
+
+	test_once_4.resize(40, 40, 'r');
 	test_once_4.print();
+	std::cout << std::endl;
 
 	bool run_ = true;
 	int cntr = 0;
@@ -63,12 +67,13 @@ int main(int argc, char const* argv[])
 	while (run_ = true)
 	{
 		cntr++;
+		//std::cout << "\n\t\t\t" << cntr << "\n";
 		Sleep(1);
 		if (cntr >= 10)
 			break;
 		
 	}
-	std::cout << "\n" << cntr << "\n";
+	//std::cout << "\n" << cntr << "\n";
 	
 
 	return 99;
