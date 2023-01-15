@@ -70,34 +70,59 @@ int main(int argc, char const* argv[])
 		std::cout << "\t\t\t\n\n" << "5" << "\n";
 		test_once_4.print();
 
-
 	}
 
+	{
+		Matrix_TEMPLATE<int> test_move_1_1(10, 15, 0);
+		Matrix_TEMPLATE<int> test_move_2_2(5, 5, 9);
 
 
-	/*
+		test_move_1_1.print();
+		test_move_2_2.print();
+		std::cout << "---------------------------------------\n";
+
+		test_move_1_1.set_at(9, 14, 8);
+		test_move_2_2.set_at(4, 4, 8);
+		std::cout << "---------------------------------------\n";
+
+		test_move_2_2 = std::move(test_move_1_1);
+		std::cout << "--std::move(test_move_1_1);------------\n";
+
+		test_move_2_2.print();
+		std::cout << "--std::move(test_move_2_2);------------\n";
+
+		Matrix_TEMPLATE<int> test_move_2_3 = std::move(test_move_2_2);
+
+		test_move_2_3.print();
+		std::cout << "---------------------------------------\n";
+	}
+	
+
+
+
+	Ray_template<int> test_move_1o;
+	Ray_template<int> test_move_2o;
+	Sleep(2000);
+	std::cout << "---------------------------------------\n";
+	print(test_move_1o);
+	print(test_move_2o);
+	std::cout << "---------------------------------------\n";
+
+	test_move_1o.add_to_back(5);
+	test_move_1o.add_to_first(4);
+	std::cout << "---------------------------------------\n";
+
+	print(test_move_1o);
+	print(test_move_2o);
+	std::cout << "---------------------------------------\n";
+
+	test_move_2o = std::move(test_move_1o);
+
+	print(test_move_2o);
+	std::cout << "---------------------------------------\n";
+	
+
 	Ray_template<int> test_move_1;
-	Ray_template<int> test_move_2;
-
-	print(test_move_1);
-	print(test_move_2);
-	std::cout << "---------------------------------------\n";
-
-	test_move_1.add_to_back(5);
-	test_move_1.add_to_first(4);
-
-	print(test_move_1);
-	print(test_move_2);
-	std::cout << "---------------------------------------\n";
-
-	test_move_2 = std::move(test_move_1);
-
-	print(test_move_1);
-	print(test_move_2);
-	std::cout << "---------------------------------------\n";
-	*/
-
-	/*Ray_template<int> test_move_1;
 	Ray_template<int> test_move_2 = std::move(test_move_1);
 	Ray_template<int> test_move_3 (20,30);
 	test_move_3.add_to_back(5);
@@ -107,9 +132,9 @@ int main(int argc, char const* argv[])
 
 	print(test_move_3);
 	test_move_3 = std::move(test_move_3);
-	print(test_move_1);
+
 	test_move_1 = std::move(test_move_3);
-	print(test_move_1);*/
+	print(test_move_1);
 
 	Triangle_hi t = Triangle_hi({ 1, 2 }, { 3,4 }, { 5,6 });
 
@@ -117,6 +142,7 @@ int main(int argc, char const* argv[])
 
 
 	///Triangle_hi d;
+	Sleep(5000);
 	std::cout << "Enter number of points:\n";
 	size_t n_points;
 	//std::cin >> n_points;

@@ -117,7 +117,7 @@ private:
 	std::scoped_lock<std::mutex> lockit(std::mutex);
 	bool KEEP_GOING = true;
 	bool is_thread = false;
-
+	bool is_move = false;
 public:
 
 	str_i operator[](size_t i);
@@ -322,25 +322,54 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE<T>& other) : N(other.N
 template<typename T>
 Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other)
 {
-	std::swap(N, other.N);
-	std::swap(M, other.M);
+	while (true)
+	{
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
 
-	clear();
+			//std::swap(N, other.N);
+			//std::swap(M, other.M);
 
-	std::swap(arr, other.arr);
+			//std::swap(arr, other.arr);
+
+			KEEP_GOING = true;
+			*this = std::move(other);
+			other.is_thread = false;
+			other.KEEP_GOING = true;
+			break;
+		}
+	}
+	KEEP_GOING = true;
+	is_thread = false;
+	is_move = true;
 }
 
 template<typename T>
 inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other)
 {
-	std::swap(N, other.N);
-	std::swap(M, other.M);
+	while (true)
+	{
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
 
-	clear();
 
-	std::swap(arr, other.arr);
+			clear();
+
+			std::swap(N, other.N);
+			std::swap(M, other.M);
 
 
+			std::swap(arr, other.arr);
+
+
+			break;
+		}
+	}
+	KEEP_GOING = true;
+	is_thread = false;
+	is_move = true;
 	return *this;
 }
 
@@ -348,14 +377,18 @@ template <typename T>
 Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 {
 
-	if (is_thread != false) {
-		std::lock_guard<std::mutex> _(get_cout_mutex());
-		std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
-		DefenseThread->join();
-	}
-		//DefenseThread->join();
+		if (is_thread != false && KEEP_GOING == true) 
+		{
+			std::lock_guard<std::mutex> _(get_cout_mutex());
+			std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
+			if (DefenseThread->joinable()) {
+				DefenseThread->join();
+			}
+		}
 
-		clear();
+	//DefenseThread->join();
+
+	clear();
 
 }
 
@@ -372,23 +405,31 @@ Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& othe
 		return *this;
 	}
 
-	clear();
-
-	N = other.N;
-	M = other.M;
-
-	arr = allocate(N, M);
-
-	//!!! copy-function
-
-	for (size_t i = 0; i < N; i++)
+	while (true)
 	{
-		for (size_t j = 0; j < M; j++)
+		if (KEEP_GOING == true)
 		{
-			arr[i][j] = other.arr[i][j];
+			KEEP_GOING = false;
+			clear();
+
+			N = other.N;
+			M = other.M;
+
+			arr = allocate(N, M);
+
+			//!!! copy-function
+
+			for (size_t i = 0; i < N; i++)
+			{
+				for (size_t j = 0; j < M; j++)
+				{
+					arr[i][j] = other.arr[i][j];
+				}
+			}
+			break;
 		}
 	}
-
+	KEEP_GOING = true;
 	return *this;
 }
 
@@ -427,13 +468,23 @@ size_t Matrix_TEMPLATE<T>::get_M() const {
 template <typename T>
 void Matrix_TEMPLATE<T>::fill(const T& value)
 {
-	for (size_t i = 0; i < N; i++)
+	while (true)
 	{
-		for (size_t j = 0; j < M; j++)
+		if (KEEP_GOING == true)
 		{
-			arr[i][j] = value;
+			KEEP_GOING = false;
+
+			for (size_t i = 0; i < N; i++)
+			{
+				for (size_t j = 0; j < M; j++)
+				{
+					arr[i][j] = value;
+				}
+			}
+			break;
 		}
 	}
+	KEEP_GOING = true;
 }
 
 template <typename T>
@@ -446,8 +497,17 @@ void Matrix_TEMPLATE<T>::set_at(size_t i, size_t j, const T& data) {
 
 	if (arr == nullptr)
 		throw std::length_error("length_error in void set_at : NO create_matrix");
+	while (true)
+	{
+		if (KEEP_GOING == true)
+		{
+			KEEP_GOING = false;
 
-	arr[i][j] = data;
+			arr[i][j] = data;
+			break;
+		}
+	}
+	KEEP_GOING = true;
 }
 
 template <typename T>
@@ -527,8 +587,9 @@ void Matrix_TEMPLATE<T>::do_something()
 	//	std::scoped_lock<std::mutex> lockit(std::mutex);
 
 	std::lock_guard<std::mutex> _(get_cout_mutex());
-
+	if (is_thread == true)
 	std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
+
 	for (size_t i = 0; i < N; i++)
 	{
 		for (size_t j = 0; j < M; j++)
@@ -557,7 +618,7 @@ void Matrix_TEMPLATE<T>::print()
 		}
 	}
 
-	if (is_thread == false) 
+	if (is_thread == false && is_move == false)
 	{
 		DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
 		is_thread = true;

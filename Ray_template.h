@@ -43,7 +43,7 @@ private:
 
 	const T& get_element_(size_t index) const;
 
-	//template<typename T>
+	template<typename T>
 	friend void print(const Ray_template<T>& Ray);
 
 
