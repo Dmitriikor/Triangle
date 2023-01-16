@@ -49,7 +49,8 @@ public:
 
 	~Matrix_TEMPLATE();
 
-	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
+	void operator=(const Matrix_TEMPLATE& other);
+	Matrix_TEMPLATE& operator+=( const Matrix_TEMPLATE<T>&  other);
 
 	size_t get_N() const;
 
@@ -393,16 +394,16 @@ Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 }
 
 template <typename T>
-Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
+void Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
 {
 	if (this == &other)
 	{
-		return *this;
+		return; //*this;
 	}
 
 	if (other.arr == nullptr)
 	{
-		return *this;
+		return;// *this;
 	}
 
 	while (true)
@@ -429,8 +430,56 @@ Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& othe
 			break;
 		}
 	}
+	is_thread = other.is_thread;
+	is_move = other.is_move;
 	KEEP_GOING = true;
-	return *this;
+	return; //*this;
+}
+
+
+template<typename T>
+Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator+=(const Matrix_TEMPLATE<T>& other)
+{
+		while (true)
+		{
+			if (KEEP_GOING == true)
+			{
+				KEEP_GOING = false;
+
+
+				int new_N = N + other.N;
+				int new_M = M + other.M;
+				T** new_arr = allocate(new_N, new_M);
+				 
+
+				{
+					for (size_t i = 0; i < N; i++)
+					{
+						for (size_t j = 0; j < M; j++)
+						{
+							new_arr[i][j] = arr[i][j];
+						}
+					}
+				}
+				{
+					for (size_t i = 0; i < other.N; i++)
+					{
+						for (size_t j = 0; j < other.M; j++)
+						{
+							new_arr[i + N][j + M] = other.arr[i][j];
+						}
+					}
+				}
+
+				N = new_N;
+				M = new_M;
+				arr = new_arr;
+
+				break;
+			}
+		}
+		KEEP_GOING = true;
+		return *this;
 }
 
 template <typename T>

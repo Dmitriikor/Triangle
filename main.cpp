@@ -70,16 +70,33 @@ int main(int argc, char const* argv[])
 		std::cout << "\t\t\t\n\n" << "5" << "\n";
 		test_once_4.print();
 
-	}
+	
 
-	{
-		Matrix_TEMPLATE<int> test_move_1_1(10, 15, 0);
-		Matrix_TEMPLATE<int> test_move_2_2(5, 5, 9);
+	
+		Matrix_TEMPLATE<int> test_move_1_1(2, 2, 2);
+		Matrix_TEMPLATE<int> test_move_2_2(3, 3, 3);
+		
 
 
 		test_move_1_1.print();
 		test_move_2_2.print();
+		Sleep(4000);
+		std::cout << "----------++++-------------------------\n";
+
+		Matrix_TEMPLATE<int> test_move_3_3(4,4,4);
+		
+		test_move_3_3 += test_move_2_2;
+
+		test_move_3_3.print();
+
+		Sleep(4000);
+		std::cout << "----------++++-------------------------\n";
+		test_move_1_1.print();
+		test_move_2_2.print();
 		std::cout << "---------------------------------------\n";
+
+		test_move_1_1.resize(10, 15, 0);
+		test_move_2_2.resize(5, 5, 5);
 
 		test_move_1_1.set_at(9, 14, 8);
 		test_move_2_2.set_at(4, 4, 8);
