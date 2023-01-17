@@ -1,3 +1,11 @@
+	///!!!• operator+=
+	///!!!• return Matrix_TEMPLATE <T> operator +
+	///!!!• constructor std::move()
+	///!!!• operator std::move()
+	///!!!• void Matrix_TEMPLATE<T>::print(std::ostream& output) const
+	///!!!  add new mtx_bools to constructor
+	/// 
+	/// 
 #ifndef MATRIX_TEMPLATE_H__
 
 #define MATRIX_TEMPLATE_H__
@@ -9,24 +17,14 @@
 #include <fstream>
 #include <string>
 
-#include <atomic>
+// <atomic>
 #include <thread>
 #include <mutex>
 
 
 
-
-//template <class ...Args>
-//std::ostream& printsT(const Args& ...args)
-//{
-//	std::lock_guard<std::mutex> _(get_cout_mutex());
-//	return print(std::cout, args...);
-//}
-
-
 ///using T = char;
 ///using pointer_type = T*;
-/// 
 
 
 struct Coordinates_TEMPLATE {
@@ -67,7 +65,7 @@ public:
 	bool is_empty();
 
 	void print();
-	//void print(std::ofstream& output) const;
+	///void print(std::ofstream& output) const;
 	void print(std::ostream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
@@ -112,26 +110,24 @@ private:
 
 
 	std::jthread* DefenseThread;
-	//mutable;
-	//static std::mutex lockit;
+	///mutable;
+	///static std::mutex lockit;
 	mutable std::mutex m;
 	std::mutex& get_cout_mutex();
-	//std::thread* DefenseThread;
+	///std::thread* DefenseThread;
 	void  do_something();
-	std::scoped_lock<std::mutex> lockit(std::mutex);
+	///::scoped_lock<std::mutex> lockit(std::mutex);
 	bool KEEP_GOING = true;
 	bool is_thread = false;
 	bool is_move = false;
+
+
 public:
+
 
 	str_i operator[](size_t i);
 	const_str_i operator[](size_t i) const;
 
-	///!!! operator+=
-	///!!! return Matrix_TEMPLATE <T> operator +
-	///!!!• constructor std::move()
-	///!!!• operator std::move()
-	///!!! void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 
 };
 
@@ -145,8 +141,6 @@ std::mutex& Matrix_TEMPLATE<T>::get_cout_mutex()
 	static std::mutex m;
 	return m;
 }
-
-
 
 template <typename T>
 Matrix_TEMPLATE<T>::Matrix_TEMPLATE() : N(0), M(0), arr(nullptr)
@@ -235,7 +229,6 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 			T** new_arr;
 			new_arr = allocate(N_, M_);
 
-
 			int min_N_lim = (N_ < N) ? N_ : N;
 			int min_M_lim = (M_ < M) ? M_ : M;
 
@@ -243,13 +236,10 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 				for (size_t j = 0; j < min_M_lim; j++)
 					new_arr[i][j] = arr[i][j];
 
-
-
 			for (size_t i = 0; i < N_; i++)
 				for (size_t j = 0; j < M_; j++)
 					if (new_arr[i][j] == T())
 						new_arr[i][j] = value;
-
 
 			clear();
 			N = N_;
@@ -278,10 +268,6 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
 				clear();
 				return;
 			}
-
-
-
-
 
 			T** new_arr;
 			new_arr = allocate(N_, M_);
@@ -332,10 +318,9 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept
 		{
 			KEEP_GOING = false;
 
-			//std::swap(N, other.N);
-			//std::swap(M, other.M);
-
-			//std::swap(arr, other.arr);
+			///std::swap(N, other.N);
+			///std::swap(M, other.M);
+			///std::swap(arr, other.arr);
 
 			KEEP_GOING = true;
 			*this = std::move(other);
@@ -358,15 +343,12 @@ inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other
 		{
 			KEEP_GOING = false;
 
-
 			clear();
 
 			std::swap(N, other.N);
 			std::swap(M, other.M);
 
-
 			std::swap(arr, other.arr);
-
 
 			break;
 		}
@@ -383,7 +365,8 @@ Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 
 		if (is_thread != false && KEEP_GOING == true) 
 		{
-			std::lock_guard<std::mutex> _(get_cout_mutex());
+			!!!! std::lock_guard<std::mutex> _(get_cout_mutex());
+
 			std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
 			if (DefenseThread->joinable()) {
 				DefenseThread->join();
