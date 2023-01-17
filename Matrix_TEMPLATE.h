@@ -44,13 +44,16 @@ public:
 	Matrix_TEMPLATE(size_t N, size_t M, const T& value);
 	Matrix_TEMPLATE(const Matrix_TEMPLATE& other);
 
-	Matrix_TEMPLATE(Matrix_TEMPLATE&& other);
-	Matrix_TEMPLATE& operator=(Matrix_TEMPLATE&& other);
+	Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept;
+	Matrix_TEMPLATE& operator=(Matrix_TEMPLATE&& other) noexcept;
 
 	~Matrix_TEMPLATE();
 
-	void operator=(const Matrix_TEMPLATE& other);
+	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
 	Matrix_TEMPLATE& operator+=( const Matrix_TEMPLATE<T>&  other);
+
+	template <typename T>
+	friend Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs);
 
 	size_t get_N() const;
 
@@ -321,7 +324,7 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE<T>& other) : N(other.N
 }
 
 template<typename T>
-Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other)
+Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept
 {
 	while (true)
 	{
@@ -347,7 +350,7 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other)
 }
 
 template<typename T>
-inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other)
+inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other) noexcept
 {
 	while (true)
 	{
@@ -394,7 +397,7 @@ Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
+Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
 {
 	if (this == &other)
 	{
@@ -433,7 +436,7 @@ void Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
 	is_thread = other.is_thread;
 	is_move = other.is_move;
 	KEEP_GOING = true;
-	return; //*this;
+	return *this;
 }
 
 
@@ -696,6 +699,13 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 #endif //! MATRIX_TEMPLATE_H__
 
 
+template <typename T>
+Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs)
+{
+	lhs += rhs;
+	return lhs;
+	//return std::move(lhs);
+}
 
 //#include <iostream>
 //#include <mutex>
