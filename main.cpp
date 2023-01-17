@@ -80,8 +80,8 @@ int main(int argc, char const* argv[])
 
 		test_move_1_1.print();
 		test_move_2_2.print();
-		Sleep(4000);
 		std::cout << "----------+=+=-------------------------\n";
+		Sleep(4000);
 
 		Matrix_TEMPLATE<int> test_move_3_3(4,4,4);
 		

@@ -111,7 +111,7 @@ private:
 	};
 
 
-	std::thread* DefenseThread;
+	std::jthread* DefenseThread;
 	//mutable;
 	//static std::mutex lockit;
 	mutable std::mutex m;
@@ -672,7 +672,7 @@ void Matrix_TEMPLATE<T>::print()
 
 	if (is_thread == false && is_move == false)
 	{
-		DefenseThread = new std::thread(&Matrix_TEMPLATE<T>::do_something, this);
+		DefenseThread = new std::jthread(&Matrix_TEMPLATE<T>::do_something, this);
 		is_thread = true;
 	}
 	else
