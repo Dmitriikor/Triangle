@@ -7,12 +7,13 @@
 #include <stdexcept>
 #include <initializer_list>
 #include <utility>
+#include <span>
 
 template <typename T>
 class Ray_template {
 private:
 
-	//!!! initialization in itializer-list (in constructors)
+	///!!! initialization in initializer-list (in constructors)
 
 	T* ray_ = nullptr;
 
@@ -65,6 +66,8 @@ public:
 
 	Ray_template(const T* val, size_t size);
 
+	Ray_template(std::span<T> span);
+
 	~Ray_template();
 	// LEFT
 	void add_to_first(const T& value);
@@ -82,9 +85,7 @@ public:
 
 	Ray_template& operator=(const Ray_template& other);
 
-	Ray_template& operator=(Ray_template&& other);
-
-	void operator=(std::nullptr_t); //////////////////////////////!!!!!!!!!
+	Ray_template& operator=(Ray_template&& other) noexcept;
 
 	void push_back(const T& value);
 
@@ -124,9 +125,9 @@ void Ray_template<T>::LEFT_increase_() {
 	size_t new_long = new_LEFT + RIGHT;
 	T* new_ray = new T[new_long]();
 
-	size_t N = F_LEFT + F_RIGHT; //количество переносимых элементов 
-	size_t diff = new_LEFT - LEFT + (LEFT - F_LEFT); // сдвиг относительно начала
-	for (size_t i = LEFT - F_LEFT; i < N; ++i) { //!!!выход за границы массива
+	size_t N = F_LEFT + F_RIGHT; //number of items to carry
+	size_t diff = new_LEFT - LEFT + (LEFT - F_LEFT); //offset from start
+	for (size_t i = LEFT - F_LEFT; i < N; ++i) { //!!!array out of bounds
 		new_ray[i + diff] = std::move(ray_[i]);
 	}
 
@@ -142,9 +143,9 @@ void Ray_template<T>::RIGHT_increase_() {
 	size_t new_long = LEFT + new_RIGHT;
 	T* new_ray = new T[new_long]();
 
-	size_t N = F_LEFT + F_RIGHT; //количество переносимых элементов 
-	size_t diff = LEFT - F_LEFT; // сдвиг относительно начала
-	for (size_t i = 0; i < N; ++i) { //!!!выход за границы массива
+	size_t N = F_LEFT + F_RIGHT; //number of items to carry
+	size_t diff = LEFT - F_LEFT; // offset from start
+	for (size_t i = 0; i < N; ++i) { //!!!array out of bounds
 		new_ray[i + diff] = std::move(ray_[i + diff]);
 	}
 
@@ -182,9 +183,7 @@ Ray_template<T>::Ray_template(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
 
 template <typename T>
 Ray_template<T>::Ray_template(const Ray_template<T>& other)
-/*:LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) */
 {
-	///std::cout << "copy-constructor " << std::endl;
 	LEFT = other.LEFT;
 	RIGHT = other.RIGHT;
 	F_LEFT = other.F_LEFT;
@@ -204,31 +203,7 @@ Ray_template<T>::Ray_template(const Ray_template<T>& other)
 template <typename T>
 Ray_template<T>::Ray_template(Ray_template<T>&& other) noexcept  :Ray_template()
 {
-
 	SWAP_(other);
-	//MOVE_(other);
-	//std::cout << "\n\t MOVE \n";
-	//LEFT = other.LEFT;
-	//RIGHT = other.RIGHT;
-	//F_LEFT = other.F_LEFT;
-	//F_RIGHT = other.F_RIGHT;
-	//saved_LEFT = other.saved_LEFT;
-	//saved_RIGHT = other.saved_RIGHT;
-
-	//COEFFICIENT = other.COEFFICIENT;
-
-
-	//ray_ = other.ray_;
-
-
-	//other.ray_ = nullptr;
-	//other.LEFT = 0;
-	//other.RIGHT = 0;
-	//other.F_LEFT = 0;
-	//other.F_RIGHT = 0;
-	//other.saved_LEFT = 0;
-	//other.saved_RIGHT = 0;
-	//other.COEFFICIENT = 0;
 }
 
 template <typename T>
@@ -340,10 +315,10 @@ void Ray_template<T>::remove(size_t index) {
 	if (index > (LEFT + RIGHT))
 		return;
 
-	if (index < F_LEFT) { //индекс в левой части
+	if (index < F_LEFT) { //index on the left side
 
 		int diff = LEFT - F_LEFT;
-		for (int i = index; i > 0; --i) //сдвигаем для удаления
+		for (int i = index; i > 0; --i) //move to remove
 		{
 			ray_[diff + i] = ray_[diff + (i - 1)];
 		}
@@ -353,7 +328,7 @@ void Ray_template<T>::remove(size_t index) {
 	}
 	else {
 		int diff = LEFT - F_LEFT;
-		for (size_t i = index; i < F_RIGHT - 1; ++i) //куда копирую
+		for (size_t i = index; i < F_RIGHT - 1; ++i) //where do I copy
 		{
 			ray_[diff + i] = ray_[diff + (i + 1)];
 		}
@@ -371,7 +346,7 @@ void Ray_template<T>::insert(size_t index, T& value) {
 	if (index >= (LEFT + RIGHT))
 		return;
 
-	//количество свободных
+	//number of free
 	int L = LEFT - F_LEFT;
 	int R = RIGHT - F_RIGHT;
 
@@ -432,14 +407,14 @@ void Ray_template<T>::clear() {
 template <typename T>
 Ray_template<T>::~Ray_template() {
 	clear();
-	//delete[] ray_; 
-	//std::cout << "\t ! \n";
+	///delete[] ray_; 
+	///std::cout << "\t ! \n";
 }
 
 template <typename T>
 Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
-	//std::cout << "operator=" << std::endl;
-	//this - адрес левого операнда
+	///std::cout << "operator=" << std::endl;
+	///this -left operand address
 	if (this != &other) {
 		LEFT = other.LEFT;
 		RIGHT = other.RIGHT;
@@ -462,13 +437,12 @@ Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
 }
 
 template <typename T>
-Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other)
+Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other) noexcept
 {
 	if (this != &other)
 	{
 		clear();
 		SWAP_(other);
-		//MOVE_(other);
 	}
 
 	return *this;
@@ -490,18 +464,10 @@ void Ray_template<T>::SWAP_(Ray_template<T>& other)
 	std::swap(ray_, other.ray_);
 }
 
-//!!! erase from code
-//template <typename T>
-//void Ray_template<T>::operator=(std::nullptr_t)
-//{
-//	ray_ = nullptr;
-//}
-
 template <typename T>
 void Ray_template<T>::MOVE_(Ray_template<T>& other)
 {
-	//if (this != &other) { //!!! not needed
-		//std::cout << "\n\t MOVE \n";
+
 	LEFT = other.LEFT;
 	RIGHT = other.RIGHT;
 	F_LEFT = other.F_LEFT;
@@ -513,7 +479,7 @@ void Ray_template<T>::MOVE_(Ray_template<T>& other)
 
 	ray_ = other.ray_;
 
-	//!!! default_initialize - like in default-costructor
+	//!!! default_initialize - like in default-constructor
 	other.ray_ = nullptr;
 	other.LEFT = 0;
 	other.RIGHT = 0;
@@ -522,7 +488,7 @@ void Ray_template<T>::MOVE_(Ray_template<T>& other)
 	other.saved_LEFT = 0;
 	other.saved_RIGHT = 0;
 	other.COEFFICIENT = 0;
-	//}
+	///}
 }
 
 
@@ -547,7 +513,7 @@ void print(const Ray_template<T>& Ray) {
 	for (size_t i = Ray.LEFT - Ray.F_LEFT; i < Ray.LEFT + Ray.F_RIGHT; i++) {
 		std::cout << std::setw(2) << Ray.ray_[i] << " ";
 	}
-	//std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
+	///std::cout << std::setw(2) << ray_[i].x << " " << ray_[i].y << " ";
 	for (size_t i = Ray.F_RIGHT; i < Ray.RIGHT; i++)
 		std::cout << std::setw(2) << "." << " ";
 	std::cout << "\n";

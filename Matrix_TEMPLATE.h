@@ -365,7 +365,7 @@ Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 
 		if (is_thread != false && KEEP_GOING == true) 
 		{
-			!!!! std::lock_guard<std::mutex> _(get_cout_mutex());
+			std::lock_guard<std::mutex> _(get_cout_mutex());
 
 			std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
 			if (DefenseThread->joinable()) {
@@ -432,12 +432,10 @@ Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator+=(const Matrix_TEMPLATE<T>& oth
 			{
 				KEEP_GOING = false;
 
-
 				int new_N = N + other.N;
 				int new_M = M + other.M;
 				T** new_arr = allocate(new_N, new_M);
 				 
-
 				{
 					for (size_t i = 0; i < N; i++)
 					{

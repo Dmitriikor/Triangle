@@ -207,6 +207,9 @@ int main(int argc, char const* argv[])
 	}
 	}
 
+	int arrs[4] = {1,2,3,4};
+	Ray_template<int> test_init(arrs, 4);
+
 
 	std::cout << "Choose mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
 	int input_switch;

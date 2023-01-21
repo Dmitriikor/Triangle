@@ -153,7 +153,7 @@ public:
 		dot_counter = other.dot_counter;
 
 		point_in_triangle = other.point_in_triangle;
-		other.point_in_triangle = nullptr;
+		other.point_in_triangle.clear();
 
 		area = other.area;
 
