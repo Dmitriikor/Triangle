@@ -49,7 +49,7 @@ public:
 
 	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
 	auto operator==(const Matrix_TEMPLATE& other);
-	auto operator<=>(const Matrix_TEMPLATE& other) const = default;
+	auto operator<=>(const Matrix_TEMPLATE& other) const;
 
 	Matrix_TEMPLATE& operator+=( const Matrix_TEMPLATE<T>&  other);
 
@@ -431,6 +431,15 @@ inline auto Matrix_TEMPLATE<T>::operator==(const Matrix_TEMPLATE& other)
 	if (N == other.N && M == other.M)
 		return true;
 	return false;
+}
+
+template<typename T>
+inline auto Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
+{
+	if (N == other.N && M == other.M)
+		return true;
+	return false;
+
 }
 
 

@@ -124,10 +124,15 @@ int main(int argc, char const* argv[])
 		Matrix_TEMPLATE <int> starship_test_1 (10, 10) ;
 		Matrix_TEMPLATE <int> starship_test_2(10, 10);
 
-		if (starship_test_1 == starship_test_2);
-			//auto rez = starship_test_1 < starship_test_2;
+		if (starship_test_1 == starship_test_2)
+			std::cout << "\n \t == ok \n";
 
-	
+		auto rez = starship_test_1 < starship_test_2;
+		std::cout << "\n\t" << rez << "\n";
+		if (starship_test_1 < starship_test_2)
+			std::cout << "\n \t > ok \n";
+		if (starship_test_1 > starship_test_2)
+			std::cout << "\n \t < ok \n";
 	
 	}
 
