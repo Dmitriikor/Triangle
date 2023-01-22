@@ -120,7 +120,16 @@ int main(int argc, char const* argv[])
 		test_move_2_3.print();
 		std::cout << "---------------------------------------\n";
 	}
+	{
+		Matrix_TEMPLATE <int> starship_test_1 (10, 10) ;
+		Matrix_TEMPLATE <int> starship_test_2(10, 10);
+
+		if (starship_test_1 == starship_test_2);
+			//auto rez = starship_test_1 < starship_test_2;
+
 	
+	
+	}
 
 
 
