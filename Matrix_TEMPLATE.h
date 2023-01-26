@@ -1,11 +1,11 @@
-	///!!!Х operator+=
-	///!!!Х return Matrix_TEMPLATE <T> operator +
-	///!!!Х constructor std::move()
-	///!!!Х operator std::move()
-	///!!!Х void Matrix_TEMPLATE<T>::print(std::ostream& output) const
-	///!!!  add new mtx_bools to constructor
-	/// 
-	/// 
+///!!!Х operator+=
+///!!!Х return Matrix_TEMPLATE <T> operator +
+///!!!Х constructor std::move()
+///!!!Х operator std::move()
+///!!!Х void Matrix_TEMPLATE<T>::print(std::ostream& output) const
+///!!!  add new mtx_bools to constructor
+/// 
+/// 
 #ifndef MATRIX_TEMPLATE_H__
 
 #define MATRIX_TEMPLATE_H__
@@ -21,7 +21,7 @@
 #include <thread>
 #include <mutex>
 
-
+#include <compare>
 
 ///using T = char;
 ///using pointer_type = T*;
@@ -32,6 +32,7 @@ struct Coordinates_TEMPLATE {
 	size_t j;
 
 };
+
 
 template <typename T>
 class Matrix_TEMPLATE {
@@ -48,13 +49,21 @@ public:
 	~Matrix_TEMPLATE();
 
 	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
-	auto operator==(const Matrix_TEMPLATE& other);
-	auto operator<=>(const Matrix_TEMPLATE& other) const;
 
-	Matrix_TEMPLATE& operator+=( const Matrix_TEMPLATE<T>&  other);
+	bool operator==(const Matrix_TEMPLATE& other) const;
+	//bool operator<(const Matrix_TEMPLATE& other) const;
+	int operator<=>(const Matrix_TEMPLATE& other) const;
 
-	template <typename T>
-	friend Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs);
+	size_t size() const
+	{
+		return N * M;
+	}
+
+	Matrix_TEMPLATE& operator+=(const Matrix_TEMPLATE<T>& other);
+	Matrix_TEMPLATE operator+(const Matrix_TEMPLATE<T>& other) const;
+
+	/*template <typename T>
+	friend Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs);*/
 
 	size_t get_N() const;
 
@@ -72,13 +81,13 @@ public:
 	void print(std::ostream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
-	void set_at(Coordinates cell, const T& data);
+	void set_at(Coordinates_TEMPLATE cell, const T& data);
 
 	T& get_at(size_t N, size_t M);
-	T& get_at(Coordinates cell);
+	T& get_at(Coordinates_TEMPLATE cell);
 
 	const T& get_at(size_t N, size_t M) const;
-	const T& get_at(Coordinates cell) const;
+	const T& get_at(Coordinates_TEMPLATE cell) const;
 
 	void clear();
 
@@ -130,9 +139,10 @@ public:
 
 	str_i operator[](size_t i);
 	const_str_i operator[](size_t i) const;
-
-
 };
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_v1_start
@@ -166,13 +176,10 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M) : N(N), M(M)
 }
 
 template<typename T>
-inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) : N(N), M(M)
+inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) : N(N), M(M), arr(nullptr)
 {
 	if (N == 0 || M == 0)
 	{
-		//!!!set_empty
-		N = M = 0;
-		arr = nullptr;
 		return;
 	}
 
@@ -326,7 +333,7 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept
 			///std::swap(arr, other.arr);
 
 			KEEP_GOING = true;
-			*this = std::move(other);
+			*this = std::move(other); //!!! this ещЄ не сформирован => конструктор, занулить (Ќ≈ clear!)
 			other.is_thread = false;
 			other.KEEP_GOING = true;
 			break;
@@ -366,15 +373,15 @@ template <typename T>
 Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 {
 
-		if (is_thread != false && KEEP_GOING == true) 
-		{
-			std::lock_guard<std::mutex> _(get_cout_mutex());
+	if (is_thread != false && KEEP_GOING == true)
+	{
+		std::lock_guard<std::mutex> _(get_cout_mutex());
 
-			std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
-			if (DefenseThread->joinable()) {
-				DefenseThread->join();
-			}
+		std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
+		if (DefenseThread->joinable()) {
+			DefenseThread->join();
 		}
+	}
 
 	//DefenseThread->join();
 
@@ -426,65 +433,78 @@ Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& othe
 }
 
 template<typename T>
-inline auto Matrix_TEMPLATE<T>::operator==(const Matrix_TEMPLATE& other)
+bool Matrix_TEMPLATE<T>::operator==(const Matrix_TEMPLATE& other) const
 {
-	if (N == other.N && M == other.M)
-		return true;
-	return false;
+	return (*this <=> other) == 0;
 }
 
 template<typename T>
-inline auto Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
+int Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
 {
-	if (N == other.N && M == other.M)
-		return true;
-	return false;
+	if (size() < other.size())
+		return -1;
 
+	if (size() > other.size())
+		return +1;
+
+	return 0;
 }
+
+//template<typename T>
+//std::partial_ordering Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
+//{
+//	/*if (N < other.N || M < other.M)
+//		return std::partial_ordering::less;
+//
+//	if (N > other.N || M > other.M)
+//		return std::partial_ordering::greater;*/
+//	if (N == other.N && M == other.M)
+//		return std::partial_ordering::equivalent;
+//}
 
 
 
 template<typename T>
 Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator+=(const Matrix_TEMPLATE<T>& other)
 {
-		while (true)
+	while (true)
+	{
+		if (KEEP_GOING == true)
 		{
-			if (KEEP_GOING == true)
+			KEEP_GOING = false;
+
+			int new_N = N + other.N;
+			int new_M = M + other.M;
+			T** new_arr = allocate(new_N, new_M);
+
 			{
-				KEEP_GOING = false;
-
-				int new_N = N + other.N;
-				int new_M = M + other.M;
-				T** new_arr = allocate(new_N, new_M);
-				 
+				for (size_t i = 0; i < N; i++)
 				{
-					for (size_t i = 0; i < N; i++)
+					for (size_t j = 0; j < M; j++)
 					{
-						for (size_t j = 0; j < M; j++)
-						{
-							new_arr[i][j] = arr[i][j];
-						}
+						new_arr[i][j] = arr[i][j];
 					}
 				}
-				{
-					for (size_t i = 0; i < other.N; i++)
-					{
-						for (size_t j = 0; j < other.M; j++)
-						{
-							new_arr[i + N][j + M] = other.arr[i][j];
-						}
-					}
-				}
-
-				N = new_N;
-				M = new_M;
-				arr = new_arr;
-
-				break;
 			}
+			{
+				for (size_t i = 0; i < other.N; i++)
+				{
+					for (size_t j = 0; j < other.M; j++)
+					{
+						new_arr[i + N][j + M] = other.arr[i][j];
+					}
+				}
+			}
+
+			N = new_N;
+			M = new_M;
+			arr = new_arr;
+
+			break;
 		}
-		KEEP_GOING = true;
-		return *this;
+	}
+	KEEP_GOING = true;
+	return *this;
 }
 
 template <typename T>
@@ -565,7 +585,7 @@ void Matrix_TEMPLATE<T>::set_at(size_t i, size_t j, const T& data) {
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::set_at(Coordinates cell, const T& data) {
+void Matrix_TEMPLATE<T>::set_at(Coordinates_TEMPLATE cell, const T& data) {
 	set_at(cell.i, cell.j, data);
 }
 
@@ -584,7 +604,7 @@ T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) {
 }
 
 template <typename T>
-T& Matrix_TEMPLATE<T>::get_at(Coordinates cell) {
+T& Matrix_TEMPLATE<T>::get_at(Coordinates_TEMPLATE cell) {
 	return get_at(cell.i, cell.j);
 }
 
@@ -603,7 +623,7 @@ const T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) const {
 }
 
 template <typename T>
-const T& Matrix_TEMPLATE<T>::get_at(Coordinates cell) const {
+const T& Matrix_TEMPLATE<T>::get_at(Coordinates_TEMPLATE cell) const {
 	return get_at(cell.i, cell.j);
 }
 
@@ -642,7 +662,7 @@ void Matrix_TEMPLATE<T>::do_something()
 
 	std::lock_guard<std::mutex> _(get_cout_mutex());
 	if (is_thread == true)
-	std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
+		std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
 
 	for (size_t i = 0; i < N; i++)
 	{
@@ -693,6 +713,23 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 
 }
 
+//template <typename T>
+//Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs)
+//{
+//	lhs += rhs;
+//	return lhs;
+//	//return std::move(lhs);
+//}
+
+template <typename T>
+Matrix_TEMPLATE<T> Matrix_TEMPLATE<T>::operator+(const Matrix_TEMPLATE<T>& other) const
+{
+	Matrix_TEMPLATE<T> copy = *this;
+	copy += other;
+	return copy;
+	//return std::move(copy);
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_v1_end
@@ -701,13 +738,12 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 #endif //! MATRIX_TEMPLATE_H__
 
 
-template <typename T>
-Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs)
-{
-	lhs += rhs;
-	return lhs;
-	//return std::move(lhs);
-}
+
+
+
+
+
+
 
 //#include <iostream>
 //#include <mutex>

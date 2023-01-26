@@ -129,8 +129,10 @@ int main(int argc, char const* argv[])
 
 		auto rez = starship_test_1 < starship_test_2;
 		std::cout << "\n\t" << rez << "\n";
+
 		if (starship_test_1 < starship_test_2)
 			std::cout << "\n \t > ok \n";
+
 		if (starship_test_1 > starship_test_2)
 			std::cout << "\n \t < ok \n";
 	
