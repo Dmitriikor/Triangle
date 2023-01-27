@@ -1,6 +1,6 @@
-#ifndef MATRIX_TEST_H__
+#ifndef Matrix_TEMPLATE_TEST_H__
 
-#define MATRIX_TEST_H__
+#define Matrix_TEMPLATE_TEST_H__
 #include <Windows.h>
 
 #include <stdexcept>
@@ -12,7 +12,7 @@ using T = char;
 using pointer_type = T*;
 
 
-struct Coordinates {
+struct Coordinates_TEMPLATE {
 	size_t i;
 	size_t j;
 
@@ -21,7 +21,7 @@ struct Coordinates {
 };
 
 
-class Matrix {
+class Matrix_TEMPLATE {
 private:
 	size_t N;
 	size_t M;
@@ -33,43 +33,43 @@ private:
 
 private:
 	struct str_i {
-		Matrix& my_matrix;
+		Matrix_TEMPLATE& my_Matrix_TEMPLATE;
 		size_t i;
 
-		str_i(Matrix& m, size_t i) : my_matrix(m), i(i) {
+		str_i(Matrix_TEMPLATE& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
 			//str_i::i = i;
 		}
 
 		T& operator[](size_t j) {
-			return my_matrix.arr[i][j];
+			return my_Matrix_TEMPLATE.arr[i][j];
 		}
 	};
 
 	struct const_str_i {
-		const Matrix& my_matrix;
+		const Matrix_TEMPLATE& my_Matrix_TEMPLATE;
 		size_t i;
 
-		const_str_i(const Matrix& m, size_t i) : my_matrix(m), i(i) {
+		const_str_i(const Matrix_TEMPLATE& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
 			//str_i::i = i;
 		}
 
 		const T& operator[](size_t j) const {
-			return my_matrix.arr[i][j];
+			return my_Matrix_TEMPLATE.arr[i][j];
 		}
 	};
 public:
-	Matrix();
+	Matrix_TEMPLATE();
 
-	//Matrix(size_t N, size_t M, const T& value = T());
-	Matrix(size_t N, size_t M);
-	Matrix(size_t N, size_t M, const T& value);
+	//Matrix_TEMPLATE(size_t N, size_t M, const T& value = T());
+	Matrix_TEMPLATE(size_t N, size_t M);
+	Matrix_TEMPLATE(size_t N, size_t M, const T& value);
 
-	Matrix(const Matrix& other);
-	~Matrix();
+	Matrix_TEMPLATE(const Matrix_TEMPLATE& other);
+	~Matrix_TEMPLATE();
 
 	void resize(size_t N_, size_t M_);
 
-	Matrix& operator=(const Matrix& other);
+	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
 
 	str_i operator[](size_t i);
 	const_str_i operator[](size_t i) const;
@@ -90,17 +90,17 @@ public:
 	void print(std::ostream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
-	void set_at(Coordinates cell, const T& data);
+	void set_at(Coordinates_TEMPLATE cell, const T& data);
 
 	T& get_at(size_t N, size_t M);
-	T& get_at(Coordinates cell);
+	T& get_at(Coordinates_TEMPLATE cell);
 
 	const T& get_at(size_t N, size_t M) const;
-	const T& get_at(Coordinates cell) const;
+	const T& get_at(Coordinates_TEMPLATE cell) const;
 
 	void clear();
 	
 };
 
-#endif //! MATRIX_TEST_H__
+#endif //! Matrix_TEMPLATE_TEST_H__
 

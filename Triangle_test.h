@@ -8,6 +8,7 @@
 #include "Ray_template.h"
 #include "Point_test.h"
 #include "Is_equal_test.h"
+#include "utilities.h"
 //#include "Ray_3_test.h"
 
 
@@ -137,7 +138,7 @@ public:
 	}
 
 	Triangle_hi& operator = (Triangle_hi&& other)  //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-													//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).matrix	Z : \с++\Triangle\Triangle_test.h	165
+													//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).Matrix_TEMPLATE	Z : \с++\Triangle\Triangle_test.h	165
 	{
 		if (this == &other)
 			return *this;

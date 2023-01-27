@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Is_equal_test.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix_test.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Point_test.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -33,10 +27,10 @@
     <ClCompile Include="Ray_3_test.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="hello.cpp">
+    <ClCompile Include="Canvas.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="utilities.cpp">
@@ -47,13 +41,7 @@
     <ClInclude Include="Triangle_test.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Is_equal_test.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Point_test.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix_test.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Switch_cls_clear_from_os_type_test.h">
@@ -62,7 +50,7 @@
     <ClInclude Include="Ray_3_test.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hello.h">
+    <ClInclude Include="Canvas.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="utilities.h">

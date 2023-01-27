@@ -19,10 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hello.cpp" />
-    <ClCompile Include="Is_equal_test.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix_test.cpp" />
+    <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Point_test.cpp" />
     <ClCompile Include="Ray_3_test.cpp" />
     <ClCompile Include="Switch_cls_clear_from_os_type_test.cpp" />
@@ -30,12 +28,10 @@
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hello.h" />
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="Matrix_TEMPLATE.h" />
     <ClInclude Include="Ray_3_test.h" />
     <ClInclude Include="Ray_template.h" />
-    <ClInclude Include="Is_equal_test.h" />
-    <ClInclude Include="Matrix_test.h" />
     <ClInclude Include="Point_test.h" />
     <ClInclude Include="Switch_cls_clear_from_os_type_test.h" />
     <ClInclude Include="Triangle_test.h" />

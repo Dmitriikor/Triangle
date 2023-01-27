@@ -1,4 +1,4 @@
-﻿#include "hello.h"
+﻿#include "Canvas.h"
 #include <string>
 #include <float.h>
 Canvas_console::Canvas_console()
@@ -148,7 +148,7 @@ int Canvas_console::get_distance_between(int min_coord, int max_coord)
 	return abs(max_coord) + abs(min_coord);
 }
 
-void Canvas_console::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_location)
+void Canvas_console::x_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int min_x, int axis_location)
 {
 	size_t N = axis_length;
 
@@ -187,7 +187,7 @@ void Canvas_console::x_axis_filling(Matrix& arr, size_t axis_length, int min_x, 
 	}
 }
 
-void Canvas_console::y_axis_filling(Matrix& arr, size_t axis_length, int start_i, int axis_location)
+void Canvas_console::y_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int start_i, int axis_location)
 {
 	for (size_t i = 0; i < axis_length; ++i)
 	{
@@ -228,7 +228,7 @@ void Corner::create(char axys_arr_fill_symbol)
 {
 	// insert( points_to_draw_);
 
-	//!!! Coordinates
+	//!!! Coordinates_TEMPLATE
 
 	int max_y = MAX_VIRTUAL_.y;
 	int min_y = MIN_VIRTUAL_.y;
@@ -249,7 +249,7 @@ void Corner::create(char axys_arr_fill_symbol)
 
 		if (N > corner_arr().get_N() || M > corner_arr().get_M())
 		{
-			corner_arr() = Matrix(N, M);
+			corner_arr() = Matrix_TEMPLATE<char>(N, M);
 			corner_arr().fill(axys_arr_fill_symbol);
 		}
 	}
@@ -333,10 +333,10 @@ void Canvas_console::set_min_max()
 {
 	size_t length = points_to_draw_.size();
 	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);	//Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-										//Предупреждение	C26437	Не используйте срезы(es.63).matrix	Z : \с++\Triangle\hello.cpp	347
+										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix_TEMPLATE	Z : \с++\Triangle\hello.cpp	347
 
 	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]); //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-										//Предупреждение	C26437	Не используйте срезы(es.63).matrix	Z : \с++\Triangle\hello.cpp	347
+										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix_TEMPLATE	Z : \с++\Triangle\hello.cpp	347
 
 	for (size_t i = 1; i < length; i++)
 	{
@@ -358,7 +358,7 @@ void Canvas_console::set_min_max()
 }
 
 template <typename T>
-void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr) //, Matrix & loc_arr
+void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr) //, Matrix_TEMPLATE & loc_arr
 {
 	size_t length;
 
@@ -366,7 +366,7 @@ void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix
 
 	for (size_t i = 0; i < length; i++)
 	{
-		Coordinates cell;
+		Coordinates_TEMPLATE cell;
 
 		cell.i = ZERO().i - loc_arr_to_draw[i].y;
 		cell.j = (ZERO().j + (loc_arr_to_draw[i].x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
@@ -387,7 +387,7 @@ void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix
 /// 
 
 template <typename T>
-void Axys::draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr) //, Matrix & loc_arr
+void Axys::draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr) //, Matrix_TEMPLATE & loc_arr
 {
 
 	size_t length;
@@ -396,7 +396,7 @@ void Axys::draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix& lo
 
 	for (size_t i = 0; i < length; i++)
 	{
-		Coordinates cell;
+		Coordinates_TEMPLATE cell;
 
 
 		cell.i = ORIGIN_.i - loc_arr_to_draw[i].y;
@@ -411,7 +411,7 @@ void Axys::draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix& lo
 
 void Corner::erase_point_from_corner(const Dot& dot)
 {
-	Coordinates cell;
+	Coordinates_TEMPLATE cell;
 
 	cell.i = ZERO().i - dot.y;
 	cell.j = (ZERO().j + (dot.x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
@@ -500,7 +500,7 @@ Ray_template<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, con
 		max = A.x;
 	}
 
-	if (isEqual(min, max))
+	if (utilities::isEqual(min, max))
 	{
 		double start = A.y;
 		double end = B.y;
@@ -659,7 +659,7 @@ void Axys::create(char axys_arr_fill_symbol)
 	M = M * 2 + (loc_width_y);
 
 	if (axys_arr_.is_empty()) {
-		axys_arr_ = Matrix(N, M);
+		axys_arr_ = Matrix_TEMPLATE<char>(N, M);
 		axys_arr_.fill(axys_arr_fill_symbol);
 	}
 

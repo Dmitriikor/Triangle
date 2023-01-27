@@ -151,7 +151,7 @@ bool Triangle_hi::is_inside(const Dot& point, const Triangle_hi& abc) {
 	Triangle_hi t2 = create_triangle(abc.get_B(), abc.get_C(), point);
 	Triangle_hi t3 = create_triangle(abc.get_C(), abc.get_A(), point);
 
-	if (isEqual(abc.get_area(), t1.get_area() + t2.get_area() + t3.get_area()))
+	if (utilities::isEqual(abc.get_area(), t1.get_area() + t2.get_area() + t3.get_area()))
 		return true;
 
 	return false;

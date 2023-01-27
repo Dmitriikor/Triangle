@@ -4,7 +4,7 @@
 #include <limits>
 std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 ///#include "Ray_3_test.h"
-#include "hello.h"
+#include "Canvas.h"
 #include "Point_test.h"
 #include "Triangle_test.h"
 #include "utilities.h"
@@ -32,7 +32,7 @@ int main(int argc, char const* argv[])
 
 	/// {  test create & call base handwritten "libs"
 	///Ray_3_ a;
-	///Matrix b;
+	///Matrix_TEMPLATE b;
 	///Dot c;
 	///  }  test create & call base handwritten "libs"
 	{
@@ -305,7 +305,7 @@ int main(int argc, char const* argv[])
 			{
 				Triangle_hi temp_abc = d.create_triangle(point_arr[i], point_arr[j], point_arr[k]);
 
-				if (isEqual(temp_abc.get_area(), 0))
+				if (utilities::isEqual(temp_abc.get_area(), 0))
 					break;
 
 				if (temp_abc.is_triangle_()) {

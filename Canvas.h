@@ -12,7 +12,7 @@
 
 #include "Ray_template.h"
 #include "Point_test.h"
-#include "Matrix_test.h"
+#include "Matrix_TEMPLATE.h"
 #include "Is_equal_test.h"
 #include "utilities.h"
 
@@ -30,7 +30,7 @@ class Canvas_console : public Canvas
 {
 protected:
 
-	Coordinates ORIGIN_;
+	Coordinates_TEMPLATE ORIGIN_;
 
 	int width_x_;
 	int width_y_;
@@ -48,8 +48,8 @@ protected:
 	void max_min_init();
 	void initialize_width();
 
-	void x_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_location);
-	void y_axis_filling(Matrix& arr, size_t axis_length, int min_x, int axis_location);
+	void x_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int min_x, int axis_location);
+	void y_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int min_x, int axis_location);
 	int get_distance_between(int min_coord, int max_coord);
 	void add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round = true, char symbol = '+'); //add point to arr for print
 	void update_min_max_by(const Dot& pt);
@@ -59,7 +59,7 @@ protected:
 	void remove_no_rounding_line(const Dot& A, const Dot& B);
 	void remove_rounding_line(const Dot& A, const Dot& B);
 
-	Coordinates& ZERO() ///!!!
+	Coordinates_TEMPLATE& ZERO() ///!!!
 	{
 		return ORIGIN_;
 	}
@@ -174,8 +174,8 @@ public:
 	}
 	void print(int a/*std::ostream& output*/)/////////////////////////////////////////////////!!!!!!!!!!!
 	{
-		T* outfile_adress_2 = new T[outfile_adress.size() + 1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".matrix	Z : \с++\Triangle\hello.h	196
+		char* outfile_adress_2 = new char[outfile_adress.size() + 1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
+																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".Matrix_TEMPLATE	Z : \с++\Triangle\hello.h	196
 
 
 		for (int i = 0; i < outfile_adress.size(); ++i)
@@ -191,14 +191,14 @@ public:
 	void clear();
 
 private:
-	Matrix corner_arr_;
+	Matrix_TEMPLATE<char> corner_arr_;
 	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' }; //!!! string
 	template <typename T>
-	void draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr); //not for public mb move to Canvas
+	void draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr); //not for public mb move to Canvas
 	void add_points_to_corner();
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void erase_point_from_corner(const Dot& err);
-	Matrix& corner_arr()
+	Matrix_TEMPLATE<char>& corner_arr()
 	{
 		return corner_arr_;
 	}
@@ -209,7 +209,7 @@ private:
 class Axys : public Canvas_console
 {
 public:
-	void set_at(Coordinates cell, char symbol)
+	void set_at(Coordinates_TEMPLATE cell, char symbol)
 	{
 		axys_arr_.set_at(cell.i, cell.j, symbol);
 	}
@@ -234,9 +234,9 @@ public:
 
 private:
 
-	Matrix axys_arr_;
+	Matrix_TEMPLATE<char> axys_arr_;
 	template <typename T>
-	void draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix& loc_arr);
+	void draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr);
 };
 
 

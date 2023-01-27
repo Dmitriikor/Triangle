@@ -6,9 +6,9 @@
 ///!!!  add new mtx_bools to constructor
 /// 
 /// 
-#ifndef MATRIX_TEMPLATE_H__
+#ifndef Matrix_TEMPLATE_H__
 
-#define MATRIX_TEMPLATE_H__
+#define Matrix_TEMPLATE_H__
 
 #include <Windows.h>
 #include <stdexcept>
@@ -98,25 +98,25 @@ private:
 	static T** allocate(size_t N, size_t M);
 
 	struct str_i {
-		Matrix_TEMPLATE& my_matrix;
+		Matrix_TEMPLATE& my_Matrix_TEMPLATE;
 		size_t i;
 
-		str_i(Matrix_TEMPLATE& m, size_t i) : my_matrix(m), i(i) {
+		str_i(Matrix_TEMPLATE& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
 		}
 
 		T& operator[](size_t j) {
-			return my_matrix.arr[i][j];
+			return my_Matrix_TEMPLATE.arr[i][j];
 		}
 	};
 	struct const_str_i {
-		const Matrix_TEMPLATE& my_matrix;
+		const Matrix_TEMPLATE& my_Matrix_TEMPLATE;
 		size_t i;
 
-		const_str_i(const Matrix_TEMPLATE& m, size_t i) : my_matrix(m), i(i) {
+		const_str_i(const Matrix_TEMPLATE& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
 		}
 
 		const T& operator[](size_t j) const {
-			return my_matrix.arr[i][j];
+			return my_Matrix_TEMPLATE.arr[i][j];
 		}
 	};
 
@@ -145,7 +145,7 @@ public:
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Matrix_v1_start
+//Matrix_TEMPLATE_v1_start
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
@@ -564,13 +564,13 @@ void Matrix_TEMPLATE<T>::fill(const T& value)
 template <typename T>
 void Matrix_TEMPLATE<T>::set_at(size_t i, size_t j, const T& data) {
 	if (i >= N)
-		throw std::out_of_range("out_of_range in void set_at : method i = " + std::to_string(i) + " > matrix N = " + std::to_string(N));
+		throw std::out_of_range("out_of_range in void set_at : method i = " + std::to_string(i) + " > Matrix_TEMPLATE N = " + std::to_string(N));
 
 	if (j >= M)
-		throw std::out_of_range("out_of_range in void set_at : method j = " + std::to_string(j) + " > matrix M = " + std::to_string(M));
+		throw std::out_of_range("out_of_range in void set_at : method j = " + std::to_string(j) + " > Matrix_TEMPLATE M = " + std::to_string(M));
 
 	if (arr == nullptr)
-		throw std::length_error("length_error in void set_at : NO create_matrix");
+		throw std::length_error("length_error in void set_at : NO create_Matrix_TEMPLATE");
 	while (true)
 	{
 		if (KEEP_GOING == true)
@@ -592,13 +592,13 @@ void Matrix_TEMPLATE<T>::set_at(Coordinates_TEMPLATE cell, const T& data) {
 template <typename T>
 T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) {
 	if (i >= N)
-		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > matrix N = " + std::to_string(N));
+		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > Matrix_TEMPLATE N = " + std::to_string(N));
 
 	if (j >= M)
-		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > matrix M = " + std::to_string(M));
+		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > Matrix_TEMPLATE M = " + std::to_string(M));
 
 	if (arr == nullptr)
-		throw std::length_error("length_error in void get_at : NO create_matrix");
+		throw std::length_error("length_error in void get_at : NO create_Matrix_TEMPLATE");
 
 	return arr[i][j];
 }
@@ -611,13 +611,13 @@ T& Matrix_TEMPLATE<T>::get_at(Coordinates_TEMPLATE cell) {
 template <typename T>
 const T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) const {
 	if (i >= N)
-		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > matrix N = " + std::to_string(N));
+		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > Matrix_TEMPLATE N = " + std::to_string(N));
 
 	if (j >= M)
-		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > matrix M = " + std::to_string(M));
+		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > Matrix_TEMPLATE M = " + std::to_string(M));
 
 	if (arr == nullptr)
-		throw std::length_error("length_error in void get_at : NO create_matrix");
+		throw std::length_error("length_error in void get_at : NO create_Matrix_TEMPLATE");
 
 	return arr[i][j];
 }
@@ -732,10 +732,10 @@ Matrix_TEMPLATE<T> Matrix_TEMPLATE<T>::operator+(const Matrix_TEMPLATE<T>& other
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Matrix_v1_end
+//Matrix_TEMPLATE_v1_end
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#endif //! MATRIX_TEMPLATE_H__
+#endif //! Matrix_TEMPLATE_H__
 
 
 

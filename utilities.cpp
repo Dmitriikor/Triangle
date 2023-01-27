@@ -1,5 +1,12 @@
 #include "utilities.h"
 
+bool  utilities::isEqual(long double a, long double b, long double eps)
+{
+	if (std::abs(a - b) <= eps)
+		return true;
+
+	return false;
+}
 
 double utilities::round_by_step(double x, double step) {
 	double modulo = fmod(x, step);
