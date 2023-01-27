@@ -121,7 +121,7 @@ double Triangle_hi::count_area() const {
 	return s;
 }
 
-void Triangle_hi::triangles_print_outfile(const Triangle_hi triangle[], size_t index, const std::string& path_out) {
+void Triangle_hi::triangles_print_outfile(const Ray<Triangle_hi> triangle, size_t index, const std::string& path_out) {
 	std::ofstream outfile(path_out);
 
 	for (size_t i = 0; i < index; i++) {
@@ -147,11 +147,11 @@ Triangle_hi Triangle_hi::create_triangle(const Dot& a, const Dot& b, const Dot& 
 }
 
 bool Triangle_hi::is_inside(const Dot& point, const Triangle_hi& abc) {
-	Triangle_hi t1 = create_triangle(abc.get_A(), abc.get_B(), point);
-	Triangle_hi t2 = create_triangle(abc.get_B(), abc.get_C(), point);
-	Triangle_hi t3 = create_triangle(abc.get_C(), abc.get_A(), point);
+	Triangle_hi t1(abc.get_A(), abc.get_B(), point);
+	Triangle_hi t2(abc.get_B(), abc.get_C(), point);
+	Triangle_hi t3(abc.get_C(), abc.get_A(), point);
 
-	if (utilities::isEqual(abc.get_area(), t1.get_area() + t2.get_area() + t3.get_area()))
+	if (utilities::isEqual(abc.get_area(), t1.area + t2.area + t3.area))
 		return true;
 
 	return false;
@@ -162,4 +162,10 @@ void Triangle_hi::points_print(const Dot p[], int n) {
 		Dot coords = p[i];
 		std::cout << "point N_ " << i + 1 << " = \t" << coords.x << " \t" << coords.y << "\n";
 	}
+}
+
+
+Ray<Dot> Triangle_hi::get_point_in_triangle() const
+{
+	return point_in_triangle;
 }

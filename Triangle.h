@@ -69,6 +69,7 @@ private:
 	double count_area() const;
 
 public:
+
 	bool is_triangle_() const //!!! is_triangle without '_'
 	{
 		return is_triangle;
@@ -88,7 +89,6 @@ public:
 
 		dot_counter = 0;
 		area = count_area();
-		point_in_triangle.clear();
 
 		if ((side.AB + side.BC > side.CA) &&
 			(side.AB + side.CA > side.BC) &&
@@ -137,8 +137,7 @@ public:
 		return *this;
 	}
 
-	Triangle_hi& operator = (Triangle_hi&& other)  //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-													//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).Matrix	Z : \с++\Triangle\Triangle.h	165
+	Triangle_hi& operator = (Triangle_hi&& other)
 	{
 		if (this == &other)
 			return *this;
@@ -153,8 +152,7 @@ public:
 
 		dot_counter = other.dot_counter;
 
-		point_in_triangle = other.point_in_triangle;
-		other.point_in_triangle.clear();
+		std::swap(point_in_triangle, other.point_in_triangle);
 
 		area = other.area;
 
@@ -178,7 +176,6 @@ public:
 		side.CA = 0;
 
 		dot_counter = 0;
-		point_in_triangle.clear();
 
 		area = 0;
 
@@ -231,12 +228,14 @@ public:
 
 	void print_to_file(std::ostream& output)const;
 
-	static void triangles_print_outfile(const Triangle_hi triangle[], size_t index, const std::string& path_out);
+	static void triangles_print_outfile(const Ray<Triangle_hi> triangle, size_t index, const std::string& path_out);
 
 	Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c);
 
-	bool is_inside(const Dot& point, const Triangle_hi& abc);
+	static bool is_inside(const Dot& point, const Triangle_hi& abc);
 
 	void points_print(const Dot p[], int n);
+
+	Ray<Dot> get_point_in_triangle() const;
 };
 #endif //! TRIANGLE_TEST_H__

@@ -396,8 +396,11 @@ void Ray<T>::shrink_to_fit() {
 
 template <typename T>
 void Ray<T>::clear() {
-	delete[] ray_;
-	ray_ = nullptr;
+	if (ray_ != nullptr)
+	{
+		delete[] ray_;
+		ray_ = nullptr;
+	}
 	LEFT = saved_LEFT;
 	F_LEFT = 0;
 	RIGHT = saved_RIGHT;
