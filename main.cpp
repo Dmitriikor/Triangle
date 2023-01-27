@@ -5,11 +5,11 @@
 std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 ///#include "Ray_3_test.h"
 #include "Canvas.h"
-#include "Point_test.h"
-#include "Triangle_test.h"
+#include "Point.h"
+#include "Triangle.h"
 #include "utilities.h"
-#include "Ray_template.h"
-#include "Matrix_TEMPLATE.h"
+#include "Ray.h"
+#include "Matrix.h"
 #include <exception>
 #include <utility>
 
@@ -32,14 +32,14 @@ int main(int argc, char const* argv[])
 
 	/// {  test create & call base handwritten "libs"
 	///Ray_3_ a;
-	///Matrix_TEMPLATE b;
+	///Matrix b;
 	///Dot c;
 	///  }  test create & call base handwritten "libs"
 	{
-		Matrix_TEMPLATE test_once_1(1, 2, 'o');
-		Matrix_TEMPLATE test_once_2(1, 2, 'o');
-		Matrix_TEMPLATE test_once_3(1, 2, 'o');
-		Matrix_TEMPLATE<char> test_once_4(1, 2, 'o');
+		Matrix test_once_1(1, 2, 'o');
+		Matrix test_once_2(1, 2, 'o');
+		Matrix test_once_3(1, 2, 'o');
+		Matrix<char> test_once_4(1, 2, 'o');
 
 		test_once_1.print();
 		std::cout << std::endl;
@@ -73,8 +73,8 @@ int main(int argc, char const* argv[])
 	
 
 	
-		Matrix_TEMPLATE<int> test_move_1_1(2, 2, 2);
-		Matrix_TEMPLATE<int> test_move_2_2(3, 3, 3);
+		Matrix<int> test_move_1_1(2, 2, 2);
+		Matrix<int> test_move_2_2(3, 3, 3);
 		
 
 
@@ -83,7 +83,7 @@ int main(int argc, char const* argv[])
 		std::cout << "----------+=+=-------------------------\n";
 		Sleep(4000);
 
-		Matrix_TEMPLATE<int> test_move_3_3(4,4,4);
+		Matrix<int> test_move_3_3(4,4,4);
 		
 		test_move_3_3 += test_move_2_2;
 
@@ -91,7 +91,7 @@ int main(int argc, char const* argv[])
 		std::cout << "----------+=+=-------------------------\n";
 		Sleep(4000);
 		std::cout << "----------++++-------------------------\n";
-		Matrix_TEMPLATE<int> test_move_3_4 = test_move_3_3 + test_move_3_3;
+		Matrix<int> test_move_3_4 = test_move_3_3 + test_move_3_3;
 
 		test_move_3_4.print();
 
@@ -115,14 +115,14 @@ int main(int argc, char const* argv[])
 		test_move_2_2.print();
 		std::cout << "--std::move(test_move_2_2);------------\n";
 
-		Matrix_TEMPLATE<int> test_move_2_3 = std::move(test_move_2_2);
+		Matrix<int> test_move_2_3 = std::move(test_move_2_2);
 
 		test_move_2_3.print();
 		std::cout << "---------------------------------------\n";
 	}
 	{
-		Matrix_TEMPLATE <int> starship_test_1 (10, 10) ;
-		Matrix_TEMPLATE <int> starship_test_2(10, 10);
+		Matrix <int> starship_test_1 (10, 10) ;
+		Matrix <int> starship_test_2(10, 10);
 
 		if (starship_test_1 == starship_test_2)
 			std::cout << "\n \t == ok \n";
@@ -140,8 +140,8 @@ int main(int argc, char const* argv[])
 
 
 
-	Ray_template<int> test_move_1o;
-	Ray_template<int> test_move_2o;
+	Ray<int> test_move_1o;
+	Ray<int> test_move_2o;
 	Sleep(2000);
 	std::cout << "---------------------------------------\n";
 	print(test_move_1o);
@@ -162,9 +162,9 @@ int main(int argc, char const* argv[])
 	std::cout << "---------------------------------------\n";
 	
 
-	Ray_template<int> test_move_1;
-	Ray_template<int> test_move_2 = std::move(test_move_1);
-	Ray_template<int> test_move_3 (20,30);
+	Ray<int> test_move_1;
+	Ray<int> test_move_2 = std::move(test_move_1);
+	Ray<int> test_move_3 (20,30);
 	test_move_3.add_to_back(5);
 	test_move_3.add_to_first(4);
 	std::cout << test_move_3[0];
@@ -224,7 +224,7 @@ int main(int argc, char const* argv[])
 	}
 
 	int arrs[4] = {1,2,3,4};
-	Ray_template<int> test_init(arrs, 4);
+	Ray<int> test_init(arrs, 4);
 
 
 	std::cout << "Choose mode:\n \t1 input on file, \n \t2 input manual: \n \t3 auto:\n";
@@ -361,7 +361,7 @@ int main(int argc, char const* argv[])
 		Dot c;
 		Dot d;
 		///Ray_3_ test___;
-		Ray_template<Dot> test___;
+		Ray<Dot> test___;
 
 		int rnd = utilities::random_INT(0, 90);
 		std::cout << "\n" << rnd << "\n";

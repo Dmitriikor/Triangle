@@ -1,8 +1,8 @@
 ///!!!• operator+=
-///!!!• return Matrix_TEMPLATE <T> operator +
+///!!!• return Matrix <T> operator +
 ///!!!• constructor std::move()
 ///!!!• operator std::move()
-///!!!• void Matrix_TEMPLATE<T>::print(std::ostream& output) const
+///!!!• void Matrix<T>::print(std::ostream& output) const
 ///!!!  add new mtx_bools to constructor
 /// 
 /// 
@@ -35,35 +35,35 @@ struct Coordinates_TEMPLATE {
 
 
 template <typename T>
-class Matrix_TEMPLATE {
+class Matrix {
 
 public:
-	Matrix_TEMPLATE();
-	Matrix_TEMPLATE(size_t N, size_t M);
-	Matrix_TEMPLATE(size_t N, size_t M, const T& value);
-	Matrix_TEMPLATE(const Matrix_TEMPLATE& other);
+	Matrix();
+	Matrix(size_t N, size_t M);
+	Matrix(size_t N, size_t M, const T& value);
+	Matrix(const Matrix& other);
 
-	Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept;
-	Matrix_TEMPLATE& operator=(Matrix_TEMPLATE&& other) noexcept;
+	Matrix(Matrix&& other) noexcept;
+	Matrix& operator=(Matrix&& other) noexcept;
 
-	~Matrix_TEMPLATE();
+	~Matrix();
 
-	Matrix_TEMPLATE& operator=(const Matrix_TEMPLATE& other);
+	Matrix& operator=(const Matrix& other);
 
-	bool operator==(const Matrix_TEMPLATE& other) const;
-	//bool operator<(const Matrix_TEMPLATE& other) const;
-	int operator<=>(const Matrix_TEMPLATE& other) const;
+	bool operator==(const Matrix& other) const;
+	//bool operator<(const Matrix& other) const;
+	int operator<=>(const Matrix& other) const;
 
 	size_t size() const
 	{
 		return N * M;
 	}
 
-	Matrix_TEMPLATE& operator+=(const Matrix_TEMPLATE<T>& other);
-	Matrix_TEMPLATE operator+(const Matrix_TEMPLATE<T>& other) const;
+	Matrix& operator+=(const Matrix<T>& other);
+	Matrix operator+(const Matrix<T>& other) const;
 
 	/*template <typename T>
-	friend Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs);*/
+	friend Matrix<T> operator+(Matrix<T> lhs, const Matrix<T>& rhs);*/
 
 	size_t get_N() const;
 
@@ -98,10 +98,10 @@ private:
 	static T** allocate(size_t N, size_t M);
 
 	struct str_i {
-		Matrix_TEMPLATE& my_Matrix_TEMPLATE;
+		Matrix& my_Matrix_TEMPLATE;
 		size_t i;
 
-		str_i(Matrix_TEMPLATE& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
+		str_i(Matrix& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
 		}
 
 		T& operator[](size_t j) {
@@ -109,10 +109,10 @@ private:
 		}
 	};
 	struct const_str_i {
-		const Matrix_TEMPLATE& my_Matrix_TEMPLATE;
+		const Matrix& my_Matrix_TEMPLATE;
 		size_t i;
 
-		const_str_i(const Matrix_TEMPLATE& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
+		const_str_i(const Matrix& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
 		}
 
 		const T& operator[](size_t j) const {
@@ -149,20 +149,20 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-std::mutex& Matrix_TEMPLATE<T>::get_cout_mutex()
+std::mutex& Matrix<T>::get_cout_mutex()
 {
 	static std::mutex m;
 	return m;
 }
 
 template <typename T>
-Matrix_TEMPLATE<T>::Matrix_TEMPLATE() : N(0), M(0), arr(nullptr)
+Matrix<T>::Matrix() : N(0), M(0), arr(nullptr)
 {
 
 }
 
 template <typename T>
-Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M) : N(N), M(M)
+Matrix<T>::Matrix(size_t N, size_t M) : N(N), M(M)
 {
 	if (N == 0 || M == 0)
 	{
@@ -176,7 +176,7 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M) : N(N), M(M)
 }
 
 template<typename T>
-inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) : N(N), M(M), arr(nullptr)
+inline Matrix<T>::Matrix(size_t N, size_t M, const T& value) : N(N), M(M), arr(nullptr)
 {
 	if (N == 0 || M == 0)
 	{
@@ -188,7 +188,7 @@ inline Matrix_TEMPLATE<T>::Matrix_TEMPLATE(size_t N, size_t M, const T& value) :
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::resize_and_override(size_t N_, size_t M_, const T& value)
+void Matrix<T>::resize_and_override(size_t N_, size_t M_, const T& value)
 {
 	while (true)
 	{
@@ -219,7 +219,7 @@ void Matrix_TEMPLATE<T>::resize_and_override(size_t N_, size_t M_, const T& valu
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
+void Matrix<T>::resize(size_t N_, size_t M_, const T& value)
 {
 	while (true)
 	{
@@ -262,7 +262,7 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_, const T& value)
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
+void Matrix<T>::resize(size_t N_, size_t M_)
 {
 	while (true)
 	{
@@ -300,7 +300,7 @@ void Matrix_TEMPLATE<T>::resize(size_t N_, size_t M_)
 }
 
 template <typename T>
-Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE<T>& other) : N(other.N), M(other.M)
+Matrix<T>::Matrix(const Matrix<T>& other) : N(other.N), M(other.M)
 {
 	if (N == 0)
 	{
@@ -320,7 +320,7 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(const Matrix_TEMPLATE<T>& other) : N(other.N
 }
 
 template<typename T>
-Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept
+Matrix<T>::Matrix(Matrix&& other) noexcept
 {
 	while (true)
 	{
@@ -345,7 +345,7 @@ Matrix_TEMPLATE<T>::Matrix_TEMPLATE(Matrix_TEMPLATE&& other) noexcept
 }
 
 template<typename T>
-inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other) noexcept
+inline Matrix<T>& Matrix<T>::operator=(Matrix&& other) noexcept
 {
 	while (true)
 	{
@@ -370,7 +370,7 @@ inline Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(Matrix_TEMPLATE&& other
 }
 
 template <typename T>
-Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
+Matrix<T>::~Matrix()
 {
 
 	if (is_thread != false && KEEP_GOING == true)
@@ -390,7 +390,7 @@ Matrix_TEMPLATE<T>::~Matrix_TEMPLATE()
 }
 
 template <typename T>
-Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& other)
+Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other)
 {
 	if (this == &other)
 	{
@@ -433,13 +433,13 @@ Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator=(const Matrix_TEMPLATE<T>& othe
 }
 
 template<typename T>
-bool Matrix_TEMPLATE<T>::operator==(const Matrix_TEMPLATE& other) const
+bool Matrix<T>::operator==(const Matrix& other) const
 {
 	return (*this <=> other) == 0;
 }
 
 template<typename T>
-int Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
+int Matrix<T>::operator<=>(const Matrix& other) const
 {
 	if (size() < other.size())
 		return -1;
@@ -451,7 +451,7 @@ int Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
 }
 
 //template<typename T>
-//std::partial_ordering Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
+//std::partial_ordering Matrix<T>::operator<=>(const Matrix& other) const
 //{
 //	/*if (N < other.N || M < other.M)
 //		return std::partial_ordering::less;
@@ -465,7 +465,7 @@ int Matrix_TEMPLATE<T>::operator<=>(const Matrix_TEMPLATE& other) const
 
 
 template<typename T>
-Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator+=(const Matrix_TEMPLATE<T>& other)
+Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 {
 	while (true)
 	{
@@ -508,17 +508,17 @@ Matrix_TEMPLATE<T>& Matrix_TEMPLATE<T>::operator+=(const Matrix_TEMPLATE<T>& oth
 }
 
 template <typename T>
-typename Matrix_TEMPLATE<T>::str_i Matrix_TEMPLATE<T>::operator[](size_t i) {
+typename Matrix<T>::str_i Matrix<T>::operator[](size_t i) {
 	return str_i(*this, i);
 }
 
 template <typename T>
-typename Matrix_TEMPLATE<T>::const_str_i Matrix_TEMPLATE<T>::operator[](size_t i) const {
+typename Matrix<T>::const_str_i Matrix<T>::operator[](size_t i) const {
 	return const_str_i(*this, i);
 }
 
 template <typename T>
-T** Matrix_TEMPLATE<T>::allocate(size_t N_, size_t M_)
+T** Matrix<T>::allocate(size_t N_, size_t M_)
 {
 	T** new_arr = new T * [N_]();
 
@@ -530,17 +530,17 @@ T** Matrix_TEMPLATE<T>::allocate(size_t N_, size_t M_)
 }
 
 template <typename T>
-size_t Matrix_TEMPLATE<T>::get_N() const {
+size_t Matrix<T>::get_N() const {
 	return N;
 }
 
 template <typename T>
-size_t Matrix_TEMPLATE<T>::get_M() const {
+size_t Matrix<T>::get_M() const {
 	return M;
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::fill(const T& value)
+void Matrix<T>::fill(const T& value)
 {
 	while (true)
 	{
@@ -562,12 +562,12 @@ void Matrix_TEMPLATE<T>::fill(const T& value)
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::set_at(size_t i, size_t j, const T& data) {
+void Matrix<T>::set_at(size_t i, size_t j, const T& data) {
 	if (i >= N)
-		throw std::out_of_range("out_of_range in void set_at : method i = " + std::to_string(i) + " > Matrix_TEMPLATE N = " + std::to_string(N));
+		throw std::out_of_range("out_of_range in void set_at : method i = " + std::to_string(i) + " > Matrix N = " + std::to_string(N));
 
 	if (j >= M)
-		throw std::out_of_range("out_of_range in void set_at : method j = " + std::to_string(j) + " > Matrix_TEMPLATE M = " + std::to_string(M));
+		throw std::out_of_range("out_of_range in void set_at : method j = " + std::to_string(j) + " > Matrix M = " + std::to_string(M));
 
 	if (arr == nullptr)
 		throw std::length_error("length_error in void set_at : NO create_Matrix_TEMPLATE");
@@ -585,17 +585,17 @@ void Matrix_TEMPLATE<T>::set_at(size_t i, size_t j, const T& data) {
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::set_at(Coordinates_TEMPLATE cell, const T& data) {
+void Matrix<T>::set_at(Coordinates_TEMPLATE cell, const T& data) {
 	set_at(cell.i, cell.j, data);
 }
 
 template <typename T>
-T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) {
+T& Matrix<T>::get_at(size_t i, size_t j) {
 	if (i >= N)
-		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > Matrix_TEMPLATE N = " + std::to_string(N));
+		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > Matrix N = " + std::to_string(N));
 
 	if (j >= M)
-		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > Matrix_TEMPLATE M = " + std::to_string(M));
+		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > Matrix M = " + std::to_string(M));
 
 	if (arr == nullptr)
 		throw std::length_error("length_error in void get_at : NO create_Matrix_TEMPLATE");
@@ -604,17 +604,17 @@ T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) {
 }
 
 template <typename T>
-T& Matrix_TEMPLATE<T>::get_at(Coordinates_TEMPLATE cell) {
+T& Matrix<T>::get_at(Coordinates_TEMPLATE cell) {
 	return get_at(cell.i, cell.j);
 }
 
 template <typename T>
-const T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) const {
+const T& Matrix<T>::get_at(size_t i, size_t j) const {
 	if (i >= N)
-		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > Matrix_TEMPLATE N = " + std::to_string(N));
+		throw std::out_of_range("out_of_range in void get_at : method i = " + std::to_string(i) + " > Matrix N = " + std::to_string(N));
 
 	if (j >= M)
-		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > Matrix_TEMPLATE M = " + std::to_string(M));
+		throw std::out_of_range("out_of_range in void get_at : method j = " + std::to_string(j) + " > Matrix M = " + std::to_string(M));
 
 	if (arr == nullptr)
 		throw std::length_error("length_error in void get_at : NO create_Matrix_TEMPLATE");
@@ -623,12 +623,12 @@ const T& Matrix_TEMPLATE<T>::get_at(size_t i, size_t j) const {
 }
 
 template <typename T>
-const T& Matrix_TEMPLATE<T>::get_at(Coordinates_TEMPLATE cell) const {
+const T& Matrix<T>::get_at(Coordinates_TEMPLATE cell) const {
 	return get_at(cell.i, cell.j);
 }
 
 template <typename T>
-void Matrix_TEMPLATE<T>::clear() {
+void Matrix<T>::clear() {
 	if (arr != nullptr)
 	{
 		for (size_t i = 0; i < N; i++) {
@@ -643,7 +643,7 @@ void Matrix_TEMPLATE<T>::clear() {
 }
 
 template <typename T>
-bool Matrix_TEMPLATE<T>::is_empty()
+bool Matrix<T>::is_empty()
 {
 	if (arr == nullptr)
 		return true;
@@ -655,7 +655,7 @@ bool Matrix_TEMPLATE<T>::is_empty()
 
 
 template <typename T>
-void Matrix_TEMPLATE<T>::do_something()
+void Matrix<T>::do_something()
 {
 
 	//	std::scoped_lock<std::mutex> lockit(std::mutex);
@@ -681,7 +681,7 @@ void Matrix_TEMPLATE<T>::do_something()
 #include "Windows.h" 
 
 template <typename T>
-void Matrix_TEMPLATE<T>::print()
+void Matrix<T>::print()
 {
 	while (true)
 	{
@@ -694,7 +694,7 @@ void Matrix_TEMPLATE<T>::print()
 
 	if (is_thread == false && is_move == false)
 	{
-		DefenseThread = new std::jthread(&Matrix_TEMPLATE<T>::do_something, this);
+		DefenseThread = new std::jthread(&Matrix<T>::do_something, this);
 		is_thread = true;
 	}
 	else
@@ -704,7 +704,7 @@ void Matrix_TEMPLATE<T>::print()
 }
 
 template<typename T>
-inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
+inline void Matrix<T>::print(std::ostream& output) const
 {
 
 
@@ -714,7 +714,7 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 }
 
 //template <typename T>
-//Matrix_TEMPLATE<T> operator+(Matrix_TEMPLATE<T> lhs, const Matrix_TEMPLATE<T>& rhs)
+//Matrix<T> operator+(Matrix<T> lhs, const Matrix<T>& rhs)
 //{
 //	lhs += rhs;
 //	return lhs;
@@ -722,9 +722,9 @@ inline void Matrix_TEMPLATE<T>::print(std::ostream& output) const
 //}
 
 template <typename T>
-Matrix_TEMPLATE<T> Matrix_TEMPLATE<T>::operator+(const Matrix_TEMPLATE<T>& other) const
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const
 {
-	Matrix_TEMPLATE<T> copy = *this;
+	Matrix<T> copy = *this;
 	copy += other;
 	return copy;
 	//return std::move(copy);

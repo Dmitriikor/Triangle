@@ -10,9 +10,9 @@
 #include <stdexcept>
 
 
-#include "Ray_template.h"
-#include "Point_test.h"
-#include "Matrix_TEMPLATE.h"
+#include "Ray.h"
+#include "Point.h"
+#include "Matrix.h"
 #include "Is_equal_test.h"
 #include "utilities.h"
 
@@ -22,7 +22,7 @@ public:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
 
-	Ray_template<Dot> points_to_draw_;		//free dots to draw
+	Ray<Dot> points_to_draw_;		//free dots to draw
 
 };
 
@@ -48,8 +48,8 @@ protected:
 	void max_min_init();
 	void initialize_width();
 
-	void x_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int min_x, int axis_location);
-	void y_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int min_x, int axis_location);
+	void x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location);
+	void y_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location);
 	int get_distance_between(int min_coord, int max_coord);
 	void add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round = true, char symbol = '+'); //add point to arr for print
 	void update_min_max_by(const Dot& pt);
@@ -63,8 +63,8 @@ protected:
 	{
 		return ORIGIN_;
 	}
-	Ray_template<Dot> calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+');
-	Ray_template<Dot> calculate_line_swap(const Dot& A, const Dot& B, char symbol = '+');
+	Ray<Dot> calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+');
+	Ray<Dot> calculate_line_swap(const Dot& A, const Dot& B, char symbol = '+');
 
 public:
 	Canvas_console();
@@ -119,7 +119,7 @@ public:
 	//!!! operator + 
 
 	template <typename T>
-	void insert(const Ray_template<T>& points); //!!! so it is possible, but it is not necessary here => overload
+	void insert(const Ray<T>& points); //!!! so it is possible, but it is not necessary here => overload
 
 
 	void insert(const Dot& pt)
@@ -168,14 +168,14 @@ public:
 	{
 		remove_line_total(A, B);
 	}
-	void change_file_path(Ray_template <char> adress)
+	void change_file_path(Ray <char> adress)
 	{
 		outfile_adress = adress;
 	}
 	void print(int a/*std::ostream& output*/)/////////////////////////////////////////////////!!!!!!!!!!!
 	{
 		char* outfile_adress_2 = new char[outfile_adress.size() + 1];	// Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".Matrix_TEMPLATE	Z : \с++\Triangle\hello.h	196
+																//Предупреждение	C6386	Переполнение буфера при записи в "outfile_adress_2".Matrix	Z : \с++\Triangle\hello.h	196
 
 
 		for (int i = 0; i < outfile_adress.size(); ++i)
@@ -191,14 +191,14 @@ public:
 	void clear();
 
 private:
-	Matrix_TEMPLATE<char> corner_arr_;
-	Ray_template <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' }; //!!! string
+	Matrix<char> corner_arr_;
+	Ray <char> outfile_adress = { 'c', 'o', 'r','n','e','r','_','p','a','t','h','_','o','u','t','.','t','x','t' }; //!!! string
 	template <typename T>
-	void draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr); //not for public mb move to Canvas
+	void draw_points_or_line_corner(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr); //not for public mb move to Canvas
 	void add_points_to_corner();
 	void create(/*Canvas& this_,*/ char axys_arr_fill_symbol = ' ');
 	void erase_point_from_corner(const Dot& err);
-	Matrix_TEMPLATE<char>& corner_arr()
+	Matrix<char>& corner_arr()
 	{
 		return corner_arr_;
 	}
@@ -234,9 +234,9 @@ public:
 
 private:
 
-	Matrix_TEMPLATE<char> axys_arr_;
+	Matrix<char> axys_arr_;
 	template <typename T>
-	void draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr);
+	void draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr);
 };
 
 

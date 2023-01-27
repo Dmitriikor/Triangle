@@ -1,10 +1,10 @@
-#include "Triangle_test.h"
+#include "Triangle.h"
 
 const Dot& Triangle_hi::get_point_in(size_t index) const {
 	return point_in_triangle[index];
 }
 
-const Ray_template <Dot> Triangle_hi::get_points_inside_Ray() const {
+const Ray <Dot> Triangle_hi::get_points_inside_Ray() const {
 	return point_in_triangle;
 }
 

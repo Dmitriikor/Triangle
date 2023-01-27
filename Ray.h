@@ -10,7 +10,7 @@
 #include <span>
 
 template <typename T>
-class Ray_template {
+class Ray {
 private:
 
 	///!!! initialization in initializer-list (in constructors)
@@ -45,30 +45,30 @@ private:
 	const T& get_element_(size_t index) const;
 
 	template<typename T>
-	friend void print(const Ray_template<T>& Ray);
+	friend void print(const Ray<T>& Ray);
 
 
-	void MOVE_(Ray_template<T>& other);
-	void SWAP_(Ray_template& other);
+	void MOVE_(Ray<T>& other);
+	void SWAP_(Ray& other);
 public:
 
-	Ray_template();
+	Ray();
 	//LEFT, RIGHT
-	Ray_template(size_t LEFT, size_t RIGHT);
+	Ray(size_t LEFT, size_t RIGHT);
 	//LEFT, RIGHT, COEFFICIENT
-	Ray_template(size_t LEFT, size_t RIGHT, size_t COEFFICIENT);
+	Ray(size_t LEFT, size_t RIGHT, size_t COEFFICIENT);
 
-	Ray_template(const Ray_template& other);
+	Ray(const Ray& other);
 
-	Ray_template(Ray_template&& other) noexcept;
+	Ray(Ray&& other) noexcept;
 
-	Ray_template(const std::initializer_list<T>& li);
+	Ray(const std::initializer_list<T>& li);
 
-	Ray_template(const T* val, size_t size);
+	Ray(const T* val, size_t size);
 
-	Ray_template(std::span<T> span);
+	Ray(std::span<T> span);
 
-	~Ray_template();
+	~Ray();
 	// LEFT
 	void add_to_first(const T& value);
 
@@ -83,9 +83,9 @@ public:
 
 	const T& operator[](size_t index) const;
 
-	Ray_template& operator=(const Ray_template& other);
+	Ray& operator=(const Ray& other);
 
-	Ray_template& operator=(Ray_template&& other) noexcept;
+	Ray& operator=(Ray&& other) noexcept;
 
 	void push_back(const T& value);
 
@@ -115,12 +115,12 @@ public:
 };
 
 template <typename T>
-void Ray_template<T>::create_() {
+void Ray<T>::create_() {
 	ray_ = new T[LEFT + RIGHT]();
 }
 
 template <typename T>
-void Ray_template<T>::LEFT_increase_() {
+void Ray<T>::LEFT_increase_() {
 	int new_LEFT = LEFT * COEFFICIENT;
 	size_t new_long = new_LEFT + RIGHT;
 	T* new_ray = new T[new_long]();
@@ -138,7 +138,7 @@ void Ray_template<T>::LEFT_increase_() {
 }
 
 template <typename T>
-void Ray_template<T>::RIGHT_increase_() {
+void Ray<T>::RIGHT_increase_() {
 	int new_RIGHT = RIGHT * COEFFICIENT;
 	size_t new_long = LEFT + new_RIGHT;
 	T* new_ray = new T[new_long]();
@@ -156,33 +156,33 @@ void Ray_template<T>::RIGHT_increase_() {
 }
 
 template <typename T>
-T& Ray_template<T>::get_element_(size_t index) {
+T& Ray<T>::get_element_(size_t index) {
 	return ray_[(LEFT - F_LEFT) + index];
 }
 
 template <typename T>
-const T& Ray_template<T>::get_element_(size_t index) const {
+const T& Ray<T>::get_element_(size_t index) const {
 	return ray_[(LEFT - F_LEFT) + index];
 }
 
 template <typename T>
-Ray_template<T>::Ray_template() :Ray_template<T>(10u, 10u, 2) {
+Ray<T>::Ray() :Ray<T>(10u, 10u, 2) {
 
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(size_t LEFT, size_t RIGHT) : Ray_template<T>(LEFT, RIGHT, 2u) {
+Ray<T>::Ray(size_t LEFT, size_t RIGHT) : Ray<T>(LEFT, RIGHT, 2u) {
 
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
+Ray<T>::Ray(size_t LEFT, size_t RIGHT, size_t COEFFICIENT)
 	: LEFT(LEFT), COEFFICIENT(COEFFICIENT), RIGHT(RIGHT) {
 
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(const Ray_template<T>& other)
+Ray<T>::Ray(const Ray<T>& other)
 {
 	LEFT = other.LEFT;
 	RIGHT = other.RIGHT;
@@ -201,13 +201,13 @@ Ray_template<T>::Ray_template(const Ray_template<T>& other)
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(Ray_template<T>&& other) noexcept  :Ray_template()
+Ray<T>::Ray(Ray<T>&& other) noexcept  :Ray()
 {
 	SWAP_(other);
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(const std::initializer_list<T>& li)
+Ray<T>::Ray(const std::initializer_list<T>& li)
 {
 	LEFT = 1;
 	RIGHT = li.size();
@@ -223,7 +223,7 @@ Ray_template<T>::Ray_template(const std::initializer_list<T>& li)
 }
 
 template <typename T>
-void Ray_template<T>::add_to_first(const T& value) {
+void Ray<T>::add_to_first(const T& value) {
 	if (ray_ == nullptr)
 		create_();
 
@@ -239,7 +239,7 @@ void Ray_template<T>::add_to_first(const T& value) {
 
 
 template <typename T>
-void Ray_template<T>::add_to_back(const T& value) {
+void Ray<T>::add_to_back(const T& value) {
 	if (ray_ == nullptr)
 		create_();
 
@@ -252,7 +252,7 @@ void Ray_template<T>::add_to_back(const T& value) {
 }
 
 template <typename T>
-Ray_template<T>::Ray_template(const T* val, size_t size)
+Ray<T>::Ray(const T* val, size_t size)
 {
 	LEFT = 1;
 	RIGHT = size;
@@ -269,49 +269,49 @@ Ray_template<T>::Ray_template(const T* val, size_t size)
 
 
 template <typename T>
-T& Ray_template<T>::at_(size_t index) {
+T& Ray<T>::at_(size_t index) {
 	//if (index ...)
-	return Ray_template<T>::get_element_(index);
+	return Ray<T>::get_element_(index);
 }
 
 template <typename T>
-const T& Ray_template<T>::at_(size_t index) const {
+const T& Ray<T>::at_(size_t index) const {
 	//if (index ...)
-	return Ray_template<T>::get_element_(index);
+	return Ray<T>::get_element_(index);
 }
 
 template <typename T>
-T& Ray_template<T>::operator[](size_t index) {
+T& Ray<T>::operator[](size_t index) {
 	return get_element_(index);
 }
 
 template <typename T>
-const T& Ray_template<T>::operator[](size_t index) const {
+const T& Ray<T>::operator[](size_t index) const {
 	return get_element_(index);
 }
 
 template <typename T>
-void Ray_template<T>::push_back(const T& value) {
+void Ray<T>::push_back(const T& value) {
 	add_to_back(value);
 }
 
 template <typename T>
-void Ray_template<T>::push_begin(const T& value) {
+void Ray<T>::push_begin(const T& value) {
 	add_to_first(value);
 }
 
 template <typename T>
-void Ray_template<T>::pop_front() {
+void Ray<T>::pop_front() {
 	--F_LEFT;
 }
 
 template <typename T>
-void Ray_template<T>::pop_back() {
+void Ray<T>::pop_back() {
 	--F_RIGHT;
 }
 
 template <typename T>
-void Ray_template<T>::remove(size_t index) {
+void Ray<T>::remove(size_t index) {
 	if (index > (LEFT + RIGHT))
 		return;
 
@@ -338,7 +338,7 @@ void Ray_template<T>::remove(size_t index) {
 }
 
 template <typename T>
-void Ray_template<T>::insert(size_t index, T& value) {
+void Ray<T>::insert(size_t index, T& value) {
 
 	if (ray_ == nullptr)
 		create_();
@@ -365,17 +365,17 @@ void Ray_template<T>::insert(size_t index, T& value) {
 }
 
 template <typename T>
-size_t Ray_template<T>::size() const {
+size_t Ray<T>::size() const {
 	return F_LEFT + F_RIGHT;
 }
 
 template <typename T>
-size_t Ray_template<T>::capacity() const {
+size_t Ray<T>::capacity() const {
 	return LEFT + RIGHT;
 }
 
 template <typename T>
-void Ray_template<T>::cut() {
+void Ray<T>::cut() {
 	size_t new_long = size();
 	T* new_ray = new T[new_long]();
 
@@ -390,12 +390,12 @@ void Ray_template<T>::cut() {
 }
 
 template <typename T>
-void Ray_template<T>::shrink_to_fit() {
+void Ray<T>::shrink_to_fit() {
 	cut();
 }
 
 template <typename T>
-void Ray_template<T>::clear() {
+void Ray<T>::clear() {
 	delete[] ray_;
 	ray_ = nullptr;
 	LEFT = saved_LEFT;
@@ -405,14 +405,14 @@ void Ray_template<T>::clear() {
 }
 
 template <typename T>
-Ray_template<T>::~Ray_template() {
+Ray<T>::~Ray() {
 	clear();
 	///delete[] ray_; 
 	///std::cout << "\t ! \n";
 }
 
 template <typename T>
-Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
+Ray<T>& Ray<T>::operator=(const Ray<T>& other) {
 	///std::cout << "operator=" << std::endl;
 	///this -left operand address
 	if (this != &other) {
@@ -437,7 +437,7 @@ Ray_template<T>& Ray_template<T>::operator=(const Ray_template<T>& other) {
 }
 
 template <typename T>
-Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other) noexcept
+Ray<T>& Ray<T>::operator=(Ray<T>&& other) noexcept
 {
 	if (this != &other)
 	{
@@ -450,7 +450,7 @@ Ray_template<T>& Ray_template<T>::operator=(Ray_template<T>&& other) noexcept
 }
 
 template <typename T>
-void Ray_template<T>::SWAP_(Ray_template<T>& other)
+void Ray<T>::SWAP_(Ray<T>& other)
 {
 	std::swap(LEFT, other.LEFT);
 	std::swap(RIGHT, other.RIGHT);
@@ -465,7 +465,7 @@ void Ray_template<T>::SWAP_(Ray_template<T>& other)
 }
 
 template <typename T>
-void Ray_template<T>::MOVE_(Ray_template<T>& other)
+void Ray<T>::MOVE_(Ray<T>& other)
 {
 
 	LEFT = other.LEFT;
@@ -493,7 +493,7 @@ void Ray_template<T>::MOVE_(Ray_template<T>& other)
 
 
 template <typename T>
-void print(const Ray_template<T>& Ray) {
+void print(const Ray<T>& Ray) {
 
 	std::cout << "\n";
 	for (size_t i = 0; i < Ray.LEFT + Ray.RIGHT; i++)

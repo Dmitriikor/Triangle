@@ -5,8 +5,8 @@
 //#include <vector> //!!!RAY
 #include <fstream>
 #include <cmath>
-#include "Ray_template.h"
-#include "Point_test.h"
+#include "Ray.h"
+#include "Point.h"
 #include "Is_equal_test.h"
 #include "utilities.h"
 //#include "Ray_3_test.h"
@@ -58,7 +58,7 @@ private:
 		double CA;
 	} side;
 
-	Ray_template <Dot> point_in_triangle;
+	Ray <Dot> point_in_triangle;
 
 	//std::vector<Dot> point_in_triangle;
 
@@ -138,7 +138,7 @@ public:
 	}
 
 	Triangle_hi& operator = (Triangle_hi&& other)  //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-													//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).Matrix_TEMPLATE	Z : \с++\Triangle\Triangle_test.h	165
+													//Предупреждение	C26439	Эта функция не может выдавать исключения(throw).Объявите ее как "noexcept" (f.6).Matrix	Z : \с++\Triangle\Triangle.h	165
 	{
 		if (this == &other)
 			return *this;
@@ -191,7 +191,7 @@ public:
 	const Dot& get_point_in(size_t index) const;
 
 	//const std::vector<Dot>& get_points_inside() const;
-	const Ray_template <Dot> get_points_inside_Ray() const;
+	const Ray <Dot> get_points_inside_Ray() const;
 
 	double get_AB() const;
 

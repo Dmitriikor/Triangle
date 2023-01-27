@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <utility>
 
-#include "Point_test.h"
+#include "Point.h"
 
 using TTT = Dot;
 using reference_type = TTT&;

@@ -40,7 +40,7 @@ void Canvas_console::go_debug(bool is_debug)
 
 
 template <typename T_temp>
-void Canvas_console::insert(const Ray_template<T_temp>& points)
+void Canvas_console::insert(const Ray<T_temp>& points)
 {
 	size_t length_arr = points.size();
 	for (size_t i = 0; i < length_arr; i++)
@@ -148,7 +148,7 @@ int Canvas_console::get_distance_between(int min_coord, int max_coord)
 	return abs(max_coord) + abs(min_coord);
 }
 
-void Canvas_console::x_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int min_x, int axis_location)
+void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location)
 {
 	size_t N = axis_length;
 
@@ -187,7 +187,7 @@ void Canvas_console::x_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_leng
 	}
 }
 
-void Canvas_console::y_axis_filling(Matrix_TEMPLATE<char>& arr, size_t axis_length, int start_i, int axis_location)
+void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int start_i, int axis_location)
 {
 	for (size_t i = 0; i < axis_length; ++i)
 	{
@@ -249,7 +249,7 @@ void Corner::create(char axys_arr_fill_symbol)
 
 		if (N > corner_arr().get_N() || M > corner_arr().get_M())
 		{
-			corner_arr() = Matrix_TEMPLATE<char>(N, M);
+			corner_arr() = Matrix<char>(N, M);
 			corner_arr().fill(axys_arr_fill_symbol);
 		}
 	}
@@ -333,10 +333,10 @@ void Canvas_console::set_min_max()
 {
 	size_t length = points_to_draw_.size();
 	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);	//Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix_TEMPLATE	Z : \с++\Triangle\hello.cpp	347
+										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix	Z : \с++\Triangle\hello.cpp	347
 
 	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]); //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix_TEMPLATE	Z : \с++\Triangle\hello.cpp	347
+										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix	Z : \с++\Triangle\hello.cpp	347
 
 	for (size_t i = 1; i < length; i++)
 	{
@@ -358,7 +358,7 @@ void Canvas_console::set_min_max()
 }
 
 template <typename T>
-void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr) //, Matrix_TEMPLATE & loc_arr
+void Corner::draw_points_or_line_corner(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
 {
 	size_t length;
 
@@ -387,7 +387,7 @@ void Corner::draw_points_or_line_corner(Ray_template<T>& loc_arr_to_draw, Matrix
 /// 
 
 template <typename T>
-void Axys::draw_points_or_line_axys(Ray_template<T>& loc_arr_to_draw, Matrix_TEMPLATE<char>& loc_arr) //, Matrix_TEMPLATE & loc_arr
+void Axys::draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
 {
 
 	size_t length;
@@ -452,7 +452,7 @@ void Canvas_console::remove_point(const Dot& dot)
 
 void Canvas_console::remove_rounding_line(const Dot& A, const Dot& B)
 {
-	Ray_template<Dot> erase_line_arr;
+	Ray<Dot> erase_line_arr;
 
 	erase_line_arr = calculate_line_with_rounding(A, B);
 	for (size_t i = 0; i < erase_line_arr.size(); ++i)
@@ -461,7 +461,7 @@ void Canvas_console::remove_rounding_line(const Dot& A, const Dot& B)
 
 void Canvas_console::remove_no_rounding_line(const Dot& A, const Dot& B)
 {
-	Ray_template<Dot> erase_line_arr;
+	Ray<Dot> erase_line_arr;
 
 	erase_line_arr = calculate_line_swap(A, B);
 	for (size_t i = 0; i < erase_line_arr.size(); ++i)
@@ -477,7 +477,7 @@ void Canvas_console::remove_line_total(const Dot& A, const Dot& B)
 
 void Canvas_console::add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round, char symbol)
 {
-	const Ray_template<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
+	const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
 
 	size_t length = lockal_draw_line_arr.size();
 
@@ -487,9 +487,9 @@ void Canvas_console::add_point_to_arr_for_print_line(const Dot& A, const Dot& B,
 	}
 }
 
-Ray_template<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol)
+Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol)
 {
-	Ray_template<Dot> lockal_line_arr;
+	Ray<Dot> lockal_line_arr;
 
 	Dot coords;
 
@@ -563,9 +563,9 @@ Ray_template<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, con
 }
 
 
-Ray_template<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char symbol)
+Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char symbol)
 {
-	Ray_template<Dot> lockal_line_arr;
+	Ray<Dot> lockal_line_arr;
 
 	if (A.x == B.x && A.y == B.y)
 	{
@@ -659,7 +659,7 @@ void Axys::create(char axys_arr_fill_symbol)
 	M = M * 2 + (loc_width_y);
 
 	if (axys_arr_.is_empty()) {
-		axys_arr_ = Matrix_TEMPLATE<char>(N, M);
+		axys_arr_ = Matrix<char>(N, M);
 		axys_arr_.fill(axys_arr_fill_symbol);
 	}
 
