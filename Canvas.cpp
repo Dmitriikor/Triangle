@@ -1,6 +1,7 @@
 ﻿#include "Canvas.h"
 #include <string>
 #include <float.h>
+
 Canvas_console::Canvas_console()
 {
 
@@ -332,11 +333,11 @@ void Corner::clear()
 void Canvas_console::set_min_max()
 {
 	size_t length = points_to_draw_.size();
-	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);	//Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix	Z : \с++\Triangle\hello.cpp	347
+	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);	 
+									 
 
-	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]); //Серьезность	Код	Описание	Проект	Файл	Строка	Состояние подавления
-										//Предупреждение	C26437	Не используйте срезы(es.63).Matrix	Z : \с++\Triangle\hello.cpp	347
+	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);  
+										 
 
 	for (size_t i = 1; i < length; i++)
 	{
