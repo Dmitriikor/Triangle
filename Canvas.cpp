@@ -4,7 +4,6 @@
 
 Canvas_console::Canvas_console()
 {
-
 	ORIGIN_.i = 0;
 	ORIGIN_.j = 0;
 	width_x_ = -1;
@@ -20,10 +19,6 @@ Canvas_console::Canvas_console()
 	debug = false;
 }
 
-//Canvas_console::Canvas_console(const Canvas_console& other) : Canvas_console() //!!! system copy-cobstructor
-//{
-//	insert(other.points_to_draw_);
-//}
 
 void Canvas_console::max_min_init()
 {
@@ -133,12 +128,9 @@ void Canvas_console::initialize_width() {
 		y = y / 10;
 	}
 
-	/*std::cout << std::endl << width_x_ << std::endl;
-	std::cout << std::endl << width_y_ << std::endl;*/
-
 }
 
-int Canvas_console::get_distance_between(int min_coord, int max_coord)
+int Canvas_console::get_distance_between(int min_coord, int max_coord) const
 {
 	if (min_coord >= 0 && max_coord >= 0)
 		return abs(max_coord);
@@ -149,7 +141,7 @@ int Canvas_console::get_distance_between(int min_coord, int max_coord)
 	return abs(max_coord) + abs(min_coord);
 }
 
-void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location)
+void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location) const 
 {
 	size_t N = axis_length;
 
@@ -158,8 +150,8 @@ void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int m
 		int temp_x = min_x + i;
 
 		//!!!
-		//arr[axis_location][width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1)] = '|';
-		arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1ull), '|');
+		///arr[axis_location][width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1)] = '|';
+		arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1Ui64), '|');
 
 		int abs_x = fabs(temp_x);
 		int j;
@@ -188,7 +180,7 @@ void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int m
 	}
 }
 
-void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int start_i, int axis_location)
+void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int start_i, int axis_location) const 
 {
 	for (size_t i = 0; i < axis_length; ++i)
 	{
@@ -222,112 +214,12 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 }
 
 
-
-
-//!!! module sub-functions
-void Corner::create(char axys_arr_fill_symbol)
-{
-	// insert( points_to_draw_);
-
-	//!!! Coordinates_TEMPLATE
-
-	int max_y = MAX_VIRTUAL_.y;
-	int min_y = MIN_VIRTUAL_.y;
-
-	int max_x = MAX_VIRTUAL_.x;
-	int min_x = MIN_VIRTUAL_.x;
-	//std::cout << "\n" << max_y<< " " << min_y << " ; " << max_x << " " << min_x;
-
-
-	{
-		size_t N, M;
-
-		N = get_distance_between(min_y, max_y) + 1;
-		M = get_distance_between(min_x, max_x) + 1;
-
-		N = N + axis_x_strings_;
-		M = width_y_ + (M * (width_x_ + axis_x_indents_)) + (width_x_ + axis_x_indents_);
-
-		if (N > corner_arr().get_N() || M > corner_arr().get_M())
-		{
-			corner_arr() = Matrix<char>(N, M);
-			corner_arr().fill(axys_arr_fill_symbol);
-		}
-	}
-
-	// {print y axis
-	int start_i = max_y > 0 ? max_y : 0;
-
-	width_y_with_indent_ = width_y_;
-	{
-		int N = corner_arr().get_N() - axis_x_strings_;
-
-		y_axis_filling(corner_arr(), N, start_i, 0); //???????
-	}
-	// }end print y axis
-
-	//{find actual console point of start coodrs
-	//zero is shifted by max_y from top
-	ZERO().i = start_i;// +width_x_; //!x_axis_thickness
-   //}find actual console point of start coodrs
-
-   // {print x Axys
-	{
-		int start_x = min_x < 0 ? min_x : 0;
-
-
-		int N__;
-		if (min_x == max_x)
-		{
-			N__ = abs(min_x) + 1;
-		}
-		else if (min_x < 0)
-			N__ = abs(min_x) + abs(max_x) + 1;
-		else
-			N__ = max_x + 1;
-
-		int i_for_x = corner_arr().get_N() - axis_x_strings_;
-
-		width_x_with_indent_ = width_x_ + axis_x_indents_;
-
-		x_axis_filling(corner_arr(), N__, start_x, i_for_x);
-
-		// }end print x axis
-
-		//{find actual console point of start coodrs
-		ZERO().j = ((abs(start_x * width_x_with_indent_)) + width_y_ + (width_x_with_indent_ - 1));
-	}
-	//}find actual console point of start coodrs
-	// 
-	//}end of work wich axis 
-}
-
-
-void Canvas_console::add_lines(const Dot& A, const Dot& B, bool is_round, char symbol/*, Canvas_console& this_*/)
+void Canvas_console::add_lines(const Dot& A, const Dot& B, char symbol)
 {
 	update_min_max_by(A);
 	update_min_max_by(B);
 
 	add_point_to_arr_for_print_line(A, B, true, symbol);
-}
-
-void Corner::add_points_to_corner()
-{
-	draw_points_or_line_corner(points_to_draw_, corner_arr());
-}
-
-void Corner::print_zero()
-{
-	corner_arr().set_at(ZERO().i, ZERO().j - axis_x_indents_, '0'); //!!!
-}
-
-void Corner::clear()
-{
-	corner_arr().clear();
-
-	initialize_width();
-
-	/*?*/  create(/*this_*/);  ///?
 }
 
 void Canvas_console::set_min_max()
@@ -358,34 +250,7 @@ void Canvas_console::set_min_max()
 	}
 }
 
-template <typename T>
-void Corner::draw_points_or_line_corner(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
-{
-	size_t length;
 
-	length = loc_arr_to_draw.size();
-
-	for (size_t i = 0; i < length; i++)
-	{
-		Coordinates_TEMPLATE cell;
-
-		cell.i = ZERO().i - loc_arr_to_draw[i].y;
-		cell.j = (ZERO().j + (loc_arr_to_draw[i].x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
-		if (cell.i >= loc_arr.get_N() || cell.j >= loc_arr.get_M())
-			throw std::runtime_error("exception in hello.cpp -> method draw_points : cell >= corner_arr()");
-
-		loc_arr.set_at(cell.i, cell.j, loc_arr_to_draw[i].symbol); //@symbol
-
-	}
-}
-
-
-/// <summary>
-/// 
-/// </summary>
-/// <param name="loc_arr_to_draw"></param>
-/// <param name="loc_arr"></param>
-/// 
 
 template <typename T>
 void Axys::draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
@@ -410,25 +275,13 @@ void Axys::draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_a
 	}
 }
 
-void Corner::erase_point_from_corner(const Dot& dot)
-{
-	Coordinates_TEMPLATE cell;
-
-	cell.i = ZERO().i - dot.y;
-	cell.j = (ZERO().j + (dot.x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
-
-	if (cell.i < corner_arr().get_N() - axis_x_indents_ && (cell.j > width_y_ && cell.j < corner_arr().get_M()))
-		corner_arr().set_at(cell.i, cell.j, 'E');
-	else
-		throw std::runtime_error("exception in hello.cpp -> method erase_point : cell coord");
-}
 
 
 // TO DO
-void Axys::erase_point_from_axys(Dot& err)
-{
-	//erase_point(err, axys_arr_);
-}
+////void Axys::erase_point_from_axys(Dot& err) const
+////{
+////	//erase_point(err, axys_arr_);
+////}
 
 
 double get_step(unsigned coefficient)
@@ -509,7 +362,7 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 			start = B.y;
 			end = A.y;
 		}
-		double step = get_step(coefficient);  // 1.0 / coefficient;
+		double step = get_step(coefficient);  /// 1.0 / coefficient;
 		Dot point;
 		point.x = A.x;
 		for (double y = start; y >= end; y -= step)
@@ -530,7 +383,7 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 	double b_ = k * A.x;
 	double b = A.y - b_;
 
-	double step = get_step(coefficient);  // 1.0 / coefficient;
+	double step = get_step(coefficient);  /// 1.0 / coefficient;
 
 	double rounded_min = utilities::round_by_step(min, step);
 	double rounded_max = utilities::round_by_step(max, step);
@@ -552,7 +405,7 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 
 	return lockal_line_arr;
 
-	lockal_line_arr.clear(); //!!! unreacheble code
+	lockal_line_arr.clear(); //!!! unreachable code
 
 	if (debug) {
 		size_t length = points_to_draw_.size();
@@ -680,5 +533,5 @@ void Axys::create(char axys_arr_fill_symbol)
 void Axys::draw_points()
 {
 	draw_points_or_line_axys(points_to_draw_, axys_arr_);
-	// draw_points_(false, true,  axys_arr_);
+	/// draw_points_(false, true,  axys_arr_);
 }

@@ -78,7 +78,7 @@ public:
 
 	void print();
 	///void print(std::ofstream& output) const;
-	void print(std::ostream& output) const;
+	void print(std::string& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
 	void set_at(Coordinates_TEMPLATE cell, const T& data);
@@ -242,12 +242,12 @@ void Matrix<T>::resize(size_t N_, size_t M_, const T& value)
 			int min_N_lim = (N_ < N) ? N_ : N;
 			int min_M_lim = (M_ < M) ? M_ : M;
 
-			for (size_t i = 0; i < min_N_lim; i++)
-				for (size_t j = 0; j < min_M_lim; j++)
+			for (size_t i = 0; i < min_N_lim; ++i)
+				for (size_t j = 0; j < min_M_lim; ++j)
 					new_arr[i][j] = arr[i][j];
 
-			for (size_t i = 0; i < N_; i++)
-				for (size_t j = 0; j < M_; j++)
+			for (size_t i = 0; i < N_; ++i)
+				for (size_t j = 0; j < M_; ++j)
 					if (new_arr[i][j] == T())
 						new_arr[i][j] = value;
 
@@ -285,8 +285,8 @@ void Matrix<T>::resize(size_t N_, size_t M_)
 			int min_N_lim = (N_ < N) ? N_ : N;
 			int min_M_lim = (M_ < M) ? M_ : M;
 
-			for (size_t i = 0; i < min_N_lim; i++)
-				for (size_t j = 0; j < min_M_lim; j++)
+			for (size_t i = 0; i < min_N_lim; ++i)
+				for (size_t j = 0; j < min_M_lim; ++j)
 					new_arr[i][j] = arr[i][j];
 
 			clear();
@@ -310,9 +310,9 @@ Matrix<T>::Matrix(const Matrix<T>& other) : N(other.N), M(other.M)
 
 	arr = allocate(N, M);
 	//!!! copy-function
-	for (size_t i = 0; i < N; i++)
+	for (size_t i = 0; i < N; ++i)
 	{
-		for (size_t j = 0; j < M; j++)
+		for (size_t j = 0; j < M; ++j)
 		{
 			arr[i][j] = other.arr[i][j];
 		}
@@ -416,9 +416,9 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other)
 
 			//!!! copy-function
 
-			for (size_t i = 0; i < N; i++)
+			for (size_t i = 0; i < N; ++i)
 			{
-				for (size_t j = 0; j < M; j++)
+				for (size_t j = 0; j < M; ++j)
 				{
 					arr[i][j] = other.arr[i][j];
 				}
@@ -478,18 +478,18 @@ Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 			T** new_arr = allocate(new_N, new_M);
 
 			{
-				for (size_t i = 0; i < N; i++)
+				for (size_t i = 0; i < N; ++i)
 				{
-					for (size_t j = 0; j < M; j++)
+					for (size_t j = 0; j < M; ++j)
 					{
 						new_arr[i][j] = arr[i][j];
 					}
 				}
 			}
 			{
-				for (size_t i = 0; i < other.N; i++)
+				for (size_t i = 0; i < other.N; ++i)
 				{
-					for (size_t j = 0; j < other.M; j++)
+					for (size_t j = 0; j < other.M; ++j)
 					{
 						new_arr[i + N][j + M] = other.arr[i][j];
 					}
@@ -522,7 +522,7 @@ T** Matrix<T>::allocate(size_t N_, size_t M_)
 {
 	T** new_arr = new T * [N_]();
 
-	for (size_t i = 0; i < N_; i++) {
+	for (size_t i = 0; i < N_; ++i) {
 		new_arr[i] = new T[M_]();
 	}
 
@@ -548,9 +548,9 @@ void Matrix<T>::fill(const T& value)
 		{
 			KEEP_GOING = false;
 
-			for (size_t i = 0; i < N; i++)
+			for (size_t i = 0; i < N; ++i)
 			{
-				for (size_t j = 0; j < M; j++)
+				for (size_t j = 0; j < M; ++j)
 				{
 					arr[i][j] = value;
 				}
@@ -631,7 +631,7 @@ template <typename T>
 void Matrix<T>::clear() {
 	if (arr != nullptr)
 	{
-		for (size_t i = 0; i < N; i++) {
+		for (size_t i = 0; i < N; ++i) {
 			delete[] arr[i];
 		}
 		delete[] arr;
@@ -652,74 +652,38 @@ bool Matrix<T>::is_empty()
 }
 
 
-
-
 template <typename T>
-void Matrix<T>::do_something()
+void Matrix<T>::print()
 {
-
-	//	std::scoped_lock<std::mutex> lockit(std::mutex);
-
-	std::lock_guard<std::mutex> _(get_cout_mutex());
-	if (is_thread == true)
-		std::cout << "\n Enter DefenseThread is : " << DefenseThread->get_id() << "\n";
-
-	for (size_t i = 0; i < N; i++)
+	for (size_t i = 0; i < N; ++i)
 	{
-		for (size_t j = 0; j < M; j++)
+		for (size_t j = 0; j < M; ++j)
 		{
 			std::cout << arr[i][j];
 		}
 		std::cout << "\n";
 	}
 
-	KEEP_GOING = true;
-
 }
-
-#include "windows.h" 
-#include "Windows.h" 
-
-template <typename T>
-void Matrix<T>::print()
-{
-	while (true)
-	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
-			break;
-		}
-	}
-
-	if (is_thread == false && is_move == false)
-	{
-		DefenseThread = new std::jthread(&Matrix<T>::do_something, this);
-		is_thread = true;
-	}
-	else
-		do_something();
-
-
-}
+ 
+#include <string>
 
 template<typename T>
-inline void Matrix<T>::print(std::ostream& output) const
+inline void Matrix<T>::print(std::string& output) const
 {
+	std::ofstream outfile(output);
 
-
-	///thr = std::move(std::thread{do_something});
-
+	for (size_t i = 0; i < N; ++i)
+	{
+		for (size_t j = 0; j < M; ++j) 
+		{
+			outfile << arr[i][j];
+		}
+		outfile << "\n";
+	}
 
 }
 
-//template <typename T>
-//Matrix<T> operator+(Matrix<T> lhs, const Matrix<T>& rhs)
-//{
-//	lhs += rhs;
-//	return lhs;
-//	//return std::move(lhs);
-//}
 
 template <typename T>
 Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const

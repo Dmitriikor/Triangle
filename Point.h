@@ -25,8 +25,8 @@ struct Dot : public Point
 	friend std::ostream& operator<<(std::ostream& out, const Dot& p);
 
 
-	//Dot() {} //!!! ÒÎËÜÊÎ ÅÑËÈ ÍÀÄÎ
-	//Dot(const Point& p) :Point(p) { } //!!! ÒÎËÜÊÎ ÅÑËÈ ÍÀÄÎ
+	////Dot() {} //!!! ÒÎËÜÊÎ ÅÑËÈ ÍÀÄÎ
+	////Dot(const Point& p) :Point(p) { } //!!! ÒÎËÜÊÎ ÅÑËÈ ÍÀÄÎ
 
 	
 };

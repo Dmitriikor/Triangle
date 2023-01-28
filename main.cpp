@@ -15,7 +15,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Ray.h"
 #include "Matrix.h"
 #include "Find_Triangle.h"
-
+#include "Corner.h"
 
 int main(int argc, char const* argv[])
 {
@@ -86,7 +86,7 @@ int main(int argc, char const* argv[])
 		}
 
 		std::ifstream infile(path_in);
-		std::ofstream outfile(path_out);
+		///std::ofstream outfile(path_out);
 
 		std::istream& input = input_switch == 1 ? infile : std::cin;
 
@@ -123,11 +123,11 @@ int main(int argc, char const* argv[])
 			Corner out_print;
 			out_print.insert(Fin_Triangle.get_point_in_triangle());
 
-			out_print.add_lines(Fin_Triangle.get_A(), Fin_Triangle.get_B(), false, '*');
-			out_print.add_lines(Fin_Triangle.get_B(), Fin_Triangle.get_C(), false, '*');
-			out_print.add_lines(Fin_Triangle.get_C(), Fin_Triangle.get_A(), false, '*');
-
-
+			out_print.add_lines(Fin_Triangle.get_A(), Fin_Triangle.get_B(),'*');
+			out_print.add_lines(Fin_Triangle.get_B(), Fin_Triangle.get_C(),'*');
+			out_print.add_lines(Fin_Triangle.get_C(), Fin_Triangle.get_A(),'*');
+		 
+			out_print.print_file();
 			out_print.print();
 		}
 

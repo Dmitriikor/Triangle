@@ -188,7 +188,7 @@ public:
 	const Dot& get_point_in(size_t index) const;
 
 	//const std::vector<Dot>& get_points_inside() const;
-	const Ray <Dot> get_points_inside_Ray() const;
+	 Ray <Dot> get_points_inside_Ray() const;
 
 	double get_AB() const;
 
@@ -198,21 +198,21 @@ public:
 
 	const Dot& get_A() const;
 
-	const int get_A_X() const;
+	double get_A_X() const;
 
-	const int get_A_Y() const;
+	 double get_A_Y() const;
 
 	const Dot& get_B() const;
 
-	const int get_B_X() const;
+	double get_B_X() const;
 
-	const int get_B_Y() const;
+	double get_B_Y() const;
 
 	const Dot& get_C() const;
 
-	const int get_C_X() const;
+	double get_C_X() const;
 
-	const int get_C_Y() const;
+	double get_C_Y() const;
 
 	void create(const Dot& a, const Dot& b, const Dot& c);
 
@@ -228,13 +228,13 @@ public:
 
 	void print_to_file(std::ostream& output)const;
 
-	static void triangles_print_outfile(const Ray<Triangle_hi> triangle, size_t index, const std::string& path_out);
+	static void triangles_print_outfile(const Ray<Triangle_hi>& triangle, size_t index, const std::string& path_out);
 
-	Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c);
+	Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c) const;
 
 	static bool is_inside(const Dot& point, const Triangle_hi& abc);
 
-	void points_print(const Dot p[], int n);
+	void points_print(const Dot p[], int n)const;
 
 	Ray<Dot> get_point_in_triangle() const;
 };

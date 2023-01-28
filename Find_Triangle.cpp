@@ -1,5 +1,5 @@
 #include "Find_Triangle.h"
-#include <future>
+///#include <future>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // { work with Dot arr, to create triangle and find max inside point
@@ -52,11 +52,11 @@ Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points)
 
 	if (max_dot != 0)
 	{
-		Triangle_hi final;
-		final = final_triangle_arr[max_dot_index];
+		Triangle_hi final_triangle;
+		final_triangle = final_triangle_arr[max_dot_index];
 
-		final.print();
-		return final;
+		final_triangle.print();
+		return final_triangle;
 	}
 
 	Triangle_hi no_Triangle;

@@ -4,13 +4,13 @@ const Dot& Triangle_hi::get_point_in(size_t index) const {
 	return point_in_triangle[index];
 }
 
-const Ray <Dot> Triangle_hi::get_points_inside_Ray() const {
+Ray <Dot> Triangle_hi::get_points_inside_Ray() const {
 	return point_in_triangle;
 }
 
-//const std::vector<Dot>& Triangle_hi::get_points_inside() const {
-//	return point_in_triangle;
-//}
+////const std::vector<Dot>& Triangle_hi::get_points_inside() const {
+////	return point_in_triangle;
+////}
 
 double Triangle_hi::get_AB() const {
 	return side.AB;
@@ -28,10 +28,12 @@ double Triangle_hi::get_CA() const {
 const Dot& Triangle_hi::get_A() const {
 	return vertex.a;
 }
-const int Triangle_hi::get_A_X() const {
+
+ double Triangle_hi::get_A_X() const {
 	return vertex.a.x;
 }
-const int Triangle_hi::get_A_Y() const {
+
+ double Triangle_hi::get_A_Y() const {
 	return vertex.a.y;
 }
 
@@ -39,10 +41,10 @@ const Dot& Triangle_hi::get_B() const {
 	return vertex.b;
 }
 
-const int Triangle_hi::get_B_X() const {
+double Triangle_hi::get_B_X() const {
 	return vertex.b.x;
 }
-const int Triangle_hi::get_B_Y() const {
+double Triangle_hi::get_B_Y() const {
 	return vertex.b.y;
 }
 
@@ -50,10 +52,10 @@ const Dot& Triangle_hi::get_C() const {
 	return vertex.c;
 }
 
-const int Triangle_hi::get_C_X() const {
+double Triangle_hi::get_C_X() const {
 	return vertex.c.x;
 }
-const int Triangle_hi::get_C_Y() const {
+double Triangle_hi::get_C_Y() const {
 	return vertex.c.y;
 }
 
@@ -121,7 +123,7 @@ double Triangle_hi::count_area() const {
 	return s;
 }
 
-void Triangle_hi::triangles_print_outfile(const Ray<Triangle_hi> triangle, size_t index, const std::string& path_out) {
+void Triangle_hi::triangles_print_outfile(const Ray<Triangle_hi>& triangle, size_t index, const std::string& path_out) {
 	std::ofstream outfile(path_out);
 
 	for (size_t i = 0; i < index; i++) {
@@ -138,10 +140,10 @@ void Triangle_hi::triangles_print_outfile(const Ray<Triangle_hi> triangle, size_
 	}
 }
 
-Triangle_hi Triangle_hi::create_triangle(const Dot& a, const Dot& b, const Dot& c) {
+Triangle_hi Triangle_hi::create_triangle(const Dot& a, const Dot& b, const Dot& c) const {
 	Triangle_hi temp_abc(a, b, c);
 
-	//temp_abc.create(a, b, c);
+	///temp_abc.create(a, b, c);
 
 	return temp_abc;
 }
@@ -157,7 +159,7 @@ bool Triangle_hi::is_inside(const Dot& point, const Triangle_hi& abc) {
 	return false;
 }
 
-void Triangle_hi::points_print(const Dot p[], int n) {
+void Triangle_hi::points_print(const Dot p[], int n) const {
 	for (size_t i = 0; i < n; i++) {
 		Dot coords = p[i];
 		std::cout << "point N_ " << i + 1 << " = \t" << coords.x << " \t" << coords.y << "\n";

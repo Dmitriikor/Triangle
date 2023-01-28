@@ -76,12 +76,12 @@ void utilities::fastscan(std::istream& cin)
 
 
 
-//Dot* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in, std::string path_out)
-//{
-	// { start dialoge
-
-
-	//clear_cls(OS);
-
-	//  } start dialoge
+////Dot* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in, std::string path_out)
+////{
+//	// { start dialoge
+//
+//
+//	//clear_cls(OS);
+//
+//	//  } start dialoge
 
