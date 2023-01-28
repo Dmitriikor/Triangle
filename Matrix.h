@@ -16,11 +16,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-// <atomic>
-#include <thread>
-#include <mutex>
-
 #include <compare>
 
 ///using T = char;
@@ -33,7 +28,6 @@ struct Coordinates_TEMPLATE {
 
 };
 
-
 template <typename T>
 class Matrix {
 
@@ -43,7 +37,7 @@ public:
 	Matrix(size_t N, size_t M, const T& value);
 	Matrix(const Matrix& other);
 
-	Matrix(Matrix&& other) noexcept;
+	Matrix(Matrix&& other);
 	Matrix& operator=(Matrix&& other) noexcept;
 
 	~Matrix();
@@ -51,7 +45,7 @@ public:
 	Matrix& operator=(const Matrix& other);
 
 	bool operator==(const Matrix& other) const;
-	//bool operator<(const Matrix& other) const;
+
 	int operator<=>(const Matrix& other) const;
 
 	size_t size() const
@@ -61,9 +55,6 @@ public:
 
 	Matrix& operator+=(const Matrix<T>& other);
 	Matrix operator+(const Matrix<T>& other) const;
-
-	/*template <typename T>
-	friend Matrix<T> operator+(Matrix<T> lhs, const Matrix<T>& rhs);*/
 
 	size_t get_N() const;
 
@@ -123,20 +114,6 @@ private:
 		}
 	};
 
-
-	std::jthread* DefenseThread;
-	///mutable;
-	///static std::mutex lockit;
-	mutable std::mutex m;
-	std::mutex& get_cout_mutex();
-	///std::thread* DefenseThread;
-	void  do_something();
-	///::scoped_lock<std::mutex> lockit(std::mutex);
-	bool KEEP_GOING = true;
-	bool is_thread = false;
-	bool is_move = false;
-
-
 public:
 
 
@@ -150,13 +127,13 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_TEMPLATE_v1_start
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-template <typename T>
-std::mutex& Matrix<T>::get_cout_mutex()
-{
-	static std::mutex m;
-	return m;
-}
+////
+////template <typename T>
+////std::mutex& Matrix<T>::get_cout_mutex()
+////{
+////	static std::mutex m;
+////	return m;
+////}
 
 template <typename T>
 Matrix<T>::Matrix() : N(0), M(0), arr(nullptr)
@@ -193,113 +170,92 @@ inline Matrix<T>::Matrix(size_t N, size_t M, const T& value) : N(N), M(M), arr(n
 template <typename T>
 void Matrix<T>::resize_and_override(size_t N_, size_t M_, const T& value)
 {
-	while (true)
+
+	if (N == N_ && M == M_)
+		return;
+
+	if (N_ == 0 || M_ == 0)
 	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
-			if (N == N_ && M == M_)
-				return;
-
-			if (N_ == 0 || M_ == 0)
-			{
-				clear();
-				return;
-			}
-
-			T** new_arr;
-			new_arr = allocate(N_, M_);
-
-			clear();
-
-			arr = new_arr;
-
-			fill(value);
-			break;
-		}
+		clear();
+		return;
 	}
-	KEEP_GOING = true;
+
+	T** new_arr;
+	new_arr = allocate(N_, M_);
+
+	clear();
+
+	arr = new_arr;
+
+	fill(value);
+
 }
 
 template <typename T>
 void Matrix<T>::resize(size_t N_, size_t M_, const T& value)
 {
-	while (true)
+
+
+	if (N == N_ && M == M_)
+		return;
+
+	if (N_ == 0 || M_ == 0)
 	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
-
-			if (N == N_ && M == M_)
-				return;
-
-			if (N_ == 0 || M_ == 0)
-			{
-				clear();
-				return;
-			}
-
-			T** new_arr;
-			new_arr = allocate(N_, M_);
-
-			int min_N_lim = (N_ < N) ? N_ : N;
-			int min_M_lim = (M_ < M) ? M_ : M;
-
-			for (size_t i = 0; i < min_N_lim; ++i)
-				for (size_t j = 0; j < min_M_lim; ++j)
-					new_arr[i][j] = arr[i][j];
-
-			for (size_t i = 0; i < N_; ++i)
-				for (size_t j = 0; j < M_; ++j)
-					if (new_arr[i][j] == T())
-						new_arr[i][j] = value;
-
-			clear();
-			N = N_;
-			M = M_;
-			arr = new_arr;
-			break;
-		}
+		clear();
+		return;
 	}
-	KEEP_GOING = true;
+
+	T** new_arr;
+	new_arr = allocate(N_, M_);
+
+	int min_N_lim = (N_ < N) ? N_ : N;
+	int min_M_lim = (M_ < M) ? M_ : M;
+
+	for (size_t i = 0; i < min_N_lim; ++i)
+		for (size_t j = 0; j < min_M_lim; ++j)
+			new_arr[i][j] = arr[i][j];
+
+	for (size_t i = 0; i < N_; ++i)
+		for (size_t j = 0; j < M_; ++j)
+			if (new_arr[i][j] == T())
+				new_arr[i][j] = value;
+
+	clear();
+	N = N_;
+	M = M_;
+	arr = new_arr;
+	;
 }
 
 template <typename T>
 void Matrix<T>::resize(size_t N_, size_t M_)
 {
-	while (true)
+
+
+	if (N == N_ && M == M_)
+		return;
+
+	if (N_ == 0 || M_ == 0)
 	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
-
-			if (N == N_ && M == M_)
-				return;
-
-			if (N_ == 0 || M_ == 0)
-			{
-				clear();
-				return;
-			}
-
-			T** new_arr;
-			new_arr = allocate(N_, M_);
-
-			int min_N_lim = (N_ < N) ? N_ : N;
-			int min_M_lim = (M_ < M) ? M_ : M;
-
-			for (size_t i = 0; i < min_N_lim; ++i)
-				for (size_t j = 0; j < min_M_lim; ++j)
-					new_arr[i][j] = arr[i][j];
-
-			clear();
-			N = N_;
-			M = M_;
-			arr = new_arr;
-			break;
-		}
+		clear();
+		return;
 	}
-	KEEP_GOING = true;
+
+	T** new_arr;
+	new_arr = allocate(N_, M_);
+
+	int min_N_lim = (N_ < N) ? N_ : N;
+	int min_M_lim = (M_ < M) ? M_ : M;
+
+	for (size_t i = 0; i < min_N_lim; ++i)
+		for (size_t j = 0; j < min_M_lim; ++j)
+			new_arr[i][j] = arr[i][j];
+
+	clear();
+	N = N_;
+	M = M_;
+	arr = new_arr;
+
 }
 
 template <typename T>
@@ -323,38 +279,25 @@ Matrix<T>::Matrix(const Matrix<T>& other) : N(other.N), M(other.M)
 }
 
 template<typename T>
-Matrix<T>::Matrix(Matrix&& other) noexcept
+Matrix<T>::Matrix(Matrix&& other) : Matrix() 
 {
-	while (true)
-	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
 
-			///std::swap(N, other.N);
-			///std::swap(M, other.M);
-			///std::swap(arr, other.arr);
+	////N = 0;
+	////M = 0;
+	////arr = nullptr;
+	if (arr != nullptr)
+		throw std::out_of_range("this not yet formed");
+	////std::swap(N, other.N);
+	////std::swap(M, other.M);
+	////std::swap(arr, other.arr);
 
-			KEEP_GOING = true;
-			*this = std::move(other); //!!! this ещё не сформирован => конструктор, занулить (НЕ clear!)
-			other.is_thread = false;
-			other.KEEP_GOING = true;
-			break;
-		}
-	}
-	KEEP_GOING = true;
-	is_thread = false;
-	is_move = true;
+	*this = std::move(other); //!!! this not yet formed => constructor, null (NOT clear!)
+
 }
 
 template<typename T>
 inline Matrix<T>& Matrix<T>::operator=(Matrix&& other) noexcept
 {
-	while (true)
-	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
 
 			clear();
 
@@ -363,33 +306,13 @@ inline Matrix<T>& Matrix<T>::operator=(Matrix&& other) noexcept
 
 			std::swap(arr, other.arr);
 
-			break;
-		}
-	}
-	KEEP_GOING = true;
-	is_thread = false;
-	is_move = true;
 	return *this;
 }
 
 template <typename T>
 Matrix<T>::~Matrix()
 {
-
-	if (is_thread != false && KEEP_GOING == true)
-	{
-		std::lock_guard<std::mutex> _(get_cout_mutex());
-
-		std::cout << "\n Exit DefenseThread is : " << DefenseThread->get_id() << "\n";
-		if (DefenseThread->joinable()) {
-			DefenseThread->join();
-		}
-	}
-
-	//DefenseThread->join();
-
 	clear();
-
 }
 
 template <typename T>
@@ -405,33 +328,23 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other)
 		return *this;
 	}
 
-	while (true)
+	clear();
+
+	N = other.N;
+	M = other.M;
+
+	arr = allocate(N, M);
+
+	//!!! copy-function
+
+	for (size_t i = 0; i < N; ++i)
 	{
-		if (KEEP_GOING == true)
+		for (size_t j = 0; j < M; ++j)
 		{
-			KEEP_GOING = false;
-			clear();
-
-			N = other.N;
-			M = other.M;
-
-			arr = allocate(N, M);
-
-			//!!! copy-function
-
-			for (size_t i = 0; i < N; ++i)
-			{
-				for (size_t j = 0; j < M; ++j)
-				{
-					arr[i][j] = other.arr[i][j];
-				}
-			}
-			break;
+			arr[i][j] = other.arr[i][j];
 		}
 	}
-	is_thread = other.is_thread;
-	is_move = other.is_move;
-	KEEP_GOING = true;
+
 	return *this;
 }
 
@@ -453,60 +366,52 @@ int Matrix<T>::operator<=>(const Matrix& other) const
 	return 0;
 }
 
-//template<typename T>
-//std::partial_ordering Matrix<T>::operator<=>(const Matrix& other) const
-//{
-//	/*if (N < other.N || M < other.M)
-//		return std::partial_ordering::less;
-//
-//	if (N > other.N || M > other.M)
-//		return std::partial_ordering::greater;*/
-//	if (N == other.N && M == other.M)
-//		return std::partial_ordering::equivalent;
-//}
+////template<typename T>
+////std::partial_ordering Matrix<T>::operator<=>(const Matrix& other) const
+////{
+////	/*if (N < other.N || M < other.M)
+////		return std::partial_ordering::less;
+////
+////	if (N > other.N || M > other.M)
+////		return std::partial_ordering::greater;*/
+////	if (N == other.N && M == other.M)
+////		return std::partial_ordering::equivalent;
+////}
 
 
 
 template<typename T>
 Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 {
-	while (true)
+
+
+	int new_N = N + other.N;
+	int new_M = M + other.M;
+	T** new_arr = allocate(new_N, new_M);
+
 	{
-		if (KEEP_GOING == true)
+		for (size_t i = 0; i < N; ++i)
 		{
-			KEEP_GOING = false;
-
-			int new_N = N + other.N;
-			int new_M = M + other.M;
-			T** new_arr = allocate(new_N, new_M);
-
+			for (size_t j = 0; j < M; ++j)
 			{
-				for (size_t i = 0; i < N; ++i)
-				{
-					for (size_t j = 0; j < M; ++j)
-					{
-						new_arr[i][j] = arr[i][j];
-					}
-				}
+				new_arr[i][j] = arr[i][j];
 			}
-			{
-				for (size_t i = 0; i < other.N; ++i)
-				{
-					for (size_t j = 0; j < other.M; ++j)
-					{
-						new_arr[i + N][j + M] = other.arr[i][j];
-					}
-				}
-			}
-
-			N = new_N;
-			M = new_M;
-			arr = new_arr;
-
-			break;
 		}
 	}
-	KEEP_GOING = true;
+	{
+		for (size_t i = 0; i < other.N; ++i)
+		{
+			for (size_t j = 0; j < other.M; ++j)
+			{
+				new_arr[i + N][j + M] = other.arr[i][j];
+			}
+		}
+	}
+
+	N = new_N;
+	M = new_M;
+	arr = new_arr;
+
 	return *this;
 }
 
@@ -545,23 +450,16 @@ size_t Matrix<T>::get_M() const {
 template <typename T>
 void Matrix<T>::fill(const T& value)
 {
-	while (true)
-	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
 
-			for (size_t i = 0; i < N; ++i)
-			{
-				for (size_t j = 0; j < M; ++j)
-				{
-					arr[i][j] = value;
-				}
-			}
-			break;
+
+	for (size_t i = 0; i < N; ++i)
+	{
+		for (size_t j = 0; j < M; ++j)
+		{
+			arr[i][j] = value;
 		}
 	}
-	KEEP_GOING = true;
+
 }
 
 template <typename T>
@@ -574,17 +472,9 @@ void Matrix<T>::set_at(size_t i, size_t j, const T& data) {
 
 	if (arr == nullptr)
 		throw std::length_error("length_error in void set_at : NO create_Matrix_TEMPLATE");
-	while (true)
-	{
-		if (KEEP_GOING == true)
-		{
-			KEEP_GOING = false;
 
-			arr[i][j] = data;
-			break;
-		}
-	}
-	KEEP_GOING = true;
+	arr[i][j] = data;
+
 }
 
 template <typename T>
@@ -669,18 +559,6 @@ void Matrix<T>::print()
 
 }
 
-
-
-template <typename T>
-Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const
-{
-	Matrix<T> copy = *this;
-	copy += other;
-	return copy;
-	//return std::move(copy);
-}
-
-#include <string>
 template <typename T>
 void print_f_m(Matrix<T>& other, std::ostream& outfile)
 {
@@ -693,6 +571,16 @@ void print_f_m(Matrix<T>& other, std::ostream& outfile)
 		outfile << std::endl;
 	}
 }
+
+template <typename T>
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const
+{
+	Matrix<T> copy = *this;
+	copy += other;
+	return copy;
+	//return std::move(copy);
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_TEMPLATE_v1_end
@@ -708,48 +596,48 @@ void print_f_m(Matrix<T>& other, std::ostream& outfile)
 
 
 
-//#include <iostream>
-//#include <mutex>
-//
-//std::ostream&
-//print_one(std::ostream& os)
-//{
-//	return os;
-//}
-//
-//template <class A0, class ...Args>
-//std::ostream&
-//print_one(std::ostream& os, const A0& a0, const Args& ...args)
-//{
-//	os << a0;
-//	return print_one(os, args...);
-//}
-//
-//template <class ...Args>
-//std::ostream&
-//print(std::ostream& os, const Args& ...args)
-//{
-//	return print_one(os, args...);
-//}
-//
-//std::mutex&
-//get_cout_mutex()
-//{
-//	static std::mutex m;
-//	return m;
-//}
-//
-//template <class ...Args>
-//std::ostream&
-//print(const Args& ...args)
-//{
-//	std::lock_guard<std::mutex> _(get_cout_mutex());
-//	return print(std::cout, args...);
-//}
-//
-//
-//void exec()
-//{
-//	print("Hello ", std::this_thread::get_id(), '\n');
-//	std::this_thread::sleep_for(std::chrono::milliseconds(100));
-//}
+////#include <iostream>
+////#include <mutex>
+////
+////std::ostream&
+////print_one(std::ostream& os)
+////{
+////	return os;
+////}
+////
+////template <class A0, class ...Args>
+////std::ostream&
+////print_one(std::ostream& os, const A0& a0, const Args& ...args)
+////{
+////	os << a0;
+////	return print_one(os, args...);
+////}
+////
+////template <class ...Args>
+////std::ostream&
+////print(std::ostream& os, const Args& ...args)
+////{
+////	return print_one(os, args...);
+////}
+////
+////std::mutex&
+////get_cout_mutex()
+////{
+////	static std::mutex m;
+////	return m;
+////}
+////
+////template <class ...Args>
+////std::ostream&
+////print(const Args& ...args)
+////{
+////	std::lock_guard<std::mutex> _(get_cout_mutex());
+////	return print(std::cout, args...);
+////}
+////
+////
+////void exec()
+////{
+////	print("Hello ", std::this_thread::get_id(), '\n');
+////	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+////}
