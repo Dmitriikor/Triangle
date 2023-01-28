@@ -15,10 +15,12 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Ray.h"
 #include "Matrix.h"
 #include "Find_Triangle.h"
-
+#include "Corner.h"
 
 int main(int argc, char const* argv[])
 {
+	double t1;
+
 	try
 	{
 		size_t n_points = 0;
@@ -49,8 +51,8 @@ int main(int argc, char const* argv[])
 		{
 		case 1:
 		{
-			path_in = { "./points.txt" };
-			path_out = { "./out.txt" };
+			path_in = { "points.txt" };
+			path_out = { "out.txt" };
 			break;
 		}
 		case 2:
@@ -108,16 +110,22 @@ int main(int argc, char const* argv[])
 			point_arr.add_to_back(temp);
 		}
 
-		Triangle_hi Fin_Triangle = std::move(Find_Triangle(point_arr, n_points));
+
+		 t1 = clock();
+
+
+		Triangle_hi Fin_Triangle;
+		Fin_Triangle = Find_Triangle(point_arr, n_points);
+
 
 		if (Fin_Triangle.get_dot_counter() != 0)
 		{
 			Corner out_print;
 			out_print.insert(Fin_Triangle.get_point_in_triangle());
 
-			out_print.add_lines(Fin_Triangle.get_A(), Fin_Triangle.get_B(), true, '*');
-			out_print.add_lines(Fin_Triangle.get_B(), Fin_Triangle.get_C(), true, '*');
-			out_print.add_lines(Fin_Triangle.get_C(), Fin_Triangle.get_A(), true, '*');
+			out_print.add_lines(Fin_Triangle.get_A(), Fin_Triangle.get_B(),'*');
+			out_print.add_lines(Fin_Triangle.get_B(), Fin_Triangle.get_C(),'*');
+			out_print.add_lines(Fin_Triangle.get_C(), Fin_Triangle.get_A(),'*');
 
 
 			out_print.print();
@@ -128,7 +136,9 @@ int main(int argc, char const* argv[])
 	{
 		std::cout << "\n\texception :  " << exception.what() << std::endl;
 	}
+	double t2 = clock();
+	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 
-
+	std::cin >> t2;
 	return 0;
 }
