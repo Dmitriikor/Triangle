@@ -167,10 +167,10 @@ public:
 		axys_arr_.print();
 	}
 	void draw_points();
-	void print_file()
-	{
-		axys_arr_.print(outfile_adress);
-	}
+	//void print_file()
+	//{
+	//	print(outfile_adress, axys_arr_);
+	//}
 
 private:
 	std::string outfile_adress = "Axys_out.txt";

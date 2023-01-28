@@ -78,7 +78,6 @@ public:
 
 	void print();
 	///void print(std::ofstream& output) const;
-	void print(std::string& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
 	void set_at(Coordinates_TEMPLATE cell, const T& data);
@@ -96,6 +95,10 @@ private:
 	size_t M;
 	T** arr;
 	static T** allocate(size_t N, size_t M);
+
+	template <typename T>
+	friend void print_f_m(Matrix<T>& other, std::ostream& outfile);
+
 
 	struct str_i {
 		Matrix& my_Matrix_TEMPLATE;
@@ -394,12 +397,12 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T>& other)
 {
 	if (this == &other)
 	{
-		return; //*this;
+		return *this;
 	}
 
 	if (other.arr == nullptr)
 	{
-		return;// *this;
+		return *this;
 	}
 
 	while (true)
@@ -665,24 +668,7 @@ void Matrix<T>::print()
 	}
 
 }
- 
-#include <string>
 
-template<typename T>
-inline void Matrix<T>::print(std::string& output) const
-{
-	std::ofstream outfile(output);
-
-	for (size_t i = 0; i < N; ++i)
-	{
-		for (size_t j = 0; j < M; ++j) 
-		{
-			outfile << arr[i][j];
-		}
-		outfile << "\n";
-	}
-
-}
 
 
 template <typename T>
@@ -694,6 +680,19 @@ Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const
 	//return std::move(copy);
 }
 
+#include <string>
+template <typename T>
+void print_f_m(Matrix<T>& other, std::ostream& outfile)
+{
+	for (size_t i = 0; i < other.N; ++i)
+	{
+		for (size_t j = 0; j < other.M; ++j)
+		{
+			outfile << other.arr[i][j];
+		}
+		outfile << std::endl;
+	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Matrix_TEMPLATE_v1_end

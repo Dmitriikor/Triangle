@@ -12,6 +12,7 @@ void  Corner::print()
 	create();
 	add_points_to_corner();
 	corner_arr().print();
+	print_f(*this);
 }
 
 void Corner::add_points_to_corner()
@@ -157,7 +158,8 @@ void  Corner::change_file_path(std::string& adress)
 	outfile_adress = adress;
 }
 
-void Corner::print_file() 
+void print_f(Corner& this_)
 {
-	corner_arr().print(outfile_adress);
+	std::ofstream out_p(this_.outfile_adress);
+	print_f_m(this_.corner_arr_, out_p);
 }
