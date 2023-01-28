@@ -8,3 +8,4 @@
 #include "Matrix.h"
 
 Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points);
+///Triangle_hi Find_Triangle_with_the_thread(Ray<Dot>& point_arr, size_t n_points);
