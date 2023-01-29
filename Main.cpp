@@ -16,6 +16,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Matrix.h"
 #include "Find_Triangle.h"
 #include "Corner.h"
+#include "Axys.h"
 
 int main(int argc, char const* argv[])
 {
@@ -129,6 +130,10 @@ int main(int argc, char const* argv[])
 
 
 			out_print.print();
+
+			Axys a_out_print;
+			a_out_print += out_print;
+			a_out_print.print();
 		}
 
 	}
