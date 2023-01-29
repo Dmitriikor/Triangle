@@ -51,18 +51,18 @@ void Canvas_console::insert(Ray<Dot> points)
 	initialize_width(); //!!! same 
 }
 
-void Canvas_console::insert_l(Ray<Dot>& points)
-{
-	size_t length_arr = points.size();
-	for (size_t i = 0; i < length_arr; i++)
-	{
-		check_and_insert_point(points[i]);
-	}
-
-	set_min_max(); //!!! max and min is from this or other (NOT checking ALL OF IT)
-
-	initialize_width(); //!!! same 
-}
+////void Canvas_console::insert_l(Ray<Dot>& points)
+////{
+////	size_t length_arr = points.size();
+////	for (size_t i = 0; i < length_arr; i++)
+////	{
+////		check_and_insert_point(points[i]);
+////	}
+////
+////	set_min_max(); //!!! max and min is from this or other (NOT checking ALL OF IT)
+////
+////	initialize_width(); //!!! same 
+////}
 
 void Canvas_console::update_min_max_by(const Dot& pt)
 {

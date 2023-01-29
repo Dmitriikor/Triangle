@@ -123,7 +123,7 @@ public:
 
 	
 	void insert(Ray<Dot> points); //!!! so it is possible, but it is not necessary here => overload
-	void insert_l(Ray<Dot>& points);
+	//void insert_l(Ray<Dot>& points);
 
 	void insert(const Dot& pt)
 	{

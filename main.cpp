@@ -118,12 +118,16 @@ int main(int argc, char const* argv[])
 		Triangle_hi Fin_Triangle;
 		Fin_Triangle = Find_Triangle(point_arr, n_points);
 
-
+		Ray<Dot> copy_to_print;
 		if (Fin_Triangle.get_dot_counter() != 0)
 		{
 			Corner out_print;
-			out_print.insert(Fin_Triangle.get_point_in_triangle());
 
+
+			for (size_t i = 0; i < Fin_Triangle.size_point_in_triangle(); i++)
+				copy_to_print.add_to_back(Fin_Triangle.get_point_in_triangle(i));
+			
+			out_print.insert(copy_to_print);
 			out_print.add_lines(Fin_Triangle.get_A(), Fin_Triangle.get_B(),'*');
 			out_print.add_lines(Fin_Triangle.get_B(), Fin_Triangle.get_C(),'*');
 			out_print.add_lines(Fin_Triangle.get_C(), Fin_Triangle.get_A(),'*');

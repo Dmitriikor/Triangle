@@ -4,9 +4,9 @@ const Dot& Triangle_hi::get_point_in(size_t index) const {
 	return point_in_triangle[index];
 }
 
-Ray <Dot> Triangle_hi::get_points_inside_Ray() const {
-	return point_in_triangle;
-}
+//Ray <Dot> Triangle_hi::get_points_inside_Ray() const {
+//	return point_in_triangle;
+//}
 
 ////const std::vector<Dot>& Triangle_hi::get_points_inside() const {
 ////	return point_in_triangle;
@@ -132,7 +132,7 @@ void Triangle_hi::triangles_print_outfile(const Ray<Triangle_hi>& triangle, size
 		triangle[i].print_to_file(outfile);
 
 		outfile << "point_in_triangle =\t ";
-		for (size_t j = 0; j < triangle[i].get_points_inside_Ray().size(); j++) {
+		for (size_t j = 0; j < triangle[i].size_point_in_triangle(); j++) {
 			outfile << triangle[i].get_point_in(j).x << "," << triangle[i].get_point_in(j).y << "; ";
 		}
 		outfile << std::endl;
@@ -167,7 +167,12 @@ void Triangle_hi::points_print(const Dot p[], int n) const {
 }
 
 
-Ray<Dot> Triangle_hi::get_point_in_triangle() const
+Dot Triangle_hi::get_point_in_triangle(size_t index) const
 {
-	return point_in_triangle;
+	return point_in_triangle[index];
+}
+
+size_t Triangle_hi::size_point_in_triangle() const 
+{
+	return size_t(point_in_triangle.size());
 }

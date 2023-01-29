@@ -188,7 +188,7 @@ public:
 	const Dot& get_point_in(size_t index) const;
 
 	//const std::vector<Dot>& get_points_inside() const;
-	 Ray <Dot> get_points_inside_Ray() const;
+	//Ray <Dot> get_points_inside_Ray() const;
 
 	double get_AB() const;
 
@@ -236,6 +236,9 @@ public:
 
 	void points_print(const Dot p[], int n)const;
 
-	Ray<Dot> get_point_in_triangle() const;
+	Dot get_point_in_triangle(size_t index) const;
+
+	size_t size_point_in_triangle() const;
+
 };
 #endif //! TRIANGLE_TEST_H__
