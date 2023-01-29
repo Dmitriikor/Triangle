@@ -26,6 +26,9 @@ public:
 
 };
 
+
+
+
 class Canvas_console : public Canvas
 {
 protected:
@@ -118,9 +121,9 @@ public:
 
 	//!!! operator + 
 
-	template <typename T>
-	void insert(const Ray<T>& points); //!!! so it is possible, but it is not necessary here => overload
-
+	
+	void insert(Ray<Dot> points); //!!! so it is possible, but it is not necessary here => overload
+	void insert_l(Ray<Dot>& points);
 
 	void insert(const Dot& pt)
 	{
@@ -145,39 +148,6 @@ public:
 
 
 
-
-class Axys : public Canvas_console
-{
-public:
-	void set_at(Coordinates_TEMPLATE cell, char symbol)
-	{
-		axys_arr_.set_at(cell.i, cell.j, symbol);
-	}
-	///void erase_point_from_axys(Dot& err) const;
-	void create(char axys_arr_fill_symbol = ' ');
-	void remove()
-	{
-		axys_arr_.clear();
-	}
-	void print()
-	{
-		axys_arr_.clear();
-		create();
-		draw_points();
-		axys_arr_.print();
-	}
-	void draw_points();
-	//void print_file()
-	//{
-	//	print(outfile_adress, axys_arr_);
-	//}
-
-private:
-	std::string outfile_adress = "Axys_out.txt";
-	Matrix<char> axys_arr_;
-	template <typename T>
-	void draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr);
-};
 
 
 #endif //!  HELLO_H__

@@ -530,9 +530,9 @@ void Matrix<T>::clear() {
 		delete[] arr;
 
 		arr = nullptr;
+	}
 		N = 0;
 		M = 0;
-	}
 }
 
 template <typename T>
