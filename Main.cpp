@@ -156,6 +156,13 @@ int main(int argc, char const* argv[])
 
 
 			out_print.print();
+			out_print.print_to_file();
+
+			out_print.clear();
+			out_print.insert(Fin_Triangle.get_point_array(), '+');
+			///out_print.clear();
+
+
 
 			Axys a_out_print;
 			a_out_print += out_print;
