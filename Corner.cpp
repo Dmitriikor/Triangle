@@ -6,49 +6,84 @@ void Corner::fill(char fill_symbol)
 	create(fill_symbol);
 }
 
-//void Corner::prepare()
-//{
-//	corner_arr().clear();
-//	create();
-//	add_points_to_corner();
-//	corner_arr().print();
-//	print_f(*this);
-//}
-
-void Corner::print() const
+void  Corner::prepare(std::ostream& output)
 {
-	if (isMatrixCalculated)
-		;
-		//print_private();
-	else {
-		corner_arr_.clear();
-		corner_arr_.fill('*');
-		isMatrixCalculated = true;
-	}
+	if (points_to_draw_.size() == 0)
+		return;
+	corner_arr().clear();
+	create();
+	add_points_to_corner();
+	isMatrixCalculated = true;
+
+	print(output);
+	///std::ofstream outfile(outfile_adress);
+	///print(outfile);
 }
+
+////void Corner::print() const
+////{
+////
+////		///this->prepare();
+////		///print_private();
+////	}
+////
+////		corner_arr_.print();
+////		///corner_arr_.clear();
+////		///corner_arr_.fill('*');
+////		///isMatrixCalculated = true;
+////	}
+////}
 
 void Corner::print(std::ostream& output) const
 {
+	if (!isMatrixCalculated)
+	{
+		Corner test = *this;
+		prepare_free(output, test);
+		test.prepare(output);
 
+		const_cast<Corner*>(this)->prepare(output);
+	}
+	else
+	{
+
+		for (size_t i = 0; i < corner_arr_.get_N(); i++)
+		{
+			for (size_t j = 0; j < corner_arr_.get_M(); j++)
+			{
+				output << corner_arr_[i][j];
+
+			}
+			output << std::endl;
+		}
+	}
 }
+
+void Corner::print_to_file() const
+{
+	std::ofstream outfile_M(outfile_adress);
+	print(outfile_M);
+};
 
 void Corner::add_points_to_corner()
 {
 	draw_points_or_line_corner(points_to_draw_, corner_arr());
 }
 
-void Corner::print_zero()
+void Corner::add_zero_point()
 {
 	corner_arr().set_at(ORIGIN_.i, ORIGIN_.j - axis_x_indents_, '0'); //!!!
 }
 
 void Corner::clear()
 {
+	points_to_draw_.clear();
 	corner_arr().clear();
 
-	initialize_width();
+	///initialize_width();
 
-	create();
+	///create();
+	isMatrixCalculated = false;
 }
 
 template <typename T>
@@ -159,13 +194,22 @@ void Corner::create(char axys_arr_fill_symbol)
 	//}end of work with axis 
 }
 
-void Corner::change_file_path(const std::string& adress)
-{
-	outfile_adress = adress;
-}
+//void Corner::change_file_path(const std::string& adress)
+//{
+//	outfile_adress = adress;
+//}
 
-void print(Corner& this_)
-{
-	std::ofstream out_p(this_.outfile_adress);
-	print(this_.corner_arr_, out_p);
-}
+
+	void  prepare_free(std::ostream& output, Corner& this_)
+	{
+		if (this_.points_to_draw_.size() == 0)
+			return;
+		this_.corner_arr().clear();
+		this_.create();
+		this_.add_points_to_corner();
+		this_.isMatrixCalculated = true;
+
+		this_.print(output);
+		///std::ofstream outfile(outfile_adress);
+		///print(outfile);
+	}

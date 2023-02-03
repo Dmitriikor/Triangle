@@ -9,6 +9,7 @@
 #include <utility>
 #include <span>
 
+
 template <typename T>
 class Ray {
 private:

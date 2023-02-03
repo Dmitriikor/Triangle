@@ -1,4 +1,9 @@
 #pragma once
+
+#ifndef Axys_H__
+
+#define  Axys_H__
+
 #include "Canvas.h"
 #include "Point.h"
 #include "Ray.h"
@@ -24,6 +29,6 @@ private:
 	//friend void print_f_a(Axys& this_);
 };
 
-
+#endif //!  Axys_H__
 
 

@@ -67,6 +67,9 @@ protected:
 
 	bool check_and_insert_point(const Dot& pt);
 
+	mutable bool isMatrixCalculated = false;
+
+
 public:
 	Canvas_console();
 
@@ -78,7 +81,7 @@ public:
 	void insert(const Ray<Dot>& points); //!!! so it is possible, but it is not necessary here => overload
 
 	void add_line(const Dot& A, const Dot& B, char symbol); //!!! is_round
-
+	
 	void remove_line(const Dot& A, const Dot& B);
 	void remove_point(const Dot& dl);
 

@@ -22,6 +22,8 @@ void Axys::print()
 
 void Axys::create(char axys_arr_fill_symbol)
 {
+	if (points_to_draw_.size() == 0)
+		return;
 
 	insert(points_to_draw_);
 

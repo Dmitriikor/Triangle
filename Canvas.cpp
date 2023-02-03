@@ -64,6 +64,7 @@ void Canvas_console::insert(const Dot& pt)
 	{
 		update_min_max_by(pt);
 		initialize_width(); 
+		isMatrixCalculated = false;
 	}
 }
 
@@ -79,8 +80,11 @@ void Canvas_console::insert(const Ray<Point>& points, char symbol)
 			isInserted = true;
 		}
 
-	if (isInserted)
+	if (isInserted) 
+	{
 		initialize_width();
+		isMatrixCalculated = false;
+	}
 }
 
 void Canvas_console::insert(const Ray<Dot>& points)
@@ -96,7 +100,10 @@ void Canvas_console::insert(const Ray<Dot>& points)
 		}
 
 	if (isInserted)
+	{
 		initialize_width();
+		isMatrixCalculated = false;
+	}
 }
 
 
@@ -249,7 +256,6 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 	}
 }
 
-
 void Canvas_console::add_line(const Dot& A, const Dot& B, char symbol)
 {
 	insert(A);
@@ -305,6 +311,7 @@ void Canvas_console::remove_point(const Dot& dot)
 		if (dot == points_to_draw_[i])
 		{
 			points_to_draw_.remove(i);
+			isMatrixCalculated = false;
 			//можно обновить MIN, MAX, width
 			//для уменьшения размера холста
 			break;
@@ -330,11 +337,12 @@ void Canvas_console::remove_no_rounding_line(const Dot& A, const Dot& B)
 		remove_point(erase_line_arr[i]);
 }
 
-
 void Canvas_console::remove_line(const Dot& A, const Dot& B)
 {
+
 	remove_no_rounding_line(A, B);
 	remove_rounding_line(A, B);
+	isMatrixCalculated = false;
 }
 
 /// <summary>
