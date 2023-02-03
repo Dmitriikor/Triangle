@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+//!!! äâà printa, ïğèìåğ â main
+//!!! cin << Point
 struct Point
 {
 	double x;
@@ -22,13 +24,10 @@ struct Dot : public Point
 
 	Dot() :Point(), symbol('.') {};
 	Dot(double x, double y, char symbol = '.') : Point(x, y), symbol(symbol) {};
+
+	Dot(const Point& p, char symbol = '.') :Point(p), symbol(symbol) { };
+
 	friend std::ostream& operator<<(std::ostream& out, const Dot& p);
-
-
-	////Dot() {} //!!! ÒÎËÜÊÎ ÅÑËÈ ÍÀÄÎ
-	////Dot(const Point& p) :Point(p) { } //!!! ÒÎËÜÊÎ ÅÑËÈ ÍÀÄÎ
-
-	
 };
 
 double length(const Point& A, const Point& B);

@@ -12,25 +12,27 @@
 //#include "Ray_3_test.h"
 
 
+//!!! Dot => Point
+
 class Triangle_low {
 
 protected:
 	struct Vertex {
-		Dot a;
-		Dot b;
-		Dot c;
+		Point a;
+		Point b;
+		Point c;
 	} vertex;
 
 public:
-	const Dot& get_a() const
+	const Point& get_a() const
 	{
 		return vertex.a;
 	}
-	const Dot& get_b() const
+	const Point& get_b() const
 	{
 		return vertex.b;
 	}
-	const Dot& get_c() const
+	const Point& get_c() const
 	{
 		return vertex.c;
 	}
@@ -39,7 +41,7 @@ public:
 
 	Triangle_low() = default;
 
-	Triangle_low(Dot a, Dot b, Dot c)
+	Triangle_low(Point a, Point b, Point c)
 	{
 		vertex.a = a;
 		vertex.b = b;
@@ -58,11 +60,11 @@ private:
 		double CA;
 	} side;
 
-	Ray <Dot> point_in_triangle;
+	Ray <Point> point_in_triangle;
 
-	//std::vector<Dot> point_in_triangle;
+	//std::vector<Point> point_in_triangle;
 
-	size_t dot_counter;
+	//size_t dot_counter;
 	double area;
 	bool is_triangle;
 
@@ -75,19 +77,19 @@ public:
 		return is_triangle;
 	}
 
-	Triangle_hi() :Triangle_low(), side({ 0, 0, 0 }), dot_counter(0), area(0), is_triangle(0)
+	Triangle_hi() :Triangle_low(), side({ 0, 0, 0 })/*, dot_counter(0)*/, area(0), is_triangle(0)
 	{
 
 	}
 
-	Triangle_hi(Dot a, Dot b, Dot c) : Triangle_low(a, b, c)
+	Triangle_hi(Point a, Point b, Point c) : Triangle_low(a, b, c)
 	{
 
 		side.AB = length(a, b);
 		side.BC = length(b, c);
 		side.CA = length(c, a);
 
-		dot_counter = 0;
+		/*dot_counter = 0;*/
 		area = count_area();
 
 		if ((side.AB + side.BC > side.CA) &&
@@ -113,18 +115,15 @@ public:
 		if (this == &other)
 			return *this;
 
-		vertex.a = other.vertex.a;
-		vertex.b = other.vertex.b;
-		vertex.c = other.vertex.c;
+		vertex = other.vertex;
 
-		side.AB = other.side.AB;
-		side.BC = other.side.BC;
-		side.CA = other.side.CA;
+		side = other.side;
 
-		dot_counter = other.dot_counter;
+		/*dot_counter = other.dot_counter;*/
+
+		point_in_triangle.clear();
 
 		int length = other.point_in_triangle.size();
-
 		for (size_t i = 0; i < length; i++)
 		{
 			point_in_triangle.add_to_back(other.point_in_triangle[i]);
@@ -137,58 +136,23 @@ public:
 		return *this;
 	}
 
-	Triangle_hi& operator = (Triangle_hi&& other)
-	{
-		if (this == &other)
-			return *this;
-
-		vertex.a = other.vertex.a;
-		vertex.b = other.vertex.b;
-		vertex.c = other.vertex.c;
-
-		side.AB = other.side.AB;
-		side.BC = other.side.BC;
-		side.CA = other.side.CA;
-
-		dot_counter = other.dot_counter;
-
-		std::swap(point_in_triangle, other.point_in_triangle);
-
-		area = other.area;
-
-		is_triangle = other.is_triangle;
-
-	}
-
-
+	Triangle_hi& operator = (Triangle_hi&& other) = default;
 
 	~Triangle_hi()
 	{
-		vertex.a.x = 0;
-		vertex.a.y = 0;
-		vertex.b.x = 0;
-		vertex.b.y = 0;
-		vertex.c.x = 0;
-		vertex.c.y = 0;
+		vertex = { {}, {}, {} };
 
-		side.AB = 0;
-		side.BC = 0;
-		side.CA = 0;
+		side = {};
 
-		dot_counter = 0;
+		//dot_counter = 0;
 
 		area = 0;
 
 		is_triangle = false;
 	};
 
-
-
-
-	const Dot& get_point_in(size_t index) const;
-
-	//const std::vector<Dot>& get_points_inside() const;
-	//Ray <Dot> get_points_inside_Ray() const;
+	//const std::vector<Point>& get_points_inside() const;
+	//Ray <Point> get_points_inside_Ray() const;
 
 	double get_AB() const;
 
@@ -196,49 +160,48 @@ public:
 
 	double get_CA() const;
 
-	const Dot& get_A() const;
+	/*const Point& get_a() const;
 
 	double get_A_X() const;
 
 	 double get_A_Y() const;
 
-	const Dot& get_B() const;
+	const Point& get_b() const;
 
 	double get_B_X() const;
 
 	double get_B_Y() const;
 
-	const Dot& get_C() const;
+	const Point& get_c() const;
 
 	double get_C_X() const;
 
-	double get_C_Y() const;
+	double get_C_Y() const;*/
 
-	void create(const Dot& a, const Dot& b, const Dot& c);
+	//void create(const Point& a, const Point& b, const Point& c);
+
+	const Ray<Point>& get_point_array() const;
+	size_t size_point_array() const;
 
 	size_t get_dot_counter() const;
 
-	void add_point_at_vector(const Dot& point);
+	Point get_point_in(size_t index) const;
 
 	double get_area() const;
 
+	void add_point_at_vector(const Point& point);
+
 	bool is_triangle_check() const;
+
+	bool is_inside(const Point& point) const;
 
 	void print() const;
 
 	void print_to_file(std::ostream& output)const;
-
-	static void triangles_print_outfile(const Ray<Triangle_hi>& triangle, size_t index, const std::string& path_out);
-
-	Triangle_hi create_triangle(const Dot& a, const Dot& b, const Dot& c) const;
-
-	static bool is_inside(const Dot& point, const Triangle_hi& abc);
-
-	void points_print(const Dot p[], int n)const;
-
-	Dot get_point_in_triangle(size_t index) const;
-
-	size_t size_point_in_triangle() const;
-
 };
+
+//Triangle_hi create_triangle(const Point& a, const Point& b, const Point& c) const;
+
+void triangles_print_outfile(const Ray<Triangle_hi>& triangle, size_t index, const std::string& path_out);
+
 #endif //! TRIANGLE_TEST_H__

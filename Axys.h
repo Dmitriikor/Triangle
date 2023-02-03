@@ -7,7 +7,7 @@
 class Axys : public Canvas_console
 {
 public:
-	void set_at(Coordinates_TEMPLATE cell, char symbol);
+	void set_at(Coordinate cell, char symbol);
 	///void erase_point_from_axys(Dot& err) const;
 	void create(char axys_arr_fill_symbol = ' ');
 	void remove();
@@ -21,7 +21,7 @@ private:
 	template <typename T>
 	void draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr);
 
-	friend void print_f_a(Axys& this_);
+	//friend void print_f_a(Axys& this_);
 };
 
 

@@ -1,7 +1,7 @@
 #include "Axys.h"
 
 
-void Axys::set_at(Coordinates_TEMPLATE cell, char symbol)
+void Axys::set_at(Coordinate cell, char symbol)
 {
 	axys_arr_.set_at(cell.i, cell.j, symbol);
 }
@@ -11,13 +11,13 @@ void Axys::remove()
 	axys_arr_.clear();
 }
 
-void  Axys::print()
+void Axys::print()
 {
 	axys_arr_.clear();
 	create();
 	draw_points();
 	axys_arr_.print();
-	print_f_a(*this);
+	//print_f_a(*this);
 }
 
 void Axys::create(char axys_arr_fill_symbol)
@@ -96,7 +96,7 @@ void Axys::draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_a
 
 	for (size_t i = 0; i < length; i++)
 	{
-		Coordinates_TEMPLATE cell;
+		Coordinate cell;
 
 
 		cell.i = ORIGIN_.i - loc_arr_to_draw[i].y;
@@ -111,8 +111,8 @@ void Axys::draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_a
 
 
 
-void print_f_a(Axys& this_)
-{
-	std::ofstream out_p(this_.outfile_adress);
-	print_f_m(this_.axys_arr_, out_p);
-}
+//void print_f_a(Axys& this_)
+//{
+//	std::ofstream out_p(this_.outfile_adress);
+//	print_f_m(this_.axys_arr_, out_p);
+//}

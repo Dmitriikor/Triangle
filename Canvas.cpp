@@ -2,7 +2,16 @@
 #include <string>
 #include <float.h>
 
+int get_distance_between(int min_coord, int max_coord)
+{
+	if (min_coord >= 0 && max_coord >= 0)
+		return abs(max_coord);
 
+	if (min_coord <= 0 && max_coord <= 0)
+		return abs(min_coord);
+
+	return abs(max_coord) + abs(min_coord);
+}
 
 Canvas_console::Canvas_console()
 {
@@ -18,60 +27,82 @@ Canvas_console::Canvas_console()
 	width_y_with_indent_ = -1;
 
 	coefficient = 1;
-	debug = false;
+
+	max_min_init();
+}
+
+Canvas_console& Canvas_console::operator+=(const Canvas_console& other)
+{
+	insert(other.points_to_draw_);
+
+	return *this;
+}
+
+Canvas_console Canvas_console::operator+(const Canvas_console& other) const
+{
+	Canvas_console temp = *this;
+
+	temp += other;
+
+	return temp;
 }
 
 
 void Canvas_console::max_min_init()
 {
-	MAX_VIRTUAL_.x = DBL_MIN;
-	MAX_VIRTUAL_.y = DBL_MIN;
+	MAX_VIRTUAL_.x = -DBL_MAX;
+	MAX_VIRTUAL_.y = -DBL_MAX;
 
 	MIN_VIRTUAL_.x = DBL_MAX;
 	MIN_VIRTUAL_.y = DBL_MAX;
 }
 
-void Canvas_console::go_debug(bool is_debug)
+
+void Canvas_console::insert(const Dot& pt)
 {
-	debug = is_debug;
+	if (check_and_insert_point(pt))
+	{
+		update_min_max_by(pt);
+		initialize_width(); 
+	}
 }
 
-
-
-void Canvas_console::insert(Ray<Dot> points)
+void Canvas_console::insert(const Ray<Point>& points, char symbol)
 {
+	bool isInserted = false;
+
 	size_t length_arr = points.size();
 	for (size_t i = 0; i < length_arr; i++)
-	{
-		check_and_insert_point(points[i]);
-	}
+		if (check_and_insert_point(Dot(points[i], symbol)))
+		{
+			update_min_max_by(points[i]);
+			isInserted = true;
+		}
 
-	set_min_max(); //!!! max and min is from this or other (NOT checking ALL OF IT)
-
-	initialize_width(); //!!! same 
+	if (isInserted)
+		initialize_width();
 }
 
-////void Canvas_console::insert_l(Ray<Dot>& points)
-////{
-////	size_t length_arr = points.size();
-////	for (size_t i = 0; i < length_arr; i++)
-////	{
-////		check_and_insert_point(points[i]);
-////	}
-////
-////	set_min_max(); //!!! max and min is from this or other (NOT checking ALL OF IT)
-////
-////	initialize_width(); //!!! same 
-////}
+void Canvas_console::insert(const Ray<Dot>& points)
+{
+	bool isInserted = false;
+
+	size_t length_arr = points.size();
+	for (size_t i = 0; i < length_arr; i++)
+		if (check_and_insert_point(points[i]))
+		{
+			update_min_max_by(points[i]);
+			isInserted = true;
+		}
+
+	if (isInserted)
+		initialize_width();
+}
+
+
 
 void Canvas_console::update_min_max_by(const Dot& pt)
 {
-	size_t old_long = points_to_draw_.size();
-
-	check_and_insert_point(pt);
-	if (old_long == points_to_draw_.size())
-		return;
-
 	bool is_update = false;
 	if (pt.x > MAX_VIRTUAL_.x) {
 		MAX_VIRTUAL_.x = pt.x;
@@ -89,37 +120,45 @@ void Canvas_console::update_min_max_by(const Dot& pt)
 		MIN_VIRTUAL_.y = pt.y;
 		is_update = true;
 	}
-	if (is_update == true){
+	if (is_update == true) {
 		initialize_width();
 	}
 }
 
-void Canvas_console::check_and_insert_point(const Dot& pt)
+/// <summary>
+/// вставка без повторений
+/// </summary>
+/// <param name="pt"> точка для отрисовки</param>
+/// <returns>
+/// true - вставка осуществлена, false - элемент уже был добавлен </returns>
+bool Canvas_console::check_and_insert_point(const Dot& pt)
 {
 	size_t length = points_to_draw_.size();
 	for (size_t i = 0; i < length; i++)
 	{
 		if (points_to_draw_[i] == pt)
 		{
-			return;
+			points_to_draw_[i].symbol = pt.symbol; //!!! перерисовывается ли
+			return false;
 		}
 	}
 
 	points_to_draw_.add_to_back(pt);
+	return true;
 }
 
-bool Canvas_console::is_point_in_arr(const Dot& pt)
-{
-	size_t length = points_to_draw_.size();
-	for (size_t i = 0; i < length; i++)
-	{
-		if (points_to_draw_[i] == pt)
-		{
-			return true;
-		}
-	}
-	return false;
-}
+//bool Canvas_console::is_point_in_arr(const Dot& pt)
+//{
+//	size_t length = points_to_draw_.size();
+//	for (size_t i = 0; i < length; i++)
+//	{
+//		if (points_to_draw_[i] == pt)
+//		{
+//			return true;
+//		}
+//	}
+//	return false;
+//}
 
 void Canvas_console::initialize_width() {
 	width_x_ = 1;
@@ -145,18 +184,9 @@ void Canvas_console::initialize_width() {
 
 }
 
-int Canvas_console::get_distance_between(int min_coord, int max_coord) const
-{
-	if (min_coord >= 0 && max_coord >= 0)
-		return abs(max_coord);
 
-	if (min_coord <= 0 && max_coord <= 0)
-		return abs(min_coord);
 
-	return abs(max_coord) + abs(min_coord);
-}
-
-void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location) const 
+void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location) const
 {
 	size_t N = axis_length;
 
@@ -164,16 +194,13 @@ void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int m
 	{
 		int temp_x = min_x + i;
 
-		//!!!
-		///arr[axis_location][width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1)] = '|';
-		arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1Ui64), '|');
+		arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1u), '|');
 
 		int abs_x = fabs(temp_x);
 		int j;
 		for (j = width_x_with_indent_ - 2; j >= 0; --j)
 		{
 			int digit = abs_x % 10;
-
 
 			arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + j, '0' + digit);
 
@@ -189,13 +216,12 @@ void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int m
 			throw std::runtime_error("hello.cpp -> create -> WRONG WIDTH_X");
 		}
 
-
 		if (temp_x < 0)
-			arr.set_at(axis_location, (width_y_with_indent_ + (i * width_x_with_indent_) + j) - 1, '-'); //!!! here was [i][1]
+			arr.set_at(axis_location, (width_y_with_indent_ + (i * width_x_with_indent_) + j) - 1, '-');
 	}
 }
 
-void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int start_i, int axis_location) const 
+void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int start_i, int axis_location) const
 {
 	for (size_t i = 0; i < axis_length; ++i)
 	{
@@ -207,7 +233,6 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 		{
 			int digit = abs_y % 10;
 
-			//arr[i][axis_location + j] = '0' + digit;
 			arr.set_at(i, axis_location + j, '0' + digit);
 
 			abs_y = abs_y / 10;
@@ -219,51 +244,39 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 			throw std::runtime_error("hello.cpp -> create -> WRONG WIDTH_Y");
 
 		if (temp_y < 0) {
-			//arr[i][(axis_location + j) - 1] = '-'; //!!! here was [i][1]
-			arr.set_at(i, (0ll + axis_location + j) - 1, '-'); //!!! here was [i][1]
+			arr.set_at(i, (0ll + axis_location + j) - 1, '-'); 
 		}
-
-		//else
-			//corner_arr()[i][j - 1] = ' '; //!!! here was [i][1]
 	}
 }
 
 
-void Canvas_console::add_lines(const Dot& A, const Dot& B, char symbol)
+void Canvas_console::add_line(const Dot& A, const Dot& B, char symbol)
 {
-	update_min_max_by(A);
-	update_min_max_by(B);
+	insert(A);
+	insert(B);
 
-	add_point_to_arr_for_print_line(A, B, true, symbol);
+	add_line_points_to_arr_(A, B, true, symbol);
 }
 
-void Canvas_console::set_min_max()
-{
-	size_t length = points_to_draw_.size();
-	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);	 
-									 
-
-	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[0]);  
-										 
-
-	for (size_t i = 1; i < length; i++)
-	{
-		// TO DO
-		// 
-		//points_to_draw_[i].symbol = '+'; // Kostilvaniay to do
-
-
-		if (points_to_draw_[i].x > MAX_VIRTUAL_.x)
-			MAX_VIRTUAL_.x = points_to_draw_[i].x;
-		else if (points_to_draw_[i].x < MIN_VIRTUAL_.x)
-			MIN_VIRTUAL_.x = points_to_draw_[i].x;
-
-		if (points_to_draw_[i].y > MAX_VIRTUAL_.y)
-			MAX_VIRTUAL_.y = points_to_draw_[i].y;
-		else if (points_to_draw_[i].y < MIN_VIRTUAL_.y)
-			MIN_VIRTUAL_.y = points_to_draw_[i].y;
-	}
-}
+//void Canvas_console::set_min_max(size_t from, size_t to)
+//{
+//	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[from]);
+//
+//	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[from]);
+//
+//	for (size_t i = from + 1; i < to; i++)
+//	{
+//		if (points_to_draw_[i].x > MAX_VIRTUAL_.x)
+//			MAX_VIRTUAL_.x = points_to_draw_[i].x;
+//		else if (points_to_draw_[i].x < MIN_VIRTUAL_.x)
+//			MIN_VIRTUAL_.x = points_to_draw_[i].x;
+//
+//		if (points_to_draw_[i].y > MAX_VIRTUAL_.y)
+//			MAX_VIRTUAL_.y = points_to_draw_[i].y;
+//		else if (points_to_draw_[i].y < MIN_VIRTUAL_.y)
+//			MIN_VIRTUAL_.y = points_to_draw_[i].y;
+//	}
+//}
 
 
 
@@ -292,6 +305,8 @@ void Canvas_console::remove_point(const Dot& dot)
 		if (dot == points_to_draw_[i])
 		{
 			points_to_draw_.remove(i);
+			//можно обновить MIN, MAX, width
+			//для уменьшения размера холста
 			break;
 		}
 	}
@@ -316,18 +331,25 @@ void Canvas_console::remove_no_rounding_line(const Dot& A, const Dot& B)
 }
 
 
-void Canvas_console::remove_line_total(const Dot& A, const Dot& B)
+void Canvas_console::remove_line(const Dot& A, const Dot& B)
 {
 	remove_no_rounding_line(A, B);
 	remove_rounding_line(A, B);
 }
 
-void Canvas_console::add_point_to_arr_for_print_line(const Dot& A, const Dot& B, bool is_round, char symbol)
+/// <summary>
+/// Добавление линии (точек линии) в массив точек (points_to_draw_).
+/// Точки А и B должны быть добавлены на холст!
+/// </summary>
+/// <param name="A">Точка начала (уже должна быть на холсте) </param>
+/// <param name="B">Точка конца (уже должна быть на холсте)</param>
+/// <param name="is_round">Округляем ли</param>
+/// <param name="symbol">Символ для отрисовки</param>
+void Canvas_console::add_line_points_to_arr_(const Dot& A, const Dot& B, bool is_round, char symbol)
 {
 	const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
 
 	size_t length = lockal_draw_line_arr.size();
-
 	for (size_t i = 0; i < length; i++)
 	{
 		points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
@@ -400,13 +422,13 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 
 	lockal_line_arr.clear(); //!!! unreachable code
 
-	if (debug) {
+	/*if (debug) {
 		size_t length = points_to_draw_.size();
 		for (size_t i = 0; i < length; i++)
 		{
 			std::cout << "\n" << points_to_draw_[i].x << " : " << points_to_draw_[i].y;
 		}
-	}
+	}*/
 }
 
 
@@ -438,7 +460,7 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 
 	for (int x = x1; x <= x2; x++) {
 		float k = (x - x1) / (float)(x2 - x1);
-		float y = y1 * (1. - k) + y2 * k;
+		float y = y1 * (1.0 - k) + y2 * k;
 
 
 		double step = get_step(coefficient);

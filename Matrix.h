@@ -22,7 +22,7 @@
 ///using pointer_type = T*;
 
 
-struct Coordinates_TEMPLATE {
+struct Coordinate {
 	size_t i;
 	size_t j;
 
@@ -68,16 +68,16 @@ public:
 	bool is_empty();
 
 	void print();
-	///void print(std::ofstream& output) const;
+	//void print(std::ofstream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
-	void set_at(Coordinates_TEMPLATE cell, const T& data);
+	void set_at(Coordinate cell, const T& data);
 
 	T& get_at(size_t N, size_t M);
-	T& get_at(Coordinates_TEMPLATE cell);
+	T& get_at(Coordinate cell);
 
 	const T& get_at(size_t N, size_t M) const;
-	const T& get_at(Coordinates_TEMPLATE cell) const;
+	const T& get_at(Coordinate cell) const;
 
 	void clear();
 
@@ -87,9 +87,8 @@ private:
 	T** arr;
 	static T** allocate(size_t N, size_t M);
 
-	template <typename T>
-	friend void print_f_m(Matrix<T>& other, std::ostream& outfile);
-
+	template <typename U>
+	friend void print(const Matrix<U>& other, std::ostream& outfile);
 
 	struct str_i {
 		Matrix& my_Matrix_TEMPLATE;
@@ -279,7 +278,7 @@ Matrix<T>::Matrix(const Matrix<T>& other) : N(other.N), M(other.M)
 }
 
 template<typename T>
-Matrix<T>::Matrix(Matrix&& other) : Matrix() 
+Matrix<T>::Matrix(Matrix&& other) : Matrix()
 {
 
 	////N = 0;
@@ -299,12 +298,12 @@ template<typename T>
 inline Matrix<T>& Matrix<T>::operator=(Matrix&& other) noexcept
 {
 
-			clear();
+	clear();
 
-			std::swap(N, other.N);
-			std::swap(M, other.M);
+	std::swap(N, other.N);
+	std::swap(M, other.M);
 
-			std::swap(arr, other.arr);
+	std::swap(arr, other.arr);
 
 	return *this;
 }
@@ -478,7 +477,7 @@ void Matrix<T>::set_at(size_t i, size_t j, const T& data) {
 }
 
 template <typename T>
-void Matrix<T>::set_at(Coordinates_TEMPLATE cell, const T& data) {
+void Matrix<T>::set_at(Coordinate cell, const T& data) {
 	set_at(cell.i, cell.j, data);
 }
 
@@ -497,7 +496,7 @@ T& Matrix<T>::get_at(size_t i, size_t j) {
 }
 
 template <typename T>
-T& Matrix<T>::get_at(Coordinates_TEMPLATE cell) {
+T& Matrix<T>::get_at(Coordinate cell) {
 	return get_at(cell.i, cell.j);
 }
 
@@ -516,7 +515,7 @@ const T& Matrix<T>::get_at(size_t i, size_t j) const {
 }
 
 template <typename T>
-const T& Matrix<T>::get_at(Coordinates_TEMPLATE cell) const {
+const T& Matrix<T>::get_at(Coordinate cell) const {
 	return get_at(cell.i, cell.j);
 }
 
@@ -531,8 +530,8 @@ void Matrix<T>::clear() {
 
 		arr = nullptr;
 	}
-		N = 0;
-		M = 0;
+	N = 0;
+	M = 0;
 }
 
 template <typename T>
@@ -544,23 +543,8 @@ bool Matrix<T>::is_empty()
 	return false;
 }
 
-
 template <typename T>
-void Matrix<T>::print()
-{
-	for (size_t i = 0; i < N; ++i)
-	{
-		for (size_t j = 0; j < M; ++j)
-		{
-			std::cout << arr[i][j];
-		}
-		std::cout << "\n";
-	}
-
-}
-
-template <typename T>
-void print_f_m(Matrix<T>& other, std::ostream& outfile)
+void print(const Matrix<T>& other, std::ostream& outfile)
 {
 	for (size_t i = 0; i < other.N; ++i)
 	{
@@ -570,6 +554,23 @@ void print_f_m(Matrix<T>& other, std::ostream& outfile)
 		}
 		outfile << std::endl;
 	}
+}
+
+template <typename T>
+void Matrix<T>::print()
+{
+	/*for (size_t i = 0; i < N; ++i)
+	{
+		for (size_t j = 0; j < M; ++j)
+		{
+			std::cout << arr[i][j];
+		}
+		std::cout << "\n";
+	}*/
+
+	::print(*this, std::cout);
+
+	//this->print(std::cout);
 }
 
 template <typename T>

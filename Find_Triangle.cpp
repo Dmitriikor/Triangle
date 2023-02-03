@@ -32,7 +32,7 @@ Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points)
 	///size_t hit = 0;
 	for (size_t i = 0; i < n_triangles; i++) {
 		for (size_t j = 0; j < n_points; j++)
-			if (Triangle_hi::is_inside(point_arr[j], final_triangle_arr[i])) {
+			if (final_triangle_arr[i].is_inside(point_arr[j])) {
 				final_triangle_arr[i].add_point_at_vector(point_arr[j]);
 			}
 	}
@@ -47,7 +47,7 @@ Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points)
 			max_dot = final_triangle_arr[i].get_dot_counter();
 			max_dot_index = i;
 		}
-		Triangle_hi::triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
+		triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
 	}
 
 	if (max_dot != 0)

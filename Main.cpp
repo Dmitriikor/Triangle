@@ -18,6 +18,27 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Corner.h"
 #include "Axys.h"
 
+//struct A {
+//	void p()
+//	{
+//		std::cout << "1" << std::endl;
+//	}
+//};
+//
+//struct B : A {
+//	void p()
+//	{
+//		std::cout << "2" << std::endl;
+//	}
+//};
+//
+//void foo()
+//{
+//	B b;
+//
+//	b.A::p();
+//}
+
 int main(int argc, char const* argv[])
 {
 	double t1;
@@ -39,7 +60,7 @@ int main(int argc, char const* argv[])
 
 		}
 
-		int   case_to_output_file_patch_switch;
+		int case_to_output_file_patch_switch;
 		std::cout << "Choise output file settings:\n";
 		std::cout << "\t 1 Save file in root folder, \n";
 		std::cout << "\t 2 Or manual path to save : \n";
@@ -123,14 +144,15 @@ int main(int argc, char const* argv[])
 		{
 			Corner out_print;
 
+			out_print.insert(Fin_Triangle.get_point_array(), '*');
 
-			for (size_t i = 0; i < Fin_Triangle.size_point_in_triangle(); i++)
-				copy_to_print.add_to_back(Fin_Triangle.get_point_in_triangle(i));
+			/*for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
+				copy_to_print.add_to_back(Fin_Triangle.get_point(i));*/
 			
 			out_print.insert(copy_to_print);
-			out_print.add_lines(Fin_Triangle.get_A(), Fin_Triangle.get_B(),'*');
-			out_print.add_lines(Fin_Triangle.get_B(), Fin_Triangle.get_C(),'*');
-			out_print.add_lines(Fin_Triangle.get_C(), Fin_Triangle.get_A(),'*');
+			out_print.add_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(),'*');
+			out_print.add_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(),'*');
+			out_print.add_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(),'*');
 
 
 			out_print.print();
@@ -145,6 +167,7 @@ int main(int argc, char const* argv[])
 	{
 		std::cout << "\n\texception :  " << exception.what() << std::endl;
 	}
+
 	double t2 = clock();
 	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 

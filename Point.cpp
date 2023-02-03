@@ -25,7 +25,7 @@ bool Point::operator==(const Point& other) const {
 
 std::ostream& operator<<(std::ostream& out, const Dot& p)
 {
-	return std::cout << p.symbol;
+	return out << p.symbol;
 }
 
 
