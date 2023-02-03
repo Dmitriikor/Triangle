@@ -1,23 +1,49 @@
 #include "Axys.h"
 
 
-void Axys::set_at(Coordinate cell, char symbol)
-{
-	axys_arr_.set_at(cell.i, cell.j, symbol);
-}
+////void Axys::set_at(Coordinate cell, char symbol)
+////{
+////	axys_arr_.set_at(cell.i, cell.j, symbol);
+////}
 
 void Axys::remove()
 {
 	axys_arr_.clear();
+	isMatrixCalculated = false;
 }
 
-void Axys::print()
+
+void prepare(Axys & this_)
 {
-	axys_arr_.clear();
-	create();
-	draw_points();
+	if (this_.points_to_draw_.size() == 0)
+		return;
+
+	this_.axys_arr_.clear();
+	this_.create();
+	this_.draw_points();
+	this_.isMatrixCalculated = true;
+	this_.print();
+}
+
+
+void Axys::print() const
+{
+	if (!isMatrixCalculated)
+	{
+		Axys test = *this;
+		
+		prepare(test);
+	}
+	else
+	{
+
+	
+	///axys_arr_.clear();
+	////create();
+	/////draw_points();
 	axys_arr_.print();
 	//print_f_a(*this);
+	}
 }
 
 void Axys::create(char axys_arr_fill_symbol)

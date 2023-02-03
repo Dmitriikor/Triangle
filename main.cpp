@@ -167,6 +167,8 @@ int main(int argc, char const* argv[])
 			Axys a_out_print;
 			a_out_print += out_print;
 			a_out_print.print();
+			a_out_print.add_line({10,10}, {-10,-10},'*');
+			a_out_print.print();
 		}
 
 	}

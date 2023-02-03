@@ -67,7 +67,7 @@ public:
 	void fill(const T& value);
 	bool is_empty();
 
-	void print();
+	void print() const;
 	//void print(std::ofstream& output) const;
 
 	void set_at(const size_t N, const size_t M, const T& data);
@@ -557,7 +557,7 @@ void print(const Matrix<T>& other, std::ostream& outfile)
 }
 
 template <typename T>
-void Matrix<T>::print()
+void Matrix<T>::print() const
 {
 	/*for (size_t i = 0; i < N; ++i)
 	{

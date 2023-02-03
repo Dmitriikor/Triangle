@@ -1,8 +1,8 @@
 #pragma once
 
-#ifndef Axys_H__
+#ifndef AXYS_H__
 
-#define  Axys_H__
+#define  AXYS_H__
 
 #include "Canvas.h"
 #include "Point.h"
@@ -12,14 +12,15 @@
 class Axys : public Canvas_console
 {
 public:
-	void set_at(Coordinate cell, char symbol);
+	///void set_at(Coordinate cell, char symbol);
 	///void erase_point_from_axys(Dot& err) const;
 	void create(char axys_arr_fill_symbol = ' ');
 	void remove();
-	void print();
-	void draw_points();
+	void print() const;
 
 private:
+	friend void prepare(Axys & this_);
+	void draw_points();
 	std::string outfile_adress = "Axys_out.txt";
 	Matrix<char> axys_arr_;
 
@@ -29,6 +30,6 @@ private:
 	//friend void print_f_a(Axys& this_);
 };
 
-#endif //!  Axys_H__
+#endif //!  AXYS_H__
 
 
