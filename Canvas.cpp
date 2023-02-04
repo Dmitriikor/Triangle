@@ -428,7 +428,7 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 
 	return lockal_line_arr;
 
-	lockal_line_arr.clear(); //!!! unreachable code
+	///lockal_line_arr.clear(); //!!! unreachable code
 
 	/*if (debug) {
 		size_t length = points_to_draw_.size();

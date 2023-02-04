@@ -169,6 +169,10 @@ int main(int argc, char const* argv[])
 			a_out_print.print();
 			a_out_print.add_line({10,10}, {-10,-10},'*');
 			a_out_print.print();
+
+
+			Canvas_console ttst;
+			ttst.test_line();
 		}
 
 	}

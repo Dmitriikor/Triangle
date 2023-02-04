@@ -13,7 +13,7 @@ void Axys::remove()
 }
 
 
-void prepare(Axys & this_)
+void prepare_(Axys & this_)
 {
 	if (this_.points_to_draw_.size() == 0)
 		return;
@@ -25,14 +25,32 @@ void prepare(Axys & this_)
 	this_.print();
 }
 
+////void Axys::prepare()
+////{
+////	if (points_to_draw_.size() == 0)
+////		return;
+////
+////	axys_arr_.clear();
+////	create();
+////	draw_points();
+////	isMatrixCalculated = true;
+////	print();
+////}
+
 
 void Axys::print() const
 {
 	if (!isMatrixCalculated)
 	{
 		Axys test = *this;
+		prepare_(test);
+
+		///axys_arr_.clear();
+		///create();
+		///draw_points();
+		///isMatrixCalculated = true;
 		
-		prepare(test);
+
 	}
 	else
 	{
@@ -114,8 +132,7 @@ void Axys::draw_points()
 	/// draw_points_(false, true,  axys_arr_);
 }
 
-template <typename T>
-void Axys::draw_points_or_line_axys(Ray<T>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
+void Axys::draw_points_or_line_axys(Ray<Dot>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
 {
 
 	size_t length;

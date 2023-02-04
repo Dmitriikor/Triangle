@@ -87,6 +87,54 @@ public:
 
 	//!!! TO DO: добавить обычную печать
 	void print() const {}
+
+	void test_line()
+	{
+
+		Dot one = { 0, 0 };
+		Dot second = { 10, 13 };
+
+		max_min_init();
+
+
+		Ray<Dot>  test_cons_ = calculate_line_with_rounding(one, second,'-');
+
+
+
+		update_min_max_by(one);
+		update_min_max_by(second);
+		Matrix<char> test_cons(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
+		std::cout << test_cons_.size()<< " " << test_cons.get_N() << " " << test_cons.get_M() << "\n";
+		test_cons.fill('*');
+
+		int cntr = 0;
+
+		for (int i = MIN_VIRTUAL_.x; i < MAX_VIRTUAL_.x; i++)
+		{
+			for (int j = MIN_VIRTUAL_.y; j < MAX_VIRTUAL_.y; j++)
+			{
+				if (test_cons_[cntr].x == i && test_cons_[cntr].y == j || test_cons_[cntr].y == i && test_cons_[cntr].x == j)
+				{
+					test_cons[i][j] = test_cons_[cntr].symbol;
+
+					cntr++;
+				
+				}
+			}
+		}
+
+		for (int i = 0; i < test_cons.get_N(); i++)
+		{
+			for (int j = 0; j < test_cons.get_M(); j++)
+			{
+				std::cout << test_cons[i][j];
+			}
+			std::cout << std::endl;
+		}
+
+	}
+
+
 };
 
 
