@@ -38,9 +38,9 @@ void Corner::print(std::ostream& output) const
 {
 	if (!isMatrixCalculated)
 	{
-		Corner test = *this;
-		prepare_free(output, test);
-		test.prepare(output);
+		//Corner test = *this;
+		//prepare_free(output, test);
+		//test.prepare(output);
 
 		const_cast<Corner*>(this)->prepare(output);
 	}

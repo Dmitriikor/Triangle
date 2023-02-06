@@ -261,7 +261,7 @@ void Canvas_console::add_line(const Dot& A, const Dot& B, char symbol)
 	insert(A);
 	insert(B);
 
-	add_line_points_to_arr_(A, B, true, symbol);
+	add_line_points_to_arr_(A, B, false, symbol);
 }
 
 //void Canvas_console::set_min_max(size_t from, size_t to)
@@ -356,12 +356,21 @@ void Canvas_console::remove_line(const Dot& A, const Dot& B)
 void Canvas_console::add_line_points_to_arr_(const Dot& A, const Dot& B, bool is_round, char symbol)
 {
 	const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
+	
+	//const Ray<Dot>& lockal_draw_line_arr_1 = calculate_line_with_rounding(A, B, symbol);
+	//const Ray<Dot>& lockal_draw_line_arr_2 = calculate_line_swap(A, B, symbol);
 
-	size_t length = lockal_draw_line_arr.size();
-	for (size_t i = 0; i < length; i++)
+	size_t length_1 = lockal_draw_line_arr.size();
+	for (size_t i = 0; i < length_1; i++)
 	{
 		points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
 	}
+
+	//size_t length_2 = lockal_draw_line_arr_2.size();
+	//for (size_t i = 0; i < length_2; i++)
+	//{
+	//	points_to_draw_.add_to_back(lockal_draw_line_arr_2[i]);
+	//}
 }
 
 Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol)
@@ -370,12 +379,19 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 
 	Dot coords;
 
-	double min = A.x;
-	double max = B.x;
+	double min =A.x;
+	double max =B.x;
 	if (A.x > B.x) {
 		min = B.x;
 		max = A.x;
 	}
+
+	//double siz_x;
+
+	//if ((min < 0 && max < 0) || (min > 0 && max > 0))
+	//	siz_x = std::abs(max) - std::abs(min);
+	//if ((min <= 0 && max >= 0) || (min >= 0 && max <= 0))
+	//	siz_x = std::abs(max) + std::abs(min);
 
 	if (utilities::isEqual(min, max))
 	{
@@ -407,25 +423,28 @@ Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B
 	double b = A.y - b_;
 
 	double step = get_step(coefficient);  /// 1.0 / coefficient;
-
-	double rounded_min = utilities::round_by_step(min, step);
-	double rounded_max = utilities::round_by_step(max, step);
-
-	unsigned N = (rounded_max - rounded_min) / step + 1;
-
-	for (int i = 0; i < N; ++i)
 	{
-		Dot point;
-		point.x = rounded_min + i * step;
-		point.y = k * point.x + b;
+		double rounded_min = utilities::round_by_step(min, step);
+		double rounded_max = utilities::round_by_step(max, step);
 
-		point.x = (int)utilities::round_by_step(point.x, step);
-		point.y = (int)utilities::round_by_step(point.y, step);
+		unsigned N = (rounded_max - rounded_min) / step + 1;
 
-		point.symbol = symbol;
-		lockal_line_arr.add_to_back(point);
+		for (int i = 0; i < N; ++i)
+		{
+			
+				Dot point;
+				point.x = rounded_min + i * step;
+				point.y = k * point.x + b;
+			
+				point.x = (int)utilities::round_by_step(point.x, step);
+				point.y = (int)utilities::round_by_step(point.y, step);
+
+				point.symbol = symbol;
+				lockal_line_arr.add_to_back(point);
+			
+
+		}
 	}
-
 	return lockal_line_arr;
 
 	///lockal_line_arr.clear(); //!!! unreachable code
@@ -449,7 +468,7 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 		return calculate_line_with_rounding(A, B);
 	}
 
-	int x1, y1, x2, y2;
+	double x1, y1, x2, y2;
 	x1 = A.x;
 	y1 = A.y;
 	x2 = B.x;

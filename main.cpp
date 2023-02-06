@@ -159,8 +159,8 @@ int main(int argc, char const* argv[])
 				out_print.print();
 				out_print.print_to_file();
 
-				out_print.clear();
-				out_print.insert(Fin_Triangle.get_point_array(), '+');
+				//out_print.clear();
+				//out_print.insert(Fin_Triangle.get_point_array(), '+');
 				///out_print.clear();
 
 
@@ -168,14 +168,15 @@ int main(int argc, char const* argv[])
 				Axys a_out_print;
 				a_out_print += out_print;
 				a_out_print.print();
-				a_out_print.add_line({ 10,10 }, { -10,-10 }, '*');
-				a_out_print.print();
+				//a_out_print.add_line({ 10,10 }, { -10,-10 }, '*');
+				//a_out_print.print();
 
 
 				Canvas_console ttst;
 				ttst.test_line();
 			}
-
+			int t2;
+			std::cin >> t2;
 		}
 		catch (const std::runtime_error& exception)
 		{
