@@ -169,14 +169,22 @@ void Corner::create(char axys_arr_fill_symbol)
 
 
 		int N__;
-		if (min_x == max_x)
+		//if (min_x == max_x)
+		//{
+		//	N__ = abs(min_x) + 1;
+		//}
+		//else if (min_x < 0)
+		//	N__ = abs(min_x) + abs(max_x) + 1;
+		//else
+		//	N__ = max_x + 1;
+
+		if (min_x < 0 && max_x < 0 || min_x > 0 && max_x > 0)
 		{
-			N__ = abs(min_x) + 1;
+			N__ = std::abs(min_x) < std::abs(max_x) ? std::abs(max_x) : std::abs(min_x);
+			N__ += 1;
 		}
-		else if (min_x < 0)
-			N__ = abs(min_x) + abs(max_x) + 1;
 		else
-			N__ = max_x + 1;
+			N__ = std::abs(min_x) + std::abs(max_x) + 1;
 
 		int i_for_x = corner_arr().get_N() - axis_x_strings_;
 
