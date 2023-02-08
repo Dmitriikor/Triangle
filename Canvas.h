@@ -24,7 +24,7 @@ public:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
 
-	Ray<Dot> points_to_draw_;		//free dots to draw
+	mutable Ray<Dot> points_to_draw_;		//free dots to draw
 
 };
 
@@ -35,16 +35,18 @@ class Canvas_console : public Canvas
 {
 protected:
 
-	Coordinate ORIGIN_;
+	mutable Coordinate ORIGIN_;
+	mutable Matrix<char> Canvas_Matrix ;
+	mutable bool isMatrixCalculated = false;
 
-	int width_x_;
-	int width_y_;
+	 int width_x_;
+	 int width_y_;
 
-	int axis_x_indents_;
-	int axis_x_strings_;
+	 int axis_x_indents_;
+	 int axis_x_strings_;
 
-	int width_x_with_indent_;
-	int width_y_with_indent_;
+	mutable int width_x_with_indent_;
+	mutable int width_y_with_indent_;
 
 	int coefficient;
 
@@ -67,7 +69,6 @@ protected:
 
 	bool check_and_insert_point(const Dot& pt);
 
-	mutable bool isMatrixCalculated = false;
 
 
 public:
@@ -103,9 +104,9 @@ public:
 
 		update_min_max_by(one);
 		update_min_max_by(second);
-		Matrix<char> test_cons(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
-		std::cout << test_cons_.size()<< " " << test_cons.get_N() << " " << test_cons.get_M() << "\n";
-		test_cons.fill('*');
+		Canvas_Matrix.resize(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
+		std::cout << test_cons_.size()<< " " << Canvas_Matrix.get_N() << " " << Canvas_Matrix.get_M() << "\n";
+		Canvas_Matrix.fill('*');
 
 		int cntr = 0;
 
@@ -115,7 +116,7 @@ public:
 			{
 				if (test_cons_[cntr].x == i && test_cons_[cntr].y == j || test_cons_[cntr].y == i && test_cons_[cntr].x == j)
 				{
-					test_cons[i][j] = test_cons_[cntr].symbol;
+					Canvas_Matrix[i][j] = test_cons_[cntr].symbol;
 
 					cntr++;
 				
@@ -123,11 +124,11 @@ public:
 			}
 		}
 
-		for (int i = 0; i < test_cons.get_N(); i++)
+		for (int i = 0; i < Canvas_Matrix.get_N(); i++)
 		{
-			for (int j = 0; j < test_cons.get_M(); j++)
+			for (int j = 0; j < Canvas_Matrix.get_M(); j++)
 			{
-				std::cout << test_cons[i][j];
+				std::cout << Canvas_Matrix[i][j];
 			}
 			std::cout << std::endl;
 		}

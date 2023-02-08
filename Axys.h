@@ -23,7 +23,7 @@ private:
 
 	void draw_points();
 	std::string outfile_adress = "Axys_out.txt";
-	mutable Matrix<char> axys_arr_;
+	//mutable Matrix<char> Canvas_Matrix;
 
 	 
 	void draw_points_or_line_axys(Ray<Dot>& loc_arr_to_draw, Matrix<char>& loc_arr);

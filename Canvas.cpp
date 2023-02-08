@@ -292,7 +292,7 @@ void Canvas_console::add_line(const Dot& A, const Dot& B, char symbol)
 // TO DO
 ////void Axys::erase_point_from_axys(Dot& err) const
 ////{
-////	//erase_point(err, axys_arr_);
+////	//erase_point(err, Canvas_Matrix);
 ////}
 
 
@@ -476,17 +476,19 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 	y2 = B.y;
 
 	bool is_swap = false;
-	if (std::abs(x1 - x2) < std::abs(y1 - y2)) {
+	if (std::abs(x1 - x2) < std::abs(y1 - y2)) 
+	{
 		std::swap(x1, y1);
 		std::swap(x2, y2);
 		is_swap = true;
 	}
-	if (x1 > x2) {
+	if (x1 > x2) 
+	{
 		std::swap(x1, x2);
 		std::swap(y1, y2);
 	}
 
-	for (double x = x1; x <= x2; x += 2.0)
+	for (double x = x1; x <= x2; x += 2.0) // 0.50 
 	{
 		double k = ((double)x - x1) / (double)(x2 - x1);
 		double y = y1 * (1.0 - k) + y2 * k;
@@ -498,13 +500,15 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 		Dot coords;
 		coords.symbol = symbol;
 
-		if (is_swap) {
+		if (is_swap) 
+		{
 			coords.x = (int)utilities::round_by_step(y, step);
 			coords.y = (int)utilities::round_by_step(x, step);
 			//std::cout << y << x << "\n";
 			lockal_line_arr.add_to_back(coords);
 		}
-		else {
+		else 
+		{
 			coords.x = (int)utilities::round_by_step(x, step);
 			coords.y = (int)utilities::round_by_step(y, step);
 			//std::cout << y << x << "\n";

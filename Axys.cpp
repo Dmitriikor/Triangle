@@ -3,12 +3,12 @@
 
 ////void Axys::set_at(Coordinate cell, char symbol)
 ////{
-////	axys_arr_.set_at(cell.i, cell.j, symbol);
+////	Canvas_Matrix.set_at(cell.i, cell.j, symbol);
 ////}
 
 void Axys::remove()
 {
-	axys_arr_.clear();
+	Canvas_Matrix.clear();
 	isMatrixCalculated = false;
 }
 
@@ -18,7 +18,7 @@ void prepare_(Axys & this_)
 	if (this_.points_to_draw_.size() == 0)
 		return;
 
-	this_.axys_arr_.clear();
+	this_.Canvas_Matrix.clear();
 	this_.create();
 	this_.draw_points();
 	this_.isMatrixCalculated = true;
@@ -30,7 +30,7 @@ void prepare_(Axys & this_)
 ////	if (points_to_draw_.size() == 0)
 ////		return;
 ////
-////	axys_arr_.clear();
+////	Canvas_Matrix.clear();
 ////	create();
 ////	draw_points();
 ////	isMatrixCalculated = true;
@@ -45,7 +45,7 @@ void Axys::print() const
 		Axys test = *this;
 		prepare_(test);
 
-		///axys_arr_.clear();
+		///Canvas_Matrix.clear();
 		///create();
 		///draw_points();
 		///isMatrixCalculated = true;
@@ -56,10 +56,10 @@ void Axys::print() const
 	{
 
 	
-	///axys_arr_.clear();
+	///Canvas_Matrix.clear();
 	////create();
 	/////draw_points();
-	axys_arr_.print();
+	Canvas_Matrix.print();
 	//print_f_a(*this);
 	}
 }
@@ -108,16 +108,16 @@ void Axys::create(char axys_arr_fill_symbol)
 	int M_ = M;
 	M = M * 2 + (loc_width_y);
 
-	if (axys_arr_.is_empty()) {
-		axys_arr_ = Matrix<char>(N, M);
-		axys_arr_.fill(axys_arr_fill_symbol);
+	if (Canvas_Matrix.is_empty()) {
+		Canvas_Matrix = Matrix<char>(N, M);
+		Canvas_Matrix.fill(axys_arr_fill_symbol);
 	}
 
 	int or_x = size_N;
 	int or_y = M_ + width_x_ - 1;
 
-	x_axis_filling(axys_arr_, size_M * 2 + 1, -size_M, size_N);
-	y_axis_filling(axys_arr_, N, size_N, M_); //- (loc_width_x + 1) -1, -1,
+	x_axis_filling(Canvas_Matrix, size_M * 2 + 1, -size_M, size_N);
+	y_axis_filling(Canvas_Matrix, N, size_N, M_); //- (loc_width_x + 1) -1, -1,
 
 
 	ORIGIN_.i = or_x;
@@ -128,8 +128,8 @@ void Axys::create(char axys_arr_fill_symbol)
 
 void Axys::draw_points()
 {
-	draw_points_or_line_axys(points_to_draw_, axys_arr_);
-	/// draw_points_(false, true,  axys_arr_);
+	draw_points_or_line_axys(points_to_draw_, Canvas_Matrix);
+	/// draw_points_(false, true,  Canvas_Matrix);
 }
 
 void Axys::draw_points_or_line_axys(Ray<Dot>& loc_arr_to_draw, Matrix<char>& loc_arr) //, Matrix & loc_arr
@@ -159,5 +159,5 @@ void Axys::draw_points_or_line_axys(Ray<Dot>& loc_arr_to_draw, Matrix<char>& loc
 //void print_f_a(Axys& this_)
 //{
 //	std::ofstream out_p(this_.outfile_adress);
-//	print_f_m(this_.axys_arr_, out_p);
+//	print_f_m(this_.Canvas_Matrix, out_p);
 //}
