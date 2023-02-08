@@ -355,22 +355,22 @@ void Canvas_console::remove_line(const Dot& A, const Dot& B)
 /// <param name="symbol">Символ для отрисовки</param>
 void Canvas_console::add_line_points_to_arr_(const Dot& A, const Dot& B, bool is_round, char symbol)
 {
-	const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
+	//const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
 	
 	//const Ray<Dot>& lockal_draw_line_arr_1 = calculate_line_with_rounding(A, B, symbol);
-	//const Ray<Dot>& lockal_draw_line_arr_2 = calculate_line_swap(A, B, symbol);
+	const Ray<Dot>& lockal_draw_line_arr_2 = calculate_line_swap(A, B, symbol);
 
-	size_t length_1 = lockal_draw_line_arr.size();
-	for (size_t i = 0; i < length_1; i++)
-	{
-		points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
-	}
-
-	//size_t length_2 = lockal_draw_line_arr_2.size();
-	//for (size_t i = 0; i < length_2; i++)
+	//size_t length_1 = lockal_draw_line_arr.size();
+	//for (size_t i = 0; i < length_1; i++)
 	//{
-	//	points_to_draw_.add_to_back(lockal_draw_line_arr_2[i]);
+	//	points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
 	//}
+
+	size_t length_2 = lockal_draw_line_arr_2.size();
+	for (size_t i = 0; i < length_2; i++)
+	{
+		points_to_draw_.add_to_back(lockal_draw_line_arr_2[i]);
+	}
 }
 
 Ray<Dot> Canvas_console::calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol)
@@ -465,7 +465,8 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 
 	if (A.x == B.x && A.y == B.y)
 	{
-		return calculate_line_with_rounding(A, B);
+			lockal_line_arr.add_to_back(A);
+			return lockal_line_arr;
 	}
 
 	double x1, y1, x2, y2;
@@ -485,26 +486,28 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 		std::swap(y1, y2);
 	}
 
-	for (int x = x1; x <= x2; x++) {
-		float k = (x - x1) / (float)(x2 - x1);
-		float y = y1 * (1.0 - k) + y2 * k;
+	for (double x = x1; x <= x2; x += 2.0)
+	{
+		double k = ((double)x - x1) / (double)(x2 - x1);
+		double y = y1 * (1.0 - k) + y2 * k;
 
 
 		double step = get_step(coefficient);
-		y = (int)utilities::round_by_step(y, step);
+		//y = (int)utilities::round_by_step(y, step);
 
 		Dot coords;
 		coords.symbol = symbol;
 
 		if (is_swap) {
-			coords.x = y;
-			coords.y = x;
-
+			coords.x = (int)utilities::round_by_step(y, step);
+			coords.y = (int)utilities::round_by_step(x, step);
+			//std::cout << y << x << "\n";
 			lockal_line_arr.add_to_back(coords);
 		}
 		else {
-			coords.x = x;
-			coords.y = y;
+			coords.x = (int)utilities::round_by_step(x, step);
+			coords.y = (int)utilities::round_by_step(y, step);
+			//std::cout << y << x << "\n";
 			lockal_line_arr.add_to_back(coords);
 		}
 	}
