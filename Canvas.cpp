@@ -258,10 +258,15 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 
 void Canvas_console::add_line(const Dot& A, const Dot& B, char symbol)
 {
-	insert(A);
-	insert(B);
+	Dot temp_A = A;
+	temp_A.symbol = symbol;
+	insert(temp_A);
 
-	add_line_points_to_arr_(A, B, false, symbol);
+	Dot temp_B = B;
+	temp_B.symbol = symbol;
+	insert(temp_B);
+
+	add_line_points_to_arr_(temp_A, temp_B, false, symbol);
 }
 
 //void Canvas_console::set_min_max(size_t from, size_t to)

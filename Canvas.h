@@ -36,7 +36,7 @@ class Canvas_console : public Canvas
 protected:
 
 	mutable Coordinate ORIGIN_;
-	mutable Matrix<char> Canvas_Matrix ;
+	mutable Matrix<char> Canvas_Matrix ; 
 	mutable bool isMatrixCalculated = false;
 
 	 int width_x_;
@@ -86,53 +86,45 @@ public:
 	void remove_line(const Dot& A, const Dot& B);
 	void remove_point(const Dot& dl);
 
-	//!!! TO DO: добавить обычную печать
-	void print() const {}
 
-	void test_line()
+	void prepare()
 	{
-
-		Dot one = { 0, 0 };
-		Dot second = { 10, 13 };
-
 		max_min_init();
 
+		for(int i = 0; i<points_to_draw_.size();++i)
+		update_min_max_by(points_to_draw_[i]);
 
-		Ray<Dot>  test_cons_ = calculate_line_with_rounding(one, second,'-');
+		Canvas_Matrix.resize(((std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x)) * 2)+1, ((std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y))* 2)+1); //(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
+		Canvas_Matrix.fill('.');
 
+		Coordinate Test;
 
-
-		update_min_max_by(one);
-		update_min_max_by(second);
-		Canvas_Matrix.resize(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
-		std::cout << test_cons_.size()<< " " << Canvas_Matrix.get_N() << " " << Canvas_Matrix.get_M() << "\n";
-		Canvas_Matrix.fill('*');
-
-		int cntr = 0;
-
-		for (int i = MIN_VIRTUAL_.x; i < MAX_VIRTUAL_.x; i++)
+		for (int i = 0; i < points_to_draw_.size(); ++i) 
 		{
-			for (int j = MIN_VIRTUAL_.y; j < MAX_VIRTUAL_.y; j++)
-			{
-				if (test_cons_[cntr].x == i && test_cons_[cntr].y == j || test_cons_[cntr].y == i && test_cons_[cntr].x == j)
-				{
-					Canvas_Matrix[i][j] = test_cons_[cntr].symbol;
+			if (points_to_draw_[i].x < 0)
+				Test.i = std::abs(points_to_draw_[i].x);
+			else
+				Test.i = std::abs(MAX_VIRTUAL_.x) + std::abs(points_to_draw_[i].x);
 
-					cntr++;
-				
-				}
-			}
+			if (points_to_draw_[i].y < 0)
+				Test.j = std::abs(MAX_VIRTUAL_.y) + std::abs(points_to_draw_[i].y);
+			else
+				Test.j = std::abs(points_to_draw_[i].y);
+
+			Canvas_Matrix.set_at(Test.j, Test.i, points_to_draw_[i].symbol);
 		}
 
-		for (int i = 0; i < Canvas_Matrix.get_N(); i++)
-		{
-			for (int j = 0; j < Canvas_Matrix.get_M(); j++)
-			{
-				std::cout << Canvas_Matrix[i][j];
-			}
-			std::cout << std::endl;
-		}
+		isMatrixCalculated = true;
+		print();
+	}
 
+	void print() const
+	{
+		if (!isMatrixCalculated)
+			const_cast<Canvas_console*>(this)->prepare();
+			//prepare();
+		else
+			Canvas_Matrix.print();
 	}
 
 
