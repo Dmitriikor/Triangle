@@ -493,7 +493,7 @@ Ray<Dot> Canvas_console::calculate_line_swap(const Dot& A, const Dot& B, char sy
 		std::swap(y1, y2);
 	}
 
-	for (double x = x1; x <= x2; x += 2.0) // 0.50 
+	for (double x = x1; x <= x2; x += 1.0) // 0.50 
 	{
 		double k = ((double)x - x1) / (double)(x2 - x1);
 		double y = y1 * (1.0 - k) + y2 * k;
