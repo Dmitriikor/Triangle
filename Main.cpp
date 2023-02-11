@@ -155,6 +155,7 @@ int main(int argc, char const* argv[])
 				out_print.add_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(), '*');
 				out_print.add_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(), '*');
 
+				out_print.add_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(),'+');
 
 				out_print.print();
 				out_print.print_to_file();
@@ -173,7 +174,11 @@ int main(int argc, char const* argv[])
 
 
 				Canvas_console ttst;
-				ttst.test_line();
+				ttst.add_line({ 0,0 }, { 0,0 }, '&');
+				ttst.add_line({ 10,10 }, { 1,1 }, '*');
+				ttst.add_line({ 1,1 }, { 10, 10 }, '/');
+				ttst.add_line({ 10,10 }, { 10, 10 }, '&');
+				ttst.print();
 			}
 			int t2;
 			std::cin >> t2;
