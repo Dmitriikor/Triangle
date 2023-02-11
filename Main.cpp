@@ -175,8 +175,8 @@ int main(int argc, char const* argv[])
 
 				Canvas_console ttst;
 				ttst.add_line({ 0,0 }, { 0,0 }, '&');
-				ttst.add_line({ 10,10 }, { 1,1 }, '*');
-				ttst.add_line({ 1,1 }, { 10, 10 }, '/');
+				ttst.add_line({ 1,1 }, { 9, 9 }, '/');
+				ttst.add_line({ -9,-9 }, { -1, -1 }, '\\');
 				ttst.add_line({ 10,10 }, { 10, 10 }, '&');
 				ttst.print();
 			}
