@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Axys.cpp" />
     <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="Canvas_console.cpp" />
     <ClCompile Include="Corner.cpp" />
     <ClCompile Include="Find_Triangle.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="Axys.h" />
     <ClInclude Include="Canvas.h" />
+    <ClInclude Include="Canvas_console.h" />
     <ClInclude Include="Corner.h" />
     <ClInclude Include="Find_Triangle.h" />
     <ClInclude Include="Matrix.h" />

@@ -4,7 +4,7 @@
 
 #define  Corner_H__
 
-#include "Canvas.h"
+#include "Canvas_console.h"
 #include "Matrix.h"
 #include <string>
 #include <iostream>
@@ -28,7 +28,6 @@ private:
 
 	friend void prepare_free(std::ostream& output, Corner& this_);
 	
-
 	std::string outfile_adress = "Corner_out.txt";
 
 	void draw_points_or_line_corner() const; //not for public mb move to Canvas

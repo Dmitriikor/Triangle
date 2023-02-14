@@ -39,8 +39,16 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 //	b.A::p();
 //}
 
+//double (mmm)() noexcept {
+//	return DBL_MAX;
+//}
+
+//double (*mmm2)() = mmm;
+
 int main(int argc, char const* argv[])
 {
+	//mmm();
+
 	while (1) {
 		double t1;
 
@@ -164,6 +172,7 @@ int main(int argc, char const* argv[])
 				//out_print.insert(Fin_Triangle.get_point_array(), '+');
 				///out_print.clear();
 
+				//add vector 
 
 
 				Axys a_out_print;

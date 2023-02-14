@@ -4,12 +4,12 @@
 
 #define  AXYS_H__
 
-#include "Canvas.h"
+#include "Canvas_console.h"
 #include "Point.h"
 #include "Ray.h"
 #include "Matrix.h"
 
-class  Axys : public Canvas_console
+class Axys : public Canvas_console
 {
 public:
 

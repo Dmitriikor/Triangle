@@ -10,7 +10,6 @@
 
 #define Matrix_TEMPLATE_H__
 
-#include <Windows.h>
 #include <stdexcept>
 #include <stdexcept>
 #include <iostream>
