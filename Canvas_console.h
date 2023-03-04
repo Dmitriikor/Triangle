@@ -55,27 +55,20 @@ public:
 
 	void calculate_matrix() const
 	{
-		//max_min_init();
 
-		//for (int i = 0; i < points_to_draw_.size(); ++i)
-			//update_min_max_by(points_to_draw_[i]);
-
-		Canvas_Matrix.resize(((std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x)) * 2) + 1, ((std::abs(MAX_VIRTUAL_.y) + std::abs(MIN_VIRTUAL_.y)) * 2) + 1); //(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
+		double max_value_x = (((std::abs(MAX_VIRTUAL_.x)) > (std::abs(MIN_VIRTUAL_.x))) ? (std::abs(MAX_VIRTUAL_.x)) : (std::abs(MIN_VIRTUAL_.x)))+1;
+		double max_value_y = (((std::abs(MAX_VIRTUAL_.y)) > (std::abs(MIN_VIRTUAL_.y))) ? (std::abs(MAX_VIRTUAL_.y)) : (std::abs(MIN_VIRTUAL_.y)))+1;
+		Canvas_Matrix.resize(max_value_y, max_value_x); //(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
 		Canvas_Matrix.fill(char(46));
 
 		Coordinate Test;
 
 		for (int i = 0; i < points_to_draw_.size(); ++i)
 		{
-			if (points_to_draw_[i].x < 0)
-				Test.i = std::abs(points_to_draw_[i].x);
-			else
-				Test.i = std::abs(MAX_VIRTUAL_.x) + std::abs(points_to_draw_[i].x);
 
-			if (points_to_draw_[i].y < 0)
-				Test.j = std::abs(MAX_VIRTUAL_.y) + std::abs(points_to_draw_[i].y);
-			else
-				Test.j = std::abs(points_to_draw_[i].y);
+				Test.j = std::abs(points_to_draw_[i].x);
+
+				Test.i = std::abs(points_to_draw_[i].y);
 
 			Canvas_Matrix.set_at(Test.i, Test.j, points_to_draw_[i].symbol);
 		}
