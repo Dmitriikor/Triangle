@@ -18,36 +18,36 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Corner.h"
 #include "Axys.h"
 
-//struct A {
-//	void p()
-//	{
-//		std::cout << "1" << std::endl;
-//	}
-//};
-//
-//struct B : A {
-//	void p()
-//	{
-//		std::cout << "2" << std::endl;
-//	}
-//};
-//
-//void foo()
-//{
-//	B b;
-//
-//	b.A::p();
-//}
-
-//double (mmm)() noexcept {
-//	return DBL_MAX;
-//}
-
-//double (*mmm2)() = mmm;
+////struct A {
+////	void p()
+////	{
+////		std::cout << "1" << std::endl;
+////	}
+////};
+////
+////struct B : A {
+////	void p()
+////	{
+////		std::cout << "2" << std::endl;
+////	}
+////};
+////
+////void foo()
+////{
+////	B b;
+////
+////	b.A::p();
+////}
+////
+////double (mmm)() noexcept {
+////	return DBL_MAX;
+////}
+////
+////double (*mmm2)() = mmm;
 
 int main(int argc, char const* argv[])
 {
-	//mmm();
+	////mmm();
 
 	while (1) {
 		double t1;
@@ -155,8 +155,8 @@ int main(int argc, char const* argv[])
 
 				out_print.insert(Fin_Triangle.get_point_array(), '*');
 
-				/*for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
-					copy_to_print.add_to_back(Fin_Triangle.get_point(i));*/
+				////*for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
+				////	copy_to_print.add_to_back(Fin_Triangle.get_point(i));*/
 
 				out_print.insert(copy_to_print);
 				out_print.add_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(), '*');
@@ -168,18 +168,17 @@ int main(int argc, char const* argv[])
 				out_print.print();
 				out_print.print_to_file();
 
-				//out_print.clear();
-				//out_print.insert(Fin_Triangle.get_point_array(), '+');
+				////out_print.clear();
+				////out_print.insert(Fin_Triangle.get_point_array(), '+');
 				///out_print.clear();
 
-				//add vector 
 
 
 				Axys a_out_print;
 				a_out_print += out_print;
 				a_out_print.print();
-				//a_out_print.add_line({ 10,10 }, { -10,-10 }, '*');
-				//a_out_print.print();
+				////a_out_print.add_line({ 10,10 }, { -10,-10 }, '*');
+				////a_out_print.print();
 
 
 				Canvas_console ttst;

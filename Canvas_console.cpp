@@ -1,5 +1,85 @@
 #include "Canvas_console.h"
 
+
+void Canvas_console::update_min_max_by(const Dot& pt)
+{
+	bool is_update = Canvas::update_min_max_by(pt);
+
+	if (is_update == true) {
+	initialize_width();
+	}
+}
+
+
+void Canvas_console::insert(const Dot& pt)
+{
+	if (check_and_insert_point(pt))
+	{
+		update_min_max_by(pt);
+		////initialize_width(); //!!!
+		isMatrixCalculated = false; //!!!
+	}
+}
+
+void Canvas_console::insert(const Ray<Point>& points, char symbol)
+{
+	bool isInserted = false;
+
+	size_t length_arr = points.size();
+	for (size_t i = 0; i < length_arr; i++)
+		if (Canvas::check_and_insert_point(Dot(points[i], symbol)))
+		{
+			update_min_max_by(points[i]);
+
+			isInserted = true;
+		}
+
+	if (isInserted)
+	{
+		////initialize_width(); //!!!
+		isMatrixCalculated = false; //!!!
+	}
+}
+
+void Canvas_console::insert(const Ray<Dot>& points)
+{
+	bool isInserted = false; //!!! return true / false
+
+	size_t length_arr = points.size();
+	for (size_t i = 0; i < length_arr; i++)
+		if (Canvas::check_and_insert_point(points[i]))
+		{
+			update_min_max_by(points[i]);
+			isInserted = true;
+		}
+
+	if (isInserted)
+	{
+		////initialize_width(); //!!!
+		isMatrixCalculated = false;
+	}
+}
+
+Canvas_console& Canvas_console::operator+=(const Canvas_console& other)
+{
+	Canvas_console::insert(other.points_to_draw_);
+
+	return *this;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int get_distance_between(int min_coord, int max_coord)
 {
 	if (min_coord >= 0 && max_coord >= 0)

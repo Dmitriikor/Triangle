@@ -1,6 +1,13 @@
 #include "Axys.h"
 
 
+//Axys& Axys::operator+=(const Axys& other)
+//{
+//	Canvas_console::insert(other.points_to_draw_);
+//
+//	return *this;
+//}
+
 ////void Axys::set_at(Coordinate cell, char symbol)
 ////{
 ////	Canvas_Matrix.set_at(cell.i, cell.j, symbol);
@@ -69,7 +76,7 @@ void Axys::create(char axys_arr_fill_symbol)
 	if (points_to_draw_.size() == 0)
 		return;
 
-	insert(points_to_draw_);
+	//Canvas::insert(points_to_draw_);
 
 	int max_y = MAX_VIRTUAL_.y;
 	int min_y = MIN_VIRTUAL_.y;

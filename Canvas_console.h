@@ -13,7 +13,14 @@ int get_distance_between(int min_coord, int max_coord);
 
 class Canvas_console : public Canvas
 {
+
+
+
 protected:
+	void update_min_max_by(const Dot& pt);
+
+
+
 	mutable Matrix<char> Canvas_Matrix;
 	mutable bool isMatrixCalculated = false;
 
@@ -37,6 +44,13 @@ protected:
 	void y_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location) const;
 
 public:
+
+	void insert(const Dot& pt);
+	void insert(const Ray<Point>& points, char symbol = '.');
+	void insert(const Ray<Dot>& points);
+
+	Canvas_console& operator+=(const Canvas_console& other);
+
 	Canvas_console();
 
 	void calculate_matrix() const

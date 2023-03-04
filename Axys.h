@@ -12,7 +12,7 @@
 class Axys : public Canvas_console
 {
 public:
-
+	////Axys& operator+=(const Axys& other);
 	void create(char axys_arr_fill_symbol = ' ');
 	void remove();
 	void print() const;

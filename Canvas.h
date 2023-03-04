@@ -14,9 +14,10 @@ double get_step(double coefficient);
 
 class Canvas
 {
+	friend class Canvas_console;
 private:
 	void max_min_init();
-	void update_min_max_by(const Dot& pt);
+	bool update_min_max_by(const Dot& pt);
 
 	//void set_min_max(size_t from, size_t to);
 	//bool is_point_in_arr(const Dot& pt);
@@ -34,7 +35,7 @@ protected:
 
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
-
+	int coefficient;
 	Ray<Dot> points_to_draw_;		//free dots to draw
 
 public:

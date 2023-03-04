@@ -19,7 +19,7 @@ void Canvas::max_min_init()
 
 
 
-void Canvas::update_min_max_by(const Dot& pt)
+bool Canvas::update_min_max_by(const Dot& pt)
 {
 	bool is_update = false; // return 
 	if (pt.x > MAX_VIRTUAL_.x) {
@@ -38,45 +38,13 @@ void Canvas::update_min_max_by(const Dot& pt)
 		MIN_VIRTUAL_.y = pt.y;
 		is_update = true;
 	}
-	//if (is_update == true) { //!!!
-	//	initialize_width();
-	//}
+
+	return is_update;
+	////if (is_update == true) { //!!!
+	////	initialize_width();
+	////}
 }
 
-
-//void Canvas_console::set_min_max(size_t from, size_t to)
-//{
-//	MAX_VIRTUAL_ = static_cast<Point>(points_to_draw_[from]);
-//
-//	MIN_VIRTUAL_ = static_cast<Point>(points_to_draw_[from]);
-//
-//	for (size_t i = from + 1; i < to; i++)
-//	{
-//		if (points_to_draw_[i].x > MAX_VIRTUAL_.x)
-//			MAX_VIRTUAL_.x = points_to_draw_[i].x;
-//		else if (points_to_draw_[i].x < MIN_VIRTUAL_.x)
-//			MIN_VIRTUAL_.x = points_to_draw_[i].x;
-//
-//		if (points_to_draw_[i].y > MAX_VIRTUAL_.y)
-//			MAX_VIRTUAL_.y = points_to_draw_[i].y;
-//		else if (points_to_draw_[i].y < MIN_VIRTUAL_.y)
-//			MIN_VIRTUAL_.y = points_to_draw_[i].y;
-//	}
-//}
-
-
-//bool Canvas_console::is_point_in_arr(const Dot& pt)
-//{
-//	size_t length = points_to_draw_.size();
-//	for (size_t i = 0; i < length; i++)
-//	{
-//		if (points_to_draw_[i] == pt)
-//		{
-//			return true;
-//		}
-//	}
-//	return false;
-//}
 
 
 
@@ -90,16 +58,16 @@ void Canvas::update_min_max_by(const Dot& pt)
 /// <param name="symbol">Символ для отрисовки</param>
 void Canvas::add_line_points_to_arr_(const Dot& A, const Dot& B, bool is_round, char symbol)
 {
-	//const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
+	/////const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
 
-	//const Ray<Dot>& lockal_draw_line_arr_1 = calculate_line_with_rounding(A, B, symbol);
+	////const Ray<Dot>& lockal_draw_line_arr_1 = calculate_line_with_rounding(A, B, symbol);
 	const Ray<Dot>& lockal_draw_line_arr_2 = calculate_line_swap(A, B, symbol);
 
-	//size_t length_1 = lockal_draw_line_arr.size();
-	//for (size_t i = 0; i < length_1; i++)
-	//{
-	//	points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
-	//}
+	////size_t length_1 = lockal_draw_line_arr.size();
+	////for (size_t i = 0; i < length_1; i++)
+	////{
+	////	points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
+	////}
 
 	size_t length_2 = lockal_draw_line_arr_2.size();
 	for (size_t i = 0; i < length_2; i++)
@@ -335,8 +303,7 @@ void Canvas::insert(const Ray<Point>& points, char symbol)
 	for (size_t i = 0; i < length_arr; i++)
 		if (check_and_insert_point(Dot(points[i], symbol)))
 		{
-			update_min_max_by(points[i]);
-			isInserted = true;
+			isInserted = update_min_max_by(points[i]);
 		}
 
 	if (isInserted)
