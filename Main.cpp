@@ -182,14 +182,15 @@ int main(int argc, char const* argv[])
 
 
 				Canvas_console ttst;
-				ttst.add_line({ 0,0 }, { 0,0 }, '&');
-				ttst.add_line({ 1,1 }, { 9, 9 }, '/');
-				ttst.add_line({ -9,-9 }, { -1, -1 }, '\\');
-				ttst.add_line({ 10,10 }, { 10, 10 }, '&');
+				///ttst.add_line({ 0,0 }, { 0,0 }, '&');
+				///ttst.add_line({ 1,1 }, { 1,1  }, '/');
+				///ttst.add_line({ 3,1 }, { 3, 1 }, '\\');
+				///ttst.add_line({ 0,10 }, { 10, 0 }, '&');
+				ttst += out_print;
 				ttst.print();
 			}
-			int t2;
-			std::cin >> t2;
+			////int t2;
+			////std::cin >> t2;
 		}
 		catch (const std::runtime_error& exception)
 		{
@@ -198,7 +199,9 @@ int main(int argc, char const* argv[])
 
 		double t2 = clock();
 		std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
+
+	int t2pause;
+	std::cin >> t2pause;
 	}
-	///std::cin >> t2;
 	return 0;
 }
