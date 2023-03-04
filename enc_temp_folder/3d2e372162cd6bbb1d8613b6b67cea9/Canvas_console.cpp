@@ -13,7 +13,7 @@ void Canvas_console::update_min_max_by(const Dot& pt)
 
 void Canvas_console::insert(const Dot& pt)
 {
-	if (Canvas::check_and_insert_point(pt))
+	if (check_and_insert_point(pt))
 	{
 		update_min_max_by(pt);
 		////initialize_width(); //!!!
