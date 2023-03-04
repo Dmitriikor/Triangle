@@ -54,7 +54,7 @@ int main(int argc, char const* argv[])
 
 		try
 		{
-			size_t n_points = 0;
+			size_t n_points = 10;
 			while (true)
 			{
 				if (n_points >= 3)
@@ -73,8 +73,10 @@ int main(int argc, char const* argv[])
 			std::cout << "Choise output file settings:\n";
 			std::cout << "\t 1 Save file in root folder, \n";
 			std::cout << "\t 2 Or manual path to save : \n";
+			case_to_output_file_patch_switch = 1;
 
-			std::cin >> case_to_output_file_patch_switch;
+			////std::cin >> case_to_output_file_patch_switch;
+
 			std::string path_in;
 			std::string path_out;
 
@@ -108,8 +110,10 @@ int main(int argc, char const* argv[])
 			std::cout << "\t 3 automatically generate random points \n";
 
 			int input_switch;
-			std::cin >> input_switch;
-			std::cin.ignore(MAX_STREAMSIZE, '\n');
+			input_switch = 3;
+
+			////std::cin >> input_switch;
+			////std::cin.ignore(MAX_STREAMSIZE, '\n');
 
 			if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
 				std::cout << "PROGRAM OVER\n";
@@ -201,7 +205,7 @@ int main(int argc, char const* argv[])
 		std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 
 	int t2pause;
-	std::cin >> t2pause;
+	////std::cin >> t2pause;
 	}
 	return 0;
 }
