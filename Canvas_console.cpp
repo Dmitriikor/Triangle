@@ -1,14 +1,16 @@
 #include "Canvas_console.h"
 
+static int get_distance_between(int min_coord, int max_coord);
 
-void Canvas_console::update_min_max_by(const Dot& pt)
-{
-	bool is_update = Canvas::update_min_max_by(pt);
-
-	if (is_update == true) {
-	initialize_width();
-	}
-}
+//void Canvas_console::update_min_max_by(const Dot& pt)
+//{
+//	bool is_update = Canvas::update_min_max_by(pt);
+//
+//	if (is_update == true)
+//	{
+//		initialize_width();
+//	}
+//}
 
 
 void Canvas_console::insert(const Dot& pt)
@@ -23,18 +25,8 @@ void Canvas_console::insert(const Dot& pt)
 
 void Canvas_console::insert(const Ray<Point>& points, char symbol)
 {
-	bool isInserted = false;
 
-	size_t length_arr = points.size();
-	for (size_t i = 0; i < length_arr; i++)
-		if (Canvas::check_and_insert_point(Dot(points[i], symbol)))
-		{
-			update_min_max_by(points[i]);
-
-			isInserted = true;
-		}
-
-	if (isInserted)
+	if (Canvas::insert(points, symbol))
 	{
 		////initialize_width(); //!!!
 		isMatrixCalculated = false; //!!!
@@ -111,19 +103,19 @@ void Canvas_console::initialize_width() {
 	width_x_ = 1;
 	width_y_ = 1;
 
-	if (MIN_VIRTUAL_.y < 0)
+	if (MIN_VIRTUAL().y < 0)
 		width_y_++;
 
-	if (MIN_VIRTUAL_.x < 0)
+	if (MIN_VIRTUAL().x < 0)
 		width_x_++;
 
-	int x = abs(MAX_VIRTUAL_.x) > abs(MIN_VIRTUAL_.x) ? abs(MAX_VIRTUAL_.x) : abs(MIN_VIRTUAL_.x);
+	int x = abs(MAX_VIRTUAL().x) > abs(MIN_VIRTUAL().x) ? abs(MAX_VIRTUAL().x) : abs(MIN_VIRTUAL().x);
 	while (x >= 10) {
 		x = x / 10;
 		width_x_++;
 	}
 
-	int y = abs(MAX_VIRTUAL_.y) > abs(MIN_VIRTUAL_.y) ? abs(MAX_VIRTUAL_.y) : abs(MIN_VIRTUAL_.y);
+	int y = abs(MAX_VIRTUAL().y) > abs(MIN_VIRTUAL().y) ? abs(MAX_VIRTUAL().y) : abs(MIN_VIRTUAL().y);
 	while (y >= 10) {
 		width_y_++;
 		y = y / 10;

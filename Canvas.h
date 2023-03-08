@@ -10,35 +10,30 @@
 #include "utilities.h"
 #include "Is_equal_test.h"
 
-double get_step(double coefficient);
-
 class Canvas
 {
-	///friend class Canvas_console;
+private:
+	void max_min_init_();
+	bool update_min_max_by(const Dot& pt);
+
+	bool remove_no_rounding_line_(const Dot& A, const Dot& B);
+	bool remove_rounding_line_(const Dot& A, const Dot& B);
 
 private:
-	void max_min_init();
-
-	//void set_min_max(size_t from, size_t to);
-	//bool is_point_in_arr(const Dot& pt);
-
-	void add_line_points_to_arr_(const Dot& A, const Dot& B, bool is_round = true, char symbol = '+'); //add point to arr for print
-
-	void remove_no_rounding_line(const Dot& A, const Dot& B);
-	void remove_rounding_line(const Dot& A, const Dot& B);
-
-	Ray<Dot> calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
-	Ray<Dot> calculate_line_swap(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
-
-protected:
-
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
-	int coefficient;
-	Ray<Dot> points_to_draw_;		//free dots to draw
 
-	bool check_and_insert_point(const Dot& pt);  //???
-	bool update_min_max_by(const Dot& pt);       //???
+	//int coefficient_;
+	Ray<Dot> points_to_draw_;
+
+	size_t search_point(const Dot& pt) const;
+
+	static const size_t NOT_POSITION = -1;
+
+protected:
+	const Point& MAX_VIRTUAL() const;
+	const Point& MIN_VIRTUAL() const;
+	const Ray<Dot>& points_to_draw() const;
 
 public:
 	Canvas();
@@ -46,24 +41,17 @@ public:
 	Canvas& operator+=(const Canvas& other);
 	//Canvas operator+(const Canvas& other) const;
 
-	void insert(const Dot& pt);
-	void insert(const Ray<Point>& points, char symbol = '.');
-	void insert(const Ray<Dot>& points); //!!! so it is possible, but it is not necessary here => overload
+	bool insert(const Dot& pt);
+	bool insert(const Ray<Point>& points, char symbol = '.');
+	bool insert(const Ray<Dot>& points);
 
-	void add_line(const Dot& A, const Dot& B, char symbol); //!!! is_round
+	bool remove(const Dot& dl);
 
-	void remove_line(const Dot& A, const Dot& B);
-	void remove_point(const Dot& dl);
+	bool insert_line(const Dot& A, const Dot& B, char symbol);
+
+	bool remove_line(const Dot& A, const Dot& B);
+
+	bool is_point(const Dot& pt) const;
 };
-
-
-
-
-
-
-
-
-
-
 
 #endif //!  CANVAS_H__

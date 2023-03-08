@@ -1,5 +1,9 @@
 ﻿#include "Canvas.h"
 
+static double get_step(double coefficient);
+static Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
+static Ray<Dot> calculate_line_swap_(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
+
 
 double get_step(double coefficient)
 {
@@ -8,7 +12,7 @@ double get_step(double coefficient)
 }
 
 
-void Canvas::max_min_init()
+void Canvas::max_min_init_()
 {
 	MAX_VIRTUAL_.x = std::numeric_limits<double>::lowest();
 	MAX_VIRTUAL_.y = std::numeric_limits<double>::lowest();
@@ -40,67 +44,40 @@ bool Canvas::update_min_max_by(const Dot& pt)
 	}
 
 	return is_update;
-	////if (is_update == true) { //!!!
-	////	initialize_width();
-	////}
 }
 
 
 
-
-/// <summary>
-/// Добавление линии (точек линии) в массив точек (points_to_draw_).
-/// Точки А и B должны быть добавлены на холст!
-/// </summary>
-/// <param name="A">Точка начала (уже должна быть на холсте) </param>
-/// <param name="B">Точка конца (уже должна быть на холсте)</param>
-/// <param name="is_round">Округляем ли</param>
-/// <param name="symbol">Символ для отрисовки</param>
-void Canvas::add_line_points_to_arr_(const Dot& A, const Dot& B, bool is_round, char symbol)
+bool Canvas::remove_rounding_line_(const Dot& A, const Dot& B)
 {
-	/////const Ray<Dot>& lockal_draw_line_arr = is_round ? calculate_line_with_rounding(A, B, symbol) : calculate_line_swap(A, B, symbol);
+	bool isRemoved = false;
 
-	////const Ray<Dot>& lockal_draw_line_arr_1 = calculate_line_with_rounding(A, B, symbol);
-	const Ray<Dot>& lockal_draw_line_arr_2 = calculate_line_swap(A, B, symbol);
+	Ray<Dot> erase_line_arr = calculate_line_with_rounding_(A, B);
 
-	////size_t length_1 = lockal_draw_line_arr.size();
-	////for (size_t i = 0; i < length_1; i++)
-	////{
-	////	points_to_draw_.add_to_back(lockal_draw_line_arr[i]);
-	////}
-
-	size_t length_2 = lockal_draw_line_arr_2.size();
-	for (size_t i = 0; i < length_2; i++)
-	{
-		points_to_draw_.add_to_back(lockal_draw_line_arr_2[i]);
-	}
-}
-
-
-void Canvas::remove_rounding_line(const Dot& A, const Dot& B)
-{
-	Ray<Dot> erase_line_arr;
-
-	erase_line_arr = calculate_line_with_rounding(A, B);
 	for (size_t i = 0; i < erase_line_arr.size(); ++i)
-		remove_point(erase_line_arr[i]);
+		if (remove(erase_line_arr[i]))
+			isRemoved = true;
+
+	return isRemoved;
 }
 
-void Canvas::remove_no_rounding_line(const Dot& A, const Dot& B)
+bool Canvas::remove_no_rounding_line_(const Dot& A, const Dot& B)
 {
-	Ray<Dot> erase_line_arr;
+	bool isRemoved = false;
 
-	erase_line_arr = calculate_line_swap(A, B);
+	Ray<Dot> erase_line_arr = calculate_line_swap_(A, B);
+
 	for (size_t i = 0; i < erase_line_arr.size(); ++i)
-		remove_point(erase_line_arr[i]);
+		if (remove(erase_line_arr[i]))
+			isRemoved = true;
+
+	return isRemoved;
 }
 
 
-Ray<Dot> Canvas::calculate_line_with_rounding(const Dot& A, const Dot& B, char symbol, double coefficient)
+Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol, double coefficient)
 {
 	Ray<Dot> lockal_line_arr;
-
-	Dot coords;
 
 	double min = A.x;
 	double max = B.x;
@@ -124,19 +101,19 @@ Ray<Dot> Canvas::calculate_line_with_rounding(const Dot& A, const Dot& B, char s
 			start = B.y;
 			end = A.y;
 		}
+
 		double step = get_step(coefficient);  /// 1.0 / coefficient;
-		Dot point;
-		point.x = A.x;
+
+		Dot coords(0, 0, symbol);
+		coords.x = A.x;
 		for (double y = start; y >= end; y -= step)
 		{
-			point.y = y;
+			coords.y = y;
 
-			point.x = (int)utilities::round_by_step(point.x, step);
-			point.y = (int)utilities::round_by_step(point.y, step);
+			coords.x = (int)utilities::round_by_step(coords.x, step);
+			coords.y = (int)utilities::round_by_step(coords.y, step);
 
-
-			point.symbol = symbol;
-			lockal_line_arr.add_to_back(point);
+			lockal_line_arr.add_to_back(coords);
 		}
 		return lockal_line_arr;
 	}
@@ -164,8 +141,6 @@ Ray<Dot> Canvas::calculate_line_with_rounding(const Dot& A, const Dot& B, char s
 
 			point.symbol = symbol;
 			lockal_line_arr.add_to_back(point);
-
-
 		}
 	}
 
@@ -173,13 +148,16 @@ Ray<Dot> Canvas::calculate_line_with_rounding(const Dot& A, const Dot& B, char s
 }
 
 
-Ray<Dot> Canvas::calculate_line_swap(const Dot& A, const Dot& B, char symbol, double coefficient)
+Ray<Dot> calculate_line_swap_(const Dot& A, const Dot& B, char symbol, double coefficient)
 {
 	Ray<Dot> lockal_line_arr;
 
 	if (A.x == B.x && A.y == B.y)
 	{
-		lockal_line_arr.add_to_back(A);
+		Dot temp_A = A;
+		temp_A.symbol = symbol;
+
+		lockal_line_arr.add_to_back(temp_A);
 		return lockal_line_arr;
 	}
 
@@ -211,8 +189,7 @@ Ray<Dot> Canvas::calculate_line_swap(const Dot& A, const Dot& B, char symbol, do
 		double step = get_step(coefficient);
 		//y = (int)utilities::round_by_step(y, step);
 
-		Dot coords;
-		coords.symbol = symbol;
+		Dot coords(0, 0, symbol);
 
 		if (is_swap)
 		{
@@ -244,28 +221,34 @@ Ray<Dot> Canvas::calculate_line_swap(const Dot& A, const Dot& B, char symbol, do
 /// <param name="pt"> точка для отрисовки</param>
 /// <returns>
 /// true - вставка осуществлена, false - элемент уже был добавлен </returns>
-bool Canvas::check_and_insert_point(const Dot& pt)
+size_t Canvas::search_point(const Dot& pt) const
 {
-	size_t length = points_to_draw_.size();
-	for (size_t i = 0; i < length; i++)
-	{
+	for (size_t i = 0; i < points_to_draw_.size(); i++)
 		if (points_to_draw_[i] == pt)
-		{
-			points_to_draw_[i].symbol = pt.symbol; //!!! перерисовывается ли
-			return false;
-		}
-	}
+			return i;
 
-	points_to_draw_.add_to_back(pt);
-	return true;
+	return NOT_POSITION;
 }
 
 
+const Point& Canvas::MAX_VIRTUAL() const
+{
+	return MAX_VIRTUAL_;
+}
 
+const Point& Canvas::MIN_VIRTUAL() const
+{
+	return MIN_VIRTUAL_;
+}
+
+const Ray<Dot>& Canvas::points_to_draw() const
+{
+	return points_to_draw_;
+}
 
 Canvas::Canvas()
 {
-	max_min_init();
+	max_min_init_();
 }
 
 Canvas& Canvas::operator+=(const Canvas& other)
@@ -285,88 +268,98 @@ Canvas& Canvas::operator+=(const Canvas& other)
 //}
 
 
-void Canvas::insert(const Dot& pt)
+bool Canvas::insert(const Dot& pt)
 {
-	if (check_and_insert_point(pt))
+	size_t pos = search_point(pt);
+
+	if (pos == NOT_POSITION)
 	{
+		points_to_draw_.add_to_back(pt);
 		update_min_max_by(pt);
-		//initialize_width(); //!!!
-		//isMatrixCalculated = false; //!!!
+		return true;
 	}
+
+	if (points_to_draw_[pos].symbol != pt.symbol) //перерисовывается точка
+	{
+		points_to_draw_[pos].symbol = pt.symbol; 
+		return true;
+	}
+
+	return false;
 }
 
-void Canvas::insert(const Ray<Point>& points, char symbol)
+bool Canvas::insert(const Ray<Point>& points, char symbol)
 {
 	bool isInserted = false;
 
-	size_t length_arr = points.size();
-	for (size_t i = 0; i < length_arr; i++)
-		if (check_and_insert_point(Dot(points[i], symbol)))
-		{
-			isInserted = update_min_max_by(points[i]);
-		}
-
-	if (isInserted)
-	{
-		//initialize_width(); //!!!
-		//isMatrixCalculated = false; //!!!
-	}
-}
-
-void Canvas::insert(const Ray<Dot>& points)
-{
-	bool isInserted = false; //!!! return true / false
-
-	size_t length_arr = points.size();
-	for (size_t i = 0; i < length_arr; i++)
-		if (check_and_insert_point(points[i]))
-		{
-			update_min_max_by(points[i]);
+	for (size_t i = 0; i < points.size(); i++)
+		if (insert(Dot(points[i], symbol)))
 			isInserted = true;
-		}
 
-	if (isInserted)
+	return isInserted;
+}
+
+bool Canvas::insert(const Ray<Dot>& points)
+{
+	bool isInserted = false;
+
+	for (size_t i = 0; i < points.size(); i++)
+		if (insert(points[i]))
+			isInserted = true;
+
+	return isInserted;
+}
+
+
+bool Canvas::insert_line(const Dot& A, const Dot& B, char symbol)
+{
+	bool isInserted = false;
+
+#ifdef SWAP
+	isInserted = insert(calculate_line_swap_(A, B, symbol));
+#elif ROUND
+	isInserted = insert(calculate_line_with_rounding_(A, B, symbol));
+#else
+	isInserted = insert(calculate_line_swap_(A, B, symbol));
+	isInserted = insert(calculate_line_with_rounding_(A, B, symbol)) || isInserted;
+#endif
+
+	return isInserted;
+}
+
+
+bool Canvas::remove_line(const Dot& A, const Dot& B)
+{
+	bool isRemoved = false;
+
+	isRemoved = remove_no_rounding_line_(A, B);
+	isRemoved = remove_rounding_line_(A, B) || isRemoved;
+
+	return isRemoved;
+
+}
+
+//!!! СКОПИРОВАТЬ В КОНСОЛЬНЫЙ
+bool Canvas::remove(const Dot& dot)
+{
+	size_t pos = search_point(dot);
+
+	if (pos != NOT_POSITION)
 	{
-		/*initialize_width(); //!!!
-		isMatrixCalculated = false;*/
+		points_to_draw_.remove(pos);
+
+		//можно обновить MIN, MAX, width
+		//для уменьшения размера холста
+		return true;
 	}
+
+	return false;
 }
 
-
-void Canvas::add_line(const Dot& A, const Dot& B, char symbol)
+bool Canvas::is_point(const Dot& pt) const
 {
-	Dot temp_A = A;
-	temp_A.symbol = symbol;
-	insert(temp_A);
-
-	Dot temp_B = B;
-	temp_B.symbol = symbol;
-	insert(temp_B);
-
-	add_line_points_to_arr_(temp_A, temp_B, false, symbol);
+	if (search_point(pt) != NOT_POSITION)
+		return true;
+	return false;
 }
 
-
-void Canvas::remove_line(const Dot& A, const Dot& B)
-{
-
-	remove_no_rounding_line(A, B);
-	remove_rounding_line(A, B);
-	//isMatrixCalculated = false; //!!!
-}
-
-void Canvas::remove_point(const Dot& dot)
-{
-	for (size_t i = 0; i < points_to_draw_.size(); i++)
-	{
-		if (dot == points_to_draw_[i])
-		{
-			points_to_draw_.remove(i);
-			//isMatrixCalculated = false; //!!!
-
-			//можно обновить MIN, MAX, width
-			//для уменьшения размера холста
-			break;
-		}
-	}
-}

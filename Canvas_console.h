@@ -9,32 +9,27 @@
 #include <string>
 #include <stdexcept>
 
-int get_distance_between(int min_coord, int max_coord);
+
 
 class Canvas_console : public Canvas
 {
-
-
-
+private:
+	static const char EMPTY = ' ';
 protected:
-	void update_min_max_by(const Dot& pt);
-
-
-
-	mutable Matrix<char> Canvas_Matrix;
-	mutable bool isMatrixCalculated = false;
+	Matrix<char> Canvas_Matrix;
+	bool isMatrixCalculated = false;
 
 	//!!! не в наследниках ли?
-	mutable Coordinate ORIGIN_;
+	Coordinate ORIGIN_;
 
 	int width_x_;
 	int width_y_;
 
-	mutable int width_x_with_indent_;
-	mutable int width_y_with_indent_;
+	int width_x_with_indent_;
+	int width_y_with_indent_;
 
 	int axis_x_indents_;
-	int axis_x_strings_; 
+	int axis_x_strings_;
 
 	//
 
@@ -45,42 +40,44 @@ protected:
 
 public:
 
+	Canvas_console();
+
+	Canvas_console& operator+=(const Canvas_console& other);
+
 	void insert(const Dot& pt);
 	void insert(const Ray<Point>& points, char symbol = '.');
 	void insert(const Ray<Dot>& points);
 
-	Canvas_console& operator+=(const Canvas_console& other);
 
-	Canvas_console();
+	virtual void calculate_matrix() = 0;
+	//{
+	//	initialize_width();
 
-	void calculate_matrix() const
-	{
+	//	double max_value_x = std::max(std::abs(MAX_VIRTUAL().x), std::abs(MIN_VIRTUAL().x));
+	//	double max_value_y = std::max(std::abs(MAX_VIRTUAL().y), std::abs(MIN_VIRTUAL().y));
+	//	//double max_value_x = (((std::abs(MAX_VIRTUAL().x)) > (std::abs(MIN_VIRTUAL().x))) ? (std::abs(MAX_VIRTUAL().x)) : (std::abs(MIN_VIRTUAL().x))) + 1;
+	//	//double max_value_y = (((std::abs(MAX_VIRTUAL().y)) > (std::abs(MIN_VIRTUAL().y))) ? (std::abs(MAX_VIRTUAL().y)) : (std::abs(MIN_VIRTUAL().y))) + 1;
+	//	
+	//	Canvas_Matrix.resize(max_value_y, max_value_x); //(std::abs(MAX_VIRTUAL().x) + std::abs(MIN_VIRTUAL().x), std::abs(MAX_VIRTUAL().y)+ std::abs(MIN_VIRTUAL().y));
+	//	Canvas_Matrix.fill(EMPTY);
 
-		double max_value_x = (((std::abs(MAX_VIRTUAL_.x)) > (std::abs(MIN_VIRTUAL_.x))) ? (std::abs(MAX_VIRTUAL_.x)) : (std::abs(MIN_VIRTUAL_.x)))+1;
-		double max_value_y = (((std::abs(MAX_VIRTUAL_.y)) > (std::abs(MIN_VIRTUAL_.y))) ? (std::abs(MAX_VIRTUAL_.y)) : (std::abs(MIN_VIRTUAL_.y)))+1;
-		Canvas_Matrix.resize(max_value_y, max_value_x); //(std::abs(MAX_VIRTUAL_.x) + std::abs(MIN_VIRTUAL_.x), std::abs(MAX_VIRTUAL_.y)+ std::abs(MIN_VIRTUAL_.y));
-		Canvas_Matrix.fill(char(46));
+	//	Coordinate cell;
 
-		Coordinate Test;
+	//	for (int i = 0; i < points_to_draw().size(); ++i)
+	//	{
+	//		cell.j = std::abs(points_to_draw()[i].x);
 
-		for (int i = 0; i < points_to_draw_.size(); ++i)
-		{
+	//		cell.i = std::abs(points_to_draw()[i].y);
 
-				Test.j = std::abs(points_to_draw_[i].x);
+	//		Canvas_Matrix.set_at(cell, points_to_draw()[i].symbol);
+	//	}
 
-				Test.i = std::abs(points_to_draw_[i].y);
-
-			Canvas_Matrix.set_at(Test.i, Test.j, points_to_draw_[i].symbol);
-		}
-
-		isMatrixCalculated = true;
-	}
+	//	isMatrixCalculated = true;
+	//}
 
 	void print() const
 	{
-		if (!isMatrixCalculated)
-			calculate_matrix();
-
+		//cout << ;
 		Canvas_Matrix.print();
 	}
 };

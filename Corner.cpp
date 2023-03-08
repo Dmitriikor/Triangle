@@ -126,11 +126,11 @@ void Corner::create(char axys_arr_fill_symbol) const
 {
 	//!!! Coordinate
 
-	int max_y = MAX_VIRTUAL_.y;
-	int min_y = MIN_VIRTUAL_.y;
+	int max_y = MAX_VIRTUAL().y;
+	int min_y = MIN_VIRTUAL().y;
 
-	int max_x = MAX_VIRTUAL_.x;
-	int min_x = MIN_VIRTUAL_.x;
+	int max_x = MAX_VIRTUAL().x;
+	int min_x = MIN_VIRTUAL().x;
 
 	{
 		size_t N, M;

@@ -29,6 +29,11 @@ private:
 	void draw_points_or_line_axys(Ray<Dot>& loc_arr_to_draw, Matrix<char>& loc_arr);
 
 	//friend void print_f_a(Axys& this_);
+
+	void calculate_matrix() override
+	{
+
+	}
 };
 
 #endif //!  AXYS_H__
