@@ -1,92 +1,122 @@
 #include "Canvas_console.h"
 
-static int get_distance_between(int min_coord, int max_coord);
 
-//void Canvas_console::update_min_max_by(const Dot& pt)
-//{
-//	bool is_update = Canvas::update_min_max_by(pt);
-//
-//	if (is_update == true)
-//	{
-//		initialize_width();
-//	}
-//}
+
+char Canvas_console::EMPTY() const
+{
+	return EMPTY_;
+}
+
+
+Matrix<char>& Canvas_console::Canvas_Matrix_()
+{
+	return Canvas_Matrix;
+}
+
+Matrix<char> Canvas_console::Canvas_Matrix_() const
+{
+	return Canvas_Matrix;
+}
+
+void Canvas_console::isMatrixCalculated(bool isMatrixCalculated) 
+{
+	 isMatrixCalculated_= isMatrixCalculated;
+}
+
+bool Canvas_console::isMatrixCalculated() const
+{
+	return isMatrixCalculated_;
+}
+
+int Canvas_console::width_x() const
+{
+	return width_x_;
+}
+
+int Canvas_console::width_y() const
+{
+	return width_y_;
+}
+
+int Canvas_console::width_x_with_indent() 
+{
+	return width_x_with_indent_ == width_x() + axis_x_indents_;
+}
+
+int Canvas_console::width_y_with_indent() 
+{
+	return width_y_with_indent_ = width_y() + indent;
+	
+}
+
+int Canvas_console::axis_x_indents() const
+{
+	return axis_x_indents_;
+}
+
+int Canvas_console::axis_x_strings() const
+{
+	return axis_x_strings_;
+}
+
+
+
+void Canvas_console::check_after_insert()
+{
+	if (((old_max.x < MAX_VIRTUAL().x) || (old_max.y < MAX_VIRTUAL().y)) || ((old_min.y > MIN_VIRTUAL().y) || (old_min.y > MIN_VIRTUAL().y)))
+	{
+		initialize_width();
+
+		old_max = MAX_VIRTUAL();
+		old_min = MIN_VIRTUAL();
+	}
+
+	isMatrixCalculated(false) ; //!!!
+}
+
+void Canvas_console::insert_line(const Dot& A, const Dot& B, char symbol)
+{
+	if (Canvas::insert_line(A, B, symbol))
+	{
+		check_after_insert();
+	}
+}
+
+void Canvas_console::remove_line(const Dot& A, const Dot& B)
+{
+	if (Canvas::remove_line(A, B))
+	{
+		check_after_insert();
+	}
+}
 
 
 void Canvas_console::insert(const Dot& pt)
 {
-	if (Canvas::check_and_insert_point(pt))
+	if (Canvas::insert(pt))
 	{
-		update_min_max_by(pt);
-		////initialize_width(); //!!!
-		isMatrixCalculated = false; //!!!
+		check_after_insert();
 	}
 }
 
 void Canvas_console::insert(const Ray<Point>& points, char symbol)
 {
-
 	if (Canvas::insert(points, symbol))
 	{
-		////initialize_width(); //!!!
-		isMatrixCalculated = false; //!!!
+		check_after_insert();
 	}
 }
 
 void Canvas_console::insert(const Ray<Dot>& points)
 {
-	bool isInserted = false; //!!! return true / false
-
-	size_t length_arr = points.size();
-	for (size_t i = 0; i < length_arr; i++)
-		if (Canvas::check_and_insert_point(points[i]))
-		{
-			update_min_max_by(points[i]);
-			isInserted = true;
-		}
-
-	if (isInserted)
+	if (Canvas::insert(points))
 	{
-		////initialize_width(); //!!!
-		isMatrixCalculated = false;
+		check_after_insert();
 	}
-}
-
-Canvas_console& Canvas_console::operator+=(const Canvas_console& other)
-{
-	Canvas_console::insert(other.points_to_draw_);
-
-	return *this;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int get_distance_between(int min_coord, int max_coord)
-{
-	if (min_coord >= 0 && max_coord >= 0)
-		return abs(max_coord);
-
-	if (min_coord <= 0 && max_coord <= 0)
-		return abs(min_coord);
-
-	return abs(max_coord) + abs(min_coord);
 }
 
 Canvas_console::Canvas_console() :Canvas()
 {
-	ORIGIN_.i = 0;
-	ORIGIN_.j = 0;
 	width_x_ = -1;
 	width_y_ = -1;
 
@@ -95,8 +125,10 @@ Canvas_console::Canvas_console() :Canvas()
 
 	width_x_with_indent_ = -1;
 	width_y_with_indent_ = -1;
-
-	coefficient = 1;
+	
+	old_max = MAX_VIRTUAL();
+	old_min = MIN_VIRTUAL();
+	indent = 1;
 }
 
 void Canvas_console::initialize_width() {
@@ -125,15 +157,15 @@ void Canvas_console::initialize_width() {
 
 
 
-void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int min_x, int axis_location) const
+void Canvas_console::x_axis_filling(size_t axis_length, int min_x, int axis_location)
 {
 	size_t N = axis_length;
 
-	for (size_t i = 0; i < N; i++)
+	for (int i = 0; i < N; i++)
 	{
-		int temp_x = min_x + i;
+		 int temp_x = min_x + i;
 
-		arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1u), '|');
+		 Canvas_Matrix_().set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1u), '|');
 
 		int abs_x = fabs(temp_x);
 		int j;
@@ -141,26 +173,26 @@ void Canvas_console::x_axis_filling(Matrix<char>& arr, size_t axis_length, int m
 		{
 			int digit = abs_x % 10;
 
-			arr.set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + j, '0' + digit);
+			Canvas_Matrix_().set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + j, '0' + digit);
 
 			abs_x = abs_x / 10;
 
 			if (abs_x == 0)
 				break;
 		}
-
+		///Canvas_Matrix_().print();
 		if (j == -1)
 		{
-			arr.print();
+			Canvas_Matrix_().print();
 			throw std::runtime_error("hello.cpp -> create -> WRONG WIDTH_X");
 		}
 
 		if (temp_x < 0)
-			arr.set_at(axis_location, (width_y_with_indent_ + (i * width_x_with_indent_) + j) - 1, '-');
+			Canvas_Matrix_().set_at(axis_location, (width_y_with_indent_ + (i * width_x_with_indent_) + j) - 1, '-');
 	}
 }
 
-void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int start_i, int axis_location) const
+void Canvas_console::y_axis_filling(size_t axis_length, int start_i, int axis_location)
 {
 	for (size_t i = 0; i < axis_length; ++i)
 	{
@@ -168,11 +200,11 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 
 		int abs_y = fabs(temp_y);
 		int j;
-		for (j = width_y_with_indent_ - 1; j >= 0; --j)
+		for (j = width_y_with_indent() - 1; j >= 0; --j)
 		{
 			int digit = abs_y % 10;
 
-			arr.set_at(i, axis_location + j, '0' + digit);
+			Canvas_Matrix_().set_at(i, axis_location + j, '0' + digit);
 
 			abs_y = abs_y / 10;
 			if (abs_y == 0)
@@ -183,7 +215,7 @@ void Canvas_console::y_axis_filling(Matrix<char>& arr, size_t axis_length, int s
 			throw std::runtime_error("hello.cpp -> create -> WRONG WIDTH_Y");
 
 		if (temp_y < 0) {
-			arr.set_at(i, (0ll + axis_location + j) - 1, '-');
+			Canvas_Matrix_().set_at(i, (0ll + axis_location + j) - 1, '-');
 		}
 	}
 }

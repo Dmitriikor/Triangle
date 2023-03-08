@@ -1,110 +1,116 @@
 #include "Corner.h"
 
 
-void Corner::fill(char fill_symbol)
+void Corner::change_file_path(const std::string& address)
 {
-	create(fill_symbol);
+	std::string outfile_adress = address;
 }
 
-void  Corner::prepare(std::ostream& output) const
+void  Corner::render_and_print(std::ostream& output)
 {
-	if (points_to_draw_.size() == 0)
+	if (points_to_draw().size() == 0)
 		return;
-	Canvas_Matrix.clear();
-	create();
+
+	if (isMatrixCalculated())
+	{
+		print(output);
+		return;
+	}
+
+	Canvas_Matrix_().clear();
+	calculate_matrix();
 	add_points_to_corner();
-	isMatrixCalculated = true;
+	isMatrixCalculated(true);
 
 	print(output);
-	///std::ofstream outfile(outfile_adress);
-	///print(outfile);
 }
 
-////void Corner::print() const
-////{
-////
-////		///this->prepare();
-////		///print_private();
-////	}
-////
-////		Canvas_Matrix.print();
-////		///Canvas_Matrix.clear();
-////		///Canvas_Matrix.fill('*');
-////		///isMatrixCalculated = true;
-////	}
-////}
-
-void Corner::print(std::ostream& output) const
+void Corner::render_matrix()
 {
-	if (!isMatrixCalculated)
-	{
-		//Corner test = *this;
-		//prepare_free(output, test);
-		//test.prepare(output);
-		prepare(output);
-		//const_cast<Corner*>(this)->prepare(output);
-	}
-	else
-	{
+	if (points_to_draw().size() == 0)
+		return;
 
-		for (size_t i = 0; i < Canvas_Matrix.get_N(); i++)
+	Canvas_Matrix_().clear();
+	calculate_matrix();
+	add_points_to_corner();
+	isMatrixCalculated(true);
+}
+
+void Corner::print(std::ostream& output)
+{
+	{
+		for (size_t i = 0; i < Canvas_Matrix_().get_N(); i++)
 		{
-			for (size_t j = 0; j < Canvas_Matrix.get_M(); j++)
+			for (size_t j = 0; j < Canvas_Matrix_().get_M(); j++)
 			{
-				output << Canvas_Matrix[i][j];
+				output << Canvas_Matrix_()[i][j];
 
 			}
 			output << std::endl;
 		}
+
 	}
 }
 
-void Corner::print_to_file() const
+void Corner::print() const
+{
+	{
+		for (size_t i = 0; i < Canvas_Matrix_().get_N(); i++)
+		{
+			for (size_t j = 0; j < Canvas_Matrix_().get_M(); j++)
+			{
+				std::cout << Canvas_Matrix_()[i][j];
+
+			}
+			std::cout << std::endl;
+		}
+
+	}
+}
+
+Corner::Corner() : Canvas_console()
+{
+	ORIGIN_.i = 0;
+	ORIGIN_.j = 0;
+	outfile_adress = "Corner_out.txt";
+}
+
+void Corner::print_to_file()
 {
 	std::ofstream outfile_M(outfile_adress);
 	print(outfile_M);
 };
 
 
-void Corner::add_zero_point()
-{
-	Canvas_Matrix.set_at(ORIGIN_.i, ORIGIN_.j - axis_x_indents_, '0'); //!!!
-}
+////void Corner::add_zero_point()
+////{
+////	Canvas_Matrix_().set_at(ORIGIN_.i, ORIGIN_.j - axis_x_indents(), '0'); //!!!
+////}
 
-void Corner::clear()
-{
-	points_to_draw_.clear();
-	Canvas_Matrix.clear();
 
-	///initialize_width();
-
-	///create();
-	isMatrixCalculated = false;
-}
-
-void Corner::draw_points_or_line_corner() const //, Matrix & loc_arr
+void Corner::moving_points_from_ray_to_matrix() //, Matrix & loc_arr
 {
 	size_t length;
 
-	length = points_to_draw_.size();
+	length = points_to_draw().size();
 
 	for (size_t i = 0; i < length; i++)
 	{
 		Coordinate cell;
 
-		cell.i = ORIGIN_.i - points_to_draw_[i].y;
-		cell.j = (ORIGIN_.j + (points_to_draw_[i].x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
-		if (cell.i >= Canvas_Matrix.get_N() || cell.j >= Canvas_Matrix.get_M())
+		cell.i = ORIGIN_.i - points_to_draw()[i].y;
+		cell.j = (ORIGIN_.j + (points_to_draw()[i].x * (width_x() + axis_x_indents()))) - axis_x_indents();
+		if (cell.i >= Canvas_Matrix_().get_N() || cell.j >= Canvas_Matrix_().get_M())
 			throw std::runtime_error("exception in hello.cpp -> method draw_points : cell >= Canvas_Matrix");
 
-		Canvas_Matrix.set_at(cell.i, cell.j, points_to_draw_[i].symbol); //@symbol
+		Canvas_Matrix_().set_at(cell.i, cell.j, points_to_draw()[i].symbol); //@symbol
 
 	}
 }
 
-void Corner::add_points_to_corner() const
+void Corner::add_points_to_corner()
 {
-	draw_points_or_line_corner();
+	moving_points_from_ray_to_matrix();
 }
 
 
@@ -113,16 +119,16 @@ void Corner::erase_point_from_corner(const Dot& dot)
 	Coordinate cell;
 
 	cell.i = ORIGIN_.i - dot.y;
-	cell.j = (ORIGIN_.j + (dot.x * (width_x_ + axis_x_indents_))) - axis_x_indents_;
+	cell.j = (ORIGIN_.j + (dot.x * (width_x() + axis_x_indents()))) - axis_x_indents();
 
-	if (cell.i < Canvas_Matrix.get_N() - axis_x_indents_ && (cell.j > width_y_ && cell.j < Canvas_Matrix.get_M()))
-		Canvas_Matrix.set_at(cell.i, cell.j, 'E');
+	if (cell.i < Canvas_Matrix_().get_N() - axis_x_indents() && (cell.j > width_y() && cell.j < Canvas_Matrix_().get_M()))
+		Canvas_Matrix_().set_at(cell.i, cell.j, EMPTY());
 	else
-		throw std::runtime_error("exception in hello.cpp -> method erase_point : cell coord");
+		throw std::runtime_error("exception in hello.cpp -> method erase_point : cell coordinates");
 }
 
 //!!! module sub-functions
-void Corner::create(char axys_arr_fill_symbol) const
+void Corner::calculate_matrix()
 {
 	//!!! Coordinate
 
@@ -133,51 +139,42 @@ void Corner::create(char axys_arr_fill_symbol) const
 	int min_x = MIN_VIRTUAL().x;
 
 	{
-		size_t N, M;
 
-		N = get_distance_between(min_y, max_y) + 1;
-		M = get_distance_between(min_x, max_x) + 1;
+		size_t N = utilities::get_distance_between(min_y, max_y) + 1;
+		size_t M = utilities::get_distance_between(min_x, max_x) + 1;
 
-		N = N + axis_x_strings_;
-		M = width_y_ + (M * (width_x_ + axis_x_indents_)) + (width_x_ + axis_x_indents_);
+		N = N + axis_x_strings();
+		M = width_y() + (M * (width_x() + axis_x_indents())) + (width_x() + axis_x_indents());
 
-		if (N > Canvas_Matrix.get_N() || M > Canvas_Matrix.get_M())
+		if (N > Canvas_Matrix_().get_N() || M > Canvas_Matrix_().get_M())
 		{
-			Canvas_Matrix = Matrix<char>(N, M);
-			Canvas_Matrix.fill(axys_arr_fill_symbol);
+			Canvas_Matrix_() = Matrix<char>(N, M);
+			Canvas_Matrix_().fill(EMPTY());
 		}
 	}
 
-	// {print y axis
+	//// {print y axis
 	int start_i = max_y > 0 ? max_y : 0;
 
-	width_y_with_indent_ = width_y_;
-	{
-		int N = Canvas_Matrix.get_N() - axis_x_strings_;
+	////width_y_with_indent() = width_y();
 
-		y_axis_filling(Canvas_Matrix, N, start_i, 0); //???????
+	{
+		int N = Canvas_Matrix_().get_N() - axis_x_strings();
+
+		y_axis_filling(N, start_i, 0); //???????
 	}
 	// }end print y axis
 
-	//{find actual console point of start coodrs
+	//{find actual console point of start coordinates
 	//zero is shifted by max_y from top
 	ORIGIN_.i = start_i;// +width_x_; //!x_axis_thickness
-	//}find actual console point of start coodrs
+	//}find actual console point of start coordinates
 
 	// {print x Axys
 	{
 		int start_x = min_x < 0 ? min_x : 0;
 
-
 		int N__;
-		//if (min_x == max_x)
-		//{
-		//	N__ = abs(min_x) + 1;
-		//}
-		//else if (min_x < 0)
-		//	N__ = abs(min_x) + abs(max_x) + 1;
-		//else
-		//	N__ = max_x + 1;
 
 		if (min_x < 0 && max_x < 0 || min_x > 0 && max_x > 0)
 		{
@@ -187,38 +184,21 @@ void Corner::create(char axys_arr_fill_symbol) const
 		else
 			N__ = std::abs(min_x) + std::abs(max_x) + 1;
 
-		int i_for_x = Canvas_Matrix.get_N() - axis_x_strings_;
+		int i_for_x = Canvas_Matrix_().get_N() - axis_x_strings();
 
-		width_x_with_indent_ = width_x_ + axis_x_indents_;
+		width_x_with_indent_ = width_x() + axis_x_indents();
 
-		x_axis_filling(Canvas_Matrix, N__, start_x, i_for_x);
+		x_axis_filling(N__, start_x, i_for_x);
 
 		// }end print x axis
 
-		//{find actual console point of start coodrs
-		ORIGIN_.j = ((abs(start_x * width_x_with_indent_)) + width_y_ + (width_x_with_indent_ - 1));
+		//{find actual console point of start coordinates
+		ORIGIN_.j = ((abs(start_x * (width_x() + axis_x_indents()))) + width_y() + ((width_x() + axis_x_indents()) - 1));
 	}
-	//}find actual console point of start coodrs
+	//}find actual console point of start coordinates
 	// 
 	//}end of work with axis 
 }
 
-//void Corner::change_file_path(const std::string& adress)
-//{
-//	outfile_adress = adress;
-//}
 
 
-	void  prepare_free(std::ostream& output, Corner& this_)
-	{
-		if (this_.points_to_draw_.size() == 0)
-			return;
-		this_.Canvas_Matrix.clear();
-		this_.create();
-		this_.add_points_to_corner();
-		this_.isMatrixCalculated = true;
-
-		this_.print(output);
-		///std::ofstream outfile(outfile_adress);
-		///print(outfile);
-	}

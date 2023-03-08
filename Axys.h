@@ -1,4 +1,3 @@
-#pragma once
 
 #ifndef AXYS_H__
 
@@ -13,27 +12,18 @@ class Axys : public Canvas_console
 {
 public:
 	////Axys& operator+=(const Axys& other);
-	void create(char axys_arr_fill_symbol = ' ');
 	void remove();
-	void print() const;
+
+	void render_matrix() override;
+	void print() const override;
 
 private:
+	void calculate_matrix() override;
+	Coordinate ORIGIN_;
 
-	friend void prepare_(Axys & this_);
-
-	void draw_points();
 	std::string outfile_adress = "Axys_out.txt";
-	//mutable Matrix<char> Canvas_Matrix;
 
-	 
-	void draw_points_or_line_axys(Ray<Dot>& loc_arr_to_draw, Matrix<char>& loc_arr);
-
-	//friend void print_f_a(Axys& this_);
-
-	void calculate_matrix() override
-	{
-
-	}
+	void moving_points_from_ray_to_matrix();
 };
 
 #endif //!  AXYS_H__

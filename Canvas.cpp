@@ -1,15 +1,8 @@
 ﻿#include "Canvas.h"
 
-static double get_step(double coefficient);
+///static double get_step(double coefficient);
 static Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
 static Ray<Dot> calculate_line_swap_(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
-
-
-double get_step(double coefficient)
-{
-	double step = 1.0 / coefficient;
-	return step;
-}
 
 
 void Canvas::max_min_init_()
@@ -20,8 +13,6 @@ void Canvas::max_min_init_()
 	MIN_VIRTUAL_.x = std::numeric_limits<double>::max();
 	MIN_VIRTUAL_.y = std::numeric_limits<double>::max();
 }
-
-
 
 bool Canvas::update_min_max_by(const Dot& pt)
 {
@@ -45,8 +36,6 @@ bool Canvas::update_min_max_by(const Dot& pt)
 
 	return is_update;
 }
-
-
 
 bool Canvas::remove_rounding_line_(const Dot& A, const Dot& B)
 {
@@ -73,146 +62,6 @@ bool Canvas::remove_no_rounding_line_(const Dot& A, const Dot& B)
 
 	return isRemoved;
 }
-
-
-Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol, double coefficient)
-{
-	Ray<Dot> lockal_line_arr;
-
-	double min = A.x;
-	double max = B.x;
-	if (A.x > B.x) {
-		min = B.x;
-		max = A.x;
-	}
-
-	//double siz_x;
-
-	//if ((min < 0 && max < 0) || (min > 0 && max > 0))
-	//	siz_x = std::abs(max) - std::abs(min);
-	//if ((min <= 0 && max >= 0) || (min >= 0 && max <= 0))
-	//	siz_x = std::abs(max) + std::abs(min);
-
-	if (utilities::isEqual(min, max))
-	{
-		double start = A.y;
-		double end = B.y;
-		if (A.y < B.y) {
-			start = B.y;
-			end = A.y;
-		}
-
-		double step = get_step(coefficient);  /// 1.0 / coefficient;
-
-		Dot coords(0, 0, symbol);
-		coords.x = A.x;
-		for (double y = start; y >= end; y -= step)
-		{
-			coords.y = y;
-
-			coords.x = (int)utilities::round_by_step(coords.x, step);
-			coords.y = (int)utilities::round_by_step(coords.y, step);
-
-			lockal_line_arr.add_to_back(coords);
-		}
-		return lockal_line_arr;
-	}
-
-	double k = (B.y - A.y) / (B.x - A.x);
-	double b_ = k * A.x;
-	double b = A.y - b_;
-
-	double step = get_step(coefficient);  /// 1.0 / coefficient;
-	{
-		double rounded_min = utilities::round_by_step(min, step);
-		double rounded_max = utilities::round_by_step(max, step);
-
-		unsigned N = (rounded_max - rounded_min) / step + 1;
-
-		for (int i = 0; i < N; ++i)
-		{
-
-			Dot point;
-			point.x = rounded_min + i * step;
-			point.y = k * point.x + b;
-
-			point.x = (int)utilities::round_by_step(point.x, step);
-			point.y = (int)utilities::round_by_step(point.y, step);
-
-			point.symbol = symbol;
-			lockal_line_arr.add_to_back(point);
-		}
-	}
-
-	return lockal_line_arr;
-}
-
-
-Ray<Dot> calculate_line_swap_(const Dot& A, const Dot& B, char symbol, double coefficient)
-{
-	Ray<Dot> lockal_line_arr;
-
-	if (A.x == B.x && A.y == B.y)
-	{
-		Dot temp_A = A;
-		temp_A.symbol = symbol;
-
-		lockal_line_arr.add_to_back(temp_A);
-		return lockal_line_arr;
-	}
-
-	double x1, y1, x2, y2;
-	x1 = A.x;
-	y1 = A.y;
-	x2 = B.x;
-	y2 = B.y;
-
-	bool is_swap = false;
-	if (std::abs(x1 - x2) < std::abs(y1 - y2))
-	{
-		std::swap(x1, y1);
-		std::swap(x2, y2);
-		is_swap = true;
-	}
-	if (x1 > x2)
-	{
-		std::swap(x1, x2);
-		std::swap(y1, y2);
-	}
-
-	for (double x = x1; x <= x2; x += 1.0) // 0.50 
-	{
-		double k = ((double)x - x1) / (double)(x2 - x1);
-		double y = y1 * (1.0 - k) + y2 * k;
-
-
-		double step = get_step(coefficient);
-		//y = (int)utilities::round_by_step(y, step);
-
-		Dot coords(0, 0, symbol);
-
-		if (is_swap)
-		{
-			coords.x = (int)utilities::round_by_step(y, step);
-			coords.y = (int)utilities::round_by_step(x, step);
-			//std::cout << y << x << "\n";
-			lockal_line_arr.add_to_back(coords);
-		}
-		else
-		{
-			coords.x = (int)utilities::round_by_step(x, step);
-			coords.y = (int)utilities::round_by_step(y, step);
-			//std::cout << y << x << "\n";
-			lockal_line_arr.add_to_back(coords);
-		}
-	}
-	return lockal_line_arr;
-}
-
-
-
-
-
 
 
 /// <summary>
@@ -258,14 +107,14 @@ Canvas& Canvas::operator+=(const Canvas& other)
 	return *this;
 }
 
-//Canvas Canvas::operator+(const Canvas& other) const
-//{
-//	Canvas temp = *this;
-//
-//	temp += other;
-//
-//	return temp;
-//}
+////Canvas Canvas::operator+(const Canvas& other) const
+////{
+////	Canvas temp = *this;
+////
+////	temp += other;
+////
+////	return temp;
+////}
 
 
 bool Canvas::insert(const Dot& pt)
@@ -279,7 +128,7 @@ bool Canvas::insert(const Dot& pt)
 		return true;
 	}
 
-	if (points_to_draw_[pos].symbol != pt.symbol) //перерисовывается точка
+	if ((pos < points_to_draw_.size()) && points_to_draw_[pos].symbol != pt.symbol) //перерисовывается точка
 	{
 		points_to_draw_[pos].symbol = pt.symbol; 
 		return true;
@@ -363,3 +212,156 @@ bool Canvas::is_point(const Dot& pt) const
 	return false;
 }
 
+
+
+// Повторное объявление функции с внутренней связью в другом файле ->
+// необходимо указать static перед объявлением функции
+// static void get_step();
+double get_step(double coefficient)
+{
+	double step = 1.0 / coefficient;
+	return step;
+}
+
+// Повторное объявление функции с внутренней связью в другом файле ->
+// необходимо указать static перед объявлением функции
+// static void calculate_line_swap_();
+Ray<Dot> calculate_line_swap_(const Dot& A, const Dot& B, char symbol, double coefficient)
+{
+	Ray<Dot> lockal_line_arr;
+
+	if (A.x == B.x && A.y == B.y)
+	{
+		Dot temp_A = A;
+		temp_A.symbol = symbol;
+
+		lockal_line_arr.add_to_back(temp_A);
+		return lockal_line_arr;
+	}
+
+	double	x1 = A.x, 
+			y1 = A.y, 
+			x2 = B.x, 
+			y2 = B.y;
+
+	////x1 = A.x;
+	////y1 = A.y;
+	////x2 = B.x;
+	////y2 = B.y;
+
+	bool is_swap = false;
+	if (std::abs(x1 - x2) < std::abs(y1 - y2))
+	{
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+		is_swap = true;
+	}
+	if (x1 > x2)
+	{
+		std::swap(x1, x2);
+		std::swap(y1, y2);
+	}
+
+	for (double x = x1; x <= x2; x += 1.0) // 0.50 
+	{
+		double k = (x - x1) / (x2 - x1);
+		double y = y1 * (1.0 - k) + y2 * k;
+
+
+		double step = get_step(coefficient);
+		///y = (int)utilities::round_by_step(y, step);
+
+		Dot coords(0, 0, symbol);
+
+		if (is_swap)
+		{
+			coords.x = (int)utilities::round_by_step(y, step);
+			coords.y = (int)utilities::round_by_step(x, step);
+			///std::cout << y << x << "\n";
+			lockal_line_arr.add_to_back(coords);
+		}
+		else
+		{
+			coords.x = (int)utilities::round_by_step(x, step);
+			coords.y = (int)utilities::round_by_step(y, step);
+			///std::cout << y << x << "\n";
+			lockal_line_arr.add_to_back(coords);
+		}
+	}
+	return lockal_line_arr;
+}
+
+// Повторное объявление функции с внутренней связью в другом файле ->
+// необходимо указать static перед объявлением функции
+// static void calculate_line_with_rounding_();
+Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol, double coefficient)
+{
+	Ray<Dot> lockal_line_arr;
+
+	double min = A.x;
+	double max = B.x;
+	if (A.x > B.x) {
+		min = B.x;
+		max = A.x;
+	}
+
+	////double siz_x;
+
+	////if ((min < 0 && max < 0) || (min > 0 && max > 0))
+	////	siz_x = std::abs(max) - std::abs(min);
+	////if ((min <= 0 && max >= 0) || (min >= 0 && max <= 0))
+	////	siz_x = std::abs(max) + std::abs(min);
+
+	if (utilities::isEqual(min, max))
+	{
+		double start = A.y;
+		double end = B.y;
+		if (A.y < B.y) {
+			start = B.y;
+			end = A.y;
+		}
+
+		double step = get_step(coefficient);  /// 1.0 / coefficient;
+
+		Dot coords(0, 0, symbol);
+		coords.x = A.x;
+		for (double y = start; y >= end; y -= step)
+		{
+			coords.y = y;
+
+			coords.x = (int)utilities::round_by_step(coords.x, step);
+			coords.y = (int)utilities::round_by_step(coords.y, step);
+
+			lockal_line_arr.add_to_back(coords);
+		}
+		return lockal_line_arr;
+	}
+
+	double k = (B.y - A.y) / (B.x - A.x);
+	double b_ = k * A.x;
+	double b = A.y - b_;
+
+	double step = get_step(coefficient);  /// 1.0 / coefficient;
+	{
+		double rounded_min = utilities::round_by_step(min, step);
+		double rounded_max = utilities::round_by_step(max, step);
+
+		////unsigned N = (rounded_max - rounded_min) / step + 1;
+		double N = (rounded_max - rounded_min) / step + 1;
+		for (int i = 0; i < N; ++i)
+		{
+
+			Dot point;
+			point.x = rounded_min + i * step;
+			point.y = k * point.x + b;
+
+			point.x = (int)utilities::round_by_step(point.x, step);
+			point.y = (int)utilities::round_by_step(point.y, step);
+
+			point.symbol = symbol;
+			lockal_line_arr.add_to_back(point);
+		}
+	}
+
+	return lockal_line_arr;
+}

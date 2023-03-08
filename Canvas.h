@@ -19,11 +19,10 @@ private:
 	bool remove_no_rounding_line_(const Dot& A, const Dot& B);
 	bool remove_rounding_line_(const Dot& A, const Dot& B);
 
-private:
 	Point MAX_VIRTUAL_;
 	Point MIN_VIRTUAL_;
 
-	//int coefficient_;
+	///int coefficient_;
 	Ray<Dot> points_to_draw_;
 
 	size_t search_point(const Dot& pt) const;
@@ -52,6 +51,8 @@ public:
 	bool remove_line(const Dot& A, const Dot& B);
 
 	bool is_point(const Dot& pt) const;
+
+	~Canvas() = default;
 };
 
 #endif //!  CANVAS_H__

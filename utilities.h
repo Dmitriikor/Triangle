@@ -25,7 +25,7 @@ namespace utilities
 
 	 bool isEqual(long double a, long double b, long double eps = 1e-5);
 
-
+	 int get_distance_between(int min_coord, int max_coord);
 
 };
 

@@ -17,7 +17,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include "Find_Triangle.h"
 #include "Corner.h"
 #include "Axys.h"
-
+#include "Direct_draw.h"
 
 #include <codecvt>
 #include <string>
@@ -76,7 +76,9 @@ void on_button_click_2(nana::label &lbl_for_button_funct)
 int main(int argc, char const* argv[])
 {
 	// Скрыть консольное окно
-	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+
+	HWND consoleWindow = GetConsoleWindow();
+	::ShowWindow(consoleWindow, SW_HIDE);
 
 	////mmm();
 	try
@@ -109,7 +111,6 @@ int main(int argc, char const* argv[])
 		button.events().click(std::bind(on_button_click_2, std::ref(lbl_for_button_funct)));
 
 
-
 		form.show();
 		nana::exec();
 
@@ -119,14 +120,18 @@ int main(int argc, char const* argv[])
 			std::cout << "\n\texception :  " << exception.what() << std::endl;
 		}
 
- 
+		Sleep(2000);
+		::ShowWindow(consoleWindow, SW_SHOW);
+		std::cin.ignore(MAX_STREAMSIZE, '\n');
+
 	
 	while (1) {
 		double t1;
 
 		try
 		{
-			size_t n_points = 10;
+			size_t n_points = 0;
+
 			while (true)
 			{
 				if (n_points >= 3)
@@ -145,9 +150,10 @@ int main(int argc, char const* argv[])
 			std::cout << "Choise output file settings:\n";
 			std::cout << "\t 1 Save file in root folder, \n";
 			std::cout << "\t 2 Or manual path to save : \n";
-			case_to_output_file_patch_switch = 1;
 
-			////std::cin >> case_to_output_file_patch_switch;
+			////case_to_output_file_patch_switch = 1;
+
+			std::cin >> case_to_output_file_patch_switch;
 
 			std::string path_in;
 			std::string path_out;
@@ -182,10 +188,12 @@ int main(int argc, char const* argv[])
 			std::cout << "\t 3 automatically generate random points \n";
 
 			int input_switch;
-			input_switch = 3;
+			//input_switch = 3;
 
-			////std::cin >> input_switch;
-			////std::cin.ignore(MAX_STREAMSIZE, '\n');
+			std::cin >> input_switch;
+
+
+			std::cin.ignore(MAX_STREAMSIZE, '\n');
 
 			if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
 				std::cout << "PROGRAM OVER\n";
@@ -217,7 +225,6 @@ int main(int argc, char const* argv[])
 				point_arr.add_to_back(temp);
 			}
 
-
 			t1 = clock();
 
 
@@ -241,6 +248,7 @@ int main(int argc, char const* argv[])
 
 				out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(),'+');
 
+				out_print.render_matrix();
 				out_print.print();
 				out_print.print_to_file();
 
@@ -252,21 +260,28 @@ int main(int argc, char const* argv[])
 
 				Axys a_out_print;
 				a_out_print += out_print;
+				a_out_print.render_matrix();
 				a_out_print.print();
-				////a_out_print.insert_line({ 10,10 }, { -10,-10 }, '*');
-				////a_out_print.print();
+				a_out_print.insert_line({ 10,10 }, { -10,-10 }, '*');
+				a_out_print.render_matrix();
+				a_out_print.print();
+				a_out_print.remove_line({ 10,10 }, { -10,-10 });
+				a_out_print.render_matrix();
+				a_out_print.print();
 
 
-				Canvas_console ttst;
+
+				Direct_draw ttst;
 				///ttst.insert_line({ 0,0 }, { 0,0 }, '&');
 				///ttst.insert_line({ 1,1 }, { 1,1  }, '/');
 				///ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
 				///ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
 				ttst += out_print;
+				ttst.render_matrix();
 				ttst.print();
 			}
-			////int t2;
-			////std::cin >> t2;
+			int t2;
+			std::cin >> t2;
 		}
 		catch (const std::runtime_error& exception)
 		{

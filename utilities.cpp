@@ -75,6 +75,18 @@ void utilities::fastscan(std::istream& cin)
 }
 
 
+int utilities::get_distance_between(int min_coord, int max_coord)
+{
+	if (min_coord >= 0 && max_coord >= 0)
+		return abs(max_coord);
+
+	if (min_coord <= 0 && max_coord <= 0)
+		return abs(min_coord);
+
+	return abs(max_coord) + abs(min_coord);
+}
+
+
 
 ////Dot* utilities::start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in, std::string path_out)
 ////{
