@@ -69,7 +69,7 @@ void on_button_click()
 void on_button_click_2(nana::label &lbl_for_button_funct)
 {
 	lbl_for_button_funct.caption("Button was clicked");
-	std::cout << "Button clicked!" << std::endl;
+	std::cout << "Button clicked-2!" << std::endl;
 }
 
 
