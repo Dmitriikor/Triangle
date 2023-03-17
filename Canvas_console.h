@@ -15,12 +15,8 @@ class Canvas_console : public Canvas
 {
 private:
 
-	Point  old_max;
-	Point  old_min;
-
 	int width_x_;
 	int width_y_;
-
 
 	int axis_x_indents_;
 	int axis_x_strings_;
@@ -32,20 +28,19 @@ private:
 
 	static const char EMPTY_ = ' ';
 
-protected:
 	void check_after_insert();
-
 
 	int width_x_with_indent_;
 	int width_y_with_indent_;
+protected:
+	bool isMatrixCalculated() const;
+	//void isMatrixCalculated(bool isMatrixCalculated);
+
+	Matrix<char>& Canvas_Matrix();
 
 	char EMPTY() const;
 
-	void isMatrixCalculated(bool isMatrixCalculated);
-	bool isMatrixCalculated()const;
-
-	Matrix<char>& Canvas_Matrix_();
-	Matrix<char> Canvas_Matrix_() const;
+	
 
 	//!!! не в наследниках ли?
 
@@ -66,13 +61,16 @@ protected:
 	void x_axis_filling(size_t axis_length, int min_x, int axis_location);
 	void y_axis_filling(size_t axis_length, int min_x, int axis_location);
 
+	//virtual void calculate_width_x_with_indent() = 0;
+	//virtual void calculate_width_y_with_indent() = 0;
+
 	virtual void calculate_matrix() = 0;
 
 public:
 
 	Canvas_console();
 
-	///Canvas_console& operator+=(const Canvas_console& other);
+	Canvas_console& operator+=(const Canvas_console& other);
 
 	void insert(const Dot& pt);
 	void insert(const Ray<Point>& points, char symbol = '.');

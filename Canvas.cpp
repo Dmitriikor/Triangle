@@ -14,53 +14,55 @@ void Canvas::max_min_init_()
 	MIN_VIRTUAL_.y = std::numeric_limits<double>::max();
 }
 
-bool Canvas::update_min_max_by(const Dot& pt)
+void Canvas::update_min_max_by(const Dot& pt)
 {
-	bool is_update = false; // return 
+	is_last_change_update_min_ = false;
+	is_last_change_update_max_ = false;
+
 	if (pt.x > MAX_VIRTUAL_.x) {
 		MAX_VIRTUAL_.x = pt.x;
-		is_update = true;
+		is_last_change_update_max_ = true;
 	}
 	if (pt.y > MAX_VIRTUAL_.y) {
 		MAX_VIRTUAL_.y = pt.y;
-		is_update = true;
+		is_last_change_update_max_ = true;
 	}
 	if (pt.x < MIN_VIRTUAL_.x) {
 		MIN_VIRTUAL_.x = pt.x;
-		is_update = true;
+		is_last_change_update_min_ = true;
 	}
 	if (pt.y < MIN_VIRTUAL_.y) {
 		MIN_VIRTUAL_.y = pt.y;
-		is_update = true;
+		is_last_change_update_min_ = true;
+	}
+}
+
+void Canvas::remove(const Ray<Point>& points)
+{
+	bool isRemoved = false;
+
+	for (size_t i = 0; i < points.size(); ++i)
+	{
+		remove(points[i]);
+		if (is_last_change_update_points_)
+			isRemoved = true;
 	}
 
-	return is_update;
+	is_last_change_update_points_ = isRemoved;
 }
 
-bool Canvas::remove_rounding_line_(const Dot& A, const Dot& B)
+void Canvas::remove(const Ray<Dot>& points)
 {
 	bool isRemoved = false;
 
-	Ray<Dot> erase_line_arr = calculate_line_with_rounding_(A, B);
-
-	for (size_t i = 0; i < erase_line_arr.size(); ++i)
-		if (remove(erase_line_arr[i]))
+	for (size_t i = 0; i < points.size(); ++i)
+	{
+		remove(points[i]);
+		if (is_last_change_update_points_)
 			isRemoved = true;
+	}
 
-	return isRemoved;
-}
-
-bool Canvas::remove_no_rounding_line_(const Dot& A, const Dot& B)
-{
-	bool isRemoved = false;
-
-	Ray<Dot> erase_line_arr = calculate_line_swap_(A, B);
-
-	for (size_t i = 0; i < erase_line_arr.size(); ++i)
-		if (remove(erase_line_arr[i]))
-			isRemoved = true;
-
-	return isRemoved;
+	is_last_change_update_points_ = isRemoved;
 }
 
 
@@ -95,6 +97,21 @@ const Ray<Dot>& Canvas::points_to_draw() const
 	return points_to_draw_;
 }
 
+bool Canvas::is_last_change_update_points() const
+{
+	return is_last_change_update_points_;
+}
+
+bool Canvas::is_last_change_update_min() const
+{
+	return is_last_change_update_min_;
+}
+
+bool Canvas::is_last_change_update_max() const
+{
+	return is_last_change_update_max_;
+}
+
 Canvas::Canvas()
 {
 	max_min_init_();
@@ -117,92 +134,106 @@ Canvas& Canvas::operator+=(const Canvas& other)
 ////}
 
 
-bool Canvas::insert(const Dot& pt)
+void Canvas::insert(const Dot& pt)
 {
+	is_last_change_update_points_ = false;
+
 	size_t pos = search_point(pt);
 
 	if (pos == NOT_POSITION)
 	{
 		points_to_draw_.add_to_back(pt);
-		update_min_max_by(pt);
-		return true;
+		update_min_max_by(pt); //!!!!!!!!!! ЛОВИМ И ЧТО_ТО ДЕЛАЕМ
+		is_last_change_update_points_ = true;
 	}
+	else
+		if (points_to_draw_[pos].symbol != pt.symbol) //перерисовывается точка
+		{
+			points_to_draw_[pos].symbol = pt.symbol;
+			is_last_change_update_points_ = true;
+		}
+}
 
-	if ((pos < points_to_draw_.size()) && points_to_draw_[pos].symbol != pt.symbol) //перерисовывается точка
+void insert(const Point& pt, char symbol = '.')
+{
+	insert(Dot(pt, symbol));
+}
+
+void Canvas::insert(const Ray<Point>& points, char symbol)
+{
+	bool isInserted = false;
+
+	for (size_t i = 0; i < points.size(); i++)
 	{
-		points_to_draw_[pos].symbol = pt.symbol; 
-		return true;
+		insert(points[i], symbol);
+		if (is_last_change_update_points_)
+			isInserted = true;
 	}
 
-	return false;
+	is_last_change_update_points_ = isInserted;
 }
 
-bool Canvas::insert(const Ray<Point>& points, char symbol)
+void Canvas::insert(const Ray<Dot>& points)
 {
 	bool isInserted = false;
 
 	for (size_t i = 0; i < points.size(); i++)
-		if (insert(Dot(points[i], symbol)))
+	{
+		insert(points[i]);
+		if (is_last_change_update_points_)
 			isInserted = true;
+	}
 
-	return isInserted;
-}
-
-bool Canvas::insert(const Ray<Dot>& points)
-{
-	bool isInserted = false;
-
-	for (size_t i = 0; i < points.size(); i++)
-		if (insert(points[i]))
-			isInserted = true;
-
-	return isInserted;
+	is_last_change_update_points_ = isInserted;
 }
 
 
-bool Canvas::insert_line(const Dot& A, const Dot& B, char symbol)
+void Canvas::insert_line(const Dot& A, const Dot& B, char symbol)
 {
-	bool isInserted = false;
-
 #ifdef SWAP
-	isInserted = insert(calculate_line_swap_(A, B, symbol));
+	insert(calculate_line_swap_(A, B, symbol));
 #elif ROUND
-	isInserted = insert(calculate_line_with_rounding_(A, B, symbol));
+	insert(calculate_line_with_rounding_(A, B, symbol));
 #else
-	isInserted = insert(calculate_line_swap_(A, B, symbol));
-	isInserted = insert(calculate_line_with_rounding_(A, B, symbol)) || isInserted;
+	bool isInserted;
+
+	insert(calculate_line_swap_(A, B, symbol));
+	isInserted = is_last_change_update_points_;
+	insert(calculate_line_with_rounding_(A, B, symbol));
+	isInserted = is_last_change_update_points_ || isInserted;
+
+	is_last_change_update_points_ = isInserted;
 #endif
-
-	return isInserted;
 }
 
 
-bool Canvas::remove_line(const Dot& A, const Dot& B)
+void Canvas::remove_line(const Dot& A, const Dot& B)
 {
-	bool isRemoved = false;
+	bool isRemoved;
 
-	isRemoved = remove_no_rounding_line_(A, B);
-	isRemoved = remove_rounding_line_(A, B) || isRemoved;
+	remove(calculate_line_swap_(A, B));
+	isRemoved = is_last_change_update_points_;
+	remove(calculate_line_with_rounding_(A, B));
+	isRemoved = is_last_change_update_points_ || isRemoved;
 
-	return isRemoved;
-
+	is_last_change_update_points_ = isRemoved;
 }
 
-//!!! СКОПИРОВАТЬ В КОНСОЛЬНЫЙ
-bool Canvas::remove(const Dot& dot)
+void Canvas::remove(const Point& dot, bool isUpdateCanvasSizes)
 {
+	is_last_change_update_points_ = false;
+
 	size_t pos = search_point(dot);
 
 	if (pos != NOT_POSITION)
 	{
 		points_to_draw_.remove(pos);
 
-		//можно обновить MIN, MAX, width
-		//для уменьшения размера холста
-		return true;
-	}
+		if (isUpdateCanvasSizes) //если меняем размер холста
+			update_min_max_by(dot);
 
-	return false;
+		is_last_change_update_points_ = true;
+	}
 }
 
 bool Canvas::is_point(const Dot& pt) const
@@ -239,10 +270,10 @@ Ray<Dot> calculate_line_swap_(const Dot& A, const Dot& B, char symbol, double co
 		return lockal_line_arr;
 	}
 
-	double	x1 = A.x, 
-			y1 = A.y, 
-			x2 = B.x, 
-			y2 = B.y;
+	double x1 = A.x,
+		y1 = A.y,
+		x2 = B.x,
+		y2 = B.y;
 
 	////x1 = A.x;
 	////y1 = A.y;
