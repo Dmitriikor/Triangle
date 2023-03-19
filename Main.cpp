@@ -1,12 +1,28 @@
-﻿#include <iostream>
+/**
+
+    @file      Main.cpp
+    @brief     
+    @details   ~
+    @author    Dmitrii
+    @date      19.03.2023
+    @copyright © Dmitrii, 2023. All right reserved.
+
+**/
+
+
+#include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <limits>
 #include <exception>
 #include <utility>
 
+/**
+ * @brief Глобальная переменная, инициализирующаяся до функции main.
+ *
+ * Данная переменная используется для хранения настроек приложения.
+ */
 std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
-///#include "Ray_3_test.h"
 
 #include "Canvas.h"
 #include "Point.h"
@@ -22,55 +38,38 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include <codecvt>
 #include <string>
 #include <locale>
-#pragma execution_character_set("utf-8")
+
+
+#pragma execution_character_set("utf-8") //!< execution_character_set("utf-8") установка кодировки в формат utf-8
 
 #include <nana/gui.hpp>
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/button.hpp>
 
 
-
-//!!! только в конце, иначе портит max
-#include "Windows.h" 
-
-
-////struct A {
-////	void p()
-////	{
-////		std::cout << "1" << std::endl;
-////	}
-////};
-////
-////struct B : A {
-////	void p()
-////	{
-////		std::cout << "2" << std::endl;
-////	}
-////};
-////
-////void foo()
-////{
-////	B b;
-////
-////	b.A::p();
-////}
-////
-////double (mmm)() noexcept {
-////	return DBL_MAX;
-////}
-////
-////double (*mmm2)() = mmm;
-/** 
- * @brief on_button_click
+/**
+* @file Windows.h
+* @brief #include "Windows.h" 
+* только в конце, иначе портит max
 */
+#include "Windows.h"
+
+
+
+/**
+    @fn    on_button_click
+    @brief выводит в консоль текст
+**/
 void on_button_click()
 {
 	std::cout << "Button clicked!" << std::endl;
 }
+
 /**
- * @brief on_button_click_2
- * @param lbl_for_button_funct 
-*/
+    @fn    on_button_click_2
+    @brief принимает по ссылке  nana::label и выводит в нем текст
+    @param lbl_for_button_funct - ссылка на nana::label в котором будет выведено сообщение
+**/
 void on_button_click_2(nana::label &lbl_for_button_funct)
 {
 	lbl_for_button_funct.caption("Button was clicked");
@@ -78,49 +77,47 @@ void on_button_click_2(nana::label &lbl_for_button_funct)
 }
 
 
+
+
+
+/**
+    @brief  main
+    @param  argc - none
+    @param  argv - none
+    @retval      -  при успехе вернет 0
+**/
 int main(int argc, char const* argv[])
 {
-	// Скрыть консольное окно
 
-	HWND consoleWindow = GetConsoleWindow();
-	::ShowWindow(consoleWindow, SW_HIDE);
+																		//!< \warning В param ЗАМЕНЯТЬ ПРОБЕЛЫ НА ALT+255 
 
-	////mmm();
+	setlocale(LC_ALL, "Russian");										//! @param setlocale(LC_ALL, "Russian") - @brief принудительно устанавливает локаль 
+	HWND consoleWindow = GetConsoleWindow();							//! @param HWND_consoleWindow = GetConsoleWindow() - @brief захватывает окно консоли в переменную consoleWindow, типа HWND 
+	::ShowWindow(consoleWindow, SW_HIDE);								//! @param ::ShowWindow(consoleWindow, SW_HIDE) - @brief принимает переменную консоли и скрывает ее 
+						 
 	try
 		{
-
-		setlocale(LC_ALL, "Russian");  //* 1
-
-		std::string input_to_string = "привет мир"; /** 2 */
-
-		nana::form form; //< 3
-		form.caption(input_to_string); /**  @brief 4 */
-
-		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));
-		lbl.caption(input_to_string);
-
-		nana::button button(form, nana::rectangle(10, 40, 200, 25));
-		button.caption("Нажми меня!");
-
-
-		button.events().click(on_button_click);
-
-		nana::label lbl_for_button (form, nana::rectangle(10, 70, 200, 25));
+		std::string input_to_string = "привет мир";						//! @param std::string input_to_string = "привет мир" - @brief инициализированная "привет мир" строка для использования в gui 
+		nana::form form;												//! @param nana::form form - @brief создаем форму(окно)  form с помощью
+		form.caption(input_to_string);									//! @param form.caption(input_to_string) -  @brief захватывает 
+		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));		//! @param nana::label lbl(form, nana::rectangle(10, 10, 200, 25)) - @brief создает nana::label lbl с заданными размерами и местоположением 
+		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - @brief захватываем в  lbl данные из input_to_string 
+		nana::button button(form, nana::rectangle(10, 40, 200, 25));	//! @param nana::button button - @brief  создаем с заданными размерами и местоположением
+		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   @brief захватываем в  button текст "Нажми меня!"  
+		button.events().click(on_button_click);							//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку button
+		nana::label lbl_for_button (form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief lbl_for_button
 		button.events().click([&]() 
 			{
-				lbl_for_button.caption("Button was clicked");
+				lbl_for_button.caption("Button was clicked");			 
 			});
 
-
-		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25));
+		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25)); //! @param nana::rectangle(100, 10, 200, 25) - @brief создаем квадрат, задаем размер и положение
 		button.events().click(std::bind(on_button_click_2, std::ref(lbl_for_button_funct)));
-
 
 		form.show();
 		nana::exec();
 
-	}
-		catch (const std::runtime_error& exception)
+	} catch (const std::runtime_error& exception)
 		{
 			std::cout << "\n\texception :  " << exception.what() << std::endl;
 		}
@@ -130,7 +127,7 @@ int main(int argc, char const* argv[])
 		std::cin.ignore(MAX_STREAMSIZE, '\n');
 
 	
-	while (1) {
+	while (1) { 
 		double t1;
 
 		try
@@ -173,7 +170,7 @@ int main(int argc, char const* argv[])
 			}
 			case 2:
 			{
-				///std::getline (std::cin,name);
+				//std::getline (std::cin,name);
 				std::cout << "\n Enter path_in \n\t";
 				std::getline(std::cin, path_in);
 				std::cout << "\n Enter path_out \n\t";
@@ -200,7 +197,7 @@ int main(int argc, char const* argv[])
 
 			std::cin.ignore(MAX_STREAMSIZE, '\n');
 
-			if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
+			if (input_switch != 1 && input_switch != 2 && input_switch != 3) {   
 				std::cout << "PROGRAM OVER\n";
 				return 0;
 			}
@@ -217,6 +214,7 @@ int main(int argc, char const* argv[])
 
 			if (input_switch == 1)
 				std::cout << "\n \tAttention! Only the above quantity will be taken from the file \n";
+
 			for (size_t i = 0; i < n_points; i++) {
 				Dot temp;
 
@@ -257,9 +255,9 @@ int main(int argc, char const* argv[])
 				out_print.print();
 				out_print.print_to_file();
 
-				////out_print.clear();
-				////out_print.insert(Fin_Triangle.get_point_array(), '+');
-				///out_print.clear();
+				//out_print.clear();
+				//out_print.insert(Fin_Triangle.get_point_array(), '+');
+				//out_print.clear();
 
 
 
@@ -277,10 +275,10 @@ int main(int argc, char const* argv[])
 
 
 				Direct_draw ttst;
-				///ttst.insert_line({ 0,0 }, { 0,0 }, '&');
-				///ttst.insert_line({ 1,1 }, { 1,1  }, '/');
-				///ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
-				///ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
+				//ttst.insert_line({ 0,0 }, { 0,0 }, '&');
+				//ttst.insert_line({ 1,1 }, { 1,1  }, '/');
+				//ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
+				//ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
 				ttst += out_print;
 				ttst.render_matrix();
 				ttst.print();
