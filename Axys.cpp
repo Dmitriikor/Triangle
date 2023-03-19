@@ -42,13 +42,13 @@ void Axys::calculate_matrix()
 	int width_x_loc = width_x();
 	int width_y_loc = width_y();
 
-	/// <Костыльвания>
+	/// 
 	if ((min_x < 0 || min_y < 0) && (fabs(min_x) >= 10 || fabs(min_y) >= 10))
 	{
 		width_x_loc = width_x() - 1;
 	}
 	width_y_loc = width_x();
-	/// </Костыльвания>
+	///
 
 	int N, M;
 	int size_N, size_M;

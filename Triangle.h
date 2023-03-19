@@ -1,4 +1,4 @@
-#ifndef TRIANGLE_TEST_H__
+ο»Ώ#ifndef TRIANGLE_TEST_H__
 
 #define TRIANGLE_TEST_H__
 
@@ -37,7 +37,7 @@ public:
 		return vertex.c;
 	}
 
-	//!!! set'επϋ
+	//!!! set'ΠµΡ€Ρ‹
 
 	Triangle_low() = default;
 

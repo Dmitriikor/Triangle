@@ -1,4 +1,4 @@
-#include "Triangle.h"
+﻿#include "Triangle.h"
 
 double Triangle_hi::count_area() const {
 	double p = (side.AB + side.BC + side.CA) / 2;

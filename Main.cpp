@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <limits>
@@ -30,7 +30,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 
 
 
-//!!! только в конце, иначе портит max
+//!!! С‚РѕР»СЊРєРѕ РІ РєРѕРЅС†Рµ, РёРЅР°С‡Рµ РїРѕСЂС‚РёС‚ max
 #include "Windows.h" 
 
 
@@ -60,12 +60,17 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 ////}
 ////
 ////double (*mmm2)() = mmm;
-
+/** 
+ * @brief on_button_click
+*/
 void on_button_click()
 {
 	std::cout << "Button clicked!" << std::endl;
 }
-
+/**
+ * @brief on_button_click_2
+ * @param lbl_for_button_funct 
+*/
 void on_button_click_2(nana::label &lbl_for_button_funct)
 {
 	lbl_for_button_funct.caption("Button was clicked");
@@ -75,7 +80,7 @@ void on_button_click_2(nana::label &lbl_for_button_funct)
 
 int main(int argc, char const* argv[])
 {
-	// Скрыть консольное окно
+	// РЎРєСЂС‹С‚СЊ РєРѕРЅСЃРѕР»СЊРЅРѕРµ РѕРєРЅРѕ
 
 	HWND consoleWindow = GetConsoleWindow();
 	::ShowWindow(consoleWindow, SW_HIDE);
@@ -84,18 +89,18 @@ int main(int argc, char const* argv[])
 	try
 		{
 
-		setlocale(LC_ALL, "Russian");
+		setlocale(LC_ALL, "Russian");  //* 1
 
-		std::string input_to_string = "привет мир";
+		std::string input_to_string = "РїСЂРёРІРµС‚ РјРёСЂ"; /** 2 */
 
-		nana::form form;
-		form.caption(input_to_string);
+		nana::form form; //< 3
+		form.caption(input_to_string); /**  @brief 4 */
 
 		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));
 		lbl.caption(input_to_string);
 
 		nana::button button(form, nana::rectangle(10, 40, 200, 25));
-		button.caption("Нажми меня!");
+		button.caption("РќР°Р¶РјРё РјРµРЅСЏ!");
 
 
 		button.events().click(on_button_click);

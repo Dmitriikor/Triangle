@@ -1,4 +1,4 @@
-﻿#include "Canvas.h"
+#include "Canvas.h"
 
 ///static double get_step(double coefficient);
 static Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
@@ -67,7 +67,7 @@ void Canvas::remove(const Ray<Dot>& points)
 
 
 /// <summary>
-/// вставка без повторений
+/// insert without repetition
 /// </summary>
 /// <param name="pt"> точка для отрисовки</param>
 /// <returns>
@@ -143,11 +143,11 @@ void Canvas::insert(const Dot& pt)
 	if (pos == NOT_POSITION)
 	{
 		points_to_draw_.add_to_back(pt);
-		update_min_max_by(pt); //!!!!!!!!!! ЛОВИМ И ЧТО_ТО ДЕЛАЕМ
+		update_min_max_by(pt); // WE CATCH AND DO WHAT
 		is_last_change_update_points_ = true;
 	}
 	else
-		if (points_to_draw_[pos].symbol != pt.symbol) //перерисовывается точка
+		if (points_to_draw_[pos].symbol != pt.symbol) //point is redrawn
 		{
 			points_to_draw_[pos].symbol = pt.symbol;
 			is_last_change_update_points_ = true;

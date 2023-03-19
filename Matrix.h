@@ -1,8 +1,8 @@
-///!!!• operator+=
-///!!!• return Matrix <T> operator +
-///!!!• constructor std::move()
-///!!!• operator std::move()
-///!!!• void Matrix<T>::print(std::ostream& output) const
+ï»¿///!!!â€¢ operator+=
+///!!!â€¢ return Matrix <T> operator +
+///!!!â€¢ constructor std::move()
+///!!!â€¢ operator std::move()
+///!!!â€¢ void Matrix<T>::print(std::ostream& output) const
 ///!!!  add new mtx_bools to constructor
 /// 
 /// 

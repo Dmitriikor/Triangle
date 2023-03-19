@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Canvas_console.h"
 #include "Point.h"

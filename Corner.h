@@ -1,4 +1,4 @@
-//#pragma once
+﻿//#pragma once
 #ifndef Corner_H__
 
 #define  Corner_H__

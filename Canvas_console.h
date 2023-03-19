@@ -42,7 +42,7 @@ protected:
 
 	
 
-	//!!! не в наследниках ли?
+	//!!! not in the heirs?
 
 	int width_x() const;
 

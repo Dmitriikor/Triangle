@@ -1,4 +1,4 @@
-#include "Corner.h"
+﻿#include "Corner.h"
 
 
 void Corner::change_file_path(const std::string& address)

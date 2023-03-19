@@ -1,4 +1,4 @@
-#include "Direct_draw.h"
+﻿#include "Direct_draw.h"
 
 
 void Direct_draw::calculate_matrix()

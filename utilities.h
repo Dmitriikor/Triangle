@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef UTILITIES_H__
 

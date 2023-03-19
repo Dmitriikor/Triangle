@@ -1,4 +1,4 @@
-#ifndef RAY_TEMPLATE_H_ 
+﻿#ifndef RAY_TEMPLATE_H_ 
 
 #define RAY_TEMPLATE_H_ 
 

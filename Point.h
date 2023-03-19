@@ -1,10 +1,10 @@
-#ifndef POINT_TEST_H__
+п»ї#ifndef POINT_TEST_H__
 
 #define POINT_TEST_H__
 
 #include <iostream>
 
-//!!! два printa, пример в main
+//!!! РґРІР° printa, РїСЂРёРјРµСЂ РІ main
 //!!! cin << Point
 struct Point
 {

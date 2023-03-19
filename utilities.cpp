@@ -1,4 +1,4 @@
-#include "utilities.h"
+﻿#include "utilities.h"
 
 bool utilities::isEqual(long double a, long double b, long double eps)
 {

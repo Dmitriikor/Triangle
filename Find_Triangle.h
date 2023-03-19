@@ -1,4 +1,4 @@
-#ifndef Find_Triangle_H__
+﻿#ifndef Find_Triangle_H__
 
 #define  Find_Triangle_H__
 #pragma once
