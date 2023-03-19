@@ -22,7 +22,7 @@
  *
  * Данная переменная используется для хранения настроек приложения.
  */
-std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
+std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
 #include "Canvas.h"
 #include "Point.h"
@@ -39,8 +39,7 @@ std::streamsize static MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::ma
 #include <string>
 #include <locale>
 
-
-#pragma execution_character_set("utf-8") //!< execution_character_set("utf-8") установка кодировки в формат utf-8
+#pragma execution_character_set("utf-8")
 
 #include <nana/gui.hpp>
 #include <nana/gui/widgets/label.hpp>
@@ -89,7 +88,7 @@ void on_button_click_2(nana::label &lbl_for_button_funct)
 int main(int argc, char const* argv[])
 {
 
-																		//!< \warning В param ЗАМЕНЯТЬ ПРОБЕЛЫ НА ALT+255 
+																		//! \warning В param ЗАМЕНЯТЬ ПРОБЕЛЫ НА ALT+255 
 
 	setlocale(LC_ALL, "Russian");										//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 	HWND consoleWindow = GetConsoleWindow();							//! @param HWND_consoleWindow = GetConsoleWindow() - захватывает окно консоли в переменную consoleWindow, типа \a HWND 
@@ -128,6 +127,12 @@ int main(int argc, char const* argv[])
 			std::bind принимает все аргументы по значению, в то время как std::bind_front принимает аргументы по ссылке. 
 			Кроме того, в std::bind_front можно передавать только первые аргументы функции, а остальные будут переданы при вызове связанной функции. 
 			Это может быть полезно, если вы хотите задать значения для некоторых параметров функции заранее, а остальные параметры будут переданы при выполнении.
+
+			foo(int a, int b, int c)
+
+			auto func = std::bind_front(&foo, 1, 2, 3);
+
+			auto func = std::bind(&foo, 3, std::placeholders::_1, 2, std::placeholders::_2, 1);
 		*/
 		button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
 
