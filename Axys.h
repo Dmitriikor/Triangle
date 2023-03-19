@@ -1,21 +1,52 @@
-﻿
+/**
+
+    @file      Axys.h
+    @brief     
+    @details   ~
+    @author    Dmitrii
+    @date      19.03.2023
+    @copyright © Dmitrii, 2023. All right reserved.
+
+**/
+
 #ifndef AXYS_H__
 
 #define  AXYS_H__
 
-#include "Canvas_console.h"
+#include "Canvas_console.h"  
 #include "Point.h"
 #include "Ray.h"
 #include "Matrix.h"
+/**
 
+    @class   Axys
+    @brief   класс для рисования осей Х и У
+    @details ~
+
+**/
 class Axys : public Canvas_console
 {
+
 public:
-	////Axys& operator+=(const Axys& other);
+
+ /**
+     @brief 
+ **/
 	void remove();
 
+
+ /**
+     @brief 
+ **/
 	void render_matrix() override;
+
+
+ /**
+     @brief 
+ **/
 	void print() const override;
+
+
 
 private:
 	void calculate_matrix() override;
