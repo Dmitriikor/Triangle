@@ -91,28 +91,45 @@ int main(int argc, char const* argv[])
 
 																		//!< \warning В param ЗАМЕНЯТЬ ПРОБЕЛЫ НА ALT+255 
 
-	setlocale(LC_ALL, "Russian");										//! @param setlocale(LC_ALL, "Russian") - @brief принудительно устанавливает локаль 
-	HWND consoleWindow = GetConsoleWindow();							//! @param HWND_consoleWindow = GetConsoleWindow() - @brief захватывает окно консоли в переменную consoleWindow, типа HWND 
-	::ShowWindow(consoleWindow, SW_HIDE);								//! @param ::ShowWindow(consoleWindow, SW_HIDE) - @brief принимает переменную консоли и скрывает ее 
+	setlocale(LC_ALL, "Russian");										//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
+	HWND consoleWindow = GetConsoleWindow();							//! @param HWND_consoleWindow = GetConsoleWindow() - захватывает окно консоли в переменную consoleWindow, типа \a HWND 
+	::ShowWindow(consoleWindow, SW_HIDE);								//! @param ::ShowWindow(consoleWindow, SW_HIDE) - принимает переменную консоли и скрывает ее 
 						 
 	try
 		{
-		std::string input_to_string = "привет мир";						//! @param std::string input_to_string = "привет мир" - @brief инициализированная "привет мир" строка для использования в gui 
-		nana::form form;												//! @param nana::form form - @brief создаем форму(окно)  form с помощью
-		form.caption(input_to_string);									//! @param form.caption(input_to_string) -  @brief захватывает 
-		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));		//! @param nana::label lbl(form, nana::rectangle(10, 10, 200, 25)) - @brief создает nana::label lbl с заданными размерами и местоположением 
-		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - @brief захватываем в  lbl данные из input_to_string 
-		nana::button button(form, nana::rectangle(10, 40, 200, 25));	//! @param nana::button button - @brief  создаем с заданными размерами и местоположением
-		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   @brief захватываем в  button текст "Нажми меня!"  
-		button.events().click(on_button_click);							//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку button
-		nana::label lbl_for_button (form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief lbl_for_button
+		std::string input_to_string = "привет мир";						//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
+		form.caption(input_to_string);									//! @param form.caption(input_to_string) - захватывает 
+		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));		//! @param nana::label lbl(form, nana::rectangle(10, 10, 200, 25)) - @brief создает \a nana::label \a lbl с заданными размерами и местоположением 
+		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - захватываем в  \a lbl данные из \a input_to_string 
+		nana::button button(form, nana::rectangle(10, 40, 200, 25));	//! @param nana::button button - создаем с заданными размерами и местоположением
+		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
+		button.events().click(on_button_click);							//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
+		nana::label lbl_for_button (form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
 		button.events().click([&]() 
 			{
 				lbl_for_button.caption("Button was clicked");			 
 			});
 
-		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25)); //! @param nana::rectangle(100, 10, 200, 25) - @brief создаем квадрат, задаем размер и положение
-		button.events().click(std::bind(on_button_click_2, std::ref(lbl_for_button_funct)));
+		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25)); //! @param nana::rectangle(100, 10, 200, 25) - создаем квадрат, задаем размер и положение
+		/*
+			std::bind позволяет создавать новый функциональный объект, который принимает меньше аргументов, чем исходная функция. 
+			Функция-адаптер std::bind позволяет привязать аргументы к вызову функции, сохраняя свободные аргументы, 
+			которые можно передать позже.
+		
+			std::bind_front - это новая функция в стандарте C++20. Она работает похоже на std::bind, но в отличие от std::bind, 
+			привязывает аргументы к началу списка аргументов функции, а не к концу. Это позволяет создавать функциональные объекты с
+			фиксированными значениями начальных аргументов, оставляя свободными только конечные аргументы.
+
+			Порядок привязки аргументов в std::bind и std::bind_front имеет значение. 
+			В std::bind порядок привязанных аргументов соответствует порядку передачи аргументов при вызове функции. 
+			В std::bind_front порядок привязанных аргументов соответствует порядку перечисления аргументов функции в определении.
+
+			std::bind принимает все аргументы по значению, в то время как std::bind_front принимает аргументы по ссылке. 
+			Кроме того, в std::bind_front можно передавать только первые аргументы функции, а остальные будут переданы при вызове связанной функции. 
+			Это может быть полезно, если вы хотите задать значения для некоторых параметров функции заранее, а остальные параметры будут переданы при выполнении.
+		*/
+		button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
 
 		form.show();
 		nana::exec();
@@ -122,13 +139,14 @@ int main(int argc, char const* argv[])
 			std::cout << "\n\texception :  " << exception.what() << std::endl;
 		}
 
-		Sleep(2000);
-		::ShowWindow(consoleWindow, SW_SHOW);
-		std::cin.ignore(MAX_STREAMSIZE, '\n');
+		Sleep(2000);														//! @param Sleep(2000) - стандартная функция сна
+		::ShowWindow(consoleWindow, SW_SHOW);								//! @param ShowWindow(consoleWindow, SW_SHOW) - на объекте \a consoleWindow меняем статус на \a SW_SHOW показывая скрытую консоль
+		std::cin.ignore(MAX_STREAMSIZE, '\n');								//! @param std::cin.ignore - игнорирует ранее введенные символы, требует действия
 
 	
-	while (1) { 
-		double t1;
+	while (true) { 
+
+		time_t t1;															//! @param time_t t1 - запуск таймера, засекаем время
 
 		try
 		{
@@ -291,7 +309,7 @@ int main(int argc, char const* argv[])
 			std::cout << "\n\texception :  " << exception.what() << std::endl;
 		}
 
-		double t2 = clock();
+		time_t t2 = clock();
 		std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 
 	int t2pause;

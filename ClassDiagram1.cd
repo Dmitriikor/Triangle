@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Canvas">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIAgAACQABAAAAEAQZAAQgAACAAAAAACAGIABAABAE=</HashCode>
+      <FileName>Canvas.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Canvas_console">
+    <Position X="4.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgQAAAAACABgAAAoZAIAAIHCDEAAAAADAAEAEBAQAAI=</HashCode>
+      <FileName>Canvas_console.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Axys">
+    <Position X="8.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAEAAAAAAAAAEACAQACAAAAAAAAAAA=</HashCode>
+      <FileName>Axys.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Corner">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAACEAAAAAAAAAAAAgAAAACEACAQACAAAAACAAAAA=</HashCode>
+      <FileName>Corner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Direct_draw">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAEAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Direct_draw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Matrix&lt;T&gt;" Collapsed="true">
+    <Position X="10" Y="8.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="Matrix&lt;T&gt;::str_i" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Matrix.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="Matrix&lt;T&gt;::const_str_i" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Matrix.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BEQAQgAAAAAAAAAAAIAAAQAAgCGgEAQABQggABIAAAA=</HashCode>
+      <FileName>Matrix.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ray&lt;T&gt;" Collapsed="true">
+    <Position X="12" Y="8.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AUAIAAQEABBAigAkAIMAAJAAQgUAAABggAEgCIAABEA=</HashCode>
+      <FileName>Ray.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Triangle_hi">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Triangle_hi::Side">
+        <TypeIdentifier>
+          <NewMemberFileName>Triangle.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <InheritanceLine Type="Triangle_low">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="-0.14" Y="6.456" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAABEEAQICAIAAAACAAAABBIAAAIAgACgAEAE=</HashCode>
+      <FileName>Triangle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Triangle_low">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Triangle_low::Vertex">
+        <TypeIdentifier>
+          <NewMemberFileName>Triangle.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAACAABAAAQAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Triangle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Coordinate" Collapsed="true">
+    <Position X="13.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEAAAAAAAA=</HashCode>
+      <FileName>Matrix.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Dot">
+    <Position X="13.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Point.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Point">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Point.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
