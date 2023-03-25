@@ -1,5 +1,5 @@
 <map id="Direct_draw" name="Direct_draw">
 <area shape="rect" id="node1" title=" " alt="" coords="18,152,109,177"/>
 <area shape="rect" id="node2" href="$class_canvas__console.html" title=" " alt="" coords="5,79,121,104"/>
-<area shape="rect" id="node3" href="$class_canvas.html" title=" " alt="" coords="31,5,95,31"/>
+<area shape="rect" id="node3" href="$class_canvas.html" title="базовый класс холста" alt="" coords="31,5,95,31"/>
 </map>

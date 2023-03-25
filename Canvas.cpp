@@ -65,13 +65,6 @@ void Canvas::remove(const Ray<Dot>& points)
 	is_last_change_update_points_ = isRemoved;
 }
 
-
-/// <summary>
-/// insert without repetition
-/// </summary>
-/// <param name="pt"> точка для отрисовки</param>
-/// <returns>
-/// true - вставка осуществлена, false - элемент уже был добавлен </returns>
 size_t Canvas::search_point(const Dot& pt) const
 {
 	for (size_t i = 0; i < points_to_draw_.size(); i++)

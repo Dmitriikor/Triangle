@@ -249,7 +249,10 @@ Variables</h2></td></tr>
     <tr><td class="paramname">std::cin.ignore</td><td>- игнорирует ранее введенные символы, требует действия</td></tr>
     <tr><td class="paramname">time_t t1</td><td>- запуск таймера, засекаем время</td></tr>
     <tr><td class="paramname">n_points</td><td>- задаем количество точек из которых будем пытаться создать треугольники</td></tr>
-    <tr><td class="paramname">case_to_output_file_patch_switch</td><td>- выбираем путь сохранения для треугольника</td></tr>
+    <tr><td class="paramname">path_in</td><td>- выбираем откуда будем брать список точек</td></tr>
+    <tr><td class="paramname">path_out</td><td>- выбираем путь сохранения для треугольника</td></tr>
+    <tr><td class="paramname">for temp</td><td>- Генерируем точки с помощью функции <a class="el" href="namespaceutilities.html#aaad74952a6fc3e07990e4ddd5d33251f">utilities::random_INT</a></td></tr>
+    <tr><td class="paramname">case_to_output_file_patch_switch</td><td>- выбираем путь откуда будем брать список точек и куда сохраним выходные треугольники</td></tr>
   </table>
   </dd>
 </dl>
@@ -289,8 +292,8 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_triangle__hi.html#a4b1c0727561d2f97be5cc1d0292667d5" title=" " alt="" coords="984,47,1101,87"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="1004,832,1081,857"/>
 <area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="594,344,698,369"/>
-<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="350,305,509,345"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="783,500,930,525"/>
+<area shape="rect" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="350,305,509,345"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="783,500,930,525"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="787,337,926,377"/>
 <area shape="rect" href="class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="364,255,495,280"/>
 <area shape="rect" href="_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="573,269,719,295"/>
@@ -303,7 +306,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_corner.html#a416a4e37d6fee497ba613676638b5366" title=" " alt="" coords="383,569,476,595"/>
 <area shape="rect" href="class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="359,205,499,231"/>
 <area shape="rect" href="class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="352,1051,507,1076"/>
-<area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="567,1119,725,1144"/>
+<area shape="rect" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках" alt="" coords="567,1119,725,1144"/>
 <area shape="rect" href="class_matrix.html#ad39022f082bfee09e24d098796e14e10" title=" " alt="" coords="382,1100,477,1125"/>
 <area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="344,1150,515,1190"/>
 <area shape="rect" href="class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277" title=" " alt="" coords="358,935,501,975"/>

@@ -112,7 +112,7 @@ Inheritance diagram for Axys:</div>
 <area shape="rect" title=" " alt="" coords="37,225,89,251"/>
 <area shape="rect" href="class_canvas__xy.html" title=" " alt="" coords="21,152,106,177"/>
 <area shape="rect" href="class_canvas__console.html" title=" " alt="" coords="5,79,121,104"/>
-<area shape="rect" href="class_canvas.html" title=" " alt="" coords="31,5,95,31"/>
+<area shape="rect" href="class_canvas.html" title="базовый класс холста" alt="" coords="31,5,95,31"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -123,7 +123,7 @@ Collaboration diagram for Axys:</div>
 <area shape="rect" title=" " alt="" coords="121,521,173,547"/>
 <area shape="rect" href="class_canvas__xy.html" title=" " alt="" coords="49,433,135,459"/>
 <area shape="rect" href="class_canvas__console.html" title=" " alt="" coords="34,359,150,384"/>
-<area shape="rect" href="class_canvas.html" title=" " alt="" coords="5,271,69,296"/>
+<area shape="rect" href="class_canvas.html" title="базовый класс холста" alt="" coords="5,271,69,296"/>
 <area shape="rect" href="struct_point.html" title=" " alt="" coords="6,5,58,31"/>
 <area shape="rect" href="struct_dot.html" title=" " alt="" coords="88,80,131,105"/>
 <area shape="rect" href="class_ray.html" title=" " alt="" coords="77,183,166,208"/>
@@ -253,18 +253,24 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a7cccddde80fede64f549dceb0eb4beff inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a7cccddde80fede64f549dceb0eb4beff">calculate_matrix</a> ()=0</td></tr>
 <tr class="separator:a7cccddde80fede64f549dceb0eb4beff inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_canvas"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_canvas')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_canvas.html">Canvas</a></td></tr>
-<tr class="memitem:abc9fcfb1752edf58baecab4d112b32ae inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae">MAX_VIRTUAL</a> () const</td></tr>
-<tr class="separator:abc9fcfb1752edf58baecab4d112b32ae inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af22370809c000769172b4ab018208ba2 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#af22370809c000769172b4ab018208ba2">MIN_VIRTUAL</a> () const</td></tr>
-<tr class="separator:af22370809c000769172b4ab018208ba2 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9318d445ee6aab6bce3cd0f386c27ca1 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_ray.html">Ray</a>&lt; <a class="el" href="struct_dot.html">Dot</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1">points_to_draw</a> () const</td></tr>
-<tr class="separator:a9318d445ee6aab6bce3cd0f386c27ca1 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a914841a97d186a7f146457137a22f2 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2">is_last_change_update_points</a> () const</td></tr>
-<tr class="separator:a8a914841a97d186a7f146457137a22f2 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d8a7d3e33e01022093f1f344e608c89 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a1d8a7d3e33e01022093f1f344e608c89">is_last_change_update_min</a> () const</td></tr>
-<tr class="separator:a1d8a7d3e33e01022093f1f344e608c89 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf66c65fa4e60205cfb4d08437cd6835 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#adf66c65fa4e60205cfb4d08437cd6835">is_last_change_update_max</a> () const</td></tr>
-<tr class="separator:adf66c65fa4e60205cfb4d08437cd6835 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade60c8fbe9bb6952465c97365e707d94 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#ade60c8fbe9bb6952465c97365e707d94">MAX_VIRTUAL</a> () const</td></tr>
+<tr class="memdesc:ade60c8fbe9bb6952465c97365e707d94 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает const <a class="el" href="class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках">MAX_VIRTUAL() const </a>для использования в наследниках  <br /></td></tr>
+<tr class="separator:ade60c8fbe9bb6952465c97365e707d94 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b8fbd85a497f8911a75573dc420fe2 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2">MIN_VIRTUAL</a> () const</td></tr>
+<tr class="memdesc:a21b8fbd85a497f8911a75573dc420fe2 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает const <a class="el" href="class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках">MIN_VIRTUAL() const </a>для использования в наследниках  <br /></td></tr>
+<tr class="separator:a21b8fbd85a497f8911a75573dc420fe2 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91df40cd47a7ce52833bd6815ff5d187 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_ray.html">Ray</a>&lt; <a class="el" href="struct_dot.html">Dot</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187">points_to_draw</a> () const</td></tr>
+<tr class="memdesc:a91df40cd47a7ce52833bd6815ff5d187 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает const points_to_draw const для использования в наследниках  <br /></td></tr>
+<tr class="separator:a91df40cd47a7ce52833bd6815ff5d187 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac722cb4f4bb48e3fad4cc1a91fb72c3a inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a">is_last_change_update_points</a> () const</td></tr>
+<tr class="memdesc:ac722cb4f4bb48e3fad4cc1a91fb72c3a inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">дает возможность проверить были ли изменения в <em><a class="el" href="class_ray.html">Ray&lt;Dot&gt;</a> points_to_draw_</em> после последний попытки внести изменения  <br /></td></tr>
+<tr class="separator:ac722cb4f4bb48e3fad4cc1a91fb72c3a inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a948f5b77ddb6fcb9616b9d4d6a208141 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a948f5b77ddb6fcb9616b9d4d6a208141">is_last_change_update_max</a> () const</td></tr>
+<tr class="memdesc:a948f5b77ddb6fcb9616b9d4d6a208141 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">дает возможность проверить были ли изменения MAX_VIRTUAL  <br /></td></tr>
+<tr class="separator:a948f5b77ddb6fcb9616b9d4d6a208141 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b94837442b7d31ba91be202b6a356f1 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a6b94837442b7d31ba91be202b6a356f1">is_last_change_update_min</a> () const</td></tr>
+<tr class="memdesc:a6b94837442b7d31ba91be202b6a356f1 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">дает возможность проверить были ли изменения MIN_VIRTUAL  <br /></td></tr>
+<tr class="separator:a6b94837442b7d31ba91be202b6a356f1 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><br  />
@@ -313,10 +319,10 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_matrix.html#a194f46787b424f5516420700baa6ced4" title=" " alt="" coords="259,407,337,432"/>
 <area shape="rect" href="namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684" title=" " alt="" coords="225,457,371,497"/>
 <area shape="rect" href="class_canvas__xy.html#a88a956484eb78b5869b7559fae766ead" title=" " alt="" coords="228,571,368,611"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="440,551,599,576"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="442,632,597,657"/>
+<area shape="rect" href="class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках" alt="" coords="440,551,599,576"/>
+<area shape="rect" href="class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках" alt="" coords="442,632,597,657"/>
 <area shape="rect" href="class_matrix.html#a1c4b73cb671a8b8a84b8a842eea12483" title=" " alt="" coords="239,687,357,712"/>
-<area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="219,736,377,761"/>
+<area shape="rect" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках" alt="" coords="219,736,377,761"/>
 <area shape="rect" href="class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="451,821,588,847"/>
 <area shape="rect" href="class_canvas__xy.html#abf785aae8b7de14ce5034aee8b7c717f" title=" " alt="" coords="229,786,367,826"/>
 <area shape="rect" href="class_canvas__xy.html#a8346f3ae76d19044fe798bf82ae6ec72" title=" " alt="" coords="651,284,788,309"/>
@@ -363,8 +369,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>std::cout &lt;&lt; "\n" &lt;&lt; ORIGIN_.i &lt;&lt; " " &lt;&lt; <a class="el" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1">points_to_draw()</a>[i].y; std::cout &lt;&lt; "\n" &lt;&lt; cell.i;</p>
-<p>std::cout &lt;&lt; "\n"&lt;&lt; ORIGIN_.j &lt;&lt; <a class="el" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1">points_to_draw()</a>[i].x &lt;&lt; " " &lt;&lt; <a class="el" href="class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139">width_x()</a> &lt;&lt; " " &lt;&lt; <a class="el" href="class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5">axis_x_indents()</a>; std::cout &lt;&lt; "\n" &lt;&lt; cell.j;</p>
+<p>std::cout &lt;&lt; "\n" &lt;&lt; ORIGIN_.i &lt;&lt; " " &lt;&lt; <a class="el" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках">points_to_draw()</a>[i].y; std::cout &lt;&lt; "\n" &lt;&lt; cell.i;</p>
+<p>std::cout &lt;&lt; "\n"&lt;&lt; ORIGIN_.j &lt;&lt; <a class="el" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках">points_to_draw()</a>[i].x &lt;&lt; " " &lt;&lt; <a class="el" href="class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139">width_x()</a> &lt;&lt; " " &lt;&lt; <a class="el" href="class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5">axis_x_indents()</a>; std::cout &lt;&lt; "\n" &lt;&lt; cell.j;</p>
 
 <p class="definition">Definition at line <a class="el" href="_axys_8cpp_source.html#l00095">95</a> of file <a class="el" href="_axys_8cpp_source.html">Axys.cpp</a>.</p>
 <div class="dynheader">
@@ -378,7 +384,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_matrix.html#acbf5cadeb802c72ec461a63964cc1b1f" title=" " alt="" coords="235,120,337,145"/>
 <area shape="rect" href="class_matrix.html#a0dbd6641df003cc57831b218174c09b2" title=" " alt="" coords="236,169,336,195"/>
 <area shape="rect" href="_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="257,219,315,244"/>
-<area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="207,268,365,293"/>
+<area shape="rect" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках" alt="" coords="207,268,365,293"/>
 <area shape="rect" href="class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="235,317,337,343"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="247,367,325,392"/>
 <area shape="rect" href="class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="217,416,355,441"/>
@@ -510,7 +516,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,623,144,648"/>
 <area shape="rect" href="class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="200,748,355,773"/>
 <area shape="rect" href="class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="639,615,805,655"/>
-<area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="421,407,580,432"/>
+<area shape="rect" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках" alt="" coords="421,407,580,432"/>
 <area shape="rect" href="class_matrix.html#ad39022f082bfee09e24d098796e14e10" title=" " alt="" coords="230,797,325,823"/>
 <area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="192,847,363,887"/>
 <area shape="rect" href="class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277" title=" " alt="" coords="206,223,349,263"/>
@@ -520,8 +526,8 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_matrix.html#a194f46787b424f5516420700baa6ced4" title=" " alt="" coords="461,871,540,896"/>
 <area shape="rect" href="namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684" title=" " alt="" coords="428,1022,573,1062"/>
 <area shape="rect" href="class_canvas__xy.html#a88a956484eb78b5869b7559fae766ead" title=" " alt="" coords="431,1137,571,1177"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="643,1117,801,1143"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="645,1171,799,1196"/>
+<area shape="rect" href="class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках" alt="" coords="643,1117,801,1143"/>
+<area shape="rect" href="class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках" alt="" coords="645,1171,799,1196"/>
 <area shape="rect" href="class_matrix.html#a1c4b73cb671a8b8a84b8a842eea12483" title=" " alt="" coords="441,1252,560,1277"/>
 <area shape="rect" href="class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="653,464,791,489"/>
 <area shape="rect" href="class_canvas__xy.html#abf785aae8b7de14ce5034aee8b7c717f" title=" " alt="" coords="432,457,569,497"/>

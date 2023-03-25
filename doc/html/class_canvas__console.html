@@ -109,7 +109,7 @@ Inheritance diagram for Canvas_console:</div>
 <area shape="rect" title=" " alt="" coords="69,79,185,104"/>
 <area shape="rect" href="class_canvas__xy.html" title=" " alt="" coords="29,152,114,177"/>
 <area shape="rect" href="class_direct__draw.html" title=" " alt="" coords="138,152,229,177"/>
-<area shape="rect" href="class_canvas.html" title=" " alt="" coords="95,5,159,31"/>
+<area shape="rect" href="class_canvas.html" title="базовый класс холста" alt="" coords="95,5,159,31"/>
 <area shape="rect" href="class_axys.html" title=" " alt="" coords="5,225,57,251"/>
 <area shape="rect" href="class_corner.html" title=" " alt="" coords="81,225,141,251"/>
 </map>
@@ -120,7 +120,7 @@ Collaboration diagram for Canvas_console:</div>
 <div class="center"><img src="class_canvas__console__coll__graph.png" border="0" usemap="#a_canvas__console_coll__map" alt="Collaboration graph"/></div>
 <map name="a_canvas__console_coll__map" id="a_canvas__console_coll__map">
 <area shape="rect" title=" " alt="" coords="34,359,150,384"/>
-<area shape="rect" href="class_canvas.html" title=" " alt="" coords="5,271,69,296"/>
+<area shape="rect" href="class_canvas.html" title="базовый класс холста" alt="" coords="5,271,69,296"/>
 <area shape="rect" href="struct_point.html" title=" " alt="" coords="6,5,58,31"/>
 <area shape="rect" href="struct_dot.html" title=" " alt="" coords="88,80,131,105"/>
 <area shape="rect" href="class_ray.html" title=" " alt="" coords="77,183,166,208"/>
@@ -196,18 +196,24 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a7cccddde80fede64f549dceb0eb4beff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a7cccddde80fede64f549dceb0eb4beff">calculate_matrix</a> ()=0</td></tr>
 <tr class="separator:a7cccddde80fede64f549dceb0eb4beff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_canvas"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_canvas')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_canvas.html">Canvas</a></td></tr>
-<tr class="memitem:abc9fcfb1752edf58baecab4d112b32ae inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae">MAX_VIRTUAL</a> () const</td></tr>
-<tr class="separator:abc9fcfb1752edf58baecab4d112b32ae inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af22370809c000769172b4ab018208ba2 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#af22370809c000769172b4ab018208ba2">MIN_VIRTUAL</a> () const</td></tr>
-<tr class="separator:af22370809c000769172b4ab018208ba2 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9318d445ee6aab6bce3cd0f386c27ca1 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_ray.html">Ray</a>&lt; <a class="el" href="struct_dot.html">Dot</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1">points_to_draw</a> () const</td></tr>
-<tr class="separator:a9318d445ee6aab6bce3cd0f386c27ca1 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a914841a97d186a7f146457137a22f2 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2">is_last_change_update_points</a> () const</td></tr>
-<tr class="separator:a8a914841a97d186a7f146457137a22f2 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d8a7d3e33e01022093f1f344e608c89 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a1d8a7d3e33e01022093f1f344e608c89">is_last_change_update_min</a> () const</td></tr>
-<tr class="separator:a1d8a7d3e33e01022093f1f344e608c89 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf66c65fa4e60205cfb4d08437cd6835 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#adf66c65fa4e60205cfb4d08437cd6835">is_last_change_update_max</a> () const</td></tr>
-<tr class="separator:adf66c65fa4e60205cfb4d08437cd6835 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade60c8fbe9bb6952465c97365e707d94 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#ade60c8fbe9bb6952465c97365e707d94">MAX_VIRTUAL</a> () const</td></tr>
+<tr class="memdesc:ade60c8fbe9bb6952465c97365e707d94 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает const <a class="el" href="class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках">MAX_VIRTUAL() const </a>для использования в наследниках  <br /></td></tr>
+<tr class="separator:ade60c8fbe9bb6952465c97365e707d94 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b8fbd85a497f8911a75573dc420fe2 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2">MIN_VIRTUAL</a> () const</td></tr>
+<tr class="memdesc:a21b8fbd85a497f8911a75573dc420fe2 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает const <a class="el" href="class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках">MIN_VIRTUAL() const </a>для использования в наследниках  <br /></td></tr>
+<tr class="separator:a21b8fbd85a497f8911a75573dc420fe2 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91df40cd47a7ce52833bd6815ff5d187 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_ray.html">Ray</a>&lt; <a class="el" href="struct_dot.html">Dot</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187">points_to_draw</a> () const</td></tr>
+<tr class="memdesc:a91df40cd47a7ce52833bd6815ff5d187 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает const points_to_draw const для использования в наследниках  <br /></td></tr>
+<tr class="separator:a91df40cd47a7ce52833bd6815ff5d187 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac722cb4f4bb48e3fad4cc1a91fb72c3a inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a">is_last_change_update_points</a> () const</td></tr>
+<tr class="memdesc:ac722cb4f4bb48e3fad4cc1a91fb72c3a inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">дает возможность проверить были ли изменения в <em><a class="el" href="class_ray.html">Ray&lt;Dot&gt;</a> points_to_draw_</em> после последний попытки внести изменения  <br /></td></tr>
+<tr class="separator:ac722cb4f4bb48e3fad4cc1a91fb72c3a inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a948f5b77ddb6fcb9616b9d4d6a208141 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a948f5b77ddb6fcb9616b9d4d6a208141">is_last_change_update_max</a> () const</td></tr>
+<tr class="memdesc:a948f5b77ddb6fcb9616b9d4d6a208141 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">дает возможность проверить были ли изменения MAX_VIRTUAL  <br /></td></tr>
+<tr class="separator:a948f5b77ddb6fcb9616b9d4d6a208141 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b94837442b7d31ba91be202b6a356f1 inherit pro_methods_class_canvas"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas.html#a6b94837442b7d31ba91be202b6a356f1">is_last_change_update_min</a> () const</td></tr>
+<tr class="memdesc:a6b94837442b7d31ba91be202b6a356f1 inherit pro_methods_class_canvas"><td class="mdescLeft">&#160;</td><td class="mdescRight">дает возможность проверить были ли изменения MIN_VIRTUAL  <br /></td></tr>
+<tr class="separator:a6b94837442b7d31ba91be202b6a356f1 inherit pro_methods_class_canvas"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -489,9 +495,9 @@ Here is the call graph for this function:</div>
 <map name="aclass_canvas__console_af75af479a5c2bd8835c231df42923e49_cgraph" id="aclass_canvas__console_af75af479a5c2bd8835c231df42923e49_cgraph">
 <area shape="rect" title=" " alt="" coords="5,84,161,109"/>
 <area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,55,341,80"/>
-<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,105,368,145"/>
+<area shape="rect" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="209,105,368,145"/>
 <area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="426,5,553,31"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="416,55,563,80"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="416,55,563,80"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="420,105,559,145"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="611,55,688,80"/>
 </map>
@@ -532,9 +538,9 @@ Here is the call graph for this function:</div>
 <map name="aclass_canvas__console_a2fb1cc67d1a11fe387d70cb0117f525e_cgraph" id="aclass_canvas__console_a2fb1cc67d1a11fe387d70cb0117f525e_cgraph">
 <area shape="rect" title=" " alt="" coords="5,84,161,109"/>
 <area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,55,341,80"/>
-<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,105,368,145"/>
+<area shape="rect" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="209,105,368,145"/>
 <area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="426,5,553,31"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="416,55,563,80"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="416,55,563,80"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="420,105,559,145"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="611,55,688,80"/>
 </map>
@@ -576,9 +582,9 @@ Here is the call graph for this function:</div>
 <map name="aclass_canvas__console_a4b4102cde75351c95b9b76c2b1155b8a_cgraph" id="aclass_canvas__console_a4b4102cde75351c95b9b76c2b1155b8a_cgraph">
 <area shape="rect" title=" " alt="" coords="5,84,161,109"/>
 <area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,55,341,80"/>
-<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,105,368,145"/>
+<area shape="rect" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="209,105,368,145"/>
 <area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="426,5,553,31"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="416,55,563,80"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="416,55,563,80"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="420,105,559,145"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="611,55,688,80"/>
 </map>
@@ -626,7 +632,7 @@ Here is the call graph for this function:</div>
 <map name="aclass_canvas__console_a4a3dc592c07b69ce610b2806a72317b3_cgraph" id="aclass_canvas__console_a4a3dc592c07b69ce610b2806a72317b3_cgraph">
 <area shape="rect" title=" " alt="" coords="5,137,188,163"/>
 <area shape="rect" href="class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="250,108,381,133"/>
-<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="236,158,395,198"/>
+<area shape="rect" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="236,158,395,198"/>
 <area shape="rect" href="_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="443,51,588,76"/>
 <area shape="rect" href="_canvas_8cpp.html#a76cb16e2b5895bd06f24a7398b9fb74e" title="static double get_step(double coefficient);" alt="" coords="450,101,581,141"/>
 <area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="463,181,567,207"/>
@@ -634,7 +640,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="_canvas_8cpp.html#ae1f6533ff0ca7b340225c1de2c8408bb" title=" " alt="" coords="678,5,750,31"/>
 <area shape="rect" href="namespaceutilities.html#a61728de0df6774b3fe47958df5449bc8" title=" " alt="" coords="636,55,792,80"/>
 <area shape="rect" href="namespaceutilities.html#a8c969ae5ef2b4068da78f2efbc88ac13" title="Dot* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = &quot;points...." alt="" coords="657,153,771,179"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="641,203,787,228"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="641,203,787,228"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="645,253,783,293"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="840,203,917,228"/>
 </map>
@@ -747,7 +753,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_canvas.html#a45e30833c24e352debdaa806c4aa5085" title=" " alt="" coords="240,55,375,80"/>
 <area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="423,55,527,80"/>
 <area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="585,5,711,31"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="575,55,721,80"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="575,55,721,80"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="579,105,717,145"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="769,55,847,80"/>
 </map>
@@ -815,7 +821,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="class_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph.png" border="0" usemap="#aclass_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph" id="aclass_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph">
 <area shape="rect" title=" " alt="" coords="5,80,197,105"/>
-<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="245,43,404,83"/>
+<area shape="rect" href="class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="245,43,404,83"/>
 <area shape="rect" href="class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="255,108,395,133"/>
 <area shape="rect" href="_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="452,51,597,76"/>
 <area shape="rect" href="_canvas_8cpp.html#a76cb16e2b5895bd06f24a7398b9fb74e" title="static double get_step(double coefficient);" alt="" coords="459,101,590,141"/>
@@ -825,7 +831,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="namespaceutilities.html#a61728de0df6774b3fe47958df5449bc8" title=" " alt="" coords="645,104,801,129"/>
 <area shape="rect" href="namespaceutilities.html#a8c969ae5ef2b4068da78f2efbc88ac13" title="Dot* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = &quot;points...." alt="" coords="666,153,781,179"/>
 <area shape="rect" href="class_ray.html#a31d5fb55f4aab77b55d28b8b209a7751" title=" " alt="" coords="676,203,771,228"/>
-<area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="650,252,797,277"/>
+<area shape="rect" href="class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="650,252,797,277"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="654,302,793,342"/>
 <area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="849,252,927,277"/>
 </map>

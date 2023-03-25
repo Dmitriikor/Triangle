@@ -1,5 +1,5 @@
 <map id="Canvas" name="Canvas">
-<area shape="rect" id="node1" title=" " alt="" coords="95,5,159,31"/>
+<area shape="rect" id="node1" title="базовый класс холста" alt="" coords="95,5,159,31"/>
 <area shape="rect" id="node2" href="$class_canvas__console.html" title=" " alt="" coords="69,79,185,104"/>
 <area shape="rect" id="node3" href="$class_canvas__xy.html" title=" " alt="" coords="29,152,114,177"/>
 <area shape="rect" id="node6" href="$class_direct__draw.html" title=" " alt="" coords="138,152,229,177"/>

@@ -2,7 +2,7 @@ var searchData=
 [
   ['saved_5fleft_0',['saved_LEFT',['../class_ray.html#ace5e959cf48c079edf0d01df2025de62',1,'Ray']]],
   ['saved_5fright_1',['saved_RIGHT',['../class_ray.html#afdc521f4f29f4021e5044a0253ccf8e3',1,'Ray']]],
-  ['search_5fpoint_2',['search_point',['../class_canvas.html#a2b8130bac44abbc2b9014a6421c45028',1,'Canvas']]],
+  ['search_5fpoint_2',['search_point',['../class_canvas.html#a7f305adaf59f3d00a788b640b4625d39',1,'Canvas']]],
   ['set_5fat_3',['set_at',['../class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc',1,'Matrix::set_at(const size_t N, const size_t M, const T &amp;data)'],['../class_matrix.html#aa363cda451ada13a682ec005e70b15c1',1,'Matrix::set_at(Coordinate cell, const T &amp;data)']]],
   ['set_5findent_4',['set_indent',['../class_canvas__xy.html#a8c3ba8708233e57d8c6df07917cf9b1b',1,'Canvas_xy']]],
   ['shrink_5fto_5ffit_5',['shrink_to_fit',['../class_ray.html#a7d985affc6123f896f4eef3d526d2207',1,'Ray']]],

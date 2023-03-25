@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_canvas.html" title=" " alt="" coords="5,55,69,80"/>
+<area shape="rect" id="node1" href="$class_canvas.html" title="базовый класс холста" alt="" coords="5,55,69,80"/>
 <area shape="rect" id="node2" href="$class_canvas__console.html" title=" " alt="" coords="117,55,233,80"/>
 <area shape="rect" id="node3" href="$class_canvas__xy.html" title=" " alt="" coords="284,29,369,55"/>
 <area shape="rect" id="node6" href="$class_direct__draw.html" title=" " alt="" coords="281,79,372,104"/>

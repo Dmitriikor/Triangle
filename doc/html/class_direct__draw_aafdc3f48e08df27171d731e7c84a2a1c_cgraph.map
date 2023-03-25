@@ -3,9 +3,9 @@
 <area shape="rect" id="node2" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="205,5,372,45"/>
 <area shape="rect" id="node3" href="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="204,70,373,95"/>
 <area shape="rect" id="node4" href="$class_matrix.html#a194f46787b424f5516420700baa6ced4" title=" " alt="" coords="249,119,328,145"/>
-<area shape="rect" id="node5" href="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="209,169,368,194"/>
-<area shape="rect" id="node6" href="$class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="211,218,366,243"/>
-<area shape="rect" id="node7" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="209,267,368,293"/>
+<area shape="rect" id="node5" href="$class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках" alt="" coords="209,169,368,194"/>
+<area shape="rect" id="node6" href="$class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках" alt="" coords="211,218,366,243"/>
+<area shape="rect" id="node7" href="$class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках" alt="" coords="209,267,368,293"/>
 <area shape="rect" id="node8" href="$class_matrix.html#ab616b0da2284426609ffdf3a911209d5" title=" " alt="" coords="238,317,339,342"/>
 <area shape="rect" id="node9" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="237,366,340,391"/>
 <area shape="rect" id="node10" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="250,415,327,441"/>

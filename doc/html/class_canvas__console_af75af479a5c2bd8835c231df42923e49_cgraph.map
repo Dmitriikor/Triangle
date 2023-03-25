@@ -1,9 +1,9 @@
 <map id="Canvas_console::insert" name="Canvas_console::insert">
 <area shape="rect" id="node1" title=" " alt="" coords="5,84,161,109"/>
 <area shape="rect" id="node2" href="$class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,55,341,80"/>
-<area shape="rect" id="node7" href="$class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,105,368,145"/>
+<area shape="rect" id="node7" href="$class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="209,105,368,145"/>
 <area shape="rect" id="node3" href="$class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="426,5,553,31"/>
-<area shape="rect" id="node4" href="$class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="416,55,563,80"/>
+<area shape="rect" id="node4" href="$class_canvas.html#a7f305adaf59f3d00a788b640b4625d39" title="функция ищет Dot в Ray&lt;Dot&gt; points_to_draw_" alt="" coords="416,55,563,80"/>
 <area shape="rect" id="node6" href="$class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="420,105,559,145"/>
 <area shape="rect" id="node5" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="611,55,688,80"/>
 </map>

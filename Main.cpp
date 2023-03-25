@@ -148,6 +148,7 @@ int main(int argc, char const* argv[])
 	Sleep(2000);														//! @param Sleep(2000) - стандартная функция сна
 	::ShowWindow(consoleWindow, SW_SHOW);								//! @param ShowWindow(consoleWindow, SW_SHOW) - на объекте \a consoleWindow меняем статус на \a SW_SHOW показывая скрытую консоль
 	std::cin.ignore(MAX_STREAMSIZE, '\n');								//! @param std::cin.ignore - игнорирует ранее введенные символы, требует действия
+	system("cls");
 
 
 	while (true) {
@@ -157,56 +158,24 @@ int main(int argc, char const* argv[])
 		try
 		{
 
-			size_t n_points = 0;											//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
+			size_t n_points = -1;											//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
 
 			while (true)
 			{
+				if (n_points == -1) 
+				{
+					std::cout << "Enter number of points:\n";
+					std::cin >> n_points;
+				}
 				if (n_points >= 3)
 					break;
 				else {
 					Sleep(1500);
 					system("cls");
-					std::cout << "Enter number of points:\n";
+					std::cout << "The number of points to build a triangle must be at least 3 \n";
 					std::cin >> n_points;
 				}
-				std::cout << "The number of points to build a triangle must be at least 3 \n";
 
-			}
-
-			int case_to_output_file_patch_switch;							//! @param case_to_output_file_patch_switch - выбираем путь сохранения для треугольника
-			std::cout << "Choise output file settings:\n";
-			std::cout << "\t 1 Save file in root folder, \n";
-			std::cout << "\t 2 Or manual path to save : \n";
-
-			//case_to_output_file_patch_switch = 1;
-
-			std::cin >> case_to_output_file_patch_switch;
-
-			std::string path_in;
-			std::string path_out;
-
-			switch (case_to_output_file_patch_switch)
-			{
-			case 1:
-			{
-				path_in = { "points.txt" };
-				path_out = { "out.txt" };
-				break;
-			}
-			case 2:
-			{
-				//std::getline (std::cin,name);
-				std::cout << "\n Enter path_in \n\t";
-				std::getline(std::cin, path_in);
-				std::cout << "\n Enter path_out \n\t";
-				std::getline(std::cin, path_out);
-				break;
-			}
-			default:
-			{
-				std::cout << "PROGRAM OVER\n";
-				return 0;
-			}
 			}
 
 			std::cout << "Choose mode:\n";
@@ -214,11 +183,13 @@ int main(int argc, char const* argv[])
 			std::cout << "\t 2 input manual,  \n";
 			std::cout << "\t 3 automatically generate random points \n";
 
+			std::string path_in = { "points.txt" };							//! @param path_in - выбираем откуда будем брать список точек
+			std::string path_out = { "out.txt" };							//! @param path_out - выбираем путь сохранения для треугольника
+
 			int input_switch;
 			//input_switch = 3;
 
 			std::cin >> input_switch;
-
 
 			std::cin.ignore(MAX_STREAMSIZE, '\n');
 
@@ -238,9 +209,9 @@ int main(int argc, char const* argv[])
 			Ray<Dot> point_arr;
 
 			if (input_switch == 1)
-				std::cout << "\n \tAttention! Only the above quantity will be taken from the file \n";
+				std::cout << "\n \tAttention! Only the above quantity will be taken from the file \n\n";
 
-			for (size_t i = 0; i < n_points; i++) {
+			for (size_t i = 0; i < n_points; i++) {							//! @param for temp - Генерируем точки с помощью функции utilities::random_INT
 				Dot temp;
 
 				if (input_switch == 3) {
@@ -253,11 +224,47 @@ int main(int argc, char const* argv[])
 				point_arr.add_to_back(temp);
 			}
 
+
+			int case_to_output_file_patch_switch;							//! @param case_to_output_file_patch_switch - выбираем путь откуда будем брать список точек и куда сохраним выходные треугольники
+			std::cout << "Choise input and output file settings:\n";
+			std::cout << "\t 1 Take file from root folder, \n";
+			std::cout << "\t 2 Or inter manual path : \n";
+
+			//case_to_output_file_patch_switch = 1;
+
+			std::cin >> case_to_output_file_patch_switch;
+
+			switch (case_to_output_file_patch_switch)
+			{
+			case 1:
+			{
+				break;
+			}
+			case 2:
+			{
+				//std::getline (std::cin,name);
+				std::cout << "\n Enter path_in \n\t";
+				std::getline(std::cin, path_in);
+				std::cout << "\n Enter path_out \n\t";
+				std::getline(std::cin, path_out);
+				break;
+			}
+			default:
+			{
+				std::cout << "PROGRAM OVER\n";
+				return 0;
+			}
+			}
+
+
 			t1 = clock();
+
 
 
 			Triangle_hi Fin_Triangle;
 			Fin_Triangle = Find_Triangle(point_arr, n_points);
+
+
 
 			Ray<Dot> copy_to_print;
 			if (Fin_Triangle.get_dot_counter() != 0)

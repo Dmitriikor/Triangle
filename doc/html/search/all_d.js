@@ -5,7 +5,7 @@ var searchData=
   ['point_2eh_2',['Point.h',['../_point_8h.html',1,'']]],
   ['point_5fin_5ftriangle_3',['point_in_triangle',['../class_triangle__hi.html#a8005d0d99325f16cd673a6351dac7390',1,'Triangle_hi']]],
   ['point_5fisequal_4',['Point_isEqual',['../_point_8cpp.html#ad1606391f3b79a0c546b6604fecf408d',1,'Point.cpp']]],
-  ['points_5fto_5fdraw_5',['points_to_draw',['../class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1',1,'Canvas']]],
+  ['points_5fto_5fdraw_5',['points_to_draw',['../class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187',1,'Canvas']]],
   ['points_5fto_5fdraw_5f_6',['points_to_draw_',['../class_canvas.html#a98a50b612c4646abad532dd7a7155fbf',1,'Canvas']]],
   ['pop_5fback_7',['pop_back',['../class_ray.html#ad9f31ca0b61256f3c23f71caaf9c60b2',1,'Ray']]],
   ['pop_5ffront_8',['pop_front',['../class_ray.html#ae8f0f02396c659e93224f8fa8540c21a',1,'Ray']]],

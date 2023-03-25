@@ -1,7 +1,7 @@
 <map id="Canvas_xy::initialize_widthes" name="Canvas_xy::initialize_widthes">
 <area shape="rect" id="node1" title=" " alt="" coords="5,55,145,95"/>
 <area shape="rect" id="node2" href="$class_canvas__xy.html#aa9a63b46d64aca3882f1472df59f35c3" title=" " alt="" coords="199,13,347,38"/>
-<area shape="rect" id="node4" href="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="193,62,352,87"/>
-<area shape="rect" id="node5" href="$class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="195,111,350,137"/>
+<area shape="rect" id="node4" href="$class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках" alt="" coords="193,62,352,87"/>
+<area shape="rect" id="node5" href="$class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках" alt="" coords="195,111,350,137"/>
 <area shape="rect" id="node3" href="$class_canvas__xy.html#a7d5a2d324bdfc4021d5e3866ca5e6f55" title=" " alt="" coords="400,5,549,45"/>
 </map>
