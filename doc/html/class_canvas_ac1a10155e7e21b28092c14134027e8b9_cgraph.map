@@ -1,0 +1,13 @@
+<map id="Canvas::remove_line" name="Canvas::remove_line">
+<area shape="rect" id="node1" title=" " alt="" coords="5,108,145,133"/>
+<area shape="rect" id="node2" href="$_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="193,51,339,76"/>
+<area shape="rect" id="node6" href="$_canvas_8cpp.html#a76cb16e2b5895bd06f24a7398b9fb74e" title="static double get_step(double coefficient);" alt="" coords="201,101,331,141"/>
+<area shape="rect" id="node8" href="$class_canvas.html#a26f551519ccd8633712d477cd9370ff6" title=" " alt="" coords="209,227,323,252"/>
+<area shape="rect" id="node3" href="$class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="401,5,528,31"/>
+<area shape="rect" id="node4" href="$_canvas_8cpp.html#ae1f6533ff0ca7b340225c1de2c8408bb" title=" " alt="" coords="429,55,501,80"/>
+<area shape="rect" id="node5" href="$namespaceutilities.html#a61728de0df6774b3fe47958df5449bc8" title=" " alt="" coords="387,104,543,129"/>
+<area shape="rect" id="node7" href="$namespaceutilities.html#a8c969ae5ef2b4068da78f2efbc88ac13" title="Dot* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = &quot;points...." alt="" coords="407,153,522,179"/>
+<area shape="rect" id="node9" href="$class_ray.html#a31d5fb55f4aab77b55d28b8b209a7751" title=" " alt="" coords="417,203,512,228"/>
+<area shape="rect" id="node10" href="$class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="391,252,538,277"/>
+<area shape="rect" id="node11" href="$class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="395,302,534,342"/>
+</map>
