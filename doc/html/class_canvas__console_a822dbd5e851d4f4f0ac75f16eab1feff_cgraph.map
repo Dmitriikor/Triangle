@@ -1,6 +1,5 @@
 <map id="Canvas_console::y_axis_filling" name="Canvas_console::y_axis_filling">
-<area shape="rect" id="node1" title=" " alt="" coords="5,27,168,67"/>
-<area shape="rect" id="node2" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="242,5,345,31"/>
-<area shape="rect" id="node3" href="$class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="216,55,371,95"/>
-<area shape="rect" id="node4" href="$class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="419,63,587,88"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,168,75"/>
+<area shape="rect" id="node2" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="216,5,383,45"/>
+<area shape="rect" id="node3" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="248,70,351,95"/>
 </map>

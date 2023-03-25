@@ -1,7 +1,11 @@
 <map id="Corner::erase_point_from_corner" name="Corner::erase_point_from_corner">
-<area shape="rect" id="node1" title=" " alt="" coords="5,88,140,128"/>
-<area shape="rect" id="node2" href="$class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="199,5,347,45"/>
-<area shape="rect" id="node3" href="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="188,70,357,95"/>
-<area shape="rect" id="node4" href="$class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="189,119,357,145"/>
-<area shape="rect" id="node5" href="$class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="189,169,357,194"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,187,140,227"/>
+<area shape="rect" id="node2" href="$class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5" title=" " alt="" coords="188,5,368,31"/>
+<area shape="rect" id="node3" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="195,55,361,95"/>
+<area shape="rect" id="node4" href="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="193,120,363,145"/>
+<area shape="rect" id="node5" href="$class_matrix.html#acbf5cadeb802c72ec461a63964cc1b1f" title=" " alt="" coords="227,169,329,195"/>
+<area shape="rect" id="node6" href="$class_matrix.html#a0dbd6641df003cc57831b218174c09b2" title=" " alt="" coords="228,219,328,244"/>
+<area shape="rect" id="node7" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="227,268,329,293"/>
+<area shape="rect" id="node8" href="$class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="209,317,347,343"/>
+<area shape="rect" id="node9" href="$class_canvas__xy.html#a8346f3ae76d19044fe798bf82ae6ec72" title=" " alt="" coords="209,367,347,392"/>
 </map>

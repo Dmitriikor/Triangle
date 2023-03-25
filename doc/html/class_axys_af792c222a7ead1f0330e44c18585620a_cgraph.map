@@ -1,4 +1,6 @@
 <map id="Axys::remove" name="Axys::remove">
-<area shape="rect" id="node1" title=" " alt="" coords="5,37,107,62"/>
-<area shape="rect" id="node2" href="$class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="155,29,325,69"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,70,107,95"/>
+<area shape="rect" id="node2" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="157,5,323,45"/>
+<area shape="rect" id="node3" href="$class_matrix.html#ad39022f082bfee09e24d098796e14e10" title=" " alt="" coords="193,70,287,95"/>
+<area shape="rect" id="node4" href="$class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="155,120,325,160"/>
 </map>

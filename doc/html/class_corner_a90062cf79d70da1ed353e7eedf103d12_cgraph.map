@@ -1,8 +1,12 @@
 <map id="Corner::moving_points_from_ray_to_matrix" name="Corner::moving_points_from_ray_to_matrix">
-<area shape="rect" id="node1" title=" " alt="" coords="5,112,156,152"/>
-<area shape="rect" id="node2" href="$class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="214,5,362,45"/>
-<area shape="rect" id="node3" href="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="259,70,317,95"/>
-<area shape="rect" id="node4" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="209,119,367,145"/>
-<area shape="rect" id="node5" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="249,169,327,194"/>
-<area shape="rect" id="node6" href="$class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="204,218,372,243"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,211,156,251"/>
+<area shape="rect" id="node2" href="$class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5" title=" " alt="" coords="204,5,384,31"/>
+<area shape="rect" id="node3" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="211,55,377,95"/>
+<area shape="rect" id="node4" href="$class_matrix.html#acbf5cadeb802c72ec461a63964cc1b1f" title=" " alt="" coords="243,120,345,145"/>
+<area shape="rect" id="node5" href="$class_matrix.html#a0dbd6641df003cc57831b218174c09b2" title=" " alt="" coords="244,169,344,195"/>
+<area shape="rect" id="node6" href="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="265,219,323,244"/>
+<area shape="rect" id="node7" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="215,268,373,293"/>
+<area shape="rect" id="node8" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="243,317,345,343"/>
+<area shape="rect" id="node9" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="255,367,333,392"/>
+<area shape="rect" id="node10" href="$class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="225,416,363,441"/>
 </map>

@@ -2,8 +2,10 @@ var hierarchy =
 [
     [ "Canvas", "class_canvas.html", [
       [ "Canvas_console", "class_canvas__console.html", [
-        [ "Axys", "class_axys.html", null ],
-        [ "Corner", "class_corner.html", null ],
+        [ "Canvas_xy", "class_canvas__xy.html", [
+          [ "Axys", "class_axys.html", null ],
+          [ "Corner", "class_corner.html", null ]
+        ] ],
         [ "Direct_draw", "class_direct__draw.html", null ]
       ] ]
     ] ],

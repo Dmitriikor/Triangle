@@ -6,6 +6,6 @@ var searchData=
   ['add_5fto_5ffirst_3',['add_to_first',['../class_ray.html#a16c68bb92b33b0c86f550680469ed451',1,'Ray']]],
   ['allocate_4',['allocate',['../class_matrix.html#a3e6db08c8d20b484454e12b11d44e26b',1,'Matrix']]],
   ['at_5f_5',['at_',['../class_ray.html#a2068e50c6c79d9d311502018b1e045fd',1,'Ray::at_(size_t index)'],['../class_ray.html#af467a35890ce83f0a0fd6eabfffa7550',1,'Ray::at_(size_t index) const']]],
-  ['axis_5fx_5findents_6',['axis_x_indents',['../class_canvas__console.html#a415adeae61da943b0224e97016836a4f',1,'Canvas_console']]],
-  ['axis_5fx_5fstrings_7',['axis_x_strings',['../class_canvas__console.html#ae18044ce3c68ad8e2a9cd48dfd0c31d1',1,'Canvas_console']]]
+  ['axis_5fx_5findents_6',['axis_x_indents',['../class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5',1,'Canvas_xy']]],
+  ['axis_5fx_5fstrings_7',['axis_x_strings',['../class_canvas__xy.html#ae14bade279480b418e39b85c16b33e2e',1,'Canvas_xy']]]
 ];

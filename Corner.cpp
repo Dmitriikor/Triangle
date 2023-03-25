@@ -1,4 +1,4 @@
-#include "Corner.h"
+﻿#include "Corner.h"
 
 
 void Corner::change_file_path(const std::string& address)
@@ -68,7 +68,7 @@ void Corner::print() const
 	}
 }
 
-Corner::Corner() : Canvas_console()
+Corner::Corner() : Canvas_xy()
 {
 	ORIGIN_.i = 0;
 	ORIGIN_.j = 0;
@@ -131,6 +131,8 @@ void Corner::erase_point_from_corner(const Dot& dot)
 void Corner::calculate_matrix()
 {
 	//!!! Coordinate
+	initialize_width();
+
 
 	int max_y = MAX_VIRTUAL().y;
 	int min_y = MIN_VIRTUAL().y;
@@ -184,10 +186,10 @@ void Corner::calculate_matrix()
 		else
 			N__ = std::abs(min_x) + std::abs(max_x) + 1;
 
-		int i_for_x = Canvas_Matrix().get_N() - axis_x_strings();
+		size_t i_for_x = Canvas_Matrix().get_N() - axis_x_strings();
 
-		width_x_with_indent_ = width_x() + axis_x_indents();
-
+		width_x_with_indent(width_x() + axis_x_indents());
+		
 		x_axis_filling(N__, start_x, i_for_x);
 
 		// }end print x axis

@@ -1,16 +1,17 @@
-﻿//#pragma once
+//#pragma once
 #ifndef Corner_H__
 
 #define  Corner_H__
 
 #include "Canvas_console.h"
 #include "Matrix.h"
+#include "Canvas_xy.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 
-class Corner : public Canvas_console
+class Corner : public Canvas_xy
 {
 public:
 	void change_file_path(const std::string& address);

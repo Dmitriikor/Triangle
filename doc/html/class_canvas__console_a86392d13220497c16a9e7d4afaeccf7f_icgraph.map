@@ -1,13 +1,9 @@
 <map id="Canvas_console::isMatrixCalculated" name="Canvas_console::isMatrixCalculated">
-<area shape="rect" id="node1" title=" " alt="" coords="551,185,721,225"/>
-<area shape="rect" id="node2" href="$class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="344,47,503,87"/>
-<area shape="rect" id="node7" href="$class_axys.html#a8a1ef438decf7aa0150fa8a9e682e880" title=" " alt="" coords="131,153,269,179"/>
-<area shape="rect" id="node8" href="$class_axys.html#af792c222a7ead1f0330e44c18585620a" title=" " alt="" coords="373,163,474,188"/>
-<area shape="rect" id="node9" href="$class_corner.html#a33a579dcaf0fb62d6406777a693eb0e6" title=" " alt="" coords="357,213,489,253"/>
-<area shape="rect" id="node10" href="$class_direct__draw.html#a63db0829be72ae6b819349a1037375c4" title=" " alt="" coords="356,277,491,317"/>
-<area shape="rect" id="node11" href="$class_corner.html#a989625b522a12a50e9570a5521f3aafc" title=" " alt="" coords="127,319,273,344"/>
-<area shape="rect" id="node3" href="$class_canvas__console.html#af75af479a5c2bd8835c231df42923e49" title=" " alt="" coords="122,5,278,31"/>
-<area shape="rect" id="node5" href="$class_canvas__console.html#a4a3dc592c07b69ce610b2806a72317b3" title=" " alt="" coords="109,55,291,80"/>
-<area shape="rect" id="node6" href="$class_canvas__console.html#a6bf84e7efec273107ea13b14e9fd2d64" title=" " alt="" coords="104,104,296,129"/>
-<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main" alt="" coords="5,129,56,155"/>
+<area shape="rect" id="node1" title=" " alt="" coords="299,113,469,153"/>
+<area shape="rect" id="node2" href="$class_axys.html#af792c222a7ead1f0330e44c18585620a" title=" " alt="" coords="127,5,228,31"/>
+<area shape="rect" id="node3" href="$class_corner.html#a33a579dcaf0fb62d6406777a693eb0e6" title=" " alt="" coords="111,55,243,95"/>
+<area shape="rect" id="node4" href="$class_axys.html#a8a1ef438decf7aa0150fa8a9e682e880" title=" " alt="" coords="108,120,247,145"/>
+<area shape="rect" id="node6" href="$class_corner.html#a989625b522a12a50e9570a5521f3aafc" title=" " alt="" coords="104,169,251,195"/>
+<area shape="rect" id="node7" href="$class_direct__draw.html#ab011d1f8a181c32b0e4056666b69e5ae" title=" " alt="" coords="110,219,245,259"/>
+<area shape="rect" id="node5" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,169,56,195"/>
 </map>

@@ -1,11 +1,12 @@
 <map id="Direct_draw::calculate_matrix" name="Direct_draw::calculate_matrix">
-<area shape="rect" id="node1" title=" " alt="" coords="5,171,156,211"/>
-<area shape="rect" id="node2" href="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="204,5,373,31"/>
-<area shape="rect" id="node3" href="$class_matrix.html#a194f46787b424f5516420700baa6ced4" title=" " alt="" coords="249,55,328,80"/>
-<area shape="rect" id="node4" href="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="209,104,368,129"/>
-<area shape="rect" id="node5" href="$class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="211,153,366,179"/>
-<area shape="rect" id="node6" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="209,203,368,228"/>
-<area shape="rect" id="node7" href="$class_matrix.html#ab616b0da2284426609ffdf3a911209d5" title=" " alt="" coords="238,252,339,277"/>
-<area shape="rect" id="node8" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="237,301,340,327"/>
-<area shape="rect" id="node9" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="250,351,327,376"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,211,156,251"/>
+<area shape="rect" id="node2" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="205,5,372,45"/>
+<area shape="rect" id="node3" href="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="204,70,373,95"/>
+<area shape="rect" id="node4" href="$class_matrix.html#a194f46787b424f5516420700baa6ced4" title=" " alt="" coords="249,119,328,145"/>
+<area shape="rect" id="node5" href="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="209,169,368,194"/>
+<area shape="rect" id="node6" href="$class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="211,218,366,243"/>
+<area shape="rect" id="node7" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="209,267,368,293"/>
+<area shape="rect" id="node8" href="$class_matrix.html#ab616b0da2284426609ffdf3a911209d5" title=" " alt="" coords="238,317,339,342"/>
+<area shape="rect" id="node9" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="237,366,340,391"/>
+<area shape="rect" id="node10" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="250,415,327,441"/>
 </map>

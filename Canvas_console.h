@@ -15,23 +15,12 @@ class Canvas_console : public Canvas
 {
 private:
 
-	int width_x_;
-	int width_y_;
-
-	int axis_x_indents_;
-	int axis_x_strings_;
-
-	int indent;
-
 	bool isMatrixCalculated_ = false;
 	Matrix<char> Canvas_Matrix_;
 
 	static const char EMPTY_ = ' ';
 
-	void check_after_insert();
 
-	int width_x_with_indent_;
-	int width_y_with_indent_;
 protected:
 	bool isMatrixCalculated() const;
 	void isMatrixCalculated(bool isMatrixCalculated);
@@ -45,26 +34,6 @@ protected:
 
 	//!!! not in the heirs?
 
-	int width_x() const;
-
-	int width_y() const;
-
-	int width_x_with_indent();
-
-	int width_y_with_indent();
-
-	int axis_x_indents() const;
-
-	int axis_x_strings() const;
-
-	void initialize_widthes(); //! @todo доработать перенос и подсчет;
-
-	void initialize_width();
-
-	size_t get_digits_count(unsigned long long number);
-
-	void x_axis_filling(size_t axis_length, int min_x, int axis_location);
-	void y_axis_filling(size_t axis_length, int min_x, int axis_location);
 
 	size_t get_width(int min_coord, int max_coord);
 
@@ -75,7 +44,7 @@ protected:
 
 public:
 
-	Canvas_console();
+	Canvas_console() = default;
 
 	Canvas_console& operator+=(const Canvas_console& other);
 

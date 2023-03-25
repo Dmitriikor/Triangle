@@ -17,14 +17,16 @@
 #include "Point.h"
 #include "Ray.h"
 #include "Matrix.h"
+#include "Canvas_xy.h"
+
 /**
 
     @class   Axys
-    @brief   класс для рисования осей Х и У
+    @brief   
     @details ~
 
 **/
-class Axys : public Canvas_console
+class Axys : public Canvas_xy
 {
 
 public:

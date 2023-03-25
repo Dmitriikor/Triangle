@@ -3,6 +3,7 @@ var annotated_dup =
     [ "Axys", "class_axys.html", "class_axys" ],
     [ "Canvas", "class_canvas.html", "class_canvas" ],
     [ "Canvas_console", "class_canvas__console.html", "class_canvas__console" ],
+    [ "Canvas_xy", "class_canvas__xy.html", "class_canvas__xy" ],
     [ "Coordinate", "struct_coordinate.html", "struct_coordinate" ],
     [ "Corner", "class_corner.html", "class_corner" ],
     [ "Direct_draw", "class_direct__draw.html", "class_direct__draw" ],

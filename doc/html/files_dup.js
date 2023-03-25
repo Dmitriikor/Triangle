@@ -6,6 +6,8 @@ var files_dup =
     [ "Canvas.h", "_canvas_8h.html", "_canvas_8h" ],
     [ "Canvas_console.cpp", "_canvas__console_8cpp.html", null ],
     [ "Canvas_console.h", "_canvas__console_8h.html", "_canvas__console_8h" ],
+    [ "Canvas_xy.cpp", "_canvas__xy_8cpp.html", null ],
+    [ "Canvas_xy.h", "_canvas__xy_8h.html", "_canvas__xy_8h" ],
     [ "Corner.cpp", "_corner_8cpp.html", null ],
     [ "Corner.h", "_corner_8h.html", "_corner_8h" ],
     [ "Direct_draw.cpp", "_direct__draw_8cpp.html", null ],

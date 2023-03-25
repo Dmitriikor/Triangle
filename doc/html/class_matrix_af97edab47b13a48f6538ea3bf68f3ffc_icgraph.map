@@ -1,13 +1,17 @@
 <map id="Matrix::set_at" name="Matrix::set_at">
-<area shape="rect" id="node1" title=" " alt="" coords="720,77,823,102"/>
-<area shape="rect" id="node2" href="$class_direct__draw.html#aafdc3f48e08df27171d731e7c84a2a1c" title=" " alt="" coords="515,5,666,45"/>
-<area shape="rect" id="node5" href="$class_canvas__console.html#afe9be96db74e70671a75e777f297b95f" title=" " alt="" coords="509,69,672,109"/>
-<area shape="rect" id="node11" href="$class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff" title=" " alt="" coords="509,133,672,173"/>
-<area shape="rect" id="node3" href="$class_direct__draw.html#a63db0829be72ae6b819349a1037375c4" title=" " alt="" coords="313,9,447,49"/>
-<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main" alt="" coords="5,73,56,98"/>
-<area shape="rect" id="node6" href="$class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="303,77,457,102"/>
-<area shape="rect" id="node8" href="$class_corner.html#a5536f603e7832fe328e4c2f4ff40aafc" title="!! module sub&#45;functions" alt="" coords="299,134,461,159"/>
-<area shape="rect" id="node7" href="$class_axys.html#a8a1ef438decf7aa0150fa8a9e682e880" title=" " alt="" coords="108,73,247,98"/>
-<area shape="rect" id="node9" href="$class_corner.html#a33a579dcaf0fb62d6406777a693eb0e6" title=" " alt="" coords="111,123,243,163"/>
-<area shape="rect" id="node10" href="$class_corner.html#a989625b522a12a50e9570a5521f3aafc" title=" " alt="" coords="104,187,251,213"/>
+<area shape="rect" id="node1" title=" " alt="" coords="724,159,827,185"/>
+<area shape="rect" id="node2" href="$class_direct__draw.html#aafdc3f48e08df27171d731e7c84a2a1c" title=" " alt="" coords="517,5,668,45"/>
+<area shape="rect" id="node5" href="$class_corner.html#a61f662081ec49c07a6dd80d6f4234320" title=" " alt="" coords="525,284,660,324"/>
+<area shape="rect" id="node6" href="$class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277" title=" " alt="" coords="309,233,451,273"/>
+<area shape="rect" id="node8" href="$class_corner.html#a90062cf79d70da1ed353e7eedf103d12" title=" " alt="" coords="517,69,668,109"/>
+<area shape="rect" id="node12" href="$class_canvas__xy.html#a41f07f5a54c7dd7c3c54e778be1bf807" title=" " alt="" coords="509,134,676,159"/>
+<area shape="rect" id="node15" href="$class_canvas__xy.html#a3f74ad9f1523b1b171f01d74b00f6427" title=" " alt="" coords="509,183,676,209"/>
+<area shape="rect" id="node3" href="$class_direct__draw.html#ab011d1f8a181c32b0e4056666b69e5ae" title=" " alt="" coords="110,5,245,45"/>
+<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,134,56,159"/>
+<area shape="rect" id="node7" href="$class_axys.html#a8a1ef438decf7aa0150fa8a9e682e880" title=" " alt="" coords="108,183,247,209"/>
+<area shape="rect" id="node9" href="$class_corner.html#a8bd14f6db2a038f3c423f8b4d0d67f47" title=" " alt="" coords="315,69,445,109"/>
+<area shape="rect" id="node10" href="$class_corner.html#a33a579dcaf0fb62d6406777a693eb0e6" title=" " alt="" coords="111,69,243,109"/>
+<area shape="rect" id="node11" href="$class_corner.html#a989625b522a12a50e9570a5521f3aafc" title=" " alt="" coords="104,134,251,159"/>
+<area shape="rect" id="node13" href="$class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="303,183,457,209"/>
+<area shape="rect" id="node14" href="$class_corner.html#a5536f603e7832fe328e4c2f4ff40aafc" title="!! module sub&#45;functions" alt="" coords="299,134,461,159"/>
 </map>

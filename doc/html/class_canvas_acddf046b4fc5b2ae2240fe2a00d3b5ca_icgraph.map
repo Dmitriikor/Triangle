@@ -1,14 +1,15 @@
 <map id="Canvas::update_min_max_by" name="Canvas::update_min_max_by">
 <area shape="rect" id="node1" title=" " alt="" coords="693,127,832,167"/>
 <area shape="rect" id="node2" href="$class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="537,85,641,110"/>
-<area shape="rect" id="node9" href="$class_canvas.html#a26f551519ccd8633712d477cd9370ff6" title=" " alt="" coords="532,183,645,209"/>
+<area shape="rect" id="node10" href="$class_canvas.html#a26f551519ccd8633712d477cd9370ff6" title=" " alt="" coords="532,183,645,209"/>
 <area shape="rect" id="node3" href="$class_canvas__console.html#af75af479a5c2bd8835c231df42923e49" title=" " alt="" coords="122,10,278,35"/>
-<area shape="rect" id="node5" href="$class_canvas.html#a3912c2ac990d3c10cc6c78369dc969cb" title=" " alt="" coords="362,35,466,61"/>
+<area shape="rect" id="node5" href="$class_canvas.html#a9acf55585696b9348a11e0797010748a" title=" " alt="" coords="362,35,466,61"/>
 <area shape="rect" id="node6" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="349,85,479,110"/>
 <area shape="rect" id="node8" href="$class_canvas.html#a45e30833c24e352debdaa806c4aa5085" title=" " alt="" coords="347,134,481,159"/>
-<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main" alt="" coords="5,85,56,110"/>
+<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,85,56,110"/>
 <area shape="rect" id="node7" href="$class_canvas__console.html#a4a3dc592c07b69ce610b2806a72317b3" title=" " alt="" coords="109,85,291,110"/>
-<area shape="rect" id="node10" href="$class_canvas.html#afecec1ce69ad5d78ff5e25ffd2294b58" title=" " alt="" coords="357,183,471,209"/>
-<area shape="rect" id="node11" href="$class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="344,233,484,258"/>
-<area shape="rect" id="node12" href="$class_canvas__console.html#a6bf84e7efec273107ea13b14e9fd2d64" title=" " alt="" coords="104,183,296,209"/>
+<area shape="rect" id="node9" href="$class_canvas__console.html#ad774a3c4922621b5d305c27735b4d0af" title=" " alt="" coords="107,134,293,159"/>
+<area shape="rect" id="node11" href="$class_canvas.html#afecec1ce69ad5d78ff5e25ffd2294b58" title=" " alt="" coords="357,183,471,209"/>
+<area shape="rect" id="node12" href="$class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="344,233,484,258"/>
+<area shape="rect" id="node13" href="$class_canvas__console.html#a6bf84e7efec273107ea13b14e9fd2d64" title=" " alt="" coords="104,207,296,233"/>
 </map>

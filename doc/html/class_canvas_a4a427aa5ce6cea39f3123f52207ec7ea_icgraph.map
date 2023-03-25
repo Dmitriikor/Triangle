@@ -1,9 +1,10 @@
 <map id="Canvas::insert" name="Canvas::insert">
-<area shape="rect" id="node1" title=" " alt="" coords="517,68,621,93"/>
-<area shape="rect" id="node2" href="$class_canvas__console.html#af75af479a5c2bd8835c231df42923e49" title=" " alt="" coords="117,5,273,31"/>
-<area shape="rect" id="node4" href="$class_canvas.html#a3912c2ac990d3c10cc6c78369dc969cb" title=" " alt="" coords="350,43,454,68"/>
-<area shape="rect" id="node5" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="337,92,467,117"/>
-<area shape="rect" id="node7" href="$class_canvas.html#a45e30833c24e352debdaa806c4aa5085" title=" " alt="" coords="335,141,469,167"/>
-<area shape="rect" id="node3" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main" alt="" coords="5,43,56,68"/>
-<area shape="rect" id="node6" href="$class_canvas__console.html#a4a3dc592c07b69ce610b2806a72317b3" title=" " alt="" coords="104,67,287,92"/>
+<area shape="rect" id="node1" title=" " alt="" coords="521,68,625,93"/>
+<area shape="rect" id="node2" href="$class_canvas__console.html#af75af479a5c2bd8835c231df42923e49" title=" " alt="" coords="119,5,275,31"/>
+<area shape="rect" id="node4" href="$class_canvas.html#a9acf55585696b9348a11e0797010748a" title=" " alt="" coords="354,43,458,68"/>
+<area shape="rect" id="node5" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="341,92,471,117"/>
+<area shape="rect" id="node7" href="$class_canvas.html#a45e30833c24e352debdaa806c4aa5085" title=" " alt="" coords="339,141,473,167"/>
+<area shape="rect" id="node3" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,36,56,61"/>
+<area shape="rect" id="node6" href="$class_canvas__console.html#a4a3dc592c07b69ce610b2806a72317b3" title=" " alt="" coords="106,67,289,92"/>
+<area shape="rect" id="node8" href="$class_canvas__console.html#ad774a3c4922621b5d305c27735b4d0af" title=" " alt="" coords="104,141,291,167"/>
 </map>

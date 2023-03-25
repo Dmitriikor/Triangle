@@ -8,7 +8,7 @@ var searchData=
   ['get_5fbc_5',['get_BC',['../class_triangle__hi.html#a660737de8ce0a2a83f57194abf153b98',1,'Triangle_hi']]],
   ['get_5fc_6',['get_c',['../class_triangle__low.html#a9e4b1b6133ed747dd1e522b9631a63b9',1,'Triangle_low']]],
   ['get_5fca_7',['get_CA',['../class_triangle__hi.html#af0884fc4f4dc72d84391b36f3b6cdae0',1,'Triangle_hi']]],
-  ['get_5fdigits_5fcount_8',['get_digits_count',['../class_canvas__console.html#ab430a178603b9c4d37e154dc34f5bb44',1,'Canvas_console']]],
+  ['get_5fdigits_5fcount_8',['get_digits_count',['../class_canvas__xy.html#a7d5a2d324bdfc4021d5e3866ca5e6f55',1,'Canvas_xy']]],
   ['get_5fdistance_5fbetween_9',['get_distance_between',['../namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684',1,'utilities']]],
   ['get_5fdot_5fcounter_10',['get_dot_counter',['../class_triangle__hi.html#a7dc68d4089adbbe408b238e65a94b93b',1,'Triangle_hi']]],
   ['get_5felement_5f_11',['get_element_',['../class_ray.html#a7875c7e8c935885b6c24c46bde3f7132',1,'Ray::get_element_(size_t index)'],['../class_ray.html#ace8fd7fdab83940e131502f7310ff29e',1,'Ray::get_element_(size_t index) const']]],
@@ -17,5 +17,5 @@ var searchData=
   ['get_5fpoint_5farray_14',['get_point_array',['../class_triangle__hi.html#a47dbbba00e501dd97f726a935ccdbbf5',1,'Triangle_hi']]],
   ['get_5fpoint_5fin_15',['get_point_in',['../class_triangle__hi.html#a04574acb2890b3ffc27e04d95348593b',1,'Triangle_hi']]],
   ['get_5fstep_16',['get_step',['../_canvas_8cpp.html#ae1f6533ff0ca7b340225c1de2c8408bb',1,'Canvas.cpp']]],
-  ['get_5fwidth_17',['get_width',['../class_canvas__console.html#a41b96af14e9c3f0e3a25641226daffce',1,'Canvas_console']]]
+  ['get_5fwidth_17',['get_width',['../class_canvas__console.html#a41b96af14e9c3f0e3a25641226daffce',1,'Canvas_console::get_width()'],['../class_canvas__xy.html#aa9a63b46d64aca3882f1472df59f35c3',1,'Canvas_xy::get_width()']]]
 ];

@@ -22,6 +22,7 @@
     <ClCompile Include="Axys.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Canvas_console.cpp" />
+    <ClCompile Include="Canvas_xy.cpp" />
     <ClCompile Include="Corner.cpp" />
     <ClCompile Include="Direct_draw.cpp" />
     <ClCompile Include="Find_Triangle.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="Axys.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Canvas_console.h" />
+    <ClInclude Include="Canvas_xy.h" />
     <ClInclude Include="Corner.h" />
     <ClInclude Include="Direct_draw.h" />
     <ClInclude Include="Find_Triangle.h" />

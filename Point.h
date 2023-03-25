@@ -1,4 +1,4 @@
-﻿#ifndef POINT_TEST_H__
+#ifndef POINT_TEST_H__
 
 #define POINT_TEST_H__
 

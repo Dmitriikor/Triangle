@@ -1,7 +1,8 @@
 <map id="Canvas_console" name="Canvas_console">
-<area shape="rect" id="node1" title=" " alt="" coords="53,79,169,104"/>
-<area shape="rect" id="node3" href="$class_axys.html" title="класс для рисования осей Х и У" alt="" coords="5,152,57,177"/>
-<area shape="rect" id="node4" href="$class_corner.html" title=" " alt="" coords="81,152,141,177"/>
-<area shape="rect" id="node5" href="$class_direct__draw.html" title=" " alt="" coords="166,152,257,177"/>
-<area shape="rect" id="node2" href="$class_canvas.html" title=" " alt="" coords="79,5,143,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="69,79,185,104"/>
+<area shape="rect" id="node3" href="$class_canvas__xy.html" title=" " alt="" coords="29,152,114,177"/>
+<area shape="rect" id="node6" href="$class_direct__draw.html" title=" " alt="" coords="138,152,229,177"/>
+<area shape="rect" id="node2" href="$class_canvas.html" title=" " alt="" coords="95,5,159,31"/>
+<area shape="rect" id="node4" href="$class_axys.html" title=" " alt="" coords="5,225,57,251"/>
+<area shape="rect" id="node5" href="$class_corner.html" title=" " alt="" coords="81,225,141,251"/>
 </map>

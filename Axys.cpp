@@ -1,4 +1,4 @@
-#include "Axys.h"
+﻿#include "Axys.h"
 
 void Axys::remove()
 {
@@ -33,6 +33,8 @@ void Axys::calculate_matrix()
 
 	//Canvas::insert(points_to_draw_);
 
+	initialize_width();
+
 	int max_y = MAX_VIRTUAL().y;
 	int min_y = MIN_VIRTUAL().y;
 
@@ -64,8 +66,8 @@ void Axys::calculate_matrix()
 	int loc_width_y = width_y_loc; // +1;
 
 
-	 width_x_with_indent_ = loc_width_x;
-	 width_y_with_indent_ = loc_width_y;
+	width_x_with_indent(loc_width_x);
+	width_y_with_indent(loc_width_y);
 
 
 	N = (size_N * 2) + axis_x_strings();

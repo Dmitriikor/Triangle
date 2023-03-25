@@ -1,4 +1,4 @@
-#include "Canvas.h"
+﻿#include "Canvas.h"
 
 ///static double get_step(double coefficient);
 static Ray<Dot> calculate_line_with_rounding_(const Dot& A, const Dot& B, char symbol = '+', double coefficient = 1.0);
@@ -154,7 +154,7 @@ void Canvas::insert(const Dot& pt)
 		}
 }
 
-void insert(const Point& pt, char symbol = '.')
+void Canvas::insert(const Point& pt, char symbol)
 {
 	insert(Dot(pt, symbol));
 }

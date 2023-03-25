@@ -1,11 +1,11 @@
-/**
+﻿/**
 
-    @file      Main.cpp
-    @brief     
-    @details   ~
-    @author    Dmitrii
-    @date      19.03.2023
-    @copyright © Dmitrii, 2023. All right reserved.
+	@file      Main.cpp
+	@brief
+	@details   ~
+	@author    Dmitrii
+	@date      19.03.2023
+	@copyright © Dmitrii, 2023. All right reserved.
 
 **/
 
@@ -48,7 +48,7 @@ std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsiz
 
 /**
 * @file Windows.h
-* @brief #include "Windows.h" 
+* @brief #include "Windows.h"
 * только в конце, иначе портит max
 */
 #include "Windows.h"
@@ -56,8 +56,8 @@ std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsiz
 
 
 /**
-    @fn    on_button_click
-    @brief выводит в консоль текст
+	@fn    on_button_click
+	@brief выводит в консоль текст
 **/
 void on_button_click()
 {
@@ -65,11 +65,11 @@ void on_button_click()
 }
 
 /**
-    @fn    on_button_click_2
-    @brief принимает по ссылке  nana::label и выводит в нем текст
-    @param lbl_for_button_funct - ссылка на nana::label в котором будет выведено сообщение
+	@fn    on_button_click_2
+	@brief принимает по ссылке  nana::label и выводит в нем текст
+	@param lbl_for_button_funct - ссылка на nana::label в котором будет выведено сообщение
 **/
-void on_button_click_2(nana::label &lbl_for_button_funct)
+void on_button_click_2(nana::label& lbl_for_button_funct)
 {
 	lbl_for_button_funct.caption("Button was clicked");
 	std::cout << "Button clicked-2!" << std::endl;
@@ -80,22 +80,22 @@ void on_button_click_2(nana::label &lbl_for_button_funct)
 
 
 /**
-    @brief  main
-    @param  argc - none
-    @param  argv - none
-    @retval      -  при успехе вернет 0
+	@brief  main главная функция
+	@param  argc - none
+	@param  argv - none
+	@retval      -  при успехе вернет 0
 **/
 int main(int argc, char const* argv[])
 {
 
-																		//! \warning В param ЗАМЕНЯТЬ ПРОБЕЛЫ НА ALT+255 
+	//! \warning В param ЗАМЕНЯТЬ ПРОБЕЛЫ НА ALT+255 
 
 	setlocale(LC_ALL, "Russian");										//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 	HWND consoleWindow = GetConsoleWindow();							//! @param HWND_consoleWindow = GetConsoleWindow() - захватывает окно консоли в переменную consoleWindow, типа \a HWND 
 	::ShowWindow(consoleWindow, SW_HIDE);								//! @param ::ShowWindow(consoleWindow, SW_HIDE) - принимает переменную консоли и скрывает ее 
-						 
+
 	try
-		{
+	{
 		std::string input_to_string = "привет мир";						//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
 		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
 		form.caption(input_to_string);									//! @param form.caption(input_to_string) - захватывает 
@@ -104,28 +104,28 @@ int main(int argc, char const* argv[])
 		nana::button button(form, nana::rectangle(10, 40, 200, 25));	//! @param nana::button button - создаем с заданными размерами и местоположением
 		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
 		button.events().click(on_button_click);							//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
-		nana::label lbl_for_button (form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
-		button.events().click([&]() 
+		nana::label lbl_for_button(form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
+		button.events().click([&]()
 			{
-				lbl_for_button.caption("Button was clicked");			 
+				lbl_for_button.caption("Button was clicked");
 			});
 
 		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25)); //! @param nana::rectangle(100, 10, 200, 25) - создаем квадрат, задаем размер и положение
 		/*
-			std::bind позволяет создавать новый функциональный объект, который принимает меньше аргументов, чем исходная функция. 
-			Функция-адаптер std::bind позволяет привязать аргументы к вызову функции, сохраняя свободные аргументы, 
+			std::bind позволяет создавать новый функциональный объект, который принимает меньше аргументов, чем исходная функция.
+			Функция-адаптер std::bind позволяет привязать аргументы к вызову функции, сохраняя свободные аргументы,
 			которые можно передать позже.
-		
-			std::bind_front - это новая функция в стандарте C++20. Она работает похоже на std::bind, но в отличие от std::bind, 
+
+			std::bind_front - это новая функция в стандарте C++20. Она работает похоже на std::bind, но в отличие от std::bind,
 			привязывает аргументы к началу списка аргументов функции, а не к концу. Это позволяет создавать функциональные объекты с
 			фиксированными значениями начальных аргументов, оставляя свободными только конечные аргументы.
 
-			Порядок привязки аргументов в std::bind и std::bind_front имеет значение. 
-			В std::bind порядок привязанных аргументов соответствует порядку передачи аргументов при вызове функции. 
+			Порядок привязки аргументов в std::bind и std::bind_front имеет значение.
+			В std::bind порядок привязанных аргументов соответствует порядку передачи аргументов при вызове функции.
 			В std::bind_front порядок привязанных аргументов соответствует порядку перечисления аргументов функции в определении.
 
-			std::bind принимает все аргументы по значению, в то время как std::bind_front принимает аргументы по ссылке. 
-			Кроме того, в std::bind_front можно передавать только первые аргументы функции, а остальные будут переданы при вызове связанной функции. 
+			std::bind принимает все аргументы по значению, в то время как std::bind_front принимает аргументы по ссылке.
+			Кроме того, в std::bind_front можно передавать только первые аргументы функции, а остальные будут переданы при вызове связанной функции.
 			Это может быть полезно, если вы хотите задать значения для некоторых параметров функции заранее, а остальные параметры будут переданы при выполнении.
 
 			foo(int a, int b, int c)
@@ -139,23 +139,24 @@ int main(int argc, char const* argv[])
 		form.show();
 		nana::exec();
 
-	} catch (const std::runtime_error& exception)
-		{
-			std::cout << "\n\texception :  " << exception.what() << std::endl;
-		}
+	}
+	catch (const std::runtime_error& exception)
+	{
+		std::cout << "\n\texception :  " << exception.what() << std::endl;
+	}
 
-		Sleep(2000);														//! @param Sleep(2000) - стандартная функция сна
-		::ShowWindow(consoleWindow, SW_SHOW);								//! @param ShowWindow(consoleWindow, SW_SHOW) - на объекте \a consoleWindow меняем статус на \a SW_SHOW показывая скрытую консоль
-		std::cin.ignore(MAX_STREAMSIZE, '\n');								//! @param std::cin.ignore - игнорирует ранее введенные символы, требует действия
+	Sleep(2000);														//! @param Sleep(2000) - стандартная функция сна
+	::ShowWindow(consoleWindow, SW_SHOW);								//! @param ShowWindow(consoleWindow, SW_SHOW) - на объекте \a consoleWindow меняем статус на \a SW_SHOW показывая скрытую консоль
+	std::cin.ignore(MAX_STREAMSIZE, '\n');								//! @param std::cin.ignore - игнорирует ранее введенные символы, требует действия
 
-	
-	while (true) { 
+
+	while (true) {
 
 		time_t t1;															//! @param time_t t1 - запуск таймера, засекаем время
 
 		try
 		{
-			
+
 			size_t n_points = 0;											//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
 
 			while (true)
@@ -172,12 +173,12 @@ int main(int argc, char const* argv[])
 
 			}
 
-			int case_to_output_file_patch_switch;
+			int case_to_output_file_patch_switch;							//! @param case_to_output_file_patch_switch - выбираем путь сохранения для треугольника
 			std::cout << "Choise output file settings:\n";
 			std::cout << "\t 1 Save file in root folder, \n";
 			std::cout << "\t 2 Or manual path to save : \n";
 
-			////case_to_output_file_patch_switch = 1;
+			//case_to_output_file_patch_switch = 1;
 
 			std::cin >> case_to_output_file_patch_switch;
 
@@ -221,7 +222,7 @@ int main(int argc, char const* argv[])
 
 			std::cin.ignore(MAX_STREAMSIZE, '\n');
 
-			if (input_switch != 1 && input_switch != 2 && input_switch != 3) {   
+			if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
 				std::cout << "PROGRAM OVER\n";
 				return 0;
 			}
@@ -265,25 +266,19 @@ int main(int argc, char const* argv[])
 
 				out_print.insert(Fin_Triangle.get_point_array(), '*');
 
-				////*for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
-				////	copy_to_print.add_to_back(Fin_Triangle.get_point(i));*/
+				//  for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
+				//	copy_to_print.add_to_back(Fin_Triangle.get_point(i));
 
 				out_print.insert(copy_to_print);
 				out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(), '*');
 				out_print.insert_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(), '*');
 				out_print.insert_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(), '*');
 
-				out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(),'+');
+				out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(), '+');
 
 				out_print.render_matrix();
 				out_print.print();
 				out_print.print_to_file();
-
-				//out_print.clear();
-				//out_print.insert(Fin_Triangle.get_point_array(), '+');
-				//out_print.clear();
-
-
 
 				Axys a_out_print;
 				a_out_print += out_print;
@@ -299,27 +294,29 @@ int main(int argc, char const* argv[])
 
 
 				Direct_draw ttst;
-				//ttst.insert_line({ 0,0 }, { 0,0 }, '&');
-				//ttst.insert_line({ 1,1 }, { 1,1  }, '/');
-				//ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
-				//ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
+				ttst.insert_line({ 0,0 }, { 0,0 }, '&');
+				ttst.insert_line({ 1,1 }, { 1,1 }, '/');
+				ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
+				ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
 				ttst += out_print;
 				ttst.render_matrix();
 				ttst.print();
 			}
-			int t2;
-			std::cin >> t2;
+			int AV2;
+			std::cin >> AV2;
 		}
 		catch (const std::runtime_error& exception)
 		{
 			std::cout << "\n\texception :  " << exception.what() << std::endl;
+			int AV1;
+			std::cin >> AV1;
 		}
 
 		time_t t2 = clock();
 		std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 
-	int t2pause;
-	////std::cin >> t2pause;
+		//int t2pause;
+		//std::cin >> t2pause;
 	}
 
 	return 0;

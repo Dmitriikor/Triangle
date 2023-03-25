@@ -1,9 +1,13 @@
 <map id="Corner::add_points_to_corner" name="Corner::add_points_to_corner">
-<area shape="rect" id="node1" title=" " alt="" coords="5,112,136,152"/>
-<area shape="rect" id="node2" href="$class_corner.html#a90062cf79d70da1ed353e7eedf103d12" title=" " alt="" coords="184,112,335,152"/>
-<area shape="rect" id="node3" href="$class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="393,5,541,45"/>
-<area shape="rect" id="node4" href="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="438,70,495,95"/>
-<area shape="rect" id="node5" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="387,119,546,145"/>
-<area shape="rect" id="node6" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="428,169,505,194"/>
-<area shape="rect" id="node7" href="$class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="383,218,551,243"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,211,136,251"/>
+<area shape="rect" id="node2" href="$class_corner.html#a90062cf79d70da1ed353e7eedf103d12" title=" " alt="" coords="184,211,335,251"/>
+<area shape="rect" id="node3" href="$class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5" title=" " alt="" coords="383,5,563,31"/>
+<area shape="rect" id="node4" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="389,55,556,95"/>
+<area shape="rect" id="node5" href="$class_matrix.html#acbf5cadeb802c72ec461a63964cc1b1f" title=" " alt="" coords="421,120,524,145"/>
+<area shape="rect" id="node6" href="$class_matrix.html#a0dbd6641df003cc57831b218174c09b2" title=" " alt="" coords="423,169,523,195"/>
+<area shape="rect" id="node7" href="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="444,219,501,244"/>
+<area shape="rect" id="node8" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="393,268,552,293"/>
+<area shape="rect" id="node9" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="421,317,524,343"/>
+<area shape="rect" id="node10" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="434,367,511,392"/>
+<area shape="rect" id="node11" href="$class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="404,416,541,441"/>
 </map>
