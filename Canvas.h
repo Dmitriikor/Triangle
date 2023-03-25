@@ -20,7 +20,6 @@
 **/
 class Canvas
 {
-
 private:
 
 	Point MAX_VIRTUAL_;			//!<   MAX_VIRTUAL_  точка созданная из максимальных координат переданных в холст
