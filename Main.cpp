@@ -155,6 +155,11 @@ int main(int argc, char const* argv[])
 
 		try
 		{
+			/** @с size_t n_points
+			* @brief n_points для создания треугольников
+			* @details задаем количество точек из которых будем пытаться создать треугольники 
+			* 
+			*/
 			size_t n_points = 0;
 
 			while (true)
