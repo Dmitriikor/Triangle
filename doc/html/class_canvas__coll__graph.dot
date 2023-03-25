@@ -1,0 +1,15 @@
+digraph "Canvas"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="Canvas",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" MAX_VIRTUAL_\nMIN_VIRTUAL_" ];
+  Node2 [label="Point",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct_point.html",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" points_to_draw_" ];
+  Node3 [label="Ray\< Dot \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_ray.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" ray_" ];
+  Node4 [label="Dot",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct_dot.html",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="steelblue1",style="solid"];
+}

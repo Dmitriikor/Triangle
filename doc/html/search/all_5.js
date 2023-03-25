@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['data_0',['data',['../class_ray.html#a044ead766761541b166f999069d7b105',1,'Ray']]],
-  ['direct_5fdraw_1',['Direct_draw',['../class_direct__draw.html',1,'']]],
-  ['direct_5fdraw_2ecpp_2',['Direct_draw.cpp',['../_direct__draw_8cpp.html',1,'']]],
-  ['direct_5fdraw_2eh_3',['Direct_draw.h',['../_direct__draw_8h.html',1,'']]],
-  ['dot_4',['Dot',['../struct_dot.html',1,'Dot'],['../struct_dot.html#a1de0408a16ffbccad057952afd9c852d',1,'Dot::Dot()'],['../struct_dot.html#a009072ea7f43dcb8ab595fa71c863650',1,'Dot::Dot(double x, double y, char symbol=&apos;.&apos;)'],['../struct_dot.html#a68ca2ae6521a712a97a7c574d6303e78',1,'Dot::Dot(const Point &amp;p, char symbol=&apos;.&apos;)']]],
-  ['draw_5fline_5f2_5ftest_2ecpp_5',['draw_line_2_test.cpp',['../draw__line__2__test_8cpp.html',1,'']]],
-  ['draw_5fline_5f2_5ftest_2eh_6',['draw_line_2_test.h',['../draw__line__2__test_8h.html',1,'']]],
-  ['draw_5fline_5f4_7',['draw_line_4',['../_lines__draw__test_8h.html#a9701543cdd07cefa0bd607382030680e',1,'Lines_draw_test.h']]]
+  ['f_5fleft_0',['F_LEFT',['../class_ray.html#add167924fb0f24138d2c104d63d78ee7',1,'Ray']]],
+  ['f_5fright_1',['F_RIGHT',['../class_ray.html#a5f5028bfbe749ac1c8c9c8ceac7caf06',1,'Ray']]],
+  ['fast_5fprint_2',['fast_print',['../namespaceutilities.html#a429d225fb432a6f8797a9e5413704579',1,'utilities']]],
+  ['fastscan_3',['fastscan',['../namespaceutilities.html#a8abd399d04ea6eaf33ecd8fb03940864',1,'utilities']]],
+  ['fill_4',['fill',['../class_matrix.html#a194f46787b424f5516420700baa6ced4',1,'Matrix']]],
+  ['find_5ftriangle_5',['Find_Triangle',['../_find___triangle_8cpp.html#a7823cb47389cb6d26d3659d2df84d11e',1,'Find_Triangle(Ray&lt; Dot &gt; &amp;point_arr, size_t n_points):&#160;Find_Triangle.cpp'],['../_find___triangle_8h.html#a7823cb47389cb6d26d3659d2df84d11e',1,'Find_Triangle(Ray&lt; Dot &gt; &amp;point_arr, size_t n_points):&#160;Find_Triangle.cpp']]],
+  ['find_5ftriangle_2ecpp_6',['Find_Triangle.cpp',['../_find___triangle_8cpp.html',1,'']]],
+  ['find_5ftriangle_2eh_7',['Find_Triangle.h',['../_find___triangle_8h.html',1,'']]]
 ];

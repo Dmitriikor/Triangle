@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['empty_5f_0',['EMPTY_',['../class_canvas__console.html#a51a0f8459908d4b863bd1975566ef325',1,'Canvas_console']]]
+  ['f_5fleft_0',['F_LEFT',['../class_ray.html#add167924fb0f24138d2c104d63d78ee7',1,'Ray']]],
+  ['f_5fright_1',['F_RIGHT',['../class_ray.html#a5f5028bfbe749ac1c8c9c8ceac7caf06',1,'Ray']]]
 ];

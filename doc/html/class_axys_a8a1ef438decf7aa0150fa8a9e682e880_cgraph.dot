@@ -1,0 +1,58 @@
+digraph "Axys::render_matrix"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="Axys::render_matrix",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="Axys::calculate_matrix",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f",tooltip=" "];
+  Node2 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="Canvas_console::axis\l_x_indents",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a415adeae61da943b0224e97016836a4f",tooltip=" "];
+  Node2 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="Canvas_console::axis\l_x_strings",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#ae18044ce3c68ad8e2a9cd48dfd0c31d1",tooltip=" "];
+  Node2 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="Canvas_console::EMPTY",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5",tooltip=" "];
+  Node2 -> Node6 [color="steelblue1",style="solid"];
+  Node6 [label="utilities::get_distance\l_between",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684",tooltip=" "];
+  Node2 -> Node7 [color="steelblue1",style="solid"];
+  Node7 [label="Canvas::MAX_VIRTUAL",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae",tooltip=" "];
+  Node2 -> Node8 [color="steelblue1",style="solid"];
+  Node8 [label="Canvas::MIN_VIRTUAL",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#af22370809c000769172b4ab018208ba2",tooltip=" "];
+  Node2 -> Node9 [color="steelblue1",style="solid"];
+  Node9 [label="Canvas::points_to_draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1",tooltip=" "];
+  Node2 -> Node10 [color="steelblue1",style="solid"];
+  Node10 [label="Canvas_console::width_x",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae",tooltip="!! not in the heirs?"];
+  Node2 -> Node11 [color="steelblue1",style="solid"];
+  Node11 [label="Canvas_console::width_y",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae",tooltip=" "];
+  Node2 -> Node12 [color="steelblue1",style="solid"];
+  Node12 [label="Canvas_console::x_axis\l_filling",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#afe9be96db74e70671a75e777f297b95f",tooltip=" "];
+  Node2 -> Node13 [color="steelblue1",style="solid"];
+  Node13 [label="Canvas_console::y_axis\l_filling",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff",tooltip=" "];
+  Node13 -> Node14 [color="steelblue1",style="solid"];
+  Node14 [label="Canvas_console::width\l_y_with_indent",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8",tooltip=" "];
+  Node14 -> Node11 [color="steelblue1",style="solid"];
+  Node1 -> Node15 [color="steelblue1",style="solid"];
+  Node15 [label="Canvas_console::check\l_after_insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b",tooltip=" "];
+  Node15 -> Node16 [color="steelblue1",style="solid"];
+  Node16 [label="Canvas_console::initialize\l_width",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb",tooltip=" "];
+  Node16 -> Node7 [color="steelblue1",style="solid"];
+  Node16 -> Node8 [color="steelblue1",style="solid"];
+  Node15 -> Node17 [color="steelblue1",style="solid"];
+  Node17 [label="Canvas_console::isMatrix\lCalculated",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f",tooltip=" "];
+  Node17 -> Node17 [color="steelblue1",style="solid"];
+  Node15 -> Node7 [color="steelblue1",style="solid"];
+  Node15 -> Node8 [color="steelblue1",style="solid"];
+  Node1 -> Node17 [color="steelblue1",style="solid"];
+  Node1 -> Node18 [color="steelblue1",style="solid"];
+  Node18 [label="Axys::moving_points\l_from_ray_to_matrix",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277",tooltip=" "];
+  Node18 -> Node3 [color="steelblue1",style="solid"];
+  Node18 -> Node19 [color="steelblue1",style="solid"];
+  Node19 [label="length",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee",tooltip=" "];
+  Node18 -> Node9 [color="steelblue1",style="solid"];
+  Node18 -> Node20 [color="steelblue1",style="solid"];
+  Node20 [label="Ray::size",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_ray.html#a5433e5f6205bb963ddb43519022553b4",tooltip=" "];
+  Node18 -> Node10 [color="steelblue1",style="solid"];
+  Node1 -> Node9 [color="steelblue1",style="solid"];
+}

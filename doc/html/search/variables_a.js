@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['n_0',['N',['../class_matrix___t_e_m_p_l_a_t_e.html#af7a1eebd357afe0cd2246956d2a19ac9',1,'Matrix_TEMPLATE::N()'],['../class_matrix.html#a3095589c03b42ed095222ea51991cc30',1,'Matrix::N()']]],
-  ['not_5fposition_1',['NOT_POSITION',['../class_canvas.html#ac0beddff0d9694705d42232639cb9dbb',1,'Canvas']]]
+  ['origin_5f_0',['ORIGIN_',['../class_axys.html#a2e9161312874e26cfd0f373ef3b881c9',1,'Axys::ORIGIN_()'],['../class_corner.html#aaffd816cc829c5d35bee69c58d22cbe4',1,'Corner::ORIGIN_()']]],
+  ['outfile_5fadress_1',['outfile_adress',['../class_axys.html#ad88b71bffe9bfb4f5f570b135c46c472',1,'Axys::outfile_adress()'],['../class_corner.html#a6b284a4d4b95ffd60a30dbc97bed8abc',1,'Corner::outfile_adress()']]]
 ];

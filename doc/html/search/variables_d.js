@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['ray_5f_0',['ray_',['../class_ray.html#ae0114f3cb553bad1f4c3897a2be3c77d',1,'Ray::ray_()'],['../class_ray__3__.html#a71c0a73fc4724ee1786988d87790a48e',1,'Ray_3_::ray_()']]],
-  ['right_1',['RIGHT',['../class_ray.html#a4f0f667f9d06f4a4b1d58da239ba2365',1,'Ray::RIGHT()'],['../class_ray__3__.html#aca568faf63382305f6bb570e5a3c751f',1,'Ray_3_::RIGHT()']]]
+  ['saved_5fleft_0',['saved_LEFT',['../class_ray.html#ace5e959cf48c079edf0d01df2025de62',1,'Ray']]],
+  ['saved_5fright_1',['saved_RIGHT',['../class_ray.html#afdc521f4f29f4021e5044a0253ccf8e3',1,'Ray']]],
+  ['side_2',['side',['../class_triangle__hi.html#a1a6afb6ad6fc423254789ba2b12b0e4f',1,'Triangle_hi']]],
+  ['symbol_3',['symbol',['../struct_dot.html#ad9cb4528e3981737a5cf35b7f55e8b2a',1,'Dot']]]
 ];

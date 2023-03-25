@@ -1,0 +1,15 @@
+digraph "Canvas::remove"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [label="Canvas::remove",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="Canvas::remove",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#afecec1ce69ad5d78ff5e25ffd2294b58",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="Canvas::remove_line",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#ac1a10155e7e21b28092c14134027e8b9",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="steelblue1",style="solid"];
+  Node4 [label="Canvas_console::remove_line",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a6bf84e7efec273107ea13b14e9fd2d64",tooltip=" "];
+}

@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['left_0',['LEFT',['../class_ray.html#a08b14cc855f6356ceb31276a20b0c0e2',1,'Ray::LEFT()'],['../class_ray__3__.html#ab1fd02dcfbb9d87a5d34a1f62a94196c',1,'Ray_3_::LEFT()']]]
+  ['m_0',['M',['../class_matrix.html#a5d54d88e231fcc5bb91c88661f7f9d16',1,'Matrix']]],
+  ['max_5fstreamsize_1',['MAX_STREAMSIZE',['../_main_8cpp.html#aee15b0e16b12fee7d146651d88bd1dcb',1,'Main.cpp']]],
+  ['max_5fvirtual_5f_2',['MAX_VIRTUAL_',['../class_canvas.html#a445bae22e46263871bb004aa9d035220',1,'Canvas']]],
+  ['min_5fvirtual_5f_3',['MIN_VIRTUAL_',['../class_canvas.html#ad458afc5166fff2482535a4b0d5efd02',1,'Canvas']]],
+  ['my_5fmatrix_5ftemplate_4',['my_Matrix_TEMPLATE',['../struct_matrix_1_1str__i.html#a525c44c4eae11b45f980e8a50f3ebe7f',1,'Matrix::str_i::my_Matrix_TEMPLATE()'],['../struct_matrix_1_1const__str__i.html#ab4373bbe05fda8edb52c0d15a4b82bbb',1,'Matrix::const_str_i::my_Matrix_TEMPLATE()']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['data_0',['data',['../class_ray.html#a044ead766761541b166f999069d7b105',1,'Ray']]]
+  ['empty_5f_0',['EMPTY_',['../class_canvas__console.html#a51a0f8459908d4b863bd1975566ef325',1,'Canvas_console']]]
 ];

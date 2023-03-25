@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['point_5fin_5ftriangle_0',['point_in_triangle',['../class_triangle__hi.html#a8005d0d99325f16cd673a6351dac7390',1,'Triangle_hi']]],
-  ['points_5fto_5fdraw_5f_1',['points_to_draw_',['../class_canvas.html#a98a50b612c4646abad532dd7a7155fbf',1,'Canvas']]]
+  ['ray_5f_0',['ray_',['../class_ray.html#ae0114f3cb553bad1f4c3897a2be3c77d',1,'Ray']]],
+  ['right_1',['RIGHT',['../class_ray.html#a4f0f667f9d06f4a4b1d58da239ba2365',1,'Ray']]]
 ];

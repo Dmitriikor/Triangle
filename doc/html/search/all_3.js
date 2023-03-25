@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['b_0',['b',['../struct_triangle__low_1_1_vertex.html#a669674f1f708341b2b9a17edd0a3929f',1,'Triangle_low::Vertex']]],
-  ['bc_1',['BC',['../struct_triangle__hi_1_1_side.html#aea8a038ad932a806547b2fb400d9933f',1,'Triangle_hi::Side']]]
+  ['direct_5fdraw_0',['Direct_draw',['../class_direct__draw.html',1,'']]],
+  ['direct_5fdraw_2ecpp_1',['Direct_draw.cpp',['../_direct__draw_8cpp.html',1,'']]],
+  ['direct_5fdraw_2eh_2',['Direct_draw.h',['../_direct__draw_8h.html',1,'']]],
+  ['dot_3',['Dot',['../struct_dot.html',1,'Dot'],['../struct_dot.html#a1de0408a16ffbccad057952afd9c852d',1,'Dot::Dot()'],['../struct_dot.html#a009072ea7f43dcb8ab595fa71c863650',1,'Dot::Dot(double x, double y, char symbol=&apos;.&apos;)'],['../struct_dot.html#a68ca2ae6521a712a97a7c574d6303e78',1,'Dot::Dot(const Point &amp;p, char symbol=&apos;.&apos;)']]]
 ];

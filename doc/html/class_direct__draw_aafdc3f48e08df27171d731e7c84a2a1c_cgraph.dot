@@ -1,0 +1,19 @@
+digraph "Direct_draw::calculate_matrix"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="Direct_draw::calculate\l_matrix",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="Canvas_console::EMPTY",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="Canvas::MAX_VIRTUAL",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae",tooltip=" "];
+  Node1 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="Canvas::MIN_VIRTUAL",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#af22370809c000769172b4ab018208ba2",tooltip=" "];
+  Node1 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="Canvas::points_to_draw",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1",tooltip=" "];
+  Node1 -> Node6 [color="steelblue1",style="solid"];
+  Node6 [label="Ray::size",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_ray.html#a5433e5f6205bb963ddb43519022553b4",tooltip=" "];
+}

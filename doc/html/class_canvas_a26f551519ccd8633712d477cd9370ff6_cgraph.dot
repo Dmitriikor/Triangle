@@ -1,0 +1,17 @@
+digraph "Canvas::remove"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="Canvas::remove",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="Ray::remove",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_ray.html#a31d5fb55f4aab77b55d28b8b209a7751",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="Canvas::search_point",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#a2b8130bac44abbc2b9014a6421c45028",tooltip="insert without repetition"];
+  Node3 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="Ray::size",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_ray.html#a5433e5f6205bb963ddb43519022553b4",tooltip=" "];
+  Node1 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="Canvas::update_min\l_max_by",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca",tooltip=" "];
+}

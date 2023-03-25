@@ -21,7 +21,7 @@ var class_matrix =
     [ "operator+", "class_matrix.html#ad11349720a973607dd32c90c41c1fd6b", null ],
     [ "operator+=", "class_matrix.html#a414ac57670f9f2c295eb095cff79e8fb", null ],
     [ "operator<=>", "class_matrix.html#a522c4f993d8eb036783aa1d4393f43f1", null ],
-    [ "operator=", "class_matrix.html#af312b4bc9cf582eda34ae727b29b999b", null ],
+    [ "operator=", "class_matrix.html#acc03dae842897a0901936ce03f1b75fe", null ],
     [ "operator=", "class_matrix.html#aa8c3a2675a80676b84316639734cbc82", null ],
     [ "operator==", "class_matrix.html#ab1a7748c0ac6dbf3f63c927f9db783a9", null ],
     [ "operator[]", "class_matrix.html#aa492482f7945288bbf570684a9daa203", null ],
