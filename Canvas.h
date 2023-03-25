@@ -39,7 +39,6 @@ private:
 	//int coefficient_;
 	//std::optional<size_t> search_point(const Dot& pt) const;
 
-
 	void max_min_init_();
 	void update_min_max_by(const Dot& pt);
 
