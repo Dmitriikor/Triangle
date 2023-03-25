@@ -121,9 +121,9 @@ Collaboration diagram for Canvas_console:</div>
 <map name="a_canvas__console_coll__map" id="a_canvas__console_coll__map">
 <area shape="rect" title=" " alt="" coords="34,359,150,384"/>
 <area shape="rect" href="class_canvas.html" title=" " alt="" coords="5,271,69,296"/>
-<area shape="rect" href="struct_point.html" title=" " alt="" coords="109,5,161,31"/>
-<area shape="rect" href="class_ray.html" title=" " alt="" coords="90,183,179,208"/>
-<area shape="rect" href="struct_dot.html" title=" " alt="" coords="188,80,231,105"/>
+<area shape="rect" href="struct_point.html" title=" " alt="" coords="6,5,58,31"/>
+<area shape="rect" href="struct_dot.html" title=" " alt="" coords="88,80,131,105"/>
+<area shape="rect" href="class_ray.html" title=" " alt="" coords="77,183,166,208"/>
 <area shape="rect" href="class_matrix.html" title=" " alt="" coords="93,271,200,296"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -199,12 +199,18 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a415adeae61da943b0224e97016836a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae18044ce3c68ad8e2a9cd48dfd0c31d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#ae18044ce3c68ad8e2a9cd48dfd0c31d1">axis_x_strings</a> () const</td></tr>
 <tr class="separator:ae18044ce3c68ad8e2a9cd48dfd0c31d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af135834c20f43839f11be5474812326c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#af135834c20f43839f11be5474812326c">initialize_widthes</a> ()</td></tr>
+<tr class="separator:af135834c20f43839f11be5474812326c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a060001297743379cda024ebfc9d3e5cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb">initialize_width</a> ()</td></tr>
 <tr class="separator:a060001297743379cda024ebfc9d3e5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab430a178603b9c4d37e154dc34f5bb44"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#ab430a178603b9c4d37e154dc34f5bb44">get_digits_count</a> (unsigned long long number)</td></tr>
+<tr class="separator:ab430a178603b9c4d37e154dc34f5bb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe9be96db74e70671a75e777f297b95f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#afe9be96db74e70671a75e777f297b95f">x_axis_filling</a> (size_t axis_length, int min_x, int axis_location)</td></tr>
 <tr class="separator:afe9be96db74e70671a75e777f297b95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822dbd5e851d4f4f0ac75f16eab1feff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff">y_axis_filling</a> (size_t axis_length, int min_x, int axis_location)</td></tr>
 <tr class="separator:a822dbd5e851d4f4f0ac75f16eab1feff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b96af14e9c3f0e3a25641226daffce"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a41b96af14e9c3f0e3a25641226daffce">get_width</a> (int min_coord, int max_coord)</td></tr>
+<tr class="separator:a41b96af14e9c3f0e3a25641226daffce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cccddde80fede64f549dceb0eb4beff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a7cccddde80fede64f549dceb0eb4beff">calculate_matrix</a> ()=0</td></tr>
 <tr class="separator:a7cccddde80fede64f549dceb0eb4beff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_canvas"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_canvas')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_canvas.html">Canvas</a></td></tr>
@@ -240,8 +246,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a3139d11e109ac06e9157aa16ce3c9db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8e4ad06a72cf5bc354ca4a927d7461c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#aa8e4ad06a72cf5bc354ca4a927d7461c">isMatrixCalculated_</a> = false</td></tr>
 <tr class="separator:aa8e4ad06a72cf5bc354ca4a927d7461c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4cc7beda7da43d9ef91abeb27545cd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#ac4cc7beda7da43d9ef91abeb27545cd6">Canvas_Matrix</a></td></tr>
-<tr class="separator:ac4cc7beda7da43d9ef91abeb27545cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db8b4649e3a406beebfcc7d2f2711f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a0db8b4649e3a406beebfcc7d2f2711f4">Canvas_Matrix</a></td></tr>
+<tr class="separator:a0db8b4649e3a406beebfcc7d2f2711f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a368481ebeb8b3f112e41cbe3a76e0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a7a368481ebeb8b3f112e41cbe3a76e0e">width_x_with_indent_</a></td></tr>
 <tr class="separator:a7a368481ebeb8b3f112e41cbe3a76e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ad5bc67e42b390355ac5f3b9ef87fb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a6ad5bc67e42b390355ac5f3b9ef87fb7">width_y_with_indent_</a></td></tr>
@@ -271,17 +277,7 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00118">118</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_canvas__console_aa7900e61e76b7a59ee9533b2c117188c_cgraph.png" border="0" usemap="#aclass_canvas__console_aa7900e61e76b7a59ee9533b2c117188c_cgraph" alt=""/></div>
-<map name="aclass_canvas__console_aa7900e61e76b7a59ee9533b2c117188c_cgraph" id="aclass_canvas__console_aa7900e61e76b7a59ee9533b2c117188c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,23,172,63"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="220,5,379,31"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="222,55,377,80"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00123">123</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 
 </div>
 </div>
@@ -546,6 +542,100 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ab430a178603b9c4d37e154dc34f5bb44" name="ab430a178603b9c4d37e154dc34f5bb44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab430a178603b9c4d37e154dc34f5bb44">&#9670;&#160;</a></span>get_digits_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Canvas_console::get_digits_count </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00139">139</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_canvas__console_ab430a178603b9c4d37e154dc34f5bb44_icgraph.png" border="0" usemap="#aclass_canvas__console_ab430a178603b9c4d37e154dc34f5bb44_icgraph" alt=""/></div>
+<map name="aclass_canvas__console_ab430a178603b9c4d37e154dc34f5bb44_icgraph" id="aclass_canvas__console_ab430a178603b9c4d37e154dc34f5bb44_icgraph">
+<area shape="rect" title=" " alt="" coords="415,5,557,45"/>
+<area shape="rect" href="class_canvas__console.html#a41b96af14e9c3f0e3a25641226daffce" title=" " alt="" coords="224,5,367,45"/>
+<area shape="rect" href="class_canvas__console.html#af135834c20f43839f11be5474812326c" title=" " alt="" coords="5,5,176,45"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a41b96af14e9c3f0e3a25641226daffce" name="a41b96af14e9c3f0e3a25641226daffce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41b96af14e9c3f0e3a25641226daffce">&#9670;&#160;</a></span>get_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Canvas_console::get_width </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min_coord</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_coord</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00151">151</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_canvas__console_a41b96af14e9c3f0e3a25641226daffce_cgraph.png" border="0" usemap="#aclass_canvas__console_a41b96af14e9c3f0e3a25641226daffce_cgraph" alt=""/></div>
+<map name="aclass_canvas__console_a41b96af14e9c3f0e3a25641226daffce_cgraph" id="aclass_canvas__console_a41b96af14e9c3f0e3a25641226daffce_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,148,45"/>
+<area shape="rect" href="class_canvas__console.html#ab430a178603b9c4d37e154dc34f5bb44" title=" " alt="" coords="196,5,339,45"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_canvas__console_a41b96af14e9c3f0e3a25641226daffce_icgraph.png" border="0" usemap="#aclass_canvas__console_a41b96af14e9c3f0e3a25641226daffce_icgraph" alt=""/></div>
+<map name="aclass_canvas__console_a41b96af14e9c3f0e3a25641226daffce_icgraph" id="aclass_canvas__console_a41b96af14e9c3f0e3a25641226daffce_icgraph">
+<area shape="rect" title=" " alt="" coords="224,5,367,45"/>
+<area shape="rect" href="class_canvas__console.html#af135834c20f43839f11be5474812326c" title=" " alt="" coords="5,5,176,45"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a060001297743379cda024ebfc9d3e5cb" name="a060001297743379cda024ebfc9d3e5cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a060001297743379cda024ebfc9d3e5cb">&#9670;&#160;</a></span>initialize_width()</h2>
 
@@ -568,8 +658,9 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>доработать перенос и подсчет; </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00134">134</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00171">171</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -597,6 +688,45 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="af135834c20f43839f11be5474812326c" name="af135834c20f43839f11be5474812326c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af135834c20f43839f11be5474812326c">&#9670;&#160;</a></span>initialize_widthes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Canvas_console::initialize_widthes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00164">164</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_canvas__console_af135834c20f43839f11be5474812326c_cgraph.png" border="0" usemap="#aclass_canvas__console_af135834c20f43839f11be5474812326c_cgraph" alt=""/></div>
+<map name="aclass_canvas__console_af135834c20f43839f11be5474812326c_cgraph" id="aclass_canvas__console_af135834c20f43839f11be5474812326c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,63,176,103"/>
+<area shape="rect" href="class_canvas__console.html#a41b96af14e9c3f0e3a25641226daffce" title=" " alt="" coords="232,5,375,45"/>
+<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="224,70,383,95"/>
+<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="226,119,381,145"/>
+<area shape="rect" href="class_canvas__console.html#ab430a178603b9c4d37e154dc34f5bb44" title=" " alt="" coords="431,5,573,45"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="af75af479a5c2bd8835c231df42923e49" name="af75af479a5c2bd8835c231df42923e49"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af75af479a5c2bd8835c231df42923e49">&#9670;&#160;</a></span>insert() <span class="overload">[1/3]</span></h2>
 
@@ -613,22 +743,24 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00094">94</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00096">96</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_canvas__console_af75af479a5c2bd8835c231df42923e49_cgraph.png" border="0" usemap="#aclass_canvas__console_af75af479a5c2bd8835c231df42923e49_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_af75af479a5c2bd8835c231df42923e49_cgraph" id="aclass_canvas__console_af75af479a5c2bd8835c231df42923e49_cgraph">
-<area shape="rect" title=" " alt="" coords="5,192,161,217"/>
-<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="209,91,368,131"/>
-<area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,261,341,287"/>
+<area shape="rect" title=" " alt="" coords="5,263,161,288"/>
+<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="209,92,368,132"/>
+<area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,263,341,288"/>
+<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,313,368,353"/>
 <area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="416,34,587,74"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="635,15,793,40"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="637,68,791,93"/>
+<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="635,14,793,39"/>
+<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="637,82,791,107"/>
 <area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="416,173,587,213"/>
-<area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="438,237,565,263"/>
+<area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="438,238,565,263"/>
 <area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="428,287,575,312"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="432,337,571,377"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="675,287,753,312"/>
 </map>
 </div>
 <div class="dynheader">
@@ -659,22 +791,24 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00110">110</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00114">114</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_canvas__console_a2fb1cc67d1a11fe387d70cb0117f525e_cgraph.png" border="0" usemap="#aclass_canvas__console_a2fb1cc67d1a11fe387d70cb0117f525e_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_a2fb1cc67d1a11fe387d70cb0117f525e_cgraph" id="aclass_canvas__console_a2fb1cc67d1a11fe387d70cb0117f525e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,192,161,217"/>
-<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="209,91,368,131"/>
-<area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,261,341,287"/>
+<area shape="rect" title=" " alt="" coords="5,263,161,288"/>
+<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="209,92,368,132"/>
+<area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,263,341,288"/>
+<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,313,368,353"/>
 <area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="416,34,587,74"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="635,15,793,40"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="637,68,791,93"/>
+<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="635,14,793,39"/>
+<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="637,82,791,107"/>
 <area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="416,173,587,213"/>
-<area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="438,237,565,263"/>
+<area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="438,238,565,263"/>
 <area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="428,287,575,312"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="432,337,571,377"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="675,287,753,312"/>
 </map>
 </div>
 
@@ -706,22 +840,24 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00102">102</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00105">105</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_canvas__console_a4b4102cde75351c95b9b76c2b1155b8a_cgraph.png" border="0" usemap="#aclass_canvas__console_a4b4102cde75351c95b9b76c2b1155b8a_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_a4b4102cde75351c95b9b76c2b1155b8a_cgraph" id="aclass_canvas__console_a4b4102cde75351c95b9b76c2b1155b8a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,192,161,217"/>
-<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="209,91,368,131"/>
-<area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,261,341,287"/>
+<area shape="rect" title=" " alt="" coords="5,263,161,288"/>
+<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="209,92,368,132"/>
+<area shape="rect" href="class_canvas.html#a4a427aa5ce6cea39f3123f52207ec7ea" title=" " alt="" coords="237,263,341,288"/>
+<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="209,313,368,353"/>
 <area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="416,34,587,74"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="635,15,793,40"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="637,68,791,93"/>
+<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="635,14,793,39"/>
+<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="637,82,791,107"/>
 <area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="416,173,587,213"/>
-<area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="438,237,565,263"/>
+<area shape="rect" href="class_ray.html#a935a6504b1f2952b2b6ee6f148262c27" title=" " alt="" coords="438,238,565,263"/>
 <area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="428,287,575,312"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="432,337,571,377"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="675,287,753,312"/>
 </map>
 </div>
 
@@ -765,9 +901,10 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_canvas__console_a4a3dc592c07b69ce610b2806a72317b3_cgraph.png" border="0" usemap="#aclass_canvas__console_a4a3dc592c07b69ce610b2806a72317b3_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_a4a3dc592c07b69ce610b2806a72317b3_cgraph" id="aclass_canvas__console_a4a3dc592c07b69ce610b2806a72317b3_cgraph">
-<area shape="rect" title=" " alt="" coords="5,215,188,241"/>
+<area shape="rect" title=" " alt="" coords="5,274,188,299"/>
 <area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="236,123,395,163"/>
-<area shape="rect" href="class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="250,273,381,298"/>
+<area shape="rect" href="class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="250,274,381,299"/>
+<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="236,324,395,364"/>
 <area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="443,123,613,163"/>
 <area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="661,37,820,62"/>
 <area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="663,134,818,159"/>
@@ -781,6 +918,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="namespaceutilities.html#a8c969ae5ef2b4068da78f2efbc88ac13" title="Dot* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = &quot;points...." alt="" coords="683,191,798,217"/>
 <area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="667,389,814,414"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="671,439,810,479"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="868,389,945,414"/>
 </map>
 </div>
 <div class="dynheader">
@@ -919,14 +1057,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00085">85</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00086">86</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph.png" border="0" usemap="#aclass_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph" id="aclass_canvas__console_a6bf84e7efec273107ea13b14e9fd2d64_cgraph">
-<area shape="rect" title=" " alt="" coords="5,255,197,281"/>
+<area shape="rect" title=" " alt="" coords="5,233,197,258"/>
 <area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="245,144,404,184"/>
+<area shape="rect" href="class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="245,225,404,265"/>
 <area shape="rect" href="class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="255,333,395,358"/>
 <area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="452,144,623,184"/>
 <area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="671,151,829,177"/>
@@ -942,6 +1081,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_ray.html#a31d5fb55f4aab77b55d28b8b209a7751" title=" " alt="" coords="703,201,797,226"/>
 <area shape="rect" href="class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="677,250,823,275"/>
 <area shape="rect" href="class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="681,300,819,340"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="877,250,955,275"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1203,7 +1343,18 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Canvas_Matrix_().<a class="el" href="class_canvas__console.html#a7e30607bbe33709dfa82ceee5c170835">print()</a>;</p>
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00160">160</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00197">197</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_canvas__console_afe9be96db74e70671a75e777f297b95f_cgraph.png" border="0" usemap="#aclass_canvas__console_afe9be96db74e70671a75e777f297b95f_cgraph" alt=""/></div>
+<map name="aclass_canvas__console_afe9be96db74e70671a75e777f297b95f_cgraph" id="aclass_canvas__console_afe9be96db74e70671a75e777f297b95f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,23,168,63"/>
+<area shape="rect" href="class_matrix.html#ab60f30e5bd44a867b51c40284d87608e" title=" " alt="" coords="222,5,313,31"/>
+<area shape="rect" href="class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="216,55,319,80"/>
+<area shape="rect" href="_matrix_8h.html#afa259c882307650d2304347efc83a7f2" title=" " alt="" coords="367,5,413,31"/>
+</map>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1261,15 +1412,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00195">195</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_canvas__console_8cpp_source.html#l00232">232</a> of file <a class="el" href="_canvas__console_8cpp_source.html">Canvas_console.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_canvas__console_a822dbd5e851d4f4f0ac75f16eab1feff_cgraph.png" border="0" usemap="#aclass_canvas__console_a822dbd5e851d4f4f0ac75f16eab1feff_cgraph" alt=""/></div>
 <map name="aclass_canvas__console_a822dbd5e851d4f4f0ac75f16eab1feff_cgraph" id="aclass_canvas__console_a822dbd5e851d4f4f0ac75f16eab1feff_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,168,45"/>
-<area shape="rect" href="class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="216,5,371,45"/>
-<area shape="rect" href="class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="419,13,587,38"/>
+<area shape="rect" title=" " alt="" coords="5,27,168,67"/>
+<area shape="rect" href="class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="242,5,345,31"/>
+<area shape="rect" href="class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="216,55,371,95"/>
+<area shape="rect" href="class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="419,63,587,88"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1338,8 +1490,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ac4cc7beda7da43d9ef91abeb27545cd6" name="ac4cc7beda7da43d9ef91abeb27545cd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4cc7beda7da43d9ef91abeb27545cd6">&#9670;&#160;</a></span>Canvas_Matrix</h2>
+<a id="a0db8b4649e3a406beebfcc7d2f2711f4" name="a0db8b4649e3a406beebfcc7d2f2711f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db8b4649e3a406beebfcc7d2f2711f4">&#9670;&#160;</a></span>Canvas_Matrix</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1348,7 +1500,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a>&lt;char&gt; Canvas_console::Canvas_Matrix</td>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a>&lt; char &gt; Canvas_console::Canvas_Matrix</td>
         </tr>
       </table>
   </td>

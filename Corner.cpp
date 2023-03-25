@@ -1,4 +1,4 @@
-﻿#include "Corner.h"
+#include "Corner.h"
 
 
 void Corner::change_file_path(const std::string& address)
@@ -17,7 +17,7 @@ void  Corner::render_and_print(std::ostream& output)
 		return;
 	}
 
-	Canvas_Matrix_().clear();
+	Canvas_Matrix().clear();
 	calculate_matrix();
 	add_points_to_corner();
 	isMatrixCalculated(true);
@@ -30,7 +30,7 @@ void Corner::render_matrix()
 	if (points_to_draw().size() == 0)
 		return;
 
-	Canvas_Matrix_().clear();
+	Canvas_Matrix().clear();
 	calculate_matrix();
 	add_points_to_corner();
 	isMatrixCalculated(true);
@@ -39,11 +39,11 @@ void Corner::render_matrix()
 void Corner::print(std::ostream& output)
 {
 	{
-		for (size_t i = 0; i < Canvas_Matrix_().get_N(); i++)
+		for (size_t i = 0; i < Canvas_Matrix().get_N(); i++)
 		{
-			for (size_t j = 0; j < Canvas_Matrix_().get_M(); j++)
+			for (size_t j = 0; j < Canvas_Matrix().get_M(); j++)
 			{
-				output << Canvas_Matrix_()[i][j];
+				output << Canvas_Matrix()[i][j];
 
 			}
 			output << std::endl;
@@ -55,11 +55,11 @@ void Corner::print(std::ostream& output)
 void Corner::print() const
 {
 	{
-		for (size_t i = 0; i < Canvas_Matrix_().get_N(); i++)
+		for (size_t i = 0; i < Canvas_Matrix().get_N(); i++)
 		{
-			for (size_t j = 0; j < Canvas_Matrix_().get_M(); j++)
+			for (size_t j = 0; j < Canvas_Matrix().get_M(); j++)
 			{
-				std::cout << Canvas_Matrix_()[i][j];
+				std::cout << Canvas_Matrix()[i][j];
 
 			}
 			std::cout << std::endl;
@@ -100,10 +100,10 @@ void Corner::moving_points_from_ray_to_matrix() //, Matrix & loc_arr
 
 		cell.i = ORIGIN_.i - points_to_draw()[i].y;
 		cell.j = (ORIGIN_.j + (points_to_draw()[i].x * (width_x() + axis_x_indents()))) - axis_x_indents();
-		if (cell.i >= Canvas_Matrix_().get_N() || cell.j >= Canvas_Matrix_().get_M())
+		if (cell.i >= Canvas_Matrix().get_N() || cell.j >= Canvas_Matrix().get_M())
 			throw std::runtime_error("exception in hello.cpp -> method draw_points : cell >= Canvas_Matrix");
 
-		Canvas_Matrix_().set_at(cell.i, cell.j, points_to_draw()[i].symbol); //@symbol
+		Canvas_Matrix().set_at(cell.i, cell.j, points_to_draw()[i].symbol); //@symbol
 
 	}
 }
@@ -121,8 +121,8 @@ void Corner::erase_point_from_corner(const Dot& dot)
 	cell.i = ORIGIN_.i - dot.y;
 	cell.j = (ORIGIN_.j + (dot.x * (width_x() + axis_x_indents()))) - axis_x_indents();
 
-	if (cell.i < Canvas_Matrix_().get_N() - axis_x_indents() && (cell.j > width_y() && cell.j < Canvas_Matrix_().get_M()))
-		Canvas_Matrix_().set_at(cell.i, cell.j, EMPTY());
+	if (cell.i < Canvas_Matrix().get_N() - axis_x_indents() && (cell.j > width_y() && cell.j < Canvas_Matrix().get_M()))
+		Canvas_Matrix().set_at(cell.i, cell.j, EMPTY());
 	else
 		throw std::runtime_error("exception in hello.cpp -> method erase_point : cell coordinates");
 }
@@ -146,10 +146,10 @@ void Corner::calculate_matrix()
 		N = N + axis_x_strings();
 		M = width_y() + (M * (width_x() + axis_x_indents())) + (width_x() + axis_x_indents());
 
-		if (N > Canvas_Matrix_().get_N() || M > Canvas_Matrix_().get_M())
+		if (N > Canvas_Matrix().get_N() || M > Canvas_Matrix().get_M())
 		{
-			Canvas_Matrix_() = Matrix<char>(N, M);
-			Canvas_Matrix_().fill(EMPTY());
+			Canvas_Matrix() = Matrix<char>(N, M);
+			Canvas_Matrix().fill(EMPTY());
 		}
 	}
 
@@ -159,7 +159,7 @@ void Corner::calculate_matrix()
 	////width_y_with_indent() = width_y();
 
 	{
-		int N = Canvas_Matrix_().get_N() - axis_x_strings();
+		int N = Canvas_Matrix().get_N() - axis_x_strings();
 
 		y_axis_filling(N, start_i, 0); //???????
 	}
@@ -184,7 +184,7 @@ void Corner::calculate_matrix()
 		else
 			N__ = std::abs(min_x) + std::abs(max_x) + 1;
 
-		int i_for_x = Canvas_Matrix_().get_N() - axis_x_strings();
+		int i_for_x = Canvas_Matrix().get_N() - axis_x_strings();
 
 		width_x_with_indent_ = width_x() + axis_x_indents();
 

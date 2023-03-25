@@ -121,9 +121,9 @@ Collaboration diagram for Axys:</div>
 <area shape="rect" title="класс для рисования осей Х и У" alt="" coords="127,447,179,472"/>
 <area shape="rect" href="class_canvas__console.html" title=" " alt="" coords="34,359,150,384"/>
 <area shape="rect" href="class_canvas.html" title=" " alt="" coords="5,271,69,296"/>
-<area shape="rect" href="struct_point.html" title=" " alt="" coords="109,5,161,31"/>
-<area shape="rect" href="class_ray.html" title=" " alt="" coords="90,183,179,208"/>
-<area shape="rect" href="struct_dot.html" title=" " alt="" coords="188,80,231,105"/>
+<area shape="rect" href="struct_point.html" title=" " alt="" coords="6,5,58,31"/>
+<area shape="rect" href="struct_dot.html" title=" " alt="" coords="88,80,131,105"/>
+<area shape="rect" href="class_ray.html" title=" " alt="" coords="77,183,166,208"/>
 <area shape="rect" href="class_matrix.html" title=" " alt="" coords="93,271,200,296"/>
 <area shape="rect" href="struct_coordinate.html" title=" " alt="" coords="174,359,258,384"/>
 </map>
@@ -222,12 +222,18 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a415adeae61da943b0224e97016836a4f inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae18044ce3c68ad8e2a9cd48dfd0c31d1 inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#ae18044ce3c68ad8e2a9cd48dfd0c31d1">axis_x_strings</a> () const</td></tr>
 <tr class="separator:ae18044ce3c68ad8e2a9cd48dfd0c31d1 inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af135834c20f43839f11be5474812326c inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#af135834c20f43839f11be5474812326c">initialize_widthes</a> ()</td></tr>
+<tr class="separator:af135834c20f43839f11be5474812326c inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a060001297743379cda024ebfc9d3e5cb inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb">initialize_width</a> ()</td></tr>
 <tr class="separator:a060001297743379cda024ebfc9d3e5cb inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab430a178603b9c4d37e154dc34f5bb44 inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#ab430a178603b9c4d37e154dc34f5bb44">get_digits_count</a> (unsigned long long number)</td></tr>
+<tr class="separator:ab430a178603b9c4d37e154dc34f5bb44 inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe9be96db74e70671a75e777f297b95f inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#afe9be96db74e70671a75e777f297b95f">x_axis_filling</a> (size_t axis_length, int min_x, int axis_location)</td></tr>
 <tr class="separator:afe9be96db74e70671a75e777f297b95f inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822dbd5e851d4f4f0ac75f16eab1feff inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff">y_axis_filling</a> (size_t axis_length, int min_x, int axis_location)</td></tr>
 <tr class="separator:a822dbd5e851d4f4f0ac75f16eab1feff inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b96af14e9c3f0e3a25641226daffce inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a41b96af14e9c3f0e3a25641226daffce">get_width</a> (int min_coord, int max_coord)</td></tr>
+<tr class="separator:a41b96af14e9c3f0e3a25641226daffce inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cccddde80fede64f549dceb0eb4beff inherit pro_methods_class_canvas__console"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_canvas__console.html#a7cccddde80fede64f549dceb0eb4beff">calculate_matrix</a> ()=0</td></tr>
 <tr class="separator:a7cccddde80fede64f549dceb0eb4beff inherit pro_methods_class_canvas__console"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_canvas"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_canvas')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_canvas.html">Canvas</a></td></tr>
@@ -291,10 +297,13 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="215,298,370,323"/>
 <area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="213,347,372,373"/>
 <area shape="rect" href="class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="209,397,377,422"/>
-<area shape="rect" href="class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="628,509,796,534"/>
-<area shape="rect" href="class_canvas__console.html#afe9be96db74e70671a75e777f297b95f" title=" " alt="" coords="211,497,374,537"/>
-<area shape="rect" href="class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff" title=" " alt="" coords="211,561,374,601"/>
-<area shape="rect" href="class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="425,529,580,569"/>
+<area shape="rect" href="class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="628,546,796,571"/>
+<area shape="rect" href="class_canvas__console.html#afe9be96db74e70671a75e777f297b95f" title=" " alt="" coords="211,447,374,487"/>
+<area shape="rect" href="class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff" title=" " alt="" coords="211,511,374,551"/>
+<area shape="rect" href="class_matrix.html#ab60f30e5bd44a867b51c40284d87608e" title=" " alt="" coords="457,411,548,437"/>
+<area shape="rect" href="class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="451,461,554,486"/>
+<area shape="rect" href="_matrix_8h.html#afa259c882307650d2304347efc83a7f2" title=" " alt="" coords="689,411,735,437"/>
+<area shape="rect" href="class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="425,511,580,551"/>
 </map>
 </div>
 <div class="dynheader">
@@ -341,11 +350,12 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_axys_a1d7ec0fbf7e2c19314ed32bcd2b82277_cgraph.png" border="0" usemap="#aclass_axys_a1d7ec0fbf7e2c19314ed32bcd2b82277_cgraph" alt=""/></div>
 <map name="aclass_axys_a1d7ec0fbf7e2c19314ed32bcd2b82277_cgraph" id="aclass_axys_a1d7ec0fbf7e2c19314ed32bcd2b82277_cgraph">
-<area shape="rect" title=" " alt="" coords="5,88,148,128"/>
+<area shape="rect" title=" " alt="" coords="5,112,148,152"/>
 <area shape="rect" href="class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="206,5,354,45"/>
 <area shape="rect" href="_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="251,70,309,95"/>
 <area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="201,119,359,145"/>
-<area shape="rect" href="class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="196,169,364,194"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="241,169,319,194"/>
+<area shape="rect" href="class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="196,218,364,243"/>
 </map>
 </div>
 <div class="dynheader">
@@ -458,25 +468,29 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_axys_a8a1ef438decf7aa0150fa8a9e682e880_cgraph.png" border="0" usemap="#aclass_axys_a8a1ef438decf7aa0150fa8a9e682e880_cgraph" alt=""/></div>
 <map name="aclass_axys_a8a1ef438decf7aa0150fa8a9e682e880_cgraph" id="aclass_axys_a8a1ef438decf7aa0150fa8a9e682e880_cgraph">
-<area shape="rect" title=" " alt="" coords="5,341,144,367"/>
-<area shape="rect" href="class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="194,341,349,367"/>
-<area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="405,5,563,31"/>
-<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="192,729,351,769"/>
-<area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="399,867,569,907"/>
-<area shape="rect" href="class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277" title=" " alt="" coords="200,105,343,145"/>
-<area shape="rect" href="class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="410,105,558,145"/>
-<area shape="rect" href="class_canvas__console.html#ae18044ce3c68ad8e2a9cd48dfd0c31d1" title=" " alt="" coords="410,219,558,259"/>
-<area shape="rect" href="class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="399,284,569,309"/>
-<area shape="rect" href="namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684" title=" " alt="" coords="411,334,557,374"/>
-<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="617,679,776,704"/>
-<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="619,736,774,761"/>
-<area shape="rect" href="class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="400,169,568,195"/>
-<area shape="rect" href="class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="824,428,992,453"/>
-<area shape="rect" href="class_canvas__console.html#afe9be96db74e70671a75e777f297b95f" title=" " alt="" coords="403,563,565,603"/>
-<area shape="rect" href="class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff" title=" " alt="" coords="403,449,565,489"/>
-<area shape="rect" href="class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="619,449,774,489"/>
-<area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="399,729,569,769"/>
-<area shape="rect" href="_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="455,55,513,80"/>
+<area shape="rect" title=" " alt="" coords="5,396,144,421"/>
+<area shape="rect" href="class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="194,396,349,421"/>
+<area shape="rect" href="class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="405,153,563,179"/>
+<area shape="rect" href="class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="192,777,351,817"/>
+<area shape="rect" href="class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="399,915,569,955"/>
+<area shape="rect" href="class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277" title=" " alt="" coords="200,122,343,162"/>
+<area shape="rect" href="class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="410,203,558,243"/>
+<area shape="rect" href="class_canvas__console.html#ae18044ce3c68ad8e2a9cd48dfd0c31d1" title=" " alt="" coords="410,446,558,486"/>
+<area shape="rect" href="class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="399,511,569,536"/>
+<area shape="rect" href="namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684" title=" " alt="" coords="411,561,557,601"/>
+<area shape="rect" href="class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="617,784,776,809"/>
+<area shape="rect" href="class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="619,727,774,752"/>
+<area shape="rect" href="class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="400,104,568,129"/>
+<area shape="rect" href="class_canvas__console.html#adbca591b938eb9be31a2ce9e83b882ae" title=" " alt="" coords="824,367,992,392"/>
+<area shape="rect" href="class_canvas__console.html#afe9be96db74e70671a75e777f297b95f" title=" " alt="" coords="403,267,565,307"/>
+<area shape="rect" href="class_canvas__console.html#a822dbd5e851d4f4f0ac75f16eab1feff" title=" " alt="" coords="403,331,565,371"/>
+<area shape="rect" href="class_matrix.html#ab60f30e5bd44a867b51c40284d87608e" title=" " alt="" coords="651,232,742,257"/>
+<area shape="rect" href="class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="645,281,748,307"/>
+<area shape="rect" href="_matrix_8h.html#afa259c882307650d2304347efc83a7f2" title=" " alt="" coords="885,232,931,257"/>
+<area shape="rect" href="class_canvas__console.html#ab5725f835e7898f3744cd129966db8e8" title=" " alt="" coords="619,331,774,371"/>
+<area shape="rect" href="class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="399,777,569,817"/>
+<area shape="rect" href="_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="455,5,513,31"/>
+<area shape="rect" href="class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="445,55,523,80"/>
 </map>
 </div>
 <div class="dynheader">

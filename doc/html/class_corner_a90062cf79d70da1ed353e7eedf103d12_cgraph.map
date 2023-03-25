@@ -1,7 +1,8 @@
 <map id="Corner::moving_points_from_ray_to_matrix" name="Corner::moving_points_from_ray_to_matrix">
-<area shape="rect" id="node1" title=" " alt="" coords="5,88,156,128"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,112,156,152"/>
 <area shape="rect" id="node2" href="$class_canvas__console.html#a415adeae61da943b0224e97016836a4f" title=" " alt="" coords="214,5,362,45"/>
 <area shape="rect" id="node3" href="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="259,70,317,95"/>
 <area shape="rect" id="node4" href="$class_canvas.html#a9318d445ee6aab6bce3cd0f386c27ca1" title=" " alt="" coords="209,119,367,145"/>
-<area shape="rect" id="node5" href="$class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="204,169,372,194"/>
+<area shape="rect" id="node5" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="249,169,327,194"/>
+<area shape="rect" id="node6" href="$class_canvas__console.html#a62060b26ad0f439a0b4b8b1a876c59ae" title="!! not in the heirs?" alt="" coords="204,218,372,243"/>
 </map>

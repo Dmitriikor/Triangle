@@ -2,7 +2,7 @@
 
 void Axys::remove()
 {
-	Canvas_Matrix_().clear();
+	Canvas_Matrix().clear();
 	isMatrixCalculated(false);
 }
 
@@ -12,8 +12,8 @@ void Axys::render_matrix()
 	if (points_to_draw().size() == 0)
 		return;
 	if (!isMatrixCalculated()) {
-		Canvas_Matrix_().clear();
-		check_after_insert();
+		Canvas_Matrix().clear();
+		
 		calculate_matrix();
 		moving_points_from_ray_to_matrix();
 		isMatrixCalculated(true);
@@ -23,7 +23,7 @@ void Axys::render_matrix()
 
 void Axys::print() const
 {
-	Canvas_Matrix_().print();
+	Canvas_Matrix().print();
 }
 
 void Axys::calculate_matrix()
@@ -42,13 +42,13 @@ void Axys::calculate_matrix()
 	int width_x_loc = width_x();
 	int width_y_loc = width_y();
 
-	/// 
+	
 	if ((min_x < 0 || min_y < 0) && (fabs(min_x) >= 10 || fabs(min_y) >= 10))
 	{
 		width_x_loc = width_x() - 1;
 	}
 	width_y_loc = width_x();
-	///
+	
 
 	int N, M;
 	int size_N, size_M;
@@ -61,11 +61,11 @@ void Axys::calculate_matrix()
 		size_M = fabs(max_x);
 
 	int loc_width_x = width_x_loc + axis_x_indents() + 1; //+1 
-	int loc_width_y = width_y_loc;// +1;
+	int loc_width_y = width_y_loc; // +1;
 
 
-	width_x_with_indent_ = loc_width_x;
-	width_y_with_indent_ = loc_width_y;
+	 width_x_with_indent_ = loc_width_x;
+	 width_y_with_indent_ = loc_width_y;
 
 
 	N = (size_N * 2) + axis_x_strings();
@@ -73,9 +73,9 @@ void Axys::calculate_matrix()
 	int M_ = M;
 	M = M * 2 + (loc_width_y);
 
-	if (Canvas_Matrix_().is_empty()) {
-		Canvas_Matrix_() = Matrix<char>(N, M);
-		Canvas_Matrix_().fill(EMPTY());
+	if (Canvas_Matrix().is_empty()) {
+		Canvas_Matrix() = Matrix<char>(N, M);
+		Canvas_Matrix().fill(EMPTY());
 	}
 
 	int or_x = size_N;
@@ -110,9 +110,9 @@ void Axys::moving_points_from_ray_to_matrix() //, Matrix & loc_arr
 		(46 + (-11 * (3 + 1 ))) + 1;
 		///std::cout << "\n"<< ORIGIN_.j << points_to_draw()[i].x << " " << width_x() << " " << axis_x_indents();
 		///std::cout << "\n" << cell.j;
-		if (cell.i >= Canvas_Matrix_().get_N() || cell.j >= Canvas_Matrix_().get_M()) //loc_arr.get_M()
+		if (cell.i >= Canvas_Matrix().get_N() || cell.j >= Canvas_Matrix().get_M()) //loc_arr.get_M()
 			throw std::runtime_error("exception in hello.cpp  -> method draw_points_ is_axys");
 
-		Canvas_Matrix_().set_at(cell.i, cell.j, points_to_draw()[i].symbol);
+		Canvas_Matrix().set_at(cell.i, cell.j, points_to_draw()[i].symbol);
 	}
 }

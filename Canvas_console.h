@@ -24,7 +24,7 @@ private:
 	int indent;
 
 	bool isMatrixCalculated_ = false;
-	Matrix<char> Canvas_Matrix;
+	Matrix<char> Canvas_Matrix_;
 
 	static const char EMPTY_ = ' ';
 
@@ -34,9 +34,10 @@ private:
 	int width_y_with_indent_;
 protected:
 	bool isMatrixCalculated() const;
-	//void isMatrixCalculated(bool isMatrixCalculated);
+	void isMatrixCalculated(bool isMatrixCalculated);
 
 	Matrix<char>& Canvas_Matrix();
+	Matrix<char> Canvas_Matrix() const;
 
 	char EMPTY() const;
 
@@ -56,10 +57,16 @@ protected:
 
 	int axis_x_strings() const;
 
+	void initialize_widthes(); //! @todo доработать перенос и подсчет;
+
 	void initialize_width();
+
+	size_t get_digits_count(unsigned long long number);
 
 	void x_axis_filling(size_t axis_length, int min_x, int axis_location);
 	void y_axis_filling(size_t axis_length, int min_x, int axis_location);
+
+	size_t get_width(int min_coord, int max_coord);
 
 	//virtual void calculate_width_x_with_indent() = 0;
 	//virtual void calculate_width_y_with_indent() = 0;

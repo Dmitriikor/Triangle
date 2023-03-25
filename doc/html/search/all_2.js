@@ -11,7 +11,7 @@ var searchData=
   ['canvas_5fconsole_8',['Canvas_console',['../class_canvas__console.html',1,'Canvas_console'],['../class_canvas__console.html#aa7900e61e76b7a59ee9533b2c117188c',1,'Canvas_console::Canvas_console()']]],
   ['canvas_5fconsole_2ecpp_9',['Canvas_console.cpp',['../_canvas__console_8cpp.html',1,'']]],
   ['canvas_5fconsole_2eh_10',['Canvas_console.h',['../_canvas__console_8h.html',1,'']]],
-  ['canvas_5fmatrix_11',['Canvas_Matrix',['../class_canvas__console.html#ac4cc7beda7da43d9ef91abeb27545cd6',1,'Canvas_console::Canvas_Matrix()'],['../class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86',1,'Canvas_console::Canvas_Matrix()']]],
+  ['canvas_5fmatrix_11',['Canvas_Matrix',['../class_canvas__console.html#a0db8b4649e3a406beebfcc7d2f2711f4',1,'Canvas_console::Canvas_Matrix()'],['../class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86',1,'Canvas_console::Canvas_Matrix()']]],
   ['capacity_12',['capacity',['../class_ray.html#a61281431fc027b228efed6cc4611f23f',1,'Ray']]],
   ['change_5ffile_5fpath_13',['change_file_path',['../class_corner.html#aaf0637e4f3e7c84717986201156c4527',1,'Corner']]],
   ['check_5fafter_5finsert_14',['check_after_insert',['../class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b',1,'Canvas_console']]],

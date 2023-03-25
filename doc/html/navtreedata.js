@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Triangle", "index.html", [
+    [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -58,7 +59,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_axys_8cpp.html",
-"class_triangle__hi.html#ada69e32c5299839a78cb550303f1d686"
+"class_triangle__hi.html#ab9ecf709fbc311c9faf7e520045c7b24"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

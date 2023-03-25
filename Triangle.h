@@ -1,4 +1,4 @@
-﻿#ifndef TRIANGLE_TEST_H__
+#ifndef TRIANGLE_TEST_H__
 
 #define TRIANGLE_TEST_H__
 
@@ -7,7 +7,7 @@
 #include <cmath>
 #include "Ray.h"
 #include "Point.h"
-#include "Is_equal_test.h"
+
 #include "utilities.h"
 //#include "Ray_3_test.h"
 

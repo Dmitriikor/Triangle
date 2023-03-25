@@ -1,7 +1,8 @@
 <map id="Canvas_console::insert_line" name="Canvas_console::insert_line">
-<area shape="rect" id="node1" title=" " alt="" coords="5,215,188,241"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,274,188,299"/>
 <area shape="rect" id="node2" href="$class_canvas__console.html#ac4a39ecd35779da427ad2aa276130d5b" title=" " alt="" coords="236,123,395,163"/>
-<area shape="rect" id="node7" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="250,273,381,298"/>
+<area shape="rect" id="node7" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="250,274,381,299"/>
+<area shape="rect" id="node18" href="$class_canvas.html#a8a914841a97d186a7f146457137a22f2" title=" " alt="" coords="236,324,395,364"/>
 <area shape="rect" id="node3" href="$class_canvas__console.html#a060001297743379cda024ebfc9d3e5cb" title=" " alt="" coords="443,123,613,163"/>
 <area shape="rect" id="node4" href="$class_canvas.html#abc9fcfb1752edf58baecab4d112b32ae" title=" " alt="" coords="661,37,820,62"/>
 <area shape="rect" id="node5" href="$class_canvas.html#af22370809c000769172b4ab018208ba2" title=" " alt="" coords="663,134,818,159"/>
@@ -14,5 +15,6 @@
 <area shape="rect" id="node11" href="$namespaceutilities.html#a61728de0df6774b3fe47958df5449bc8" title=" " alt="" coords="663,241,819,266"/>
 <area shape="rect" id="node13" href="$namespaceutilities.html#a8c969ae5ef2b4068da78f2efbc88ac13" title="Dot* start_dialoge(std::streamsize MAX_STREAMSIZE, size_t n_points, std::string path_in = &quot;points...." alt="" coords="683,191,798,217"/>
 <area shape="rect" id="node15" href="$class_canvas.html#a2b8130bac44abbc2b9014a6421c45028" title="insert without repetition" alt="" coords="667,389,814,414"/>
-<area shape="rect" id="node16" href="$class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="671,439,810,479"/>
+<area shape="rect" id="node17" href="$class_canvas.html#acddf046b4fc5b2ae2240fe2a00d3b5ca" title=" " alt="" coords="671,439,810,479"/>
+<area shape="rect" id="node16" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="868,389,945,414"/>
 </map>
