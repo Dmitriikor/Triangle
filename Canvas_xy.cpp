@@ -13,17 +13,17 @@ int Canvas_xy::width_y() const
 
 int Canvas_xy::width_x_with_indent()
 {
-	return width_x_with_indent_ == width_x() + axis_x_indents_;
+	return  width_x() + axis_x_indents_;
 }
 
 void Canvas_xy::width_x_with_indent(size_t size)
 {
-	width_x_with_indent_ == size;
+	width_x_with_indent_ = size;
 }
 
 int Canvas_xy::width_y_with_indent()
 {
-	return width_y_with_indent_ = width_y() + indent;
+	return width_y() + indent;
 
 }
 
@@ -108,15 +108,15 @@ void Canvas_xy::x_axis_filling(size_t axis_length, int min_x, int axis_location)
 	{
 		int temp_x = min_x + i;
 
-		Canvas_Matrix().set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + (width_x_with_indent_ - 1u), '|');
+		Canvas_Matrix().set_at(axis_location, width_y_with_indent() + (i * width_x_with_indent()) + (width_x_with_indent() - 1u), '|');
 
 		int abs_x = fabs(temp_x);
 		int j;
-		for (j = width_x_with_indent_ - 2; j >= 0; --j)
+		for (j = width_x_with_indent() - 2; j >= 0; --j)
 		{
 			int digit = abs_x % 10;
 
-			Canvas_Matrix().set_at(axis_location, width_y_with_indent_ + (i * width_x_with_indent_) + j, '0' + digit);
+			Canvas_Matrix().set_at(axis_location, width_y_with_indent() + (i * width_x_with_indent()) + j, '0' + digit);
 
 			abs_x = abs_x / 10;
 
@@ -131,7 +131,7 @@ void Canvas_xy::x_axis_filling(size_t axis_length, int min_x, int axis_location)
 		}
 
 		if (temp_x < 0)
-			Canvas_Matrix().set_at(axis_location, (width_y_with_indent_ + (i * width_x_with_indent_) + j) - 1, '-');
+			Canvas_Matrix().set_at(axis_location, (width_y_with_indent() + (i * width_x_with_indent()) + j) - 1, '-');
 	}
 }
 

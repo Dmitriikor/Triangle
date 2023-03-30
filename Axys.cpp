@@ -84,7 +84,7 @@ void Axys::calculate_matrix()
 	int or_y = M_ + width_x_loc - 1;
 
 	x_axis_filling(size_M * 2 + 1, -size_M, size_N);
-	y_axis_filling( N, size_N, M_-1); //- (loc_width_x + 1) -1, -1,
+	y_axis_filling( N, size_N, M_); //- (loc_width_x + 1) -1, -1,
 	///Canvas_Matrix_().print();
 
 	ORIGIN_.i = or_x;
