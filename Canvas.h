@@ -95,26 +95,89 @@ protected:
 
 
 public:
+ /**
+     @fn    Canvas
+     @brief Canvas object constructor
+ **/
 	Canvas();
-
+ 
 	Canvas& operator+=(const Canvas& other);
-	//Canvas operator+(const Canvas& other) const;
-
+ 
+ /**
+     @fn    insert
+     @brief функция добавления точки c символом в массив для отрисовки
+     @param[in] pt - Dot& pt, координаты точки с символом для отрисовки
+ **/
 	void insert(const Dot& pt);
+
+ /**
+     @fn    insert
+     @brief функция добавления точки в массив для отрисовки, символ по умолчанию '.'
+     @param pt[in] - Point& pt, координаты точки с символом для отрисовки
+     @param symbol - по умолчанию char symbol = '.'
+ **/
 	void insert(const Point& pt, char symbol = '.');
 
+ /**
+     @fn    insert
+     @brief  функция добавления массива точек в массив для отрисовки, символ по умолчанию '.'
+     @param points - Ray<Point>& points, динамический массив дочек
+     @param symbol - по умолчанию char symbol = '.'
+ **/
 	void insert(const Ray<Point>& points, char symbol = '.');
+
+ /**
+     @fn    insert
+     @brief  функция добавления массива точек в массив для отрисовки
+     @param points - Ray<Dot>& points, динамический массив Dot
+ **/
 	void insert(const Ray<Dot>& points);
 
+ /**
+     @fn    remove
+     @brief функция удаления точек из массива точек для отрисовки
+     @param[in] dl                  - точка для удаления
+     @param[in] isUpdateCanvasSizes - флаг для перерасчета MAX_VIRTUAL() и MIN_VIRTUAL() при изменении крайних точек в массиве
+ **/
 	void remove(const Point& dl, bool isUpdateCanvasSizes = false);
 
+ /**
+     @fn    insert_line
+     @brief функция для расчета точек линии и добавление их в массив в массив дял рисования
+     @param[in] A      - точка начала линии
+     @param[in] B      - точка конца линии 
+     @param[in] symbol - сивол которым будет нарисована линия 
+ **/
 	void insert_line(const Dot& A, const Dot& B, char symbol);
 
+ /**
+     @fn    remove_line
+     @brief функция удаления линии с массива для рисования
+     @param[in] A -  точка начала удаления линии
+     @param[in] B -  точка конца удаления линии 
+ **/
 	void remove_line(const Dot& A, const Dot& B);
 
+ /**
+     @fn    remove
+     @brief функция для удаления массива Point с массива для рисования
+     @param[in] points -  Ray<Point>& points массив значения из которого будут найдены и удалены
+ **/
 	void remove(const Ray<Point>& points);
+
+ /**
+     @fn    remove
+     @brief функция для удаления массива Dot с массива для рисования
+     @param[in] points - Ray<Dot>& points массив значения из которого будут найдены и удалены
+ **/
 	void remove(const Ray<Dot>& points);
 
+ /**
+     @fn     is_point
+     @brief  функция для поиска Dot& pt в массиве для рисования
+     @param[in]  pt - точка которую будут искать в массиве для рисования
+     @retval    - true если точка была найдена, false если нет
+ **/
 	bool is_point(const Dot& pt) const;
 
 	~Canvas() = default;
