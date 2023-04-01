@@ -55,7 +55,7 @@ int main(int argc, char const* argv[])
 
 	Interface window;
 	window.HideConsoleWindow();
-	//window.test();
+	window.test_nana();
 	window.ShowConsoleWindow();
 	window.st_diag();
 
