@@ -11,6 +11,7 @@ var hierarchy =
     ] ],
     [ "Matrix< T >::const_str_i", "struct_matrix_1_1const__str__i.html", null ],
     [ "Coordinate", "struct_coordinate.html", null ],
+    [ "Interface", "class_interface.html", null ],
     [ "Matrix< T >", "class_matrix.html", null ],
     [ "Matrix< char >", "class_matrix.html", null ],
     [ "Point", "struct_point.html", [

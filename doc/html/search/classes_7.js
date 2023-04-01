@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['triangle_5fhi_0',['Triangle_hi',['../class_triangle__hi.html',1,'']]],
-  ['triangle_5flow_1',['Triangle_low',['../class_triangle__low.html',1,'']]]
+  ['side_0',['Side',['../struct_triangle__hi_1_1_side.html',1,'Triangle_hi']]],
+  ['str_5fi_1',['str_i',['../struct_matrix_1_1str__i.html',1,'Matrix']]]
 ];

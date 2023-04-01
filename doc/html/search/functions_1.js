@@ -8,10 +8,12 @@ var searchData=
   ['canvas_5fmatrix_5',['Canvas_Matrix',['../class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86',1,'Canvas_console::Canvas_Matrix()'],['../class_canvas__console.html#a6cc6f4f8727d66db6663cc5d6ad0a96f',1,'Canvas_console::Canvas_Matrix() const']]],
   ['capacity_6',['capacity',['../class_ray.html#a61281431fc027b228efed6cc4611f23f',1,'Ray']]],
   ['change_5ffile_5fpath_7',['change_file_path',['../class_corner.html#aaf0637e4f3e7c84717986201156c4527',1,'Corner']]],
-  ['clear_8',['clear',['../class_matrix.html#ad39022f082bfee09e24d098796e14e10',1,'Matrix::clear()'],['../class_ray.html#afd1c0c2a8a8ba2a26c29d283d20888db',1,'Ray::clear()']]],
-  ['const_5fstr_5fi_9',['const_str_i',['../struct_matrix_1_1const__str__i.html#ab60c0cfb907e5d815a0adc7e979a1601',1,'Matrix::const_str_i']]],
-  ['corner_10',['Corner',['../class_corner.html#a0c6a5fac09527fa1cbc8b670c641a113',1,'Corner']]],
-  ['count_5farea_11',['count_area',['../class_triangle__hi.html#abcffa478b1fb26877063b8c3a249a263',1,'Triangle_hi']]],
-  ['create_5f_12',['create_',['../class_ray.html#ab180de7c6de5fe20033e00690a14397f',1,'Ray']]],
-  ['cut_13',['cut',['../class_ray.html#a55f4492118996abb63bbd2b6606eaa78',1,'Ray']]]
+  ['cin_5fignore_8',['cin_ignore',['../_interface_8cpp.html#a545428a31938c07e7265dc6640efb9d0',1,'Interface.cpp']]],
+  ['clear_9',['clear',['../class_matrix.html#ad39022f082bfee09e24d098796e14e10',1,'Matrix::clear()'],['../class_ray.html#afd1c0c2a8a8ba2a26c29d283d20888db',1,'Ray::clear()']]],
+  ['clear_5fscreen_10',['clear_screen',['../_interface_8cpp.html#a4953d1edcbbfc7e420c423ded1d5621a',1,'Interface.cpp']]],
+  ['const_5fstr_5fi_11',['const_str_i',['../struct_matrix_1_1const__str__i.html#ab60c0cfb907e5d815a0adc7e979a1601',1,'Matrix::const_str_i']]],
+  ['corner_12',['Corner',['../class_corner.html#a0c6a5fac09527fa1cbc8b670c641a113',1,'Corner']]],
+  ['count_5farea_13',['count_area',['../class_triangle__hi.html#abcffa478b1fb26877063b8c3a249a263',1,'Triangle_hi']]],
+  ['create_5f_14',['create_',['../class_ray.html#ab180de7c6de5fe20033e00690a14397f',1,'Ray']]],
+  ['cut_15',['cut',['../class_ray.html#a55f4492118996abb63bbd2b6606eaa78',1,'Ray']]]
 ];

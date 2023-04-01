@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['on_5fbutton_5fclick_0',['on_button_click',['../_main_8cpp.html#ab1349fa4c5ca9533e17aab143317b1fd',1,'Main.cpp']]],
-  ['on_5fbutton_5fclick_5f2_1',['on_button_click_2',['../_main_8cpp.html#a063a7841b7a589506586625c8666986e',1,'Main.cpp']]],
-  ['operator_2b_2',['operator+',['../class_matrix.html#ad11349720a973607dd32c90c41c1fd6b',1,'Matrix']]],
-  ['operator_2b_3d_3',['operator+=',['../class_canvas.html#a45e30833c24e352debdaa806c4aa5085',1,'Canvas::operator+=()'],['../class_canvas__console.html#ad774a3c4922621b5d305c27735b4d0af',1,'Canvas_console::operator+=()'],['../class_matrix.html#a414ac57670f9f2c295eb095cff79e8fb',1,'Matrix::operator+=()']]],
-  ['operator_3c_3c_4',['operator&lt;&lt;',['../_point_8cpp.html#af5b437c7264ba520fd9f9c87cbac3c11',1,'Point.cpp']]],
-  ['operator_3c_3d_3e_5',['operator&lt;=&gt;',['../class_matrix.html#a522c4f993d8eb036783aa1d4393f43f1',1,'Matrix']]],
-  ['operator_3d_6',['operator=',['../class_matrix.html#aa8c3a2675a80676b84316639734cbc82',1,'Matrix::operator=(Matrix &amp;&amp;other) noexcept'],['../class_matrix.html#acc03dae842897a0901936ce03f1b75fe',1,'Matrix::operator=(const Matrix &amp;other)'],['../class_ray.html#ab5834ffcc129b2c1cf96e1fac85305cc',1,'Ray::operator=(const Ray &amp;other)'],['../class_ray.html#ad18ce7ec76f82a0d152ba023ae3b9728',1,'Ray::operator=(Ray &amp;&amp;other) noexcept'],['../class_triangle__hi.html#a79d510183346c94335eb29e27c76ab1d',1,'Triangle_hi::operator=(const Triangle_hi &amp;other)'],['../class_triangle__hi.html#a5e2f5ce476f8dc5e88f68eb5b753cd3a',1,'Triangle_hi::operator=(Triangle_hi &amp;&amp;other)=default']]],
-  ['operator_3d_3d_7',['operator==',['../class_matrix.html#ab1a7748c0ac6dbf3f63c927f9db783a9',1,'Matrix::operator==()'],['../struct_point.html#a9c29cd36d1ce448b8e1e56a204fe2b95',1,'Point::operator==()']]],
-  ['operator_5b_5d_8',['operator[]',['../struct_matrix_1_1str__i.html#a37ec06ff3cda79e69c61334936c25d0a',1,'Matrix::str_i::operator[]()'],['../struct_matrix_1_1const__str__i.html#a1eedf97c6c90ad4ea60e79222069b4d7',1,'Matrix::const_str_i::operator[]()'],['../class_matrix.html#aa492482f7945288bbf570684a9daa203',1,'Matrix::operator[](size_t i)'],['../class_matrix.html#ae8abe36726959ec12ff6d008046edb30',1,'Matrix::operator[](size_t i) const'],['../class_ray.html#ac413e71f27d4673d62f299c9f5af44d8',1,'Ray::operator[](size_t index)'],['../class_ray.html#a1c65d3dec775ab43ad17e38ca997174a',1,'Ray::operator[](size_t index) const']]]
+  ['main_0',['main',['../_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089',1,'Main.cpp']]],
+  ['matrix_1',['Matrix',['../class_matrix.html#a9d567e3a121b1be0c3f9c461cab524fe',1,'Matrix::Matrix()'],['../class_matrix.html#ad960193acf7c6e4610a8389334c161c6',1,'Matrix::Matrix(size_t N, size_t M)'],['../class_matrix.html#a6db6a32fe4b1a1b950aa43c20a2598a0',1,'Matrix::Matrix(size_t N, size_t M, const T &amp;value)'],['../class_matrix.html#ab829dc851f8fcafee35a729a31457d73',1,'Matrix::Matrix(const Matrix &amp;other)'],['../class_matrix.html#a534f07d0e3ec3c9c62f3742c4efc6eed',1,'Matrix::Matrix(Matrix &amp;&amp;other)']]],
+  ['max_5fmin_5finit_5f_2',['max_min_init_',['../class_canvas.html#a674a6ed36bc1c05a2e8a64fd97d61944',1,'Canvas']]],
+  ['max_5fvirtual_3',['MAX_VIRTUAL',['../class_canvas.html#ade60c8fbe9bb6952465c97365e707d94',1,'Canvas']]],
+  ['min_5fvirtual_4',['MIN_VIRTUAL',['../class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2',1,'Canvas']]],
+  ['move_5f_5',['MOVE_',['../class_ray.html#a132d39961b108098fa4ad4abba866589',1,'Ray']]],
+  ['moving_5fpoints_5ffrom_5fray_5fto_5fmatrix_6',['moving_points_from_ray_to_matrix',['../class_axys.html#a1d7ec0fbf7e2c19314ed32bcd2b82277',1,'Axys::moving_points_from_ray_to_matrix()'],['../class_corner.html#a90062cf79d70da1ed353e7eedf103d12',1,'Corner::moving_points_from_ray_to_matrix()']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['side_0',['Side',['../struct_triangle__hi_1_1_side.html',1,'Triangle_hi']]],
-  ['str_5fi_1',['str_i',['../struct_matrix_1_1str__i.html',1,'Matrix']]]
+  ['ray_0',['Ray',['../class_ray.html',1,'']]],
+  ['ray_3c_20dot_20_3e_1',['Ray&lt; Dot &gt;',['../class_ray.html',1,'']]],
+  ['ray_3c_20point_20_3e_2',['Ray&lt; Point &gt;',['../class_ray.html',1,'']]]
 ];

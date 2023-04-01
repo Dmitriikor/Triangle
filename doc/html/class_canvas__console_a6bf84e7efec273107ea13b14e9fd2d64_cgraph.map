@@ -1,7 +1,7 @@
 <map id="Canvas_console::remove_line" name="Canvas_console::remove_line">
 <area shape="rect" id="node1" title=" " alt="" coords="5,80,197,105"/>
 <area shape="rect" id="node2" href="$class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="245,43,404,83"/>
-<area shape="rect" id="node3" href="$class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="255,108,395,133"/>
+<area shape="rect" id="node3" href="$class_canvas.html#acb5b606ddfb318c01c493cb7f60f4d5a" title="функция удаления линии с массива для рисования" alt="" coords="255,108,395,133"/>
 <area shape="rect" id="node4" href="$_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="452,51,597,76"/>
 <area shape="rect" id="node8" href="$_canvas_8cpp.html#a76cb16e2b5895bd06f24a7398b9fb74e" title="static double get_step(double coefficient);" alt="" coords="459,101,590,141"/>
 <area shape="rect" id="node10" href="$class_canvas.html#a26f551519ccd8633712d477cd9370ff6" title=" " alt="" coords="468,227,581,252"/>

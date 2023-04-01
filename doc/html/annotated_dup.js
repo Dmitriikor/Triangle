@@ -8,6 +8,7 @@ var annotated_dup =
     [ "Corner", "class_corner.html", "class_corner" ],
     [ "Direct_draw", "class_direct__draw.html", "class_direct__draw" ],
     [ "Dot", "struct_dot.html", "struct_dot" ],
+    [ "Interface", "class_interface.html", "class_interface" ],
     [ "Matrix", "class_matrix.html", "class_matrix" ],
     [ "Point", "struct_point.html", "struct_point" ],
     [ "Ray", "class_ray.html", "class_ray" ],

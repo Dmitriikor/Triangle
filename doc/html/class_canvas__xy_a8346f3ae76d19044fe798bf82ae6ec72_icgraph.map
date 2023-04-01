@@ -1,12 +1,13 @@
 <map id="Canvas_xy::width_y" name="Canvas_xy::width_y">
-<area shape="rect" id="node1" title=" " alt="" coords="909,75,1047,100"/>
-<area shape="rect" id="node2" href="$class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="303,39,457,64"/>
-<area shape="rect" id="node5" href="$class_corner.html#a5536f603e7832fe328e4c2f4ff40aafc" title="!! module sub&#45;functions" alt="" coords="299,118,461,143"/>
-<area shape="rect" id="node8" href="$class_corner.html#a61f662081ec49c07a6dd80d6f4234320" title=" " alt="" coords="725,100,860,140"/>
-<area shape="rect" id="node9" href="$class_canvas__xy.html#a98aa707b73954c130e8029868ba52960" title=" " alt="" coords="724,36,861,76"/>
-<area shape="rect" id="node3" href="$class_axys.html#a8a1ef438decf7aa0150fa8a9e682e880" title=" " alt="" coords="108,39,247,64"/>
-<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,64,56,90"/>
-<area shape="rect" id="node6" href="$class_corner.html#a33a579dcaf0fb62d6406777a693eb0e6" title=" " alt="" coords="111,138,243,178"/>
-<area shape="rect" id="node7" href="$class_corner.html#a989625b522a12a50e9570a5521f3aafc" title=" " alt="" coords="104,88,251,114"/>
-<area shape="rect" id="node10" href="$class_canvas__xy.html#a3f74ad9f1523b1b171f01d74b00f6427" title=" " alt="" coords="509,90,676,115"/>
+<area shape="rect" id="node1" title=" " alt="" coords="909,100,1047,126"/>
+<area shape="rect" id="node2" href="$class_axys.html#a67dc0ad103cc22b90d45fc3e0f2f4c1f" title=" " alt="" coords="303,20,457,46"/>
+<area shape="rect" id="node5" href="$class_corner.html#a5536f603e7832fe328e4c2f4ff40aafc" title="!! module sub&#45;functions" alt="" coords="299,99,461,124"/>
+<area shape="rect" id="node8" href="$class_corner.html#a61f662081ec49c07a6dd80d6f4234320" title=" " alt="" coords="725,200,860,240"/>
+<area shape="rect" id="node9" href="$class_canvas__xy.html#a98aa707b73954c130e8029868ba52960" title=" " alt="" coords="724,64,861,104"/>
+<area shape="rect" id="node3" href="$class_axys.html#a8a1ef438decf7aa0150fa8a9e682e880" title=" " alt="" coords="108,20,247,46"/>
+<area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,78,56,103"/>
+<area shape="rect" id="node6" href="$class_corner.html#a33a579dcaf0fb62d6406777a693eb0e6" title=" " alt="" coords="111,70,243,110"/>
+<area shape="rect" id="node7" href="$class_corner.html#a989625b522a12a50e9570a5521f3aafc" title=" " alt="" coords="104,135,251,160"/>
+<area shape="rect" id="node10" href="$class_canvas__xy.html#a41f07f5a54c7dd7c3c54e778be1bf807" title=" " alt="" coords="509,50,676,75"/>
+<area shape="rect" id="node11" href="$class_canvas__xy.html#a3f74ad9f1523b1b171f01d74b00f6427" title=" " alt="" coords="509,99,676,124"/>
 </map>

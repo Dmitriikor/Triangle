@@ -1,6 +1,6 @@
 <map id="Canvas_console::insert_line" name="Canvas_console::insert_line">
 <area shape="rect" id="node1" title=" " alt="" coords="5,137,188,163"/>
-<area shape="rect" id="node2" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="250,108,381,133"/>
+<area shape="rect" id="node2" href="$class_canvas.html#a176c44f08a10221041b7ff38aedbbbec" title="функция для расчета точек линии и добавление их в массив в массив дял рисования" alt="" coords="250,108,381,133"/>
 <area shape="rect" id="node13" href="$class_canvas.html#ac722cb4f4bb48e3fad4cc1a91fb72c3a" title="дает возможность проверить были ли изменения в Ray&lt;Dot&gt; points_to_draw_ после последний попытки внест..." alt="" coords="236,158,395,198"/>
 <area shape="rect" id="node3" href="$_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="443,51,588,76"/>
 <area shape="rect" id="node7" href="$_canvas_8cpp.html#a76cb16e2b5895bd06f24a7398b9fb74e" title="static double get_step(double coefficient);" alt="" coords="450,101,581,141"/>

@@ -14,6 +14,8 @@ var files_dup =
     [ "Direct_draw.h", "_direct__draw_8h.html", "_direct__draw_8h" ],
     [ "Find_Triangle.cpp", "_find___triangle_8cpp.html", "_find___triangle_8cpp" ],
     [ "Find_Triangle.h", "_find___triangle_8h.html", "_find___triangle_8h" ],
+    [ "Interface.cpp", "_interface_8cpp.html", "_interface_8cpp" ],
+    [ "Interface.h", "_interface_8h.html", "_interface_8h" ],
     [ "Main.cpp", "_main_8cpp.html", "_main_8cpp" ],
     [ "Matrix.h", "_matrix_8h.html", "_matrix_8h" ],
     [ "Point.cpp", "_point_8cpp.html", "_point_8cpp" ],

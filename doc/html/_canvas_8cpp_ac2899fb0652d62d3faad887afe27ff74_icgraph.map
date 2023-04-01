@@ -1,7 +1,7 @@
 <map id="calculate_line_swap_" name="calculate_line_swap_">
 <area shape="rect" id="node1" title=" " alt="" coords="532,31,677,56"/>
-<area shape="rect" id="node2" href="$class_canvas.html#a62f8af520ff064ed8e5897f2faa3f686" title=" " alt="" coords="349,5,479,31"/>
-<area shape="rect" id="node5" href="$class_canvas.html#ac1a10155e7e21b28092c14134027e8b9" title=" " alt="" coords="344,55,484,80"/>
+<area shape="rect" id="node2" href="$class_canvas.html#a176c44f08a10221041b7ff38aedbbbec" title="функция для расчета точек линии и добавление их в массив в массив дял рисования" alt="" coords="349,5,479,31"/>
+<area shape="rect" id="node5" href="$class_canvas.html#acb5b606ddfb318c01c493cb7f60f4d5a" title="функция удаления линии с массива для рисования" alt="" coords="344,55,484,80"/>
 <area shape="rect" id="node3" href="$class_canvas__console.html#a4a3dc592c07b69ce610b2806a72317b3" title=" " alt="" coords="109,5,291,31"/>
 <area shape="rect" id="node4" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,31,56,56"/>
 <area shape="rect" id="node6" href="$class_canvas__console.html#a6bf84e7efec273107ea13b14e9fd2d64" title=" " alt="" coords="104,55,296,80"/>

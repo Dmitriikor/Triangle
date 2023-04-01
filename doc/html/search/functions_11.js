@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_5faxis_5ffilling_0',['y_axis_filling',['../class_canvas__xy.html#a3f74ad9f1523b1b171f01d74b00f6427',1,'Canvas_xy']]]
+  ['x_5faxis_5ffilling_0',['x_axis_filling',['../class_canvas__xy.html#a41f07f5a54c7dd7c3c54e778be1bf807',1,'Canvas_xy']]]
 ];

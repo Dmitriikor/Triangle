@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vertex_0',['Vertex',['../struct_triangle__low_1_1_vertex.html',1,'Triangle_low']]]
+  ['triangle_5fhi_0',['Triangle_hi',['../class_triangle__hi.html',1,'']]],
+  ['triangle_5flow_1',['Triangle_low',['../class_triangle__low.html',1,'']]]
 ];
