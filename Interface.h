@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Z:/c++/Triangle/include/nana/gui.hpp>
+#include <nana/gui.hpp>
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/button.hpp>
 
@@ -33,7 +33,7 @@ class Interface
 public:
 	void HideConsoleWindow(/*HWND consoleWindow*/);
 	void ShowConsoleWindow();
-	void on_button_click();
+	void on_button_click()const;
 	void on_button_click_2(nana::label& lbl_for_button_funct);
 	Ray<Dot> point_arr;
 	size_t n_points;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
@@ -41,7 +41,7 @@ public:
 
 
 
-	void test()
+	void test_nana()
 	{
 		std::string input_to_string = "привет мир";						//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
 		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
@@ -50,14 +50,15 @@ public:
 		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - захватываем в  \a lbl данные из \a input_to_string 
 		nana::button button(form, nana::rectangle(10, 40, 200, 25));					//! @param nana::button button - создаем с заданными размерами и местоположением
 		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
-		//button.events().click(&Interface::on_button_click);			//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
+		button.events().click([this]() { on_button_click(); });
+		//button.events().click(&Interface::on_button_click);				//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
 		nana::label lbl_for_button(form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
 
 		
-			//button.events().click([&]()
-			//	{
-			//		lbl_for_button.caption("Button was clicked");
-			//	});
+			button.events().click([&]()
+			{
+					lbl_for_button.caption("Button was clicked");
+			});
 		
 
 
@@ -85,7 +86,7 @@ public:
 
 			auto func = std::bind(&foo, 3, std::placeholders::_1, 2, std::placeholders::_2, 1);
 		*/
-		button.events().click(std::bind_front(&Interface::on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
+		//button.events().click(std::bind(&Interface::on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
 
 		form.show();
 		nana::exec();
