@@ -52,13 +52,26 @@ int main(int argc, char const* argv[])
 {
 	setlocale(LC_ALL, "Russian");											//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 
-
+	/**
+	 * @brief Объявление интерфейса
+	 */
 	Interface window;
+	/**
+	 * @brief скрытие консоли
+	 */
 	window.HideConsoleWindow();
+
+	/**
+	 * @brief запуск тестовой функции
+	 */
 	window.test_nana();
 	window.ShowConsoleWindow();
 	window.st_diag();
 
+	/**
+ 	* @brief запуск таймера
+ 	* 
+ 	*/
 	time_t t1 = clock();													//! @param time_t t1 - запуск таймера, засекаем время
 
 	Triangle_hi Fin_Triangle;
@@ -106,7 +119,9 @@ int main(int argc, char const* argv[])
 		ttst.print();
 	}
 
-
+	/**
+	 * @brief запуск второго таймера
+	 */
 	time_t t2 = clock();
 	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 

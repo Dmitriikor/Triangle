@@ -50,5 +50,8 @@
         "sstream": "cpp"
     },
     "terminal.integrated.detectLocale": "on",
-    "files.encoding": "utf8"
+    "files.encoding": "utf8bom",
+    "doxdocgen.file.fileOrder": [
+
+    ]
 }
