@@ -1,56 +1,18 @@
 {
-    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
-    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
-    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++.exe build and debug active file",
-            "type": "cppdbg",
+            "name": "(msvc) Launch",
+            "type": "cppvsdbg",
             "request": "launch",
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": [
-                "-g",
-                "${workspaceFolder}/*.cpp",
-                "-Wall",
-                "-Wextra",
-                "-pedantic",
-                "-std=c++22",
-                //"-O2",
-                "-Wshadow",
-                "-Wformat=2",
-                "-Wfloat-equal",
-                "-Wconversion",
-                "-Wlogical-op",
-                "-Wshift-overflow=2",
-                "-Wduplicated-cond",
-                "-Wcast-qual",
-                "-Wcast-align",
-                "-D_GLIBCXX_DEBUG",
-                "-D_GLIBCXX_DEBUG_PEDANTIC",
-                "-D_FORTIFY_SOURCE=2",
-                //"-fsanitize=address",
-                //"-fsanitize=undefined",
-                "-fno-sanitize-recover",
-                "-fstack-protector",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
+            "program": "z:\\c++\\Triangle\\x64\\Debug\\matrix.exe",
+            "args": [],
             "stopAtEntry": false,
-            "cwd":
-                "${workspaceFolder}",
+            "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": true,
-            "MIMode": "gdb",
-            "miDebuggerPath": "//C:\\MinGW\\mingw64\\bin\\gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "g++.exe build active file"
+            "MIMode": "msvc",
+            "preLaunchTask": "build"
         }
     ]
 }

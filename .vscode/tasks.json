@@ -1,45 +1,22 @@
 {
-  "tasks": [
-    {
-        "type": "shell",
-        "label": "g++.exe build active file",
-        "command": "C:\\MinGW\\mingw64\\bin\\g++.exe",
-        "args": [
-            "-g",
-            "${workspaceFolder}/*.cpp",
-            "-Wall",
-            "-Wextra",
-            "-pedantic",
-            "-std=c++11",
-            //"-O2",
-            "-Wshadow",
-            "-Wformat=2",
-            "-Wfloat-equal",
-            "-Wconversion",
-            "-Wlogical-op",
-            "-Wshift-overflow=2",
-            "-Wduplicated-cond",
-            "-Wcast-qual",
-            "-Wcast-align",
-            "-D_GLIBCXX_DEBUG",
-            "-D_GLIBCXX_DEBUG_PEDANTIC",
-            "-D_FORTIFY_SOURCE=2",
-            //"-fsanitize=address",
-            //"-fsanitize=undefined",
-            "-fno-sanitize-recover",
-            "-fstack-protector",
-            "-o",
-            "${fileDirname}\\${fileBasenameNoExtension}.exe"
-        ],
-        "options": {
-            "cwd": "${workspaceFolder}" //C:\\MinGW\\mingw64\\bin"
-        },
-        "problemMatcher": ["$gcc"],
-        "group": {
-            "kind": "build",
-            "isDefault": true
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "process",
+            "command": "z:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+            "args": [
+                "cl.exe",
+                "/EHsc",
+                "/Zi",
+                "/Fe:",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
-    }
-],
-  "version": "2.0.0"
+    ]
 }
