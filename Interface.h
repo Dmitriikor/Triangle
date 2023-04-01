@@ -34,7 +34,7 @@ public:
 	void HideConsoleWindow(/*HWND consoleWindow*/);
 	void ShowConsoleWindow();
 	void on_button_click()const;
-	void on_button_click_2(nana::label& lbl_for_button_funct);
+	void on_button_click_2(nana::label& lbl_for_button_funct)const;
 	Ray<Dot> point_arr;
 	size_t n_points;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
 
@@ -50,19 +50,40 @@ public:
 		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - захватываем в  \a lbl данные из \a input_to_string 
 		nana::button button(form, nana::rectangle(10, 40, 200, 25));					//! @param nana::button button - создаем с заданными размерами и местоположением
 		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
+		
+		/*
+		Основная принципиальная разница между подходами заключается в том, что лямбда-выражение может захватывать контекст, 
+		в котором оно было создано, включая локальные переменные и this-указатель, в то время как функция-член класса не может этого делать. 
+		В вашем случае, вероятно, функция-член класса on_button_click() не может быть связана с событием, потому что она не имеет доступа к this-указателю.
+		При использовании лямбда-выражения для связывания функции-члена класса с событием, лямбда-выражение захватывает указатель на объект класса, 
+		через который было вызвано лямбда-выражение, и использует этот указатель для вызова функции-члена. Это позволяет лямбда-выражению вызывать 
+		функцию-член класса с правильным this-указателем.
+		С другой стороны, когда вы передаете указатель на функцию-член класса непосредственно в метод connect(), этот указатель на функцию не 
+		может захватить this-указатель, поскольку он не имеет контекста, в котором был создан. Поэтому, когда этот указатель на функцию будет вызван в 
+		ответ на событие, он не сможет получить доступ к членам класса через this-указатель.
+		Кроме того, при использовании лямбда-выражения для связывания функции-члена класса с событием, вы можете не использовать указатель на 
+		функцию-член класса напрямую, что может сделать код более понятным и удобочитаемым.
+		В целом, использование лямбда-выражения для связывания функции-члена класса с событием является более гибким подходом, 
+		который позволяет захватывать контекст и делать код более понятным, поэтому он может быть предпочтительнее в некоторых случаях. 
+		Однако, в некоторых ситуациях, использование указателей на функции-члены класса может быть более удобным и подходящим.
+		*/
 		button.events().click([this]() { on_button_click(); });
 		//button.events().click(&Interface::on_button_click);				//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
+		
+		
+		
 		nana::label lbl_for_button(form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
 
-		
-			button.events().click([&]()
+
+		button.events().click([&]()
 			{
-					lbl_for_button.caption("Button was clicked");
+				lbl_for_button.caption("Button was clicked");
 			});
-		
+
 
 
 		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25)); //! @param nana::rectangle(100, 10, 200, 25) - создаем квадрат, задаем размер и положение
+		
 		/*
 			std::bind позволяет создавать новый функциональный объект, который принимает меньше аргументов, чем исходная функция.
 			Функция-адаптер std::bind позволяет привязать аргументы к вызову функции, сохраняя свободные аргументы,
@@ -86,8 +107,8 @@ public:
 
 			auto func = std::bind(&foo, 3, std::placeholders::_1, 2, std::placeholders::_2, 1);
 		*/
-		//button.events().click(std::bind(&Interface::on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
-
+		//button.events().click(std::bind(on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
+		button.events().click([this, &lbl_for_button_funct](){ on_button_click_2(lbl_for_button_funct);});
 		form.show();
 		nana::exec();
 

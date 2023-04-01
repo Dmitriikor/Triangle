@@ -17,7 +17,7 @@ void  Interface::on_button_click() const
 	@brief принимает по ссылке  nana::label и выводит в нем текст
 	@param lbl_for_button_funct - ссылка на nana::label в котором будет выведено сообщение
 **/
-void Interface::on_button_click_2(nana::label& lbl_for_button_funct)
+void Interface::on_button_click_2(nana::label& lbl_for_button_funct) const
 {
 	lbl_for_button_funct.caption("Button was clicked");
 	std::cout << "Button clicked-2!" << std::endl;
