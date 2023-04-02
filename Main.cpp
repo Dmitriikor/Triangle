@@ -20,7 +20,6 @@
  *
  * Данная переменная используется для хранения настроек приложения.
  */
-std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
 #include "Canvas.h"
 
