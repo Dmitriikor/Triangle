@@ -33,7 +33,7 @@ class Interface
 public:
 	void HideConsoleWindow(/*HWND consoleWindow*/);
 	void ShowConsoleWindow();
-	void on_button_click()const;
+	static void on_button_click();
 	void on_button_click_2(nana::label& lbl_for_button_funct)const;
 	Ray<Dot> point_arr;
 	size_t n_points;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
@@ -68,7 +68,7 @@ public:
 		Однако, в некоторых ситуациях, использование указателей на функции-члены класса может быть более удобным и подходящим.
 		*/
 		button.events().click([this]() { on_button_click(); });
-		//button.events().click(&Interface::on_button_click);				//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
+		button.events().click(&Interface::on_button_click);				//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
 		
 		
 		

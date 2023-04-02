@@ -6,7 +6,7 @@ HWND consoleWindow;
 	@fn    on_button_click
 	@brief выводит в консоль текст
 **/
-void  Interface::on_button_click() const
+void  Interface::on_button_click()
 {
 	std::cout << "Button clicked!" << std::endl;
 	
