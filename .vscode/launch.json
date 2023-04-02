@@ -2,16 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(msvc) Launch",
+            "name": "(Windows) Запустить",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "z:\\c++\\Triangle\\x64\\Debug\\matrix.exe",
+            "program": "${workspaceFolder}/a.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": true,
-            "MIMode": "msvc",
+            "console": "externalTerminal",
             "preLaunchTask": "build"
         }
     ]

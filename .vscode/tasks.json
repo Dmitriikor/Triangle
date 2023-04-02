@@ -4,18 +4,19 @@
         {
             "label": "build",
             "type": "process",
-            "command": "z:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+            "command": "cl.exe",
             "args": [
-                "cl.exe",
-                "/EHsc",
                 "/Zi",
-                "/Fe:",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "/EHsc",
+                "/Fe:${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "${file}"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"
             }
         }
     ]

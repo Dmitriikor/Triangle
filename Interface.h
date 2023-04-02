@@ -43,13 +43,13 @@ public:
 
 	void test_nana()
 	{
-		std::string input_to_string = "привет мир";						//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+		std::string input_to_string = "привет мир - 2";						//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
 		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
 		form.caption(input_to_string);									//! @param form.caption(input_to_string) - захватывает 
 		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));		//! @param nana::label lbl(form, nana::rectangle(10, 10, 200, 25)) - @brief создает \a nana::label \a lbl с заданными размерами и местоположением 
 		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - захватываем в  \a lbl данные из \a input_to_string 
 		nana::button button(form, nana::rectangle(10, 40, 200, 25));					//! @param nana::button button - создаем с заданными размерами и местоположением
-		button.caption("Нажми меня!");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
+		button.caption("Нажми меня! дважды");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
 		
 		/*
 		Основная принципиальная разница между подходами заключается в том, что лямбда-выражение может захватывать контекст, 
