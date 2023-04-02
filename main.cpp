@@ -50,7 +50,7 @@ std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsiz
 **/
 int main(int argc, char const* argv[])
 {
-	setlocale(LC_ALL, "Russian");											//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
+	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 
 	/**
 	 * @brief Объявление интерфейса
