@@ -62,7 +62,7 @@ Sleep(num);		 //! @param Sleep() - стандартная функция сна
 
 void cin_ignore()
 {
-std::cin.ignore(MAX_STREAMSIZE_2, '\n');								//! @param std::cin.ignore - игнорирует ранее введенные символы, требует действия
+std::cin.ignore(MAX_STREAMSIZE, '\n');								//! @param std::cin.ignore - игнорирует ранее введенные символы, требует действия
 }
 
 void clear_screen()

@@ -12,11 +12,11 @@
 #include <functional>
 #include <iomanip>
 #include <fstream>
-std::streamsize static const MAX_STREAMSIZE_2 = std::numeric_limits<std::streamsize>::max();
 
 #include "utilities.h"
 #include "Ray.h"
 #include "Point.h"
+std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
 /**
 * @file Windows.h
@@ -150,7 +150,7 @@ public:
 
 		std::cin >> input_switch;
 
-		std::cin.ignore(MAX_STREAMSIZE_2, '\n');
+		std::cin.ignore(MAX_STREAMSIZE, '\n');
 
 		if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
 			std::cout << "PROGRAM OVER\n";
