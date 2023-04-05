@@ -27,7 +27,7 @@
     <ClCompile Include="Direct_draw.cpp" />
     <ClCompile Include="Find_Triangle.cpp" />
     <ClCompile Include="Interface.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Utilities.cpp" />

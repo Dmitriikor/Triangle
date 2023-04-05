@@ -1,17 +1,15 @@
 {
-    "version": "0.2.0",
     "configurations": [
-        {
-            "name": "(Windows) Запустить",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/a.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "console": "externalTerminal",
-            "preLaunchTask": "build"
-        }
+    {
+        "name": "(Windows) Запустить",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/a.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "console": "externalTerminal"
+    }
     ]
 }
