@@ -3,6 +3,8 @@
 #include <nana/gui.hpp>
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/button.hpp>
+#include <nana/gui/widgets/checkbox.hpp>
+#include <nana/gui/widgets/textbox.hpp>
 
 #include <iostream>
 #include <string>
@@ -25,6 +27,21 @@ std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsiz
 */
 #include "Windows.h"
 
+struct pos_elem
+{
+	//first
+	int X_horizontal;
+
+	//second
+	int Y_vertical;
+
+	//third
+	int width_in_pixels;
+
+	//fourth
+	int height_in_pixels;
+}; 
+
 
 class Interface
 {
@@ -38,17 +55,18 @@ public:
 	Ray<Dot> point_arr;
 	size_t n_points;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
 
-
-
-
 	void test_nana()
 	{
-		std::string input_to_string = "привет мир - 2";						//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+		pos_elem test;
+		test.X_horizontal = 10;
+		test.Y_vertical = 10;
+
+		std::string input_to_string = "привет мир - 2";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
 		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
 		form.caption(input_to_string);									//! @param form.caption(input_to_string) - захватывает 
-		nana::label lbl(form, nana::rectangle(10, 10, 200, 25));		//! @param nana::label lbl(form, nana::rectangle(10, 10, 200, 25)) - @brief создает \a nana::label \a lbl с заданными размерами и местоположением 
+		nana::label lbl(form, nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25));		//! @param nana::label lbl(form, nana::rectangle(10, 10, 200, 25)) - @brief создает \a nana::label \a lbl с заданными размерами и местоположением 
 		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - захватываем в  \a lbl данные из \a input_to_string 
-		nana::button button(form, nana::rectangle(10, 40, 200, 25));					//! @param nana::button button - создаем с заданными размерами и местоположением
+		nana::button button(form, nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels));	//! @param nana::button button - создаем с заданными размерами и местоположением
 		button.caption("Нажми меня! дважды");									//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
 		
 		/*
@@ -70,19 +88,15 @@ public:
 		button.events().click([this]() { on_button_click(); });
 		button.events().click(&Interface::on_button_click);				//! @param button.events().click(on_button_click) - @brief создаем эвент для отслеживания нажатия на кнопку \a button
 		
-		
-		
-		nana::label lbl_for_button(form, nana::rectangle(10, 70, 200, 25));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
+		nana::label lbl_for_button(form, nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels));  //! @param nana::label lbl_for_button - @brief \a lbl_for_button
 
 
 		button.events().click([&]()
 			{
 				lbl_for_button.caption("Button was clicked");
 			});
-
-
-
-		nana::label lbl_for_button_funct(form, nana::rectangle(100, 10, 200, 25)); //! @param nana::rectangle(100, 10, 200, 25) - создаем квадрат, задаем размер и положение
+		
+		nana::label lbl_for_button_funct(form, nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels)); //! @param nana::rectangle(100, 10, 200, 25) - создаем квадрат, задаем размер и положение
 		
 		/*
 			std::bind позволяет создавать новый функциональный объект, который принимает меньше аргументов, чем исходная функция.
@@ -109,9 +123,39 @@ public:
 		*/
 		//button.events().click(std::bind(on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
 		button.events().click([this, &lbl_for_button_funct](){ on_button_click_2(lbl_for_button_funct);});
+
+
+		nana::checkbox checkbox{ form, "Checkbox" }; 
+		
+		checkbox.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels));
+		
+		
+		checkbox.events().click([&] {
+			std::cout << "The checkbox is " << (checkbox.checked() ? "checked" : "unchecked") << std::endl;
+			});
+
+
+		int value = 0;
+		nana::textbox textbox{ form, nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels) };
+
+		textbox.events().text_changed([&value](const nana::arg_textbox& arg)
+			{
+				try
+				{
+					value = std::stoi(arg.widget.caption());
+					std::cout << value<< std::endl;
+				}
+				catch (const std::invalid_argument& err)
+				{
+					value = 0;
+					std::cerr << "Invalid argument: " << err.what() << std::endl;
+				}
+			});
+
+		textbox.caption(std::to_string(value));
+
 		form.show();
 		nana::exec();
-
 	}
 
 	Interface();
