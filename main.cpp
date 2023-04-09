@@ -58,13 +58,22 @@ int main(int argc, char const* argv[])
 	/**
 	 * @brief скрытие консоли
 	 */
-	//window.HideConsoleWindow();
+
+
+
+
+
+	/**///window.HideConsoleWindow();
+
+
+
+
 
 	/**
 	 * @brief запуск тестовой функции
 	 */
 	window.test_nana();
-	//window.ShowConsoleWindow();
+	window.ShowConsoleWindow();
 	window.st_diag();
 
 	/**
