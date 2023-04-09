@@ -54,15 +54,20 @@ public:
 	void on_button_click_2(nana::label& lbl_for_button_funct)const;
 	Ray<Dot> point_arr;
 	size_t n_points;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
-	nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
-	nana::label lbl{ form, nana::rectangle(10, 10, 100, 25) };
-	nana::button button{ form, nana::rectangle(10, 10, 100, 25) };
-	nana::textbox textbox{ form, nana::rectangle(10, 10, 100, 25) };
-	pos_elem test;
+	//nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
+	//nana::label lbl{ form, nana::rectangle(10, 10, 100, 25) };
+	//nana::button button{ form, nana::rectangle(10, 10, 100, 25) };
+	//nana::textbox textbox{ form, nana::rectangle(10, 10, 100, 25) };
+	//pos_elem test;
 
 	void test_nana()
 	{
-		
+		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
+		nana::label lbl{ form, nana::rectangle(10, 10, 100, 25) };
+		nana::button button{ form, nana::rectangle(10, 10, 100, 25) };
+		nana::textbox textbox{ form, nana::rectangle(10, 10, 100, 25) };
+		pos_elem test;
+
 		test.X_horizontal = 10;
 		test.Y_vertical = 10;
 
@@ -71,7 +76,7 @@ public:
 
 		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25)); // создание прямоугольника);
 		lbl.caption(input_to_string);									//!  @param lbl.caption(input_to_string) - захватываем в  \a lbl данные из \a input_to_string 
-		
+
 		button.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels));										//! @param nana::button button - создаем с заданными размерами и местоположением
 		button.caption("Нажми меня! дважды");							//! @param button.caption("Нажмя меня!")   захватываем в  \a button текст "Нажми меня!"  
 
@@ -140,59 +145,62 @@ public:
 			});
 
 		textbox.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels));
-		n_points = caption_text(form, textbox, test);
+
+		//size_t n;
+
+		caption_text(form, textbox, test);
+
+		//n_points = n;
 
 		form.show();
 		nana::exec();
+
 		st_diag();
 	}
 
 	Interface();
 
-	int caption_text(nana::form& form, nana::textbox& textbox, struct pos_elem test)
+	void caption_text(nana::form& form, nana::textbox& textbox, struct pos_elem test)
 	{
-		int value = 0;
-		textbox.events().text_changed([&value](const nana::arg_textbox& arg)
+		textbox.events().text_changed([this](const nana::arg_textbox& arg)
 			{
 				try
 				{
+					std::string text = arg.widget.caption();
 
-					value = std::stoi(arg.widget.caption());
-					std::cout << value << std::endl;
+					if (text == "")
+						return;
+
+					this->n_points = std::stoi(text);
+
+					if (std::to_string(this->n_points) != text)
+						throw std::invalid_argument("Wrong characters!");
+
+					std::cout << this->n_points << std::endl;
 				}
 				catch (const std::invalid_argument& err)
 				{
-					value = 0;
+					this->n_points = 0;
 					std::cerr << "Invalid argument: " << err.what() << std::endl;
 				}
 			});
 
-		textbox.caption(std::to_string(value));
-		return value;
+		//std::cout << n_points << std::endl;
+
+		textbox.caption(std::to_string(this->n_points));
 	}
 
 
 	void st_diag()
 	{
+		if (n_points >= 3)
+			return;//break;
 
-		while (true)
-		{
-			if (n_points == -1)
-			{
-				std::cout << n_points << "\n";
-				//std::cout << "Enter number of points:\n";
-				//std::cin >> n_points;
-			}
-			if (n_points >= 3)
-				break;
-			else {
-				Sleep(1500);
-				system("cls");
-				std::cout << "The number of points to build a triangle must be at least 3 \n";
-				n_points = 0;
-			}
-				test_nana();
-		}
+		//Sleep(1500);
+		system("cls");
+		std::cout << "The number of points to build a triangle must be at least 3 \n";
+		n_points = 0;
+		test_nana();
 	}
 	//	std::cout << "Choose mode:\n";
 	//	std::cout << "\t 1 input on file, \n";
