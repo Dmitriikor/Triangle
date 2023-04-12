@@ -1,5 +1,5 @@
 ﻿#include "Interface.h"
-HWND consoleWindow;
+
 
 
 /**
@@ -31,7 +31,7 @@ void Interface::on_button_click_2(nana::label& lbl_for_button_funct) const
 Interface::Interface()
 {
 	consoleWindow = GetConsoleWindow();
-	n_points = -1;
+	n_points = 0;
 }
 
 

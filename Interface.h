@@ -53,16 +53,29 @@ public:
 	static void on_button_click();
 	void on_button_click_2(nana::label& lbl_for_button_funct)const;
 	Ray<Dot> point_arr;
-	size_t n_points;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
-	//nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
-	//nana::label lbl{ form, nana::rectangle(10, 10, 100, 25) };
-	//nana::button button{ form, nana::rectangle(10, 10, 100, 25) };
-	//nana::textbox textbox{ form, nana::rectangle(10, 10, 100, 25) };
-	//pos_elem test;
+	size_t n_points ;										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
+	HWND consoleWindow;
+
 
 	void test_nana()
 	{
-		nana::form form;												//! @param nana::form form - создаем форму(окно)  \a form с помощью
+		//nana::form form{ nana::size{ 960, 480 } };	//! @param nana::form form - создаем форму(окно)  \a form с помощью
+		nana::form form{ nana::API::make_center(960+40, 480+40) };
+		{
+			RECT desktop_rect;
+			SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop_rect, 0);
+
+			RECT console_rect;
+			GetWindowRect(consoleWindow, &console_rect);
+			int console_width = console_rect.right - console_rect.left;
+			int console_height = console_rect.bottom - console_rect.top;
+
+			int x = (desktop_rect.right - console_width) / 2;
+			int y = (desktop_rect.bottom - console_height) / 2;
+
+			SetWindowPos(consoleWindow, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+		}
+
 		nana::label lbl{ form, nana::rectangle(10, 10, 100, 25) };
 		nana::button button{ form, nana::rectangle(10, 10, 100, 25) };
 		nana::textbox textbox{ form, nana::rectangle(10, 10, 100, 25) };
@@ -144,25 +157,25 @@ public:
 			std::cout << "The checkbox is " << (checkbox.checked() ? "checked" : "unchecked") << std::endl;
 			});
 
-		textbox.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, test.width_in_pixels, test.height_in_pixels));
+		textbox.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, 500, 40));
 
 		//size_t n;
 
 		caption_text(form, textbox, test);
 
+
+
 		//n_points = n;
 
 		form.show();
 		nana::exec();
-
-		st_diag();
 	}
 
 	Interface();
 
 	void caption_text(nana::form& form, nana::textbox& textbox, struct pos_elem test)
 	{
-		textbox.events().text_changed([this](const nana::arg_textbox& arg)
+		textbox.events().text_changed([&](const nana::arg_textbox& arg)
 			{
 				try
 				{
@@ -171,37 +184,32 @@ public:
 					if (text == "")
 						return;
 
-					this->n_points = std::stoi(text);
+					n_points = std::stoi(text);
 
-					if (std::to_string(this->n_points) != text)
+					if (std::to_string(n_points) != text)
 						throw std::invalid_argument("Wrong characters!");
 
-					std::cout << this->n_points << std::endl;
+					std::cout << n_points << std::endl;
+
+					if (n_points < 3)
+					{
+						textbox.tip_string("The number of points to build a triangle must be at least 3");
+						textbox.reset();
+					}
+
 				}
 				catch (const std::invalid_argument& err)
 				{
-					this->n_points = 0;
+					n_points = 0;
 					std::cerr << "Invalid argument: " << err.what() << std::endl;
 				}
 			});
-
-		//std::cout << n_points << std::endl;
-
-		textbox.caption(std::to_string(this->n_points));
+		textbox.caption(std::to_string(n_points));
 	}
 
 
 	void st_diag()
 	{
-		if (n_points >= 3)
-			return;//break;
-
-		//Sleep(1500);
-		system("cls");
-		std::cout << "The number of points to build a triangle must be at least 3 \n";
-		n_points = 0;
-		test_nana();
-	}
 	//	std::cout << "Choose mode:\n";
 	//	std::cout << "\t 1 input on file, \n";
 	//	std::cout << "\t 2 input manual,  \n";
@@ -280,7 +288,7 @@ public:
 	//	}
 	//	}
 
-	//}
+	}
 
 private:
 
