@@ -51,7 +51,63 @@ private:
 
 	void MOVE_(Ray<T>& other);
 	void SWAP_(Ray& other);
+
 public:
+
+
+
+	 
+	class iterator {
+	public:
+		iterator(T* p) : ptr_(p) {}
+
+		iterator& operator++() { 
+			++ptr_; 
+			return *this;
+		}
+		bool operator!=(const iterator& other) const	
+		{ 
+			return ptr_ != other.ptr_;
+		}
+		T& operator*() const 
+		{ 
+			return *ptr_;
+		}
+
+		iterator& operator+=(T& n)
+		{
+			return *ptr_;
+		}
+
+		//iterator& operator--() {
+		//	--ptr_; 
+		//	return *this.ray_[LEFT + F_RIGHT];
+		//}
+
+		//bool operator==(const iterator& other) const	{ 
+		//	return ray_[LEFT + F_RIGHT] == other.ray_[LEFT + F_RIGHT]; 
+		//}
+
+
+		//iterator& operator=(const iterator& other)
+		//{
+		//	ptr_ = other.ptr_;
+		//	return *this;
+		//}
+
+
+
+	private:
+		T* ptr_;
+	};
+
+	//iterator cbegin() const { return  iterator(ray_[(LEFT - F_LEFT)]); }
+	//iterator cend() const { return  iterator(ray_[F_LEFT + F_RIGHT]); }
+	iterator begin() { return iterator(ray_);}
+	iterator end() { return iterator(ray_+(F_LEFT + F_RIGHT)); }
+
+
+
 
 	Ray();
 	//LEFT, RIGHT

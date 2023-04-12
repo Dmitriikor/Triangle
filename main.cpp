@@ -31,7 +31,8 @@
 #include "Corner.h"
 #include "Axys.h"
 #include "Direct_draw.h"
-#include "test.h"
+
+#include "TESTS.cpp"
 
 #pragma execution_character_set("utf-8")
 
@@ -58,37 +59,20 @@ int main(int argc, char const* argv[])
 	/**
 	 * @brief скрытие консоли
 	 */
-	{
-		int arr[] = { 1, 2, 3, 4, 5 };
-		Iterator<int> begin(arr);
-		Iterator<int> end(arr + 5);
-		for (auto it = begin; it != end; ++it)
-		{
-			std::cout << *it << " ";
-		}
-	}
+
+
 	std::cout << "\n";
 
-
-
-	Ray<int> it_test;
-	for (int i = 0; i < 7; ++i)
-		it_test.add_to_back(i);
-
-	Iterator<int> begin(&it_test[0]);
-	Iterator<int> end(&it_test[0] + 5);
-
-	for (auto it_test = begin; it_test != end; ++it_test)
-	{
-		std::cout << *it_test << " ";
-	}
-
-	std::cout << "\n";
+	TEST t_1;
+	t_1.test_0();
+	t_1.test_1();
+	t_1.test_2();
+	t_1.test_3();
+	t_1.test_4();
+	//t_1.test_5();
+	//t_1.test_6();
 
 	/**///window.HideConsoleWindow();
-
-
-
 
 
 	/**
