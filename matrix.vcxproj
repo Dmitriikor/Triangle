@@ -44,6 +44,7 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="TEST.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
