@@ -69,9 +69,9 @@ int main(int argc, char const* argv[])
 	t_1.test_2();
 	t_1.test_3();
 	t_1.test_4();
-	//t_1.test_5();
+	t_1.test_5();
 	//t_1.test_6();
-
+	//t_1.test_7();
 	/**///window.HideConsoleWindow();
 
 

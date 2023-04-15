@@ -3,6 +3,8 @@
 #include "Ray.h"
 #include <cassert>
 #include <vector>
+#include <algorithm>
+#include <iterator>
 #include "it_test.h"
 
 struct TEST
@@ -74,28 +76,35 @@ struct TEST
         std::cout << "\ntest_4_END\n";
     }
     
-    //void test_5()
-    //{
-    //    Ray<int> arr{ 1, 2, 3 };
-    //    const Ray<int>& c_arr = arr;
-    //    int sum = 0;
-    //    for (auto it = c_arr.cbegin(); it != c_arr.cend(); ++it) {
-    //        sum += *it;
-    //    }
-    //    assert(sum == 6);
-    //}
+    void test_5()
+    {
+        Ray<int> arr{ 1, 2, 3 };
+        const Ray<int>& c_arr = arr;
+        int sum = 0;
+        for (auto it = c_arr.cbegin(); it != c_arr.cend(); ++it) {
+            sum += *it;
+        }
+        assert(sum == 6);
+        std::cout << "\ntest_5_END\n";
+    }
     
     //void test_6()
     //{
-    //    Ray<int> arr{ 1, 2, 3, 4, 5 };
-    //    auto it = std::find(arr.begin(), arr.end(), 3);
+    //     Ray<int> arr{ 1, 2, 3, 4, 5 };
+    //     const auto it = std::find(arr.begin(), arr.end(), 3);
     //    assert(*it == 3);
+    //    std::cout << "\ntest_6_END\n";
+    //}
 
+    //void test_7()
+    //    {
+    //    Ray<int> arr{ 1, 2, 3, 4, 5 };
     //    std::vector<int> v;
     //    std::copy(arr.begin(), arr.end(), std::back_inserter(v));
     //    assert(v.size() == arr.size());
     //    for (int i = 0; i < arr.size(); ++i) {
     //        assert(v[i] == arr[i]);
     //    }
+    //    std::cout << "\ntest_7_END\n";
     //}
 };
