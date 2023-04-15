@@ -55,11 +55,43 @@ private:
 public:
 
 
+	class star_it {
+	public:
+		explicit star_it(T* p) : ptr_(p) {}
 
+		auto operator<=>(const star_it& other) const 
+		{
+			return ptr_ <=> other.ptr_;
+		}
+		T& operator*() const
+		{
+			return *ptr_;
+		}
+		star_it& operator++() {
+			++ptr_;
+			return *this;
+		}
+		bool operator==(star_it& other)
+		{
+			return ptr_ == other.ptr_;
+		}
+
+		star_it& operator+=(T& n)
+		{
+			ptr_ += n;
+			return *ptr_;
+		}
+
+	private:
+		T* ptr_;
+	};
+
+	star_it s_begin() { return star_it(ray_); }
+	star_it s_end() { return star_it(ray_ + (F_LEFT + F_RIGHT)); }
 	 
 	class iterator {
 	public:
-		iterator(T* p) : ptr_(p) {}
+		explicit iterator(T* p) : ptr_(p)  {}
 
 		T& operator*() const 
 		{ 
@@ -71,10 +103,10 @@ public:
 			return *this;
 		}
 
-		bool operator!=(const iterator& other) const	
-		{ 
-			return ptr_ != other.ptr_;
-		}
+		//bool operator!=(const iterator& other) const	
+		//{ 
+		//	return ptr_ != other.ptr_;
+		//}
 
 		bool operator==(iterator& other) 
 		{
@@ -108,7 +140,7 @@ public:
 		using pointer = const T*;
 		using reference = const T&;
 
-		с_iterator(T* p) : ptr_(p) {}
+		explicit с_iterator(T* p) : ptr_(p) {}
 
 		с_iterator& operator++() 
 		{
@@ -116,10 +148,10 @@ public:
 			return *this;
 		}
 
-		bool operator!=(const с_iterator& other) const 
-		{
-			return ptr_ != other.ptr_;
-		}
+		//bool operator!=(const с_iterator& other) const 
+		//{
+		//	return ptr_ != other.ptr_;
+		//}
 
 		 T& operator*() const
 		{

@@ -12,12 +12,12 @@ struct TEST
     void test_0()
     {
         Ray<int> arr{ 1, 2, 3, 4, 5};
-        int end;
-        for (auto it = arr.begin(); it != arr.end(); ++it) {
+        int s_end;
+        for (auto it = arr.s_begin(); it != arr.s_end(); ++it) {
             std::cout << *it  << " ";
-            end = *it;
+            s_end = *it;
         }
-        assert(end == 5);
+        assert(s_end == 5);
         std::cout << "\ntest_0_END\n";
     }
 
@@ -25,7 +25,7 @@ struct TEST
     {
         Ray<int> arr{ 1, 2, 3, 4, 5 };
         int sum = 0;
-        for (auto it = arr.begin(); it != arr.end(); ++it) {
+        for (auto it = arr.s_begin(); it != arr.s_end(); ++it) {
             sum += *it;
         }
         assert(sum == 15);
@@ -35,9 +35,9 @@ struct TEST
     void test_2() const
     {
         int arr[] = { 1, 2, 3, 4, 5 };
-        const Iterator<int> begin(arr);
-        const Iterator<int> end(arr + 5);
-        for (auto it = begin; it != end; ++it)
+        const Iterator<int> s_begin(arr);
+        const Iterator<int> s_end(arr + 5);
+        for (auto it = s_begin; it != s_end; ++it)
         {
             std::cout << *it << " ";
         }
@@ -50,10 +50,10 @@ struct TEST
         for (int i = 0; i < 7; ++i)
             it_test.add_to_back(i);
 
-        const Iterator<int> begin(&it_test[0]);
-        const Iterator<int> end(&it_test[0] + 5);
+        const Iterator<int> s_begin(&it_test[0]);
+        const Iterator<int> s_end(&it_test[0] + 5);
 
-        for (auto it_test = begin; it_test != end; ++it_test)
+        for (auto it_test = s_begin; it_test != s_end; ++it_test)
         {
             *it_test = 10;
             std::cout << *it_test << " ";
@@ -64,7 +64,7 @@ struct TEST
     void test_4()
     {
         Ray<int> arr{ 1, 2, 3 };
-        auto it = arr.begin();
+        auto it = arr.s_begin();
         *it = 10;
         ++it;
         *it = 20;
@@ -88,19 +88,19 @@ struct TEST
         std::cout << "\ntest_5_END\n";
     }
     
-    //void test_6()
-    //{
-    //     Ray<int> arr{ 1, 2, 3, 4, 5 };
-    //     const auto it = std::find(arr.begin(), arr.end(), 3);
-    //    assert(*it == 3);
-    //    std::cout << "\ntest_6_END\n";
-    //}
+    void test_6()
+    {
+         Ray<int> arr{ 7, 2, 3, 4, 5 };
+         std::sort(arr.s_begin(), arr.s_end(), 3);
+        assert(arr[0] = 2);
+        std::cout << "\ntest_6_END\n";
+    }
 
     //void test_7()
     //    {
     //    Ray<int> arr{ 1, 2, 3, 4, 5 };
     //    std::vector<int> v;
-    //    std::copy(arr.begin(), arr.end(), std::back_inserter(v));
+    //    std::copy(arr.s_begin(), arr.s_end(), std::back_inserter(v));
     //    assert(v.size() == arr.size());
     //    for (int i = 0; i < arr.size(); ++i) {
     //        assert(v[i] == arr[i]);
