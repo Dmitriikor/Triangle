@@ -95,7 +95,7 @@ public:
 		test.X_horizontal = 10;
 		test.Y_vertical = 10;
 
-		std::string input_to_string = "привет мир - 2";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+		std::string input_to_string = "привет мир - 1";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
 		form.caption(input_to_string);									//! @param form.caption(input_to_string) - захватывает 
 
 		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25)); // создание прямоугольника);

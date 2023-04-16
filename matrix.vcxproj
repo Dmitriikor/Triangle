@@ -29,6 +29,7 @@
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="TESTS.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
@@ -41,6 +42,7 @@
     <ClInclude Include="Direct_draw.h" />
     <ClInclude Include="Find_Triangle.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="IT_TEST.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Point.h" />
