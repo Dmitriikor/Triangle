@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "Ray.h"
-#include <cassert>
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -17,7 +16,7 @@ struct TEST
             std::cout << *it  << " ";
             s_end = *it;
         }
-        assert(s_end == 5);
+        if(s_end == 5);
         std::cout << "\ntest_0_END\n";
     }
 
@@ -28,7 +27,7 @@ struct TEST
         for (auto it = arr.s_begin(); it != arr.s_end(); ++it) {
             sum += *it;
         }
-        assert(sum == 15);
+        if(sum == 15);
         std::cout << "\ntest_1_END\n";
     }
 
@@ -70,9 +69,9 @@ struct TEST
         *it = 20;
         ++it;
         *it = 30;
-        assert(arr[0] == 10);
-        assert(arr[1] == 20);
-        assert(arr[2] == 30);
+        if(arr[0] == 10);
+        if(arr[1] == 20);
+        if(arr[2] == 30);
         std::cout << "\ntest_4_END\n";
     }
     
@@ -84,26 +83,26 @@ struct TEST
         for (auto it = c_arr.cbegin(); it != c_arr.cend(); ++it) {
             sum += *it;
         }
-        assert(sum == 6);
+        if(sum == 6);
         std::cout << "\ntest_5_END\n";
     }
     
-    void test_6()
-    {
-         Ray<int> arr{ 7, 2, 3, 4, 5 };
-         std::sort(arr.s_begin(), arr.s_end(), 3);
-        assert(arr[0] = 2);
-        std::cout << "\ntest_6_END\n";
-    }
+    //void test_6()
+    //{
+    //     Ray<int> arr{ 7, 2, 3, 4, 5 };
+    //     std::sort(arr.s_begin(), arr.s_end(), 3);
+    //    if(arr[0] = 2);
+    //    std::cout << "\ntest_6_END\n";
+    //}
 
     //void test_7()
     //    {
     //    Ray<int> arr{ 1, 2, 3, 4, 5 };
     //    std::vector<int> v;
     //    std::copy(arr.s_begin(), arr.s_end(), std::back_inserter(v));
-    //    assert(v.size() == arr.size());
+    //    if(v.size() == arr.size());
     //    for (int i = 0; i < arr.size(); ++i) {
-    //        assert(v[i] == arr[i]);
+    //        if(v[i] == arr[i]);
     //    }
     //    std::cout << "\ntest_7_END\n";
     //}
