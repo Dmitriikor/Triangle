@@ -99,7 +99,7 @@ public:
 
 
 
-		std::string input_to_string = "привет мир - 0";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+		std::string input_to_string = "привет мир - 2";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
 		
 		
 		
