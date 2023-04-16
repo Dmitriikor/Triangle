@@ -5,6 +5,8 @@
 #include <nana/gui/widgets/button.hpp>
 #include <nana/gui/widgets/checkbox.hpp>
 #include <nana/gui/widgets/textbox.hpp>
+#include <nana/gui/place.hpp>
+
 
 #include <iostream>
 #include <string>
@@ -59,8 +61,15 @@ public:
 
 	void test_nana()
 	{
-		//nana::form form{ nana::size{ 960, 480 } };	//! @param nana::form form - создаем форму(окно)  \a form с помощью
+
+		
 		nana::form form{ nana::API::make_center(960+40, 480+40) };
+			nana::place layout(form);
+
+			nana::button button1(form, "Button 1");
+			nana::button button2(form, "Button 2");
+
+		//nana::form form{ nana::size{ 960, 480 } };	//! @param nana::form form - создаем форму(окно)  \a form с помощью
 		{
 			RECT desktop_rect;
 			SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop_rect, 0);
@@ -80,6 +89,8 @@ public:
 		nana::button button{ form, nana::rectangle(10, 10, 100, 25) };
 		nana::textbox textbox{ form, nana::rectangle(10, 10, 100, 25) };
 		pos_elem test;
+
+		button.size(nana::size(100, 50));
 
 		test.X_horizontal = 10;
 		test.Y_vertical = 10;
@@ -167,6 +178,18 @@ public:
 
 		//n_points = n;
 
+		layout.div(
+			"vert margin=10 gap=10 <weight=90>"
+			"<weight=20><hight=10><button>"
+			"<weight=20> <button1>"
+			"<weight=20> <button2>"
+		);
+		layout["button"] << button1;
+		layout["button1"] << button2;
+		layout["button2"] << button;
+		layout.collocate();
+
+		std::cout << "+-+\n";
 		form.show();
 		nana::exec();
 	}

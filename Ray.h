@@ -51,7 +51,134 @@ private:
 
 	void MOVE_(Ray<T>& other);
 	void SWAP_(Ray& other);
+
 public:
+
+
+	class star_it {
+	public:
+		explicit star_it(T* p) : ptr_(p) {}
+
+		auto operator<=>(const star_it& other) const 
+		{
+			return ptr_ <=> other.ptr_;
+		}
+		T& operator*() const
+		{
+			return *ptr_;
+		}
+		star_it& operator++() {
+			++ptr_;
+			return *this;
+		}
+		bool operator==(star_it& other)
+		{
+			return ptr_ == other.ptr_;
+		}
+
+		star_it& operator+=(T& n)
+		{
+			ptr_ += n;
+			return *ptr_;
+		}
+
+	private:
+		T* ptr_;
+	};
+
+	star_it s_begin() { return star_it(ray_); }
+	star_it s_end() { return star_it(ray_ + (F_LEFT + F_RIGHT)); }
+	 
+	class iterator {
+	public:
+		explicit iterator(T* p) : ptr_(p)  {}
+
+		T& operator*() const 
+		{ 
+			return *ptr_;
+		}
+
+		iterator& operator++() { 
+			++ptr_; 
+			return *this;
+		}
+
+		//bool operator!=(const iterator& other) const	
+		//{ 
+		//	return ptr_ != other.ptr_;
+		//}
+
+		bool operator==(iterator& other) 
+		{
+			return ptr_ == other.ptr_;
+		}
+
+		iterator& operator+=(T& n)
+		{
+			ptr_ += n;
+			return *ptr_;
+		}
+
+		const T* operator->() const {
+			return ptr_;
+		}
+
+	private:
+		T* ptr_;
+	};
+
+	iterator begin() { return iterator(ray_);}
+	iterator end() { return iterator(ray_+(F_LEFT + F_RIGHT)); }
+
+	class с_iterator 
+	{
+	public:
+
+		using iterator_category = std::random_access_iterator_tag;
+		using value_type = T;
+		using difference_type = std::ptrdiff_t;
+		using pointer = const T*;
+		using reference = const T&;
+
+		explicit с_iterator(T* p) : ptr_(p) {}
+
+		с_iterator& operator++() 
+		{
+			++ptr_;
+			return *this;
+		}
+
+		//bool operator!=(const с_iterator& other) const 
+		//{
+		//	return ptr_ != other.ptr_;
+		//}
+
+		 T& operator*() const
+		{
+			return *ptr_;
+		}
+
+		с_iterator& operator +=(T& n)
+		{
+			ptr_ += n;
+			return *this;
+		}
+
+		bool operator==(const с_iterator& other) const
+		{
+			return ptr_ == other.ptr_;
+		}
+
+		pointer operator->() const {
+			return ptr_;
+		}
+
+	private:
+		T* ptr_;
+	};
+
+	с_iterator cbegin() const { return  с_iterator(ray_); }
+	с_iterator cend() const { return   с_iterator(ray_ + (F_LEFT + F_RIGHT)); }
 
 	Ray();
 	//LEFT, RIGHT
