@@ -31,6 +31,8 @@
 #include "Corner.h"
 #include "Axys.h"
 #include "Direct_draw.h"
+
+
 #include "TESTS.cpp"
 
 #pragma execution_character_set("utf-8")
@@ -60,14 +62,19 @@ int main(int argc, char const* argv[])
 	 */
 
 
+	std::cout << "\n";
+
 	TEST t_1;
 	t_1.test_0();
-
+	t_1.test_1();
+	t_1.test_2();
+	t_1.test_3();
+	t_1.test_4();
+	t_1.test_5();
+	//t_1.test_6();
+	//t_1.test_7();
 
 	/**///window.HideConsoleWindow();
-
-
-
 
 
 	/**

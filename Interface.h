@@ -198,6 +198,7 @@ public:
 		layout.collocate();
 
 		std::cout << "+-+\n";
+
 		form.show();
 		nana::exec();
 	}
