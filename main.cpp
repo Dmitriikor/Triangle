@@ -32,13 +32,14 @@
 #include "Axys.h"
 #include "Direct_draw.h"
 
+
 #include "TESTS.cpp"
 
 #pragma execution_character_set("utf-8")
 
 
 
-
+#include "TESTS.cpp"
 #include "Interface.h"
 
 
@@ -72,8 +73,11 @@ int main(int argc, char const* argv[])
 	t_1.test_5();
 	//t_1.test_6();
 	//t_1.test_7();
+
 	/**///window.HideConsoleWindow();
 
+	TEST tt_1;
+	tt_1.test_0();
 
 	/**
 	 * @brief запуск тестовой функции

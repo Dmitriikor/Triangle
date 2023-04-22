@@ -189,7 +189,8 @@ public:
 		layout["button2"] << button;
 		layout.collocate();
 
-		std::cout << "+++\n";
+		std::cout << "+-+\n";
+
 		form.show();
 		nana::exec();
 	}
