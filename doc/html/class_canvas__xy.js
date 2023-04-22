@@ -1,0 +1,25 @@
+var class_canvas__xy =
+[
+    [ "axis_x_indents", "class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5", null ],
+    [ "axis_x_strings", "class_canvas__xy.html#ae14bade279480b418e39b85c16b33e2e", null ],
+    [ "get_digits_count", "class_canvas__xy.html#a7d5a2d324bdfc4021d5e3866ca5e6f55", null ],
+    [ "get_width", "class_canvas__xy.html#aa9a63b46d64aca3882f1472df59f35c3", null ],
+    [ "initialize_width", "class_canvas__xy.html#a88a956484eb78b5869b7559fae766ead", null ],
+    [ "initialize_widthes", "class_canvas__xy.html#a4958e4eb81c4946eb2194b18879d32bb", null ],
+    [ "set_indent", "class_canvas__xy.html#a8c3ba8708233e57d8c6df07917cf9b1b", null ],
+    [ "width_x", "class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139", null ],
+    [ "width_x_with_indent", "class_canvas__xy.html#abf785aae8b7de14ce5034aee8b7c717f", null ],
+    [ "width_x_with_indent", "class_canvas__xy.html#a4aadaf097b472ff7be062d0b1f7f6407", null ],
+    [ "width_y", "class_canvas__xy.html#a8346f3ae76d19044fe798bf82ae6ec72", null ],
+    [ "width_y_with_indent", "class_canvas__xy.html#a98aa707b73954c130e8029868ba52960", null ],
+    [ "width_y_with_indent", "class_canvas__xy.html#a6a4d8dd964a9005200a4a2cba327c80e", null ],
+    [ "x_axis_filling", "class_canvas__xy.html#a41f07f5a54c7dd7c3c54e778be1bf807", null ],
+    [ "y_axis_filling", "class_canvas__xy.html#a3f74ad9f1523b1b171f01d74b00f6427", null ],
+    [ "axis_x_indents_", "class_canvas__xy.html#a569f3ebb32d0d37aadfdb9ce2a8e8ca7", null ],
+    [ "axis_x_strings_", "class_canvas__xy.html#ab6276b2e6937eecec77fd8b44a9bc2b4", null ],
+    [ "indent", "class_canvas__xy.html#a7e34f64d9698817670e8e685e887df09", null ],
+    [ "width_x_", "class_canvas__xy.html#a836e47f3f2d3ac3bb49a89ad4a83aac9", null ],
+    [ "width_x_with_indent_", "class_canvas__xy.html#ac4d81e3f6e8cfd39c559a8d7044a82a0", null ],
+    [ "width_y_", "class_canvas__xy.html#a161b8b7ecb92a8117f8b9eab847d5c6b", null ],
+    [ "width_y_with_indent_", "class_canvas__xy.html#ad4296d910bf107de03fbba350b453333", null ]
+];

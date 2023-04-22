@@ -1,0 +1,31 @@
+<map id="Corner::render_matrix" name="Corner::render_matrix">
+<area shape="rect" id="node1" title=" " alt="" coords="5,417,152,443"/>
+<area shape="rect" id="node2" href="$class_corner.html#a8bd14f6db2a038f3c423f8b4d0d67f47" title=" " alt="" coords="220,199,351,239"/>
+<area shape="rect" id="node5" href="$class_canvas__console.html#a9d7fca3e6bedd38e8c0c4388e6bd0c86" title=" " alt="" coords="651,354,817,394"/>
+<area shape="rect" id="node9" href="$class_canvas.html#a91df40cd47a7ce52833bd6815ff5d187" title="возвращает const points_to_draw const для использования в наследниках" alt="" coords="655,5,813,31"/>
+<area shape="rect" id="node13" href="$class_corner.html#a5536f603e7832fe328e4c2f4ff40aafc" title="!! module sub&#45;functions" alt="" coords="204,568,367,593"/>
+<area shape="rect" id="node28" href="$class_matrix.html#ad39022f082bfee09e24d098796e14e10" title=" " alt="" coords="238,617,333,643"/>
+<area shape="rect" id="node29" href="$class_canvas__console.html#a86392d13220497c16a9e7d4afaeccf7f" title=" " alt="" coords="200,667,371,707"/>
+<area shape="rect" id="node3" href="$class_corner.html#a90062cf79d70da1ed353e7eedf103d12" title=" " alt="" coords="432,198,583,238"/>
+<area shape="rect" id="node4" href="$class_canvas__xy.html#ad8154c9471321b608673342fc60be0e5" title=" " alt="" coords="644,55,824,80"/>
+<area shape="rect" id="node6" href="$class_matrix.html#acbf5cadeb802c72ec461a63964cc1b1f" title=" " alt="" coords="683,255,785,280"/>
+<area shape="rect" id="node7" href="$class_matrix.html#a0dbd6641df003cc57831b218174c09b2" title=" " alt="" coords="684,304,784,329"/>
+<area shape="rect" id="node8" href="$_point_8cpp.html#a080f7d6cc44f79a18cfd8f27fd6033ee" title=" " alt="" coords="705,104,763,129"/>
+<area shape="rect" id="node10" href="$class_matrix.html#af97edab47b13a48f6538ea3bf68f3ffc" title=" " alt="" coords="683,419,785,444"/>
+<area shape="rect" id="node11" href="$class_ray.html#a5433e5f6205bb963ddb43519022553b4" title=" " alt="" coords="695,153,773,179"/>
+<area shape="rect" id="node12" href="$class_canvas__xy.html#a59c415b23263f5f5059b974bf6eeb139" title=" " alt="" coords="872,640,1009,665"/>
+<area shape="rect" id="node14" href="$class_canvas__xy.html#ae14bade279480b418e39b85c16b33e2e" title=" " alt="" coords="419,669,596,695"/>
+<area shape="rect" id="node15" href="$class_canvas__console.html#a2565b17476e40b9e40bdb8470f9baaf5" title=" " alt="" coords="423,719,592,744"/>
+<area shape="rect" id="node16" href="$class_matrix.html#a194f46787b424f5516420700baa6ced4" title=" " alt="" coords="468,768,547,793"/>
+<area shape="rect" id="node17" href="$namespaceutilities.html#a687ad287908bfb4dabcfc5696c285684" title=" " alt="" coords="435,818,580,858"/>
+<area shape="rect" id="node18" href="$class_canvas__xy.html#a88a956484eb78b5869b7559fae766ead" title=" " alt="" coords="437,983,577,1023"/>
+<area shape="rect" id="node19" href="$class_canvas.html#ade60c8fbe9bb6952465c97365e707d94" title="возвращает const MAX_VIRTUAL() const для использования в наследниках" alt="" coords="655,964,813,989"/>
+<area shape="rect" id="node20" href="$class_canvas.html#a21b8fbd85a497f8911a75573dc420fe2" title="возвращает const MIN_VIRTUAL() const для использования в наследниках" alt="" coords="657,1017,811,1043"/>
+<area shape="rect" id="node21" href="$class_canvas__xy.html#abf785aae8b7de14ce5034aee8b7c717f" title=" " alt="" coords="665,633,803,673"/>
+<area shape="rect" id="node22" href="$class_canvas__xy.html#a8346f3ae76d19044fe798bf82ae6ec72" title=" " alt="" coords="872,555,1009,580"/>
+<area shape="rect" id="node23" href="$class_canvas__xy.html#a41f07f5a54c7dd7c3c54e778be1bf807" title=" " alt="" coords="424,517,591,543"/>
+<area shape="rect" id="node27" href="$class_canvas__xy.html#a3f74ad9f1523b1b171f01d74b00f6427" title=" " alt="" coords="424,468,591,493"/>
+<area shape="rect" id="node24" href="$class_matrix.html#ab60f30e5bd44a867b51c40284d87608e" title=" " alt="" coords="689,468,779,493"/>
+<area shape="rect" id="node26" href="$class_canvas__xy.html#a98aa707b73954c130e8029868ba52960" title=" " alt="" coords="665,518,803,558"/>
+<area shape="rect" id="node25" href="$_matrix_8h.html#afa259c882307650d2304347efc83a7f2" title=" " alt="" coords="917,468,964,493"/>
+</map>

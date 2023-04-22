@@ -1,0 +1,10 @@
+<map id="get_step" name="get_step">
+<area shape="rect" id="node1" title=" " alt="" coords="725,35,797,60"/>
+<area shape="rect" id="node2" href="$_canvas_8cpp.html#ac2899fb0652d62d3faad887afe27ff74" title=" " alt="" coords="532,5,677,31"/>
+<area shape="rect" id="node8" href="$_canvas_8cpp.html#a76cb16e2b5895bd06f24a7398b9fb74e" title="static double get_step(double coefficient);" alt="" coords="539,55,670,95"/>
+<area shape="rect" id="node3" href="$class_canvas.html#a176c44f08a10221041b7ff38aedbbbec" title="функция для расчета точек линии и добавление их в массив в массив дял рисования" alt="" coords="349,9,479,35"/>
+<area shape="rect" id="node6" href="$class_canvas.html#acb5b606ddfb318c01c493cb7f60f4d5a" title="функция удаления линии с массива для рисования" alt="" coords="344,59,484,84"/>
+<area shape="rect" id="node4" href="$class_canvas__console.html#a4a3dc592c07b69ce610b2806a72317b3" title=" " alt="" coords="109,9,291,35"/>
+<area shape="rect" id="node5" href="$_main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title="main главная функция" alt="" coords="5,35,56,60"/>
+<area shape="rect" id="node7" href="$class_canvas__console.html#a6bf84e7efec273107ea13b14e9fd2d64" title=" " alt="" coords="104,59,296,84"/>
+</map>
