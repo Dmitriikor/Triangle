@@ -9,12 +9,14 @@
 //include <utility>
 #include <span>
 
+#include <iterator>
 
 template <typename T>
 class Ray {
 private:
 
 	///!!! initialization in initializer-list (in constructors)
+	friend class iterator;
 
 	T* ray_ = nullptr;
 
@@ -55,60 +57,91 @@ private:
 public:
 
 
-	class star_it {
-	public:
-		explicit star_it(T* p) : ptr_(p) {}
+	//class star_it {
+	//public:
+	//	explicit star_it(T* p) : ptr_(p) {}
 
-		auto operator<=>(const star_it& other) const 
-		{
-			return ptr_ <=> other.ptr_;
-		}
+	//	auto operator<=>(const star_it& other) const
+	//	{
+	//		return ptr_ <=> other.ptr_;
+	//	}
+
+	//	T& operator*() const
+	//	{
+	//		return *ptr_;
+	//	}
+
+	//	T* operator->() const
+	//	{
+	//		return ptr_;
+	//	}
+
+	//	star_it& operator++() {
+	//		++ptr_;
+	//		return *this;
+	//	}
+
+	//	bool operator==(star_it& other)
+	//	{
+	//		return ptr_ == other.ptr_;
+	//	}
+
+	//	star_it& operator+=(int n)
+	//	{
+	//		ptr_ += n;
+	//		return *ptr_;
+	//	}
+
+	//private:
+	//	T* ptr_;
+	//};
+
+	//star_it s_begin() { return star_it(ray_ + (LEFT - F_LEFT)); }
+	//star_it s_end() { return star_it(ray_ + (LEFT + F_RIGHT)); }
+
+
+	 
+	class iterator {
+	public:
+		iterator(T* p, size_t initial_size)
+			: ptr_(p), initial_size_(initial_size)
+		{}
+
+		size_t initial_size() const { return initial_size_; }
+
 		T& operator*() const
 		{
 			return *ptr_;
 		}
-		star_it& operator++() {
+
+		iterator& operator++() 
+		{
+			std::cout << " ++ iterator size = " << initial_size_ << " \n";
 			++ptr_;
 			return *this;
 		}
-		bool operator==(star_it& other)
+
+
+		iterator operator++(int) 
 		{
-			return ptr_ == other.ptr_;
+			iterator tmp = *this;
+			++(*this);
+			return tmp;
 		}
 
-		star_it& operator+=(T& n)
-		{
-			ptr_ += n;
-			return *ptr_;
-		}
-
-	private:
-		T* ptr_;
-	};
-
-	star_it s_begin() { return star_it(ray_); }
-	star_it s_end() { return star_it(ray_ + (F_LEFT + F_RIGHT)); }
-	 
-	class iterator {
-	public:
-		explicit iterator(T* p) : ptr_(p)  {}
-
-		T& operator*() const 
-		{ 
-			return *ptr_;
-		}
-
-		iterator& operator++() { 
-			++ptr_; 
+		iterator& operator--() {
+			--ptr_;
 			return *this;
 		}
 
-		//bool operator!=(const iterator& other) const	
-		//{ 
-		//	return ptr_ != other.ptr_;
-		//}
+		iterator operator--(int)
+		{
+			iterator tmp = *this;
+			--(*this);
+			return tmp;
+		}
 
-		bool operator==(iterator& other) 
+		bool operator==(iterator& other)
 		{
 			return ptr_ == other.ptr_;
 		}
@@ -123,26 +156,65 @@ public:
 			return ptr_;
 		}
 
+
+		iterator& operator[](int index)
+		{
+		 iterator tmp(*this);
+		 for (int i = 0; i != index; ++i)
+			++tmp;
+
+		return tmp;
+		}
+
+		static void upd()
+		{
+			throw std::runtime_error("!");
+			/*ptr_ = p;
+			initial_size_ = initial_size;*/
+		}
+
+
 	private:
 		T* ptr_;
+		size_t initial_size_;
+
+		//void iterator_check()
+		//{
+		//	auto R_size = this.F_LEFT + this.F_RIGHT;
+		//	
+		//	if (initial_size_ != R_size)
+		//	{
+		//		std::cout << " != iterator size = " << initial_size_ << "; iterator R_size " << R_size <<" \n";
+		//		iterator begin();
+		//		iterator end();
+		//	}
+
+		//	if (initial_size_ > R_size)
+		//	{
+		//		std::cout << " >  iterator size = " << initial_size_ << "; iterator R_size " << R_size << " \n";
+
+		//		//throw std::runtime_error("!");
+		//	}
+		//}
 	};
 
-	iterator begin() { return iterator(ray_);}
-	iterator end() { return iterator(ray_+(F_LEFT + F_RIGHT)); }
+	iterator begin() {return iterator((ray_ + (LEFT - F_LEFT)), size()); }
+	iterator end() { return iterator((ray_ + (LEFT + F_RIGHT)), size()); }
+	
 
-	class с_iterator 
+	class с_iterator
 	{
 	public:
 
-		using iterator_category = std::random_access_iterator_tag;
+		/*using iterator_category = std::random_access_iterator_tag;
 		using value_type = T;
 		using difference_type = std::ptrdiff_t;
 		using pointer = const T*;
-		using reference = const T&;
+		using reference = const T&;*/
 
 		explicit с_iterator(T* p) : ptr_(p) {}
 
-		с_iterator& operator++() 
+		с_iterator& operator++()
 		{
 			++ptr_;
 			return *this;
@@ -153,7 +225,7 @@ public:
 		//	return ptr_ != other.ptr_;
 		//}
 
-		 T& operator*() const
+		T& operator*() const
 		{
 			return *ptr_;
 		}
@@ -169,7 +241,7 @@ public:
 			return ptr_ == other.ptr_;
 		}
 
-		pointer operator->() const {
+		T* operator->() const {
 			return ptr_;
 		}
 
@@ -177,8 +249,8 @@ public:
 		T* ptr_;
 	};
 
-	с_iterator cbegin() const { return  с_iterator(ray_); }
-	с_iterator cend() const { return   с_iterator(ray_ + (F_LEFT + F_RIGHT)); }
+	с_iterator cbegin() const { return  с_iterator(ray_ + (LEFT - F_LEFT)); }
+	с_iterator cend() const { return   с_iterator(ray_ + (LEFT + F_RIGHT)); }
 
 	Ray();
 	//LEFT, RIGHT
@@ -263,6 +335,8 @@ void Ray<T>::LEFT_increase_() {
 
 	ray_ = new_ray;
 	LEFT = new_LEFT;
+
+	Ray<T>::iterator::upd();
 }
 
 template <typename T>
@@ -281,6 +355,8 @@ void Ray<T>::RIGHT_increase_() {
 
 	ray_ = new_ray;
 	RIGHT = new_RIGHT;
+
+	Ray<T>::iterator::upd();
 }
 
 template <typename T>
@@ -329,7 +405,7 @@ Ray<T>::Ray(const Ray<T>& other)
 }
 
 template <typename T>
-Ray<T>::Ray(Ray<T>&& other) noexcept  :Ray()
+Ray<T>::Ray(Ray<T>&& other) noexcept :Ray()
 {
 	SWAP_(other);
 }
@@ -649,8 +725,6 @@ void print(const Ray<T>& Ray) {
 		std::cout << std::setw(2) << "." << " ";
 	std::cout << "\n";
 }
-
-
 
 
 #endif // !RAY_TEMPLATE_H_ 
