@@ -61,6 +61,7 @@ int main(int argc, char const* argv[])
 	 */
 
 
+
 	std::cout << "\n";
 
 	TEST t_1;
@@ -72,6 +73,7 @@ int main(int argc, char const* argv[])
 	t_1.test_5();
 	//t_1.test_6();
 	//t_1.test_7();
+
 	/**///window.HideConsoleWindow();
 
 	TEST tt_1;

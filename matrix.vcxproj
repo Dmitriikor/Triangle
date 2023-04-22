@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Triangle\TESTS.cpp" />
     <ClCompile Include="Axys.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Canvas_console.cpp" />
