@@ -76,9 +76,6 @@ int main(int argc, char const* argv[])
 
 	/**///window.HideConsoleWindow();
 
-	TEST tt_1;
-	tt_1.test_0();
-
 	/**
 	 * @brief запуск тестовой функции
 	 */

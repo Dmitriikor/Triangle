@@ -8,6 +8,10 @@
 #include <nana/gui/place.hpp>
 
 
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -95,7 +99,49 @@ public:
 		test.X_horizontal = 10;
 		test.Y_vertical = 10;
 
-		std::string input_to_string = "привет мир - 0";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+			char str[100];
+		{
+			FILE* fp;
+			int num;
+			fp = fopen("FILE", "r");
+
+			if (fp == NULL) {
+				fp = fopen("FILE", "w");
+				fprintf(fp, "%d", 0);
+				fclose(fp);
+				fp = fopen("FILE", "r");
+			}
+			fgets(str, 100, fp);
+			num = atoi(str);
+			num++;
+			fclose(fp);
+			fp = fopen("FILE", "w");
+			fprintf(fp, "%d", num);
+			fclose(fp);
+		}
+		std::cout << "\n\n\n"<< str <<"\n\n\n";
+		{
+			const std::string FILENAME = "FILE_2";
+			int number;
+
+			std::ifstream input(FILENAME);
+			if (input.is_open()) { // проверяем, удалось ли открыть файл
+				input >> number; // считываем число из файла
+				input.close();
+			}
+
+			std::ofstream output(FILENAME);
+			if (output.is_open()) { // проверяем, удалось ли открыть файл
+				output << number + 1; // записываем увеличенное значение числа в файл
+				output.close();
+			}
+			std::cout << "\n\n\n" << number << "\n\n\n";
+			if (number != std::stoi(str))
+				std::cout << "\nerror num != std::stoi(str)\n" << number << "\n" << std::stoi(str) << "\n";
+		}
+
+		std::string input_to_string = "привет мир - ";					//! @param std::string input_to_string = "привет мир" - инициализированная "привет мир" строка для использования в gui 
+		input_to_string += str;
 		form.caption(input_to_string);									//! @param form.caption(input_to_string) - захватывает 
 
 		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25)); // создание прямоугольника);
