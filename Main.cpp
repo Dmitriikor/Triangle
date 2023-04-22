@@ -32,6 +32,7 @@
 #include "Axys.h"
 #include "Direct_draw.h"
 
+
 #include "TESTS.cpp"
 
 #pragma execution_character_set("utf-8")
@@ -59,7 +60,6 @@ int main(int argc, char const* argv[])
 	/**
 	 * @brief скрытие консоли
 	 */
-
 
 
 	std::cout << "\n";
