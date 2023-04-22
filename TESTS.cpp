@@ -6,9 +6,9 @@
 #include <iterator>
 #include "it_test.h"
 
-struct TEST
+  struct TEST
 {
-    void test_0()
+      void test_0()
     {
         Ray<int> arr{ 1, 2, 3, 4, 5};
         int s_end;
@@ -20,7 +20,7 @@ struct TEST
         std::cout << "\ntest_0_END\n";
     }
 
-    void test_1 ()
+      void test_1 ()
     {
         Ray<int> arr{ 1, 2, 3, 4, 5 };
         int sum = 0;
@@ -31,7 +31,7 @@ struct TEST
         std::cout << "\ntest_1_END\n";
     }
 
-    void test_2() const
+      void test_2() const
     {
         int arr[] = { 1, 2, 3, 4, 5 };
         const Iterator<int> s_begin(arr);
@@ -43,7 +43,7 @@ struct TEST
         std::cout << "\ntest_2_END\n";
     }
 
-    void test_3() 
+      void test_3()
     {
         Ray<int> it_test;
         for (int i = 0; i < 7; ++i)
@@ -60,7 +60,7 @@ struct TEST
         std::cout << "\ntest_3_END\n";
     }
 
-    void test_4()
+      void test_4()
     {
         Ray<int> arr{ 1, 2, 3 };
         auto it = arr.s_begin();
@@ -75,7 +75,7 @@ struct TEST
         std::cout << "\ntest_4_END\n";
     }
     
-    void test_5()
+      void test_5()
     {
         Ray<int> arr{ 1, 2, 3 };
         const Ray<int>& c_arr = arr;

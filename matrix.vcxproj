@@ -42,6 +42,7 @@
     <ClInclude Include="Direct_draw.h" />
     <ClInclude Include="Find_Triangle.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="IT_TEST.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Point.h" />

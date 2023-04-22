@@ -38,7 +38,7 @@
 
 
 
-
+#include "TESTS.cpp"
 #include "Interface.h"
 
 
@@ -74,6 +74,8 @@ int main(int argc, char const* argv[])
 	//t_1.test_7();
 	/**///window.HideConsoleWindow();
 
+	TEST tt_1;
+	tt_1.test_0();
 
 	/**
 	 * @brief запуск тестовой функции
