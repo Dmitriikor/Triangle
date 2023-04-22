@@ -13,7 +13,6 @@
         Ray<int> arr{ 1, 2, 3, 4, 5};
         int s_end;
         for (auto it = arr.s_begin(); it != arr.s_end(); ++it) {
-            std::cout << *it  << " ";
             s_end = *it;
         }
         if(s_end == 5);
@@ -36,10 +35,8 @@
         int arr[] = { 1, 2, 3, 4, 5 };
         const Iterator<int> s_begin(arr);
         const Iterator<int> s_end(arr + 5);
-        for (auto it = s_begin; it != s_end; ++it)
-        {
-            std::cout << *it << " ";
-        }
+        for (auto it = s_begin; it != s_end; ++it);
+
         std::cout << "\ntest_2_END\n";
     }
 
@@ -55,7 +52,6 @@
         for (auto it_test = s_begin; it_test != s_end; ++it_test)
         {
             *it_test = 10;
-            std::cout << *it_test << " ";
         }
         std::cout << "\ntest_3_END\n";
     }

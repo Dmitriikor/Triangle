@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Triangle\TESTS.cpp" />
     <ClCompile Include="Axys.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Canvas_console.cpp" />
@@ -46,6 +45,7 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="TESTS.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>

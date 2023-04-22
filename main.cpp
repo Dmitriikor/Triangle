@@ -32,14 +32,10 @@
 #include "Axys.h"
 #include "Direct_draw.h"
 
-
-#include "TESTS.cpp"
-
 #pragma execution_character_set("utf-8")
 
 
-
-#include "TESTS.cpp"
+#include "TESTS.h"
 #include "Interface.h"
 
 
@@ -53,6 +49,16 @@ int main(int argc, char const* argv[])
 {
 	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 
+
+
+
+
+	std::cout << "\n" << "2" << "\n";
+
+
+
+
+
 	/**
 	 * @brief Объявление интерфейса
 	 */
@@ -61,9 +67,7 @@ int main(int argc, char const* argv[])
 	 * @brief скрытие консоли
 	 */
 
-
-	std::cout << "\n";
-
+	std::cout << "\ntest_START\n";
 	TEST t_1;
 	t_1.test_0();
 	t_1.test_1();
@@ -73,7 +77,7 @@ int main(int argc, char const* argv[])
 	t_1.test_5();
 	//t_1.test_6();
 	//t_1.test_7();
-
+	std::cout << "\ntest_END\n";
 	/**///window.HideConsoleWindow();
 
 	/**
