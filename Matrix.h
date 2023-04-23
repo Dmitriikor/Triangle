@@ -79,6 +79,9 @@ public:
 			return (matrix_ == other.matrix_) && (index_ == other.index_);
 		}
 
+		size_t rows() const { return matrix_->get_M(); }
+		size_t cols() const { return matrix_->get_N(); }
+
 	private:
 		Matrix<T>* matrix_;
 		Matrix<T>* saved_ptr_;
