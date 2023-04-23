@@ -105,7 +105,9 @@ public:
 	public:
 		iterator(T* p, size_t initial_size)
 			: ptr_(p), initial_size_(initial_size)
-		{}
+		{
+			saved_ptr_ = ptr_;
+		}
 
 		size_t initial_size() const { return initial_size_; }
 
@@ -173,11 +175,16 @@ public:
 			initial_size_ = initial_size;*/
 		}
 
+		iterator& saved_ptr()const
+		{
+			return saved_ptr_;
+		}
+
 
 	private:
 		T* ptr_;
 		size_t initial_size_;
-
+		T* saved_ptr_;
 		//void iterator_check()
 		//{
 		//	auto R_size = this.F_LEFT + this.F_RIGHT;
@@ -262,11 +269,11 @@ public:
 
 	Ray(Ray&& other) noexcept;
 
-	Ray(const std::initializer_list<T>& li);
+	explicit Ray(const std::initializer_list<T>& li);
 
 	Ray(const T* val, size_t size);
 
-	Ray(std::span<T> span);
+	explicit Ray(std::span<T> span);
 
 	~Ray();
 	// LEFT

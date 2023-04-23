@@ -4,7 +4,9 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include "it_test.h"
+#include "matrix.h"
+#include "IT_TEST.h"
+
 
 struct TEST
 {
@@ -12,18 +14,47 @@ struct TEST
 	{
 		try
 		{
-			Ray<int> arr(1, 1);
-			auto it = arr.begin();
+			int M = 3;
+			int N = 10;
+			Matrix<int> arr(N, M);
 
-			for (int i = 0; i != 40; i++)
-				arr.add_to_back(i);
-
-			int s_end;
-
-			for (; it != arr.end(); ++it) {
-				s_end = *it;
+			for (size_t i = 0; i < N; ++i)
+			{
+				for (size_t j = 0; j < M; ++j)
+				{
+					arr[i][j] = i+j;
+				}
 			}
-			if (s_end == 40);
+
+			for (int val : arr) 
+			{
+				std::cout << val << " ";
+			}
+
+			std::cout << std::endl;
+			std::cout << std::endl;
+			std::cout << std::endl;
+
+
+			int cntr = 0;
+			for (auto it = arr.begin(); it != arr.end(); it++)
+			{
+				if (cntr == M)
+				{
+					std::cout << std::endl;
+					cntr = 0;
+				}
+				std::cout << " " << *it;
+				cntr++;
+			}
+
+
+			//int s_end;
+
+			//for (; it != arr.end(); ++it) {
+			//	s_end = *it;
+			//}
+			//if (s_end == 40);
 		}
 		catch (const std::runtime_error& err)
 		{

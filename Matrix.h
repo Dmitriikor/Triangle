@@ -31,6 +31,66 @@ template <typename T>
 class Matrix {
 
 public:
+
+	class iterator {
+	public:
+		using value_type = T;
+		using reference = T&;
+		using pointer = T*;
+		using difference_type = std::ptrdiff_t;
+		using iterator_category = std::forward_iterator_tag;
+
+		iterator(Matrix<T>* matrix) : matrix_(matrix)
+		{
+			saved_ptr_ = matrix;
+		}
+
+		iterator(Matrix<T>* matrix, size_t index) : matrix_(matrix), index_(index)
+		{
+			saved_ptr_ = matrix;
+		}
+
+
+		reference operator*() const {
+			int t1 = *(matrix_->arr[index_ / matrix_->M]);
+			int t2 = index_ % matrix_->M;
+			int t3 = t1 + t2;
+			//std::cout << "\nint t1 = " << t1 << "; int t2 = " << t2 << "; int t3 = " << t3 << "; index_ = "<< index_ << "; \n";
+			return *(matrix_->arr[index_ / matrix_->M] + index_ % matrix_->M);
+		}
+
+		iterator& operator++()
+		{
+			++index_;
+			return *this;
+		}
+
+		iterator operator++(int) {
+			iterator temp(*this);
+			++(*this);
+			return temp;
+		}
+
+		bool operator!=(const iterator& other) const {
+			return !(*this == other);
+		}
+
+		bool operator==(const iterator& other) const {
+			return (matrix_ == other.matrix_) && (index_ == other.index_);
+		}
+
+	private:
+		Matrix<T>* matrix_;
+		Matrix<T>* saved_ptr_;
+		size_t index_ = 0;
+
+	};
+
+	iterator begin() { return iterator(this/*, 0*/); }
+	iterator end() { return iterator(this, N * M); }
+
+
+
 	Matrix();
 	Matrix(size_t N, size_t M);
 	Matrix(size_t N, size_t M, const T& value);
