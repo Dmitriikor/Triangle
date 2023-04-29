@@ -8,8 +8,15 @@
 #include "IT_TEST.h"
 
 
+#include <iostream>
+#include <ranges>
 struct TEST
 {
+
+	void displayNumber(int n) {
+		std::cout << n << ' ';
+	}
+
 	void test_0()
 	{
 		try
@@ -83,7 +90,7 @@ struct TEST
 		
 
 			std::cout << "\n\nsub_test_for_for :\n";
-			for (auto row_it = m[0].begin(); row_it != m[0].end(); ++row_it)
+			for (auto row_it = m.begin(); row_it != m.end(); ++row_it)
 			{
 				std::cout << *row_it << "\n";
 				for (auto it = m[*row_it].begin(); it != m[*row_it].end(); ++it)
@@ -92,6 +99,9 @@ struct TEST
 				std::cout << std::endl;
 			}
 
+				std::for_each(arr.begin(),arr.end(), displayNumber);
+				std::cout << std::endl;
+			
 		}
 		catch (const std::runtime_error& err)
 		{
