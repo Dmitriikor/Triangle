@@ -26,7 +26,7 @@ struct TEST
 				}
 			}
 
-			for (int val : arr) 
+			for (auto val : arr)
 			{
 				std::cout << val << " ";
 			}
@@ -55,35 +55,106 @@ struct TEST
 			//	s_end = *it;
 			//}
 			//if (s_end == 40);
+
+			std::cout << "\n\nsub_test_m :\n";
+
+			Matrix<int> m(2, 3);
+			m[0][0] = 1;
+			m[0][1] = 2;
+			m[0][2] = 3;
+			m[1][0] = 4;
+			m[1][1] = 5;
+			m[1][2] = 6;
+
+			// test str_i
+			for (auto it = m[0].begin(); it != m[0].end(); ++it) 
+			{
+				std::cout << *it << " ";
+			}
+			std::cout << std::endl;
+
+			// test const_str_i
+			const Matrix<int>& cm = m;
+			for (auto it = cm[1].begin(); it != cm[1].end(); ++it) 
+			{
+				std::cout << *it << " ";
+			}
+			std::cout << std::endl;
+		
+
+			std::cout << "\n\nsub_test_for_for :\n";
+			for (auto row_it = m[0].begin(); row_it != m[0].end(); ++row_it)
+			{
+				std::cout << *row_it << "\n";
+				for (auto it = m[*row_it].begin(); it != m[*row_it].end(); ++it)
+					std::cout << *it << " ";
+
+				std::cout << std::endl;
+			}
+
 		}
 		catch (const std::runtime_error& err)
 		{
 			std::cerr << "runtime_error: " << err.what() << std::endl;
 		}
-		std::cout << "\ntest_0_END\n";
+		std::cout << "\ntest_0_END\n\n";
 	}
 
 	void test_1()
 	{
 		try
 		{
-			Ray<int> arr{ 1, 2, 3, 4, 5 };
+			Ray<int> arr;
+
+			for (int i = 0; i <= 10; i++)
+			{
+				arr.add_to_back(i);
+				arr.add_to_first(-i);
+			}
 
 			auto it = arr.begin();
-			Ray<int>::iterator tmp0 = arr.begin()[0];
+			Ray<int>::iterator tmp0 = arr.begin() + 0;
 			std::cout << *it << " " << *tmp0 << "\n";
-			Ray<int>::iterator tmp1 = arr.begin()[1];
+			Ray<int>::iterator tmp1 = arr.begin() + 1;
 			++it;
 			std::cout << *it << " " << *tmp1 << "\n";
-			Ray<int>::iterator tmp2 = arr.begin()[2];
+			Ray<int>::iterator tmp2 = arr.begin() + 2;
 			it++;
 			std::cout << *it << " " << *tmp2 << "\n";
+			Ray<int>::iterator tmp3 = arr.begin() += 3;
+			++it;
+			std::cout << *it << " " << *tmp3 << "\n";
 
+			--it;
+			++it;
+			it--;
+			it++;
+			
+				std::cout << "\n\n== \n";
+			for (auto it2 = arr.begin(); it2 != arr.end(); ++it2)
+			{
+				std::cout << " " << *it2;
+			}
+				std::cout << "\n\n<= \n";
+			for (auto it2 = arr.begin(); it2 <= arr.end(); ++it2)
+			{
+				if(it2 < arr.end())
+				std::cout << " " << *it2;
+				else
+					std::cout << " and garbage = " << *it2;
+			}
+				std::cout << "\n\n<  \n";
+			for (auto it2 = arr.begin(); it2 < arr.end(); ++it2)
+			{
+				std::cout << " " << *it2;
+			}
 
-			if (it == tmp2)
-				std::cout << "\ntest_1_END\n" << *it << " " << *tmp0 << "\n";
+			std::cout << "\n\narr.capacity = " << arr.capacity()<< "\n";
+
+			if (it == tmp3)
+				std::cout << "\ntest_1_end  " << *it << " = " << *tmp3 << "\n";
 			else
-				std::cout << "\ntest_1_FF\n" << *it << " " << *tmp0 << "\n";
+				std::cout << "\ntest_1_ff  " << *it << " = " << *tmp3 << "\n";
 		}
 		catch (const std::runtime_error& err)
 		{
@@ -165,10 +236,10 @@ struct TEST
 	{
 		try
 		{
-			Ray<int> arr{ 1, 2, 3 };
+			Ray<int> arr{ 1, 2, 3, 4, 5, 6 };
 			const Ray<int>& c_arr = arr;
 			int sum = 0;
-			for (auto it = c_arr.cbegin(); it != c_arr.cend(); ++it) {
+			for (auto it = c_arr.begin(); it != c_arr.end(); ++it) {
 				sum += *it;
 			}
 			if (sum == 6);
