@@ -98,8 +98,8 @@ struct TEST
 
 				std::cout << std::endl;
 			}
-
-				std::for_each(arr.begin(),arr.end(), displayNumber);
+			for (int i = 0; i < rows; i++) 
+				std::for_each(arr[i], arr[i] + 10, doSomething);
 				std::cout << std::endl;
 			
 		}
