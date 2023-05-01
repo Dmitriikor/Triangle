@@ -50,6 +50,7 @@ private:
 	//};
 
 	struct str_i {
+		//!!!проверка на выход за границы
 			Matrix& my_Matrix_TEMPLATE;
 			size_t i;
 			str_i(Matrix& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
@@ -68,7 +69,8 @@ private:
 			using pointer = T*;
 			using reference = T&;
 			using difference_type = std::ptrdiff_t;
-			using iterator_category = std::random_access_iterator_tag;
+			//using iterator_category = std::random_access_iterator_tag;
+			using iterator_category = std::forward_iterator_tag;
 
 			iterator(T* p) : ptr(p)
 			{
@@ -89,13 +91,22 @@ private:
 			iterator operator++(int)
 			{
 				iterator tmp(*this);
-				++ptr; return tmp;
+				++ptr;
+				return tmp;
 			}
 			iterator& operator+=(difference_type n)
 			{
 				ptr += n;
 				return *this;
 			}
+
+			iterator operator+(difference_type n) const
+			{
+				iterator tmp(*this);
+				tmp += n;
+				return tmp;
+			}
+
 			bool operator==(iterator other) const
 			{
 				return ptr == other.ptr;
@@ -116,7 +127,7 @@ private:
 			return my_Matrix_TEMPLATE.arr[i][j];
 		}
 
-		 const class iterator
+		class iterator
 		{
 			friend class str_i;
 			const T* ptr;
@@ -125,7 +136,8 @@ private:
 			using pointer = const T*;
 			using reference = const T&;
 			using difference_type = std::ptrdiff_t;
-			using iterator_category = std::random_access_iterator_tag;
+			//using iterator_category = std::random_access_iterator_tag;
+			using iterator_category = std::forward_iterator_tag;
 
 			iterator(const T* p) : ptr(p) {}
 
@@ -142,21 +154,10 @@ private:
 				++ptr;
 				return *this;
 			}
-			iterator& operator--()
-			{
-				--ptr;
-				return *this;
-			}
 			const iterator operator++(int) const
 			{
 				iterator tmp(*this);
 				++ptr;
-				return tmp;
-			}
-			const iterator operator--(int) const
-			{
-				iterator tmp(*this);
-				--ptr;
 				return tmp;
 			}
 			iterator& operator+=(difference_type n)
@@ -164,16 +165,23 @@ private:
 				ptr += n;
 				return *this;
 			}
-			iterator& operator-=(difference_type n)
+			iterator operator+(difference_type n) const
 			{
-				ptr -= n;
-				return *this;
+				iterator tmp(*this);
+				tmp += n;
+				return tmp;
 			}
 			bool operator==(const iterator other) const
 			{
 				return ptr == other.ptr;
 			}
+
+			bool operator!=(const iterator other) const
+			{
+				return ptr != other.ptr;
+			}
 		};
+
 		const iterator begin() const
 		{
 			return iterator(my_Matrix_TEMPLATE.arr[i]);

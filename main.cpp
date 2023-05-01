@@ -67,16 +67,37 @@ int main(int argc, char const* argv[])
 	 * @brief скрытие консоли
 	 */
 
+	Ray<int> empty0;
+
+	if (empty0.empty() == true)
+		std::cout << "empty0 start= " << empty0.empty() << "\n";
+
+	empty0.add_to_back(0);
+
+	if (empty0.empty() == false)
+		std::cout << "empty0 add_to_back= " << empty0.empty() << "\n";
+
+	empty0.remove(0);
+
+	if (empty0.empty() == true)
+		std::cout << "empty0 remove= " << empty0.empty() << "\n";
+
+	empty0.add_to_first(0);
+
+	if (empty0.empty() != true)
+		std::cout << "empty0 add_to_first= " << empty0.empty() << "\n";
+
+
 	std::cout << "\ntest_START\n";
-	TEST t_1;
-	t_1.test_0();
-	t_1.test_1();
-	t_1.test_2();
-	t_1.test_3();
-	t_1.test_4();
-	t_1.test_5();
-	//t_1.test_6();
-	//t_1.test_7();
+	TEST::test_0();
+	TEST::test_1();
+	TEST::test_2();
+	TEST::test_3();
+	TEST::test_4();
+	TEST::test_5();
+	//TEST::test_6();
+	//TEST::test_7();
+	TEST::test_9();
 	std::cout << "\ntest_END\n";
 
 	return 1;

@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <ranges>
-struct TEST
+namespace TEST
 {
 
 	void displayNumber(int n) {
@@ -29,7 +29,7 @@ struct TEST
 			{
 				for (size_t j = 0; j < M; ++j)
 				{
-					arr[i][j] = i+j;
+					arr[i][j] = i + j;
 				}
 			}
 
@@ -74,7 +74,7 @@ struct TEST
 			m[1][2] = 6;
 
 			// test str_i
-			for (auto it = m[0].begin(); it != m[0].end(); ++it) 
+			for (auto it = m[0].begin(); it != m[0].end(); ++it)
 			{
 				std::cout << *it << " ";
 			}
@@ -82,26 +82,31 @@ struct TEST
 
 			// test const_str_i
 			const Matrix<int>& cm = m;
-			for (auto it = cm[1].begin(); it != cm[1].end(); ++it) 
+			for (auto it = cm[1].begin(); it != cm[1].end(); ++it)
 			{
 				std::cout << *it << " ";
 			}
 			std::cout << std::endl;
-		
+
 
 			std::cout << "\n\nsub_test_for_for :\n";
 			for (auto row_it = m.begin(); row_it != m.end(); ++row_it)
 			{
 				std::cout << *row_it << "\n";
-				for (auto it = m[*row_it].begin(); it != m[*row_it].end(); ++it)
-					std::cout << *it << " ";
+				/*for (auto it = m[*row_it].begin(); it != m[*row_it].end(); ++it)
+					std::cout << *it << " ";*/
 
 				std::cout << std::endl;
 			}
-			for (int i = 0; i < rows; i++) 
-				std::for_each(arr[i], arr[i] + 10, doSomething);
-				std::cout << std::endl;
-			
+			/*for (int i = 0; i < rows; i++)*/
+			std::for_each(arr[0].begin(), arr[0].end(), displayNumber);
+
+			Ray<int> r({ 1,2,3,4,5,6 });
+
+			std::for_each(r.begin(), r.end(), displayNumber);
+
+			std::cout << std::endl;
+
 		}
 		catch (const std::runtime_error& err)
 		{
@@ -139,27 +144,27 @@ struct TEST
 			++it;
 			it--;
 			it++;
-			
-				std::cout << "\n\n== \n";
+
+			std::cout << "\n\n== \n";
 			for (auto it2 = arr.begin(); it2 != arr.end(); ++it2)
 			{
 				std::cout << " " << *it2;
 			}
-				std::cout << "\n\n<= \n";
+			std::cout << "\n\n<= \n";
 			for (auto it2 = arr.begin(); it2 <= arr.end(); ++it2)
 			{
-				if(it2 < arr.end())
-				std::cout << " " << *it2;
+				if (it2 < arr.end())
+					std::cout << " " << *it2;
 				else
 					std::cout << " and garbage = " << *it2;
 			}
-				std::cout << "\n\n<  \n";
+			std::cout << "\n\n<  \n";
 			for (auto it2 = arr.begin(); it2 < arr.end(); ++it2)
 			{
 				std::cout << " " << *it2;
 			}
 
-			std::cout << "\n\narr.capacity = " << arr.capacity()<< "\n";
+			std::cout << "\n\narr.capacity = " << arr.capacity() << "\n";
 
 			if (it == tmp3)
 				std::cout << "\ntest_1_end  " << *it << " = " << *tmp3 << "\n";
@@ -172,7 +177,7 @@ struct TEST
 		}
 	}
 
-	void test_2() const
+	void test_2()
 	{
 		try
 		{
@@ -306,7 +311,7 @@ struct TEST
 	}
 
 
-	//void test_6()
+	//void test_7()
 	//{
 	//     Ray<int> arr{ 7, 2, 3, 4, 5 };
 	//     std::sort(arr.begin(), arr.s_end(), 3);
@@ -314,7 +319,7 @@ struct TEST
 	//    std::cout << "\ntest_6_END\n";
 	//}
 
-	//void test_7()
+	//void test_8()
 	//    {
 	//    Ray<int> arr{ 1, 2, 3, 4, 5 };
 	//    std::vector<int> v;
@@ -325,4 +330,43 @@ struct TEST
 	//    }
 	//    std::cout << "\ntest_7_END\n";
 	//}
+
+	void test_9() 
+	{
+		try
+		{
+			std::cout << "\ntest_9_START\n";
+
+		Ray<float> ray({ 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f });
+
+
+		float* data_ptr = ray.data();
+		if (data_ptr[0] != 1.0f || data_ptr[1] != 2.0f || data_ptr[2] != 3.0f ||
+			data_ptr[3] != 4.0f || data_ptr[4] != 5.0f || data_ptr[5] != 6.0f) {
+			throw std::runtime_error("data() method returns incorrect data.");
+		}
+
+		const float* const_data_ptr = ray.cdata();
+		if (const_data_ptr[0] != 1.0f || const_data_ptr[1] != 2.0f || const_data_ptr[2] != 3.0f ||
+			const_data_ptr[3] != 4.0f || const_data_ptr[4] != 5.0f || const_data_ptr[5] != 6.0f) {
+			throw std::runtime_error("cdata() method returns incorrect data.");
+		}
+
+		Ray v({ 1, 2, 3 });
+		auto it = v.begin();
+
+		int*		 ptr = it.operator->();
+		int*		 ptr1 = it.data();
+		const int*	 ptr2 = it.cdata();
+		const int*	 ptr3 = it.data();
+		auto		 ptr4 = it.size();
+		auto		 ptr5 = it.empty();
+
+	}
+	catch (const std::runtime_error& err)
+	{
+		std::cerr << "runtime_error: " << err.what() << std::endl;
+	}
+	std::cout << "\ntest_9_END\n";
+	}
 };

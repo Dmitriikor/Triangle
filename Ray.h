@@ -61,42 +61,34 @@ public:
 	//class star_it {
 	//public:
 	//	explicit star_it(T* p) : ptr_(p) {}
-
 	//	auto operator<=>(const star_it& other) const
 	//	{
 	//		return ptr_ <=> other.ptr_;
 	//	}
-
 	//	T& operator*() const
 	//	{
 	//		return *ptr_;
 	//	}
-
 	//	T* operator->() const
 	//	{
 	//		return ptr_;
 	//	}
-
 	//	star_it& operator++() {
 	//		++ptr_;
 	//		return *this;
 	//	}
-
 	//	bool operator==(star_it& other)
 	//	{
 	//		return ptr_ == other.ptr_;
 	//	}
-
 	//	star_it& operator+=(int n)
 	//	{
 	//		ptr_ += n;
 	//		return *ptr_;
 	//	}
-
 	//private:
 	//	T* ptr_;
 	//};
-
 	//star_it s_begin() { return star_it(ray_ + (LEFT - F_LEFT)); }
 	//star_it s_end() { return star_it(ray_ + (LEFT + F_RIGHT)); }
 
@@ -116,13 +108,39 @@ public:
 		using pointer = T*;
 		using reference = T&;
 		using difference_type = std::ptrdiff_t;
-		using iterator_category = std::random_access_iterator_tag;
+		using iterator_category = std::contiguous_iterator_tag;
 
-		T& operator*() const
+
+		///////
+
+		pointer data()
 		{
-			return this->_Ray_->ray_[index_];
+			return _Ray_->data();
 		}
-		T* operator->() const
+		const pointer cdata() const {
+			return _Ray_->data();
+		}
+		const pointer data() const {
+			return _Ray_->data();
+		}
+		bool empty() const {
+			return _Ray_->empty();
+		}
+		size_t size() const {
+			return _Ray_->size();
+		}
+		reference operator[](size_t index) {
+			return *(_Ray_->ray_[index]);  
+		}
+
+		//////
+
+
+		reference operator*() const
+		{
+			return _Ray_->ray_[index_];
+		}
+		pointer operator->() const
 		{
 			return _Ray_->ray_ + index_;
 		}
@@ -133,7 +151,7 @@ public:
 		}
 		iterator operator++(int)
 		{
-			iterator tmp(*this);
+			iterator tmp = *this;
 			++(*this);
 			return tmp;
 		}
@@ -179,10 +197,10 @@ public:
 		{
 			return index_ == other.index_;
 		}
-		std::strong_ordering operator<=>(const iterator& other) const
+		/*std::strong_ordering operator<=>(const iterator& other) const
 		{
 			return index_ <=> other.index_;
-		}
+		}*/
 		//bool operator!=(const iterator& other) const
 		//{
 		//	return index_ != other.index_;
@@ -191,19 +209,19 @@ public:
 		//{
 		//	return index_ < other.index_;
 		//}
-		//std::strong_ordering operator<=>(const iterator& other) const
-		//{
-		//	//return (index_ < other.index_) ? std::strong_ordering::less
-		//	//	: (index_ == other.index_) ? std::strong_ordering::equal
-		//	//	: std::strong_ordering::greater;
+		std::strong_ordering operator<=>(const iterator& other) const
+		{
+			//return (index_ < other.index_) ? std::strong_ordering::less
+			//	: (index_ == other.index_) ? std::strong_ordering::equal
+			//	: std::strong_ordering::greater;
 
-		//	if (index_ < other.index_)
-		//		return std::strong_ordering::less;
-		//	else if (index_ == other.index_)
-		//		return std::strong_ordering::equal;
-		//	else
-		//		return std::strong_ordering::greater;
-		//}
+			if (index_ < other.index_)
+				return std::strong_ordering::less;
+			else if (index_ == other.index_)
+				return std::strong_ordering::equal;
+			else
+				return std::strong_ordering::greater;
+		}
 	private:
 		Ray<T>* _Ray_;
 		size_t index_;
@@ -272,11 +290,9 @@ public:
 			return saved_ptr_;
 		}
 		*/
-
 		//T* ptr_;
 		//size_t initial_size_;
 		//T* saved_ptr_;
-
 		//void iterator_check()
 		//{
 		//	auto R_size = this.F_LEFT + this.F_RIGHT;
@@ -287,17 +303,13 @@ public:
 		//		iterator begin();
 		//		iterator end();
 		//	}
-
 		//	if (initial_size_ > R_size)
 		//	{
 		//		std::cout << " >  iterator size = " << initial_size_ << "; iterator R_size " << R_size << " \n";
-
 		//		//throw std::runtime_error("!");
 		//	}
 		//}
 	};
-	iterator begin() { return iterator(this, (LEFT - F_LEFT)); }
-	iterator end() { return iterator(this, (LEFT + F_RIGHT)); }
 
 
 	//iterator begin() { return iterator(ray_ + (LEFT - F_LEFT)/*, size()*/); }
@@ -317,13 +329,38 @@ public:
 		using pointer = const T*;
 		using reference = const T&;
 		using difference_type = std::ptrdiff_t;
-		using iterator_category = std::random_access_iterator_tag;
+		using iterator_category = std::contiguous_iterator_tag;
 
-		const T& operator*() const
+		///////
+
+		pointer data()
 		{
-			return this->_Ray_->ray_[index_];
+			return _Ray_->data();
 		}
-		const T* operator->() const
+		const pointer cdata() const {
+			return _Ray_->data();
+		}
+		const pointer data() const {
+			return _Ray_->data();
+		}
+		bool empty() const {
+			return _Ray_->empty();   
+		}
+		size_t size() const {
+			return _Ray_->size();
+		}
+		reference operator[](size_t index) {
+			return *(_Ray_->ray_[index_]);  
+		}
+
+		//////
+
+
+		reference operator*() const
+		{
+			return _Ray_->ray_[index_];
+		}
+		pointer operator->() const
 		{
 			return _Ray_->ray_ + index_;
 		}
@@ -389,8 +426,13 @@ public:
 		size_t index_;
 	};
 
-	const c_iterator begin() const { return c_iterator(this, (LEFT - F_LEFT)); }
-	const c_iterator end() const { return c_iterator(this, (LEFT + F_RIGHT)); }
+	iterator begin() { return iterator(this, (LEFT - F_LEFT)); }
+	iterator end() { return iterator(this, (LEFT + F_RIGHT)); }
+
+	c_iterator begin() const { return c_iterator(this, (LEFT - F_LEFT)); }
+	c_iterator end() const { return c_iterator(this, (LEFT + F_RIGHT)); }
+	c_iterator const_begin() const { return c_iterator(this, (LEFT - F_LEFT)); }
+	c_iterator const_end() const { return c_iterator(this, (LEFT + F_RIGHT)); }
 
 
 	Ray();
@@ -452,6 +494,25 @@ public:
 
 	void clear();
 
+	T* data()
+	{
+		return this->ray_;
+	}
+	const T* data() const
+	{
+		return this->ray_;
+	}
+	const T* cdata() const
+	{
+		return this->ray_;
+	}
+	bool empty()
+	{
+		if ((LEFT - F_LEFT == LEFT) && (RIGHT - F_RIGHT == RIGHT))
+			return true;
+
+		return false;
+	}
 
 };
 
