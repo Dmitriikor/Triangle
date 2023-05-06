@@ -38,13 +38,23 @@ namespace TEST
 				std::cout << val << " ";
 			}
 
+			for (auto i = arr.begin(); i != arr.end(); ++i)
+			{
+				for (auto j = i.begin(); j != i.end(); ++j)
+				{
+					std::cout << *j << " ";
+				}
+				std::cout << std::endl;
+			}
+
+
 			std::cout << std::endl;
 			std::cout << std::endl;
 			std::cout << std::endl;
 
 
 			int cntr = 0;
-			for (auto it = arr.begin(); it != arr.end(); it++)
+			for (auto it = arr.lbegin(); it != arr.lend(); it++)
 			{
 				if (cntr == M)
 				{
@@ -54,7 +64,6 @@ namespace TEST
 				std::cout << " " << *it;
 				cntr++;
 			}
-
 
 			//int s_end;
 
@@ -79,6 +88,17 @@ namespace TEST
 				std::cout << *it << " ";
 			}
 			std::cout << std::endl;
+			std::cout << std::endl;
+			std::cout << std::endl;
+			for (auto i = m.begin(); i != m.end(); ++i)
+			{
+				for (auto j = i.begin(); j != i.end(); ++j)
+				{
+					std::cout << *j << " ";
+				}
+				std::cout << std::endl;
+			}
+
 
 			// test const_str_i
 			const Matrix<int>& cm = m;
@@ -352,7 +372,7 @@ namespace TEST
 			throw std::runtime_error("cdata() method returns incorrect data.");
 		}
 
-		Ray v({ 1, 2, 3 });
+		Ray v({ 9, 2, 3 });
 		auto it = v.begin();
 
 		int*		 ptr = it.operator->();
@@ -361,6 +381,13 @@ namespace TEST
 		const int*	 ptr3 = it.data();
 		auto		 ptr4 = it.size();
 		auto		 ptr5 = it.empty();
+
+		std::cout << "ptr  = " << *ptr << "\n";
+		std::cout << "ptr1  = " << *ptr1 << "\n";
+		std::cout << "ptr2  = " << *ptr2 << "\n";
+		std::cout << "ptr3  = " << *ptr3 << "\n";
+		std::cout << "ptr4  = " << ptr4 << "\n";
+		std::cout << "ptr5  = " << ptr5 << "\n";
 
 	}
 	catch (const std::runtime_error& err)
