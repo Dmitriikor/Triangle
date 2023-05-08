@@ -33,14 +33,32 @@ namespace TEST
 				}
 			}
 
-			for (auto val : arr)
+			for (Matrix<int>::line_iterator it = arr.lbegin(); it != arr.lend(); ++it)
+			{
+				std::cout << *it << " ";
+			}
+
+			/*for (auto val : arr)
 			{
 				std::cout << val << " ";
+			}*/
+
+			for (auto str : arr)
+			{
+				for (auto val : str)
+					std::cout << val << " ";
+			}
+
+			for (Matrix<int>::iterator it = arr.begin(); it != arr.end(); ++it)
+			{//по строкам
+				for (Matrix<int>::str_i::iterator it2 = (*it).begin(); it2 != it->end(); ++it2)
+					std::cout << *it2 << ' ';
+				std::cout << std::endl;
 			}
 
 			for (auto i = arr.begin(); i != arr.end(); ++i)
 			{
-				for (auto j = i.begin(); j != i.end(); ++j)
+				for (auto j = i->begin(); j != i->end(); ++j)
 				{
 					std::cout << *j << " ";
 				}
@@ -92,7 +110,7 @@ namespace TEST
 			std::cout << std::endl;
 			for (auto i = m.begin(); i != m.end(); ++i)
 			{
-				for (auto j = i.begin(); j != i.end(); ++j)
+				for (auto j = i->begin(); j != i->end(); ++j)
 				{
 					std::cout << *j << " ";
 				}
@@ -110,11 +128,11 @@ namespace TEST
 
 
 			std::cout << "\n\nsub_test_for_for :\n";
-			for (auto row_it = m.begin(); row_it != m.end(); ++row_it)
+			for (auto i = 0; i < m.get_N(); ++i)
 			{
-				std::cout << *row_it << "\n";
-				/*for (auto it = m[*row_it].begin(); it != m[*row_it].end(); ++it)
-					std::cout << *it << " ";*/
+				//std::cout << *row_it << "\n";
+				for (auto it = m[i].begin(); it != m[i].end(); ++it)
+					std::cout << *it << " ";
 
 				std::cout << std::endl;
 			}
@@ -351,49 +369,49 @@ namespace TEST
 	//    std::cout << "\ntest_7_END\n";
 	//}
 
-	void test_9() 
+	void test_9()
 	{
 		try
 		{
 			std::cout << "\ntest_9_START\n";
 
-		Ray<float> ray({ 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f });
+			Ray<float> ray({ 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f });
 
 
-		float* data_ptr = ray.data();
-		if (data_ptr[0] != 1.0f || data_ptr[1] != 2.0f || data_ptr[2] != 3.0f ||
-			data_ptr[3] != 4.0f || data_ptr[4] != 5.0f || data_ptr[5] != 6.0f) {
-			throw std::runtime_error("data() method returns incorrect data.");
+			float* data_ptr = ray.data();
+			if (data_ptr[0] != 1.0f || data_ptr[1] != 2.0f || data_ptr[2] != 3.0f ||
+				data_ptr[3] != 4.0f || data_ptr[4] != 5.0f || data_ptr[5] != 6.0f) {
+				throw std::runtime_error("data() method returns incorrect data.");
+			}
+
+			const float* const_data_ptr = ray.cdata();
+			if (const_data_ptr[0] != 1.0f || const_data_ptr[1] != 2.0f || const_data_ptr[2] != 3.0f ||
+				const_data_ptr[3] != 4.0f || const_data_ptr[4] != 5.0f || const_data_ptr[5] != 6.0f) {
+				throw std::runtime_error("cdata() method returns incorrect data.");
+			}
+
+			Ray v({ 9, 2, 3 });
+			auto it = v.begin();
+
+			int* ptr = it.operator->();
+			int* ptr1 = it.data();
+			const int* ptr2 = it.cdata();
+			const int* ptr3 = it.data();
+			auto		 ptr4 = it.size();
+			auto		 ptr5 = it.empty();
+
+			std::cout << "ptr  = " << *ptr << "\n";
+			std::cout << "ptr1  = " << *ptr1 << "\n";
+			std::cout << "ptr2  = " << *ptr2 << "\n";
+			std::cout << "ptr3  = " << *ptr3 << "\n";
+			std::cout << "ptr4  = " << ptr4 << "\n";
+			std::cout << "ptr5  = " << ptr5 << "\n";
+
 		}
-
-		const float* const_data_ptr = ray.cdata();
-		if (const_data_ptr[0] != 1.0f || const_data_ptr[1] != 2.0f || const_data_ptr[2] != 3.0f ||
-			const_data_ptr[3] != 4.0f || const_data_ptr[4] != 5.0f || const_data_ptr[5] != 6.0f) {
-			throw std::runtime_error("cdata() method returns incorrect data.");
+		catch (const std::runtime_error& err)
+		{
+			std::cerr << "runtime_error: " << err.what() << std::endl;
 		}
-
-		Ray v({ 9, 2, 3 });
-		auto it = v.begin();
-
-		int*		 ptr = it.operator->();
-		int*		 ptr1 = it.data();
-		const int*	 ptr2 = it.cdata();
-		const int*	 ptr3 = it.data();
-		auto		 ptr4 = it.size();
-		auto		 ptr5 = it.empty();
-
-		std::cout << "ptr  = " << *ptr << "\n";
-		std::cout << "ptr1  = " << *ptr1 << "\n";
-		std::cout << "ptr2  = " << *ptr2 << "\n";
-		std::cout << "ptr3  = " << *ptr3 << "\n";
-		std::cout << "ptr4  = " << ptr4 << "\n";
-		std::cout << "ptr5  = " << ptr5 << "\n";
-
-	}
-	catch (const std::runtime_error& err)
-	{
-		std::cerr << "runtime_error: " << err.what() << std::endl;
-	}
-	std::cout << "\ntest_9_END\n";
+		std::cout << "\ntest_9_END\n";
 	}
 };

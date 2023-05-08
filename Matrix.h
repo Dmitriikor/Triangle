@@ -49,7 +49,7 @@ private:
 	//		return my_Matrix_TEMPLATE.arr[i][j];
 	//	}
 	//};
-
+public:
 	struct str_i 
 	{
 		//!!!проверка на выход за границы
@@ -268,50 +268,79 @@ public:
 		const Matrix<T>* matrix_;
 		size_t index_;
 	};
+
 	line_iterator lbegin() { return line_iterator(this, 0); }
 	line_iterator lend() { return line_iterator(this, N * M); }
-	const_line_iterator begin() const { return const_line_iterator(this, 0); }
-	const_line_iterator end() const { return const_line_iterator(this, N * M); }
-	const_line_iterator const_begin() const { return const_line_iterator(this, 0); }
-	const_line_iterator const_end() const { return const_line_iterator(this, N * M); }
+	const_line_iterator lbegin() const { return const_line_iterator(this, 0); }
+	const_line_iterator lend() const { return const_line_iterator(this, N * M); }
+	const_line_iterator const_lbegin() const { return const_line_iterator(this, 0); }
+	const_line_iterator const_lend() const { return const_line_iterator(this, N * M); }
 
 	class iterator 
 	{
 	private:
-		explicit iterator(Matrix<T>* is_this, size_t index) : _is_this(is_this), _index(index)
+		//Matrix<T>* _is_this;
+		//size_t _index;
+
+		str_i* ptr;
+
+	private:
+
+		explicit iterator(Matrix<T>* is_this, size_t index) : //_is_this(is_this), _index(index),
+			ptr(new str_i(*is_this, index))
 		{
 		}
-		explicit iterator(const Matrix<T>* is_this, size_t index) : _is_this(is_this), _index(index)
+		explicit iterator(const Matrix<T>* is_this, size_t index) :// _is_this(is_this), _index(index),
+			ptr(new str_i(*is_this, index))
 		{
 		}
 		friend class Matrix;
 	public:
+		iterator(const iterator& other)
+		{
+			ptr = new str_i(other.ptr->my_Matrix_TEMPLATE, other.ptr->i);
+		}
 
-		str_i::iterator begin() { return str_i::iterator(_is_this->arr[_index]); }
-		str_i::iterator end() { return str_i::iterator(_is_this->arr[_index] + (_is_this->get_M())); }
+		iterator& operator=(const iterator& other)
+		{
+			if (this == &other)
+				return *this;
 
-		using value_type = T;
-		using pointer = T*;
-		using reference = T&;
+			delete ptr;
+			ptr = new str_i(other.ptr->my_Matrix_TEMPLATE, other.ptr->i);
+			return *this;
+		}
+		~iterator()
+		{
+			delete ptr;
+		}
+		//str_i::iterator begin() { return str_i::iterator(_is_this->arr[_index]); }
+		//str_i::iterator end() { return str_i::iterator(_is_this->arr[_index] + (_is_this->get_M())); }
+
+		using value_type = str_i;
+		using pointer = str_i*;
+		using reference = str_i&;
 		using difference_type = std::ptrdiff_t;
 		using iterator_category = std::random_access_iterator_tag;
 
 		reference operator*() const
 		{
-			return *(_is_this->arr[_index]);
+			return *ptr;
 		}
+
 		iterator& operator++()
 		{
-			++_index;
+			++ptr->i;
 			return *this;
 		}
 		bool operator==(const iterator& other) const
 		{
-			return _index == other._index;
+			return ptr->i == other.ptr->i;
 		}
+		
 		pointer operator->() const
 		{
-			return _is_this->arr[_index];
+			return ptr;
 		}
 		iterator operator++(int)
 		{
@@ -321,7 +350,7 @@ public:
 		}
 		iterator& operator--()
 		{
-			--_index;
+			--ptr->i;
 			return *this;
 		}
 		iterator operator--(int)
@@ -332,45 +361,47 @@ public:
 		}
 		iterator& operator+=(difference_type n)
 		{
-			_index += n;
+			ptr->i += n;
 			return *this;
 		}
 		iterator operator+(difference_type n) const
 		{
 			iterator tmp = *this;
-			tmp._index += n;
+			tmp += n;
 			return tmp;
 		}
 		iterator& operator-=(difference_type n)
 		{
-			_index -= n;
+			ptr->i -= n;
 			return *this;
 		}
 		iterator operator-(difference_type n) const
 		{
 			iterator tmp = *this;
-			tmp._index -= n;
+			tmp -= n;
 			return tmp;
 		}
 		difference_type operator-(const iterator& other) const
 		{
-			return _index - other._index;
+			return ptr->i - other.ptr->i;
 		}
 		std::strong_ordering operator<=>(const iterator& other) const
 		{
-			if (_index < other._index)
+			if (ptr->i < other.ptr->i)
 				return std::strong_ordering::less;
-			else if (_index == other._index)
+			else if (ptr->i == other.ptr->i)
 				return std::strong_ordering::equal;
 			else
 				return std::strong_ordering::greater;
 		}
-	private:
-		Matrix<T>* _is_this;
-		size_t _index;
 	};
+
 	iterator begin() { return iterator(this, 0); }
 	iterator end() { return iterator(this, get_N()); }
+	/*const_iterator begin() const { return const_iterator(this, 0); }
+	const_iterator end() const  { return const_iterator(this, get_N()); }
+	const_iterator const_begin() const { return const_iterator(this, 0); }
+	const_iterator const_end() const  { return const_iterator(this, get_N()); }*/
 
 	Matrix();
 	Matrix(size_t N, size_t M);
