@@ -30,41 +30,75 @@ struct Coordinate {
 template <typename T>
 class Matrix
 {
-private:
-	//struct str_i {
-	//	Matrix& my_Matrix_TEMPLATE;
-	//	size_t i;
-	//	str_i(Matrix& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
-	//	}
-	//	T& operator[](size_t j) {
-	//		return my_Matrix_TEMPLATE.arr[i][j];
-	//	}
-	//};
-	//struct const_str_i {
-	//	const Matrix& my_Matrix_TEMPLATE;
-	//	size_t i;
-	//	const_str_i(const Matrix& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
-	//	}
-	//	const T& operator[](size_t j) const {
-	//		return my_Matrix_TEMPLATE.arr[i][j];
-	//	}
-	//};
 public:
 	struct str_i 
 	{
-		//!!!проверка на выход за границы
-		Matrix& my_Matrix_TEMPLATE;
+		Matrix* my_Matrix_TEMPLATE;
 		size_t i;
-		str_i(Matrix& m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {
+
+		//str_i(const Matrix* m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {}
+		//str_i(Matrix* m, size_t i) : my_Matrix_TEMPLATE(m), i(i) {}
+		//str_i(const str_i& other) : my_Matrix_TEMPLATE(other.my_Matrix_TEMPLATE), i(other.i) {}
+		//str_i& operator=(const str_i& other) {
+		//	if (this != &other) 
+		//	{
+		//		my_Matrix_TEMPLATE = other.my_Matrix_TEMPLATE;
+		//		i = other.i;
+		//	}
+		//	return *this;
+		//}
+
+		str_i(Matrix* initMatrix, size_t index) : my_Matrix_TEMPLATE(initMatrix), i(index)
+		{
 		}
+		str_i(Matrix& initMatrix, size_t index) : my_Matrix_TEMPLATE(&initMatrix), i(index)
+		{
+		}
+		str_i(const str_i& other) : my_Matrix_TEMPLATE(other.my_Matrix_TEMPLATE), i(other.i)
+		{
+		}
+		str_i& operator=(str_i& other) 
+		{
+			if (this != &other) {
+				delete my_Matrix_TEMPLATE;
+				my_Matrix_TEMPLATE = new Matrix(*(other.my_Matrix_TEMPLATE));
+				i = other.i;
+			}
+			return *this;
+		}
+		str_i& operator=(str_i&& other) noexcept
+		{
+			std::swap(my_Matrix_TEMPLATE, other.my_Matrix_TEMPLATE);
+			std::swap(i, other.i);
+			return *this;
+		}
+		str_i(str_i&& other) noexcept : my_Matrix_TEMPLATE(other.my_Matrix_TEMPLATE), i(other.i) 
+		{
+			other.my_Matrix_TEMPLATE = nullptr;
+		}
+		//str_i const & operator=(str_i&& other) 
+		//{
+		//	if (this != &other) {
+		//		delete my_Matrix_TEMPLATE;
+		//		my_Matrix_TEMPLATE = other.my_Matrix_TEMPLATE;
+		//		i = other.i;
+		//		other.my_Matrix_TEMPLATE = nullptr;
+		//	}
+		//	return *this;
+		//}
+		//~str_i() 
+		//{
+		//	delete my_Matrix_TEMPLATE;
+		//}
+
 		T& operator[](size_t j) {
-			return my_Matrix_TEMPLATE.arr[i][j];
+			return my_Matrix_TEMPLATE->arr[i][j];
 		}
 
 		//!!!по строке можно проходить == итерироваться, т.е.ей нужен свой итератор
 		class iterator
 		{
-			friend class str_i;
+			friend struct str_i;
 			T* ptr;
 			
 		public:
@@ -72,10 +106,9 @@ public:
 			using pointer = T*;
 			using reference = T&;
 			using difference_type = std::ptrdiff_t;
-			//using iterator_category = std::random_access_iterator_tag;
 			using iterator_category = std::forward_iterator_tag;
 
-			iterator(T* p) : ptr(p)
+			explicit iterator(T* p) : ptr(p)
 			{
 			}
 			iterator& operator++()
@@ -102,24 +135,19 @@ public:
 				ptr += n;
 				return *this;
 			}
-
 			iterator operator+(difference_type n) const
 			{
 				iterator tmp(*this);
 				tmp += n;
 				return tmp;
 			}
-
 			bool operator==(iterator other) const
 			{
 				return ptr == other.ptr;
 			}
 		};
-		iterator begin() { return iterator(my_Matrix_TEMPLATE.arr[i]); }
-		iterator end() { return iterator(my_Matrix_TEMPLATE.arr[i] + my_Matrix_TEMPLATE.M); }
-		iterator strbegin() { return iterator(my_Matrix_TEMPLATE.arr[i]); }
-		iterator strend() { return iterator(my_Matrix_TEMPLATE.arr[i] + my_Matrix_TEMPLATE.M); }
-
+		iterator begin() { return iterator(my_Matrix_TEMPLATE->arr[i]); }
+		iterator end() { return iterator(my_Matrix_TEMPLATE->arr[i] + my_Matrix_TEMPLATE->M); }
 	};
 	struct const_str_i
 	{
@@ -278,27 +306,30 @@ public:
 
 	class iterator 
 	{
-	private:
-		//Matrix<T>* _is_this;
-		//size_t _index;
-
-		str_i* ptr;
-
-	private:
-
-		explicit iterator(Matrix<T>* is_this, size_t index) : //_is_this(is_this), _index(index),
-			ptr(new str_i(*is_this, index))
-		{
-		}
-		explicit iterator(const Matrix<T>* is_this, size_t index) :// _is_this(is_this), _index(index),
-			ptr(new str_i(*is_this, index))
-		{
-		}
+	public:
 		friend class Matrix;
+		str_i* ptr;
+	private:
+
+		//std::unique_ptr<str_i> ptr;
+		//#include <memory>
+		//explicit iterator(Matrix<T>* is_this, size_t index) : ptr(std::make_unique<str_i>(is_this, index)){}
+
+		explicit iterator(Matrix<T>& is_this, size_t index) : //_is_this(is_this), _index(index),
+			ptr(new str_i(is_this, index))
+		{
+		/*	str_i temp(*is_this, index);
+			
+			ptr->my_Matrix_TEMPLATE = temp.my_Matrix_TEMPLATE;
+			ptr->i = temp.i;
+		
+			std::cout << "\n\n";*/
+		}
+
 	public:
 		iterator(const iterator& other)
 		{
-			ptr = new str_i(other.ptr->my_Matrix_TEMPLATE, other.ptr->i);
+			ptr = other.ptr;/* new str_i(other.ptr->my_Matrix_TEMPLATE, other.ptr->i);*/
 		}
 
 		iterator& operator=(const iterator& other)
@@ -306,14 +337,15 @@ public:
 			if (this == &other)
 				return *this;
 
-			delete ptr;
-			ptr = new str_i(other.ptr->my_Matrix_TEMPLATE, other.ptr->i);
+			//delete ptr;
+			ptr = other.ptr; /*new str_i(other.ptr->my_Matrix_TEMPLATE, other.ptr->i);*/
 			return *this;
 		}
-		~iterator()
-		{
-			delete ptr;
-		}
+		//~iterator()
+		//{
+		//	delete ptr;
+		//}
+		
 		//str_i::iterator begin() { return str_i::iterator(_is_this->arr[_index]); }
 		//str_i::iterator end() { return str_i::iterator(_is_this->arr[_index] + (_is_this->get_M())); }
 
@@ -340,6 +372,7 @@ public:
 		
 		pointer operator->() const
 		{
+			//return ptr.get();
 			return ptr;
 		}
 		iterator operator++(int)
@@ -350,7 +383,7 @@ public:
 		}
 		iterator& operator--()
 		{
-			--ptr->i;
+			--ptr.i;
 			return *this;
 		}
 		iterator operator--(int)
@@ -361,7 +394,7 @@ public:
 		}
 		iterator& operator+=(difference_type n)
 		{
-			ptr->i += n;
+			ptr.i += n;
 			return *this;
 		}
 		iterator operator+(difference_type n) const
@@ -372,7 +405,7 @@ public:
 		}
 		iterator& operator-=(difference_type n)
 		{
-			ptr->i -= n;
+			ptr.i -= n;
 			return *this;
 		}
 		iterator operator-(difference_type n) const
@@ -383,21 +416,21 @@ public:
 		}
 		difference_type operator-(const iterator& other) const
 		{
-			return ptr->i - other.ptr->i;
+			return ptr.i - other.ptr.i;
 		}
 		std::strong_ordering operator<=>(const iterator& other) const
 		{
-			if (ptr->i < other.ptr->i)
+			if (ptr.i < other.ptr.i)
 				return std::strong_ordering::less;
-			else if (ptr->i == other.ptr->i)
+			else if (ptr.i == other.ptr.i)
 				return std::strong_ordering::equal;
 			else
 				return std::strong_ordering::greater;
 		}
 	};
 
-	iterator begin() { return iterator(this, 0); }
-	iterator end() { return iterator(this, get_N()); }
+	iterator begin() { return iterator(*this, 0); }
+	iterator end() { return iterator(*this, get_N()); }
 	/*const_iterator begin() const { return const_iterator(this, 0); }
 	const_iterator end() const  { return const_iterator(this, get_N()); }
 	const_iterator const_begin() const { return const_iterator(this, 0); }
@@ -762,7 +795,7 @@ Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 
 template <typename T>
 typename Matrix<T>::str_i Matrix<T>::operator[](size_t i) {
-	return str_i(*this, i);
+	return str_i(this, i);
 }
 
 template <typename T>

@@ -42,19 +42,34 @@ namespace TEST
 			{
 				std::cout << val << " ";
 			}*/
-
+			std::cout << std::endl;
+			std::cout << std::endl;
 			for (auto str : arr)
 			{
 				for (auto val : str)
 					std::cout << val << " ";
-			}
-
-			for (Matrix<int>::iterator it = arr.begin(); it != arr.end(); ++it)
-			{//по строкам
-				for (Matrix<int>::str_i::iterator it2 = (*it).begin(); it2 != it->end(); ++it2)
-					std::cout << *it2 << ' ';
 				std::cout << std::endl;
 			}
+			int yyy = 0;
+			std::cout << "\n\n RESIZE 2 x 2\n";
+			arr.resize(4, 4);
+			for (Matrix<int>::iterator it = arr.begin(); it != arr.end(); ++it)
+			{
+				for (Matrix<int>::str_i::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+				{
+					if (yyy == 0)
+					{
+						arr.resize(2, 2);
+						arr.fill(1);
+						yyy++;
+					}
+					std::cout << *it2 << ' ';
+				}
+				std::cout << std::endl;
+			}
+			std::cout << "\n\n RESIZE 10 x 10\n";
+			arr.resize(10, 10);
+			arr.fill(0);
 
 			for (auto i = arr.begin(); i != arr.end(); ++i)
 			{
@@ -71,20 +86,33 @@ namespace TEST
 			std::cout << std::endl;
 
 
-			int cntr = 0;
-			for (auto it = arr.lbegin(); it != arr.lend(); it++)
-			{
-				if (cntr == M)
-				{
-					std::cout << std::endl;
-					cntr = 0;
-				}
-				std::cout << " " << *it;
-				cntr++;
-			}
+			auto it = arr.begin();
+			arr.resize(100, 100);
+			if (it != arr.begin())
+				std::cout << "\n auto it = arr.begin(); \n";
+			arr.resize(1, 1);
+			it = arr.end();
+			if (it != arr.end())
+				std::cout << "\n it = arr.end(); \n";
+			auto itr = it;
+			if (itr != it)
+				std::cout << "\n auto itr = it; \n";
+			if (itr != arr.end())
+				std::cout << "\n itr != arr.end(); \n";
 
+
+			//int cntr = 0;
+			//for (auto it = arr.lbegin(); it != arr.lend(); it++)
+			//{
+			//	if (cntr == arr.get_M())
+			//	{
+			//		std::cout << std::endl;
+			//		cntr = 0;
+			//	}
+			//	std::cout << " " << *it;
+			//	cntr++;
+			//}
 			//int s_end;
-
 			//for (; it != arr.end(); ++it) {
 			//	s_end = *it;
 			//}
