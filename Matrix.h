@@ -34,13 +34,14 @@ public:
 	struct str_i 
 	{
 		T* str;
+		size_t index;
 		size_t M;
 
-		str_i(T* initMatrix, size_t index) : str(initMatrix), M(index)
+		str_i(T* initMatrix, size_t index, size_t M) : str(initMatrix), index(index), M(M)
 		{
 		}
-
-		T& operator[](size_t j) {
+		T& operator[](size_t j) 
+		{
 			return str[j];
 		}
 
@@ -62,6 +63,7 @@ public:
 
 			explicit iterator(T* p) : ptr(p)
 			{
+				std::cout << "\n str_i it\n";
 			}
 			iterator& operator++()
 			{
@@ -100,7 +102,7 @@ public:
 		};
 
 		iterator begin() { return iterator(str); }
-		iterator end() { return iterator(str + M); }
+		iterator end() { return iterator((str) + M); }
 	};
 
 	struct const_str_i
@@ -129,7 +131,10 @@ public:
 			//using iterator_category = std::random_access_iterator_tag;
 			using iterator_category = std::forward_iterator_tag;
 
-			iterator(const T* const* p) : ptr(p) {}
+			iterator(const T* const* p) : ptr(p) 
+			{
+				std::cout << "\n const_str_i it\n";
+			}
 
 			const reference operator*() const
 			{
@@ -172,7 +177,7 @@ public:
 			}
 		};
 		const iterator begin() const { return iterator(stl); }
-		const iterator end() const { return iterator(stl + N); }
+		const iterator end() const { return iterator((stl) + N); }
 
 	};
 
@@ -271,7 +276,7 @@ public:
 			mtrx(is_this),
 			M(M),
 			index(index),
-			obj(*is_this, M)
+			obj(*is_this, index , M)
 		{
 		}
 	public:
@@ -859,7 +864,7 @@ Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 
 template <typename T>
 typename Matrix<T>::str_i Matrix<T>::operator[](size_t i) {
-	return str_i(arr[i], M);
+	return str_i(arr[i], i , M);
 }
 
 template <typename T>
