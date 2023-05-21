@@ -24,12 +24,13 @@ namespace TEST
 			int M = 3;
 			int N = 10;
 			Matrix<int> arr(N, M);
-
+			int cntrTEMP = 0;
 			for (size_t i = 0; i < N; ++i)
 			{
 				for (size_t j = 0; j < M; ++j)
 				{
-					arr[i][j] = i + j;
+					arr[i][j] = cntrTEMP;
+					++cntrTEMP;
 				}
 			}
 
