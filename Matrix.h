@@ -107,8 +107,8 @@ public:
 	{
 		const T* const* stl;
 		size_t i;
-
-		const_str_i(const T* const* m, size_t i) : stl(m), i(i)
+		size_t N;
+		const_str_i(const T* const* m, size_t i, size_t N) : stl(m), i(i), N(N)
 		{
 		}
 
@@ -120,6 +120,7 @@ public:
 		{
 			friend class const_str_i;
 			const T* const* ptr;
+			//const T* const* ptr;
 		public:
 			using value_type = T;
 			using pointer = const T*;
@@ -128,11 +129,11 @@ public:
 			//using iterator_category = std::random_access_iterator_tag;
 			using iterator_category = std::forward_iterator_tag;
 
-			iterator(const T* p) : ptr(p) {}
+			iterator(const T* const* p) : ptr(p) {}
 
 			const reference operator*() const
 			{
-				return *ptr;
+				return **ptr;
 			}
 			const pointer operator->() const
 			{
@@ -171,7 +172,7 @@ public:
 			}
 		};
 		const iterator begin() const { return iterator(stl); }
-		const iterator end() const { return iterator(stl + i); }
+		const iterator end() const { return iterator(stl + N); }
 
 	};
 
@@ -863,7 +864,7 @@ typename Matrix<T>::str_i Matrix<T>::operator[](size_t i) {
 
 template <typename T>
 typename Matrix<T>::const_str_i Matrix<T>::operator[](size_t i) const {
-	return const_str_i(arr, i);
+	return const_str_i(arr, i, N);
 }
 //
 //
