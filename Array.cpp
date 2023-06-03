@@ -43,7 +43,7 @@ public:
     {
         for (int s = 0; s < size; s++)
         {
-            std::cout << "s[" << s << "] = " << arr[s] << " \n\n";
+            std::cout << "s[" << s << "] = " << arr[s] << " \n";
         }
         std::cout << std::endl;
     }
