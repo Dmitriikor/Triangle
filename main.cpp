@@ -60,7 +60,9 @@ int main(int argc, char const* argv[])
 	q.add_to_Array(4);
 	q.add_to_Array(3);
 	q.add_to_Array(2);
-
+	q.add_to_Array(1);
+	q.add_to_Array(0);
+	q.add_to_Array(-1);
 	q.printArray();
 
 
