@@ -31,6 +31,7 @@
 #include "Corner.h"
 #include "Axys.h"
 #include "Direct_draw.h"
+#include "Array.cpp"
 
 #pragma execution_character_set("utf-8")
 
@@ -49,7 +50,21 @@ int main(int argc, char const* argv[])
 {
 	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 
+	Array<int> q(10);
 
+	q.add_to_Array(9);
+	q.add_to_Array(8);
+	q.add_to_Array(7);
+	q.add_to_Array(6);
+	q.add_to_Array(5);
+	q.add_to_Array(4);
+	q.add_to_Array(3);
+	q.add_to_Array(2);
+
+	q.printArray();
+
+
+	return 1;
 
 
 
@@ -100,7 +115,6 @@ int main(int argc, char const* argv[])
 	TEST::test_9();
 	std::cout << "\ntest_END\n";
 
-	return 1;
 	/**///window.HideConsoleWindow();
 
 	/**
