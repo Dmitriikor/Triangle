@@ -16,9 +16,9 @@ public:
 
     void add_to_Array(const T& value)
     {
-        if (i == size)
+        if (i-1 = size)
         {
-            void rise();
+            rise();
         }
 
         new(arr+i) T();
@@ -33,6 +33,9 @@ public:
         {
             new_arr[s] = arr[s];
         }
+        free(arr);
+        arr = new_arr;
+
         size = size + value;
     }
 
@@ -40,7 +43,7 @@ public:
     {
         for (int s = 0; s < size; s++)
         {
-            std::cout << "s[" << s << "] = " << arr[s] << " ";
+            std::cout << "s[" << s << "] = " << arr[s] << " \n";
         }
         std::cout << std::endl;
     }
