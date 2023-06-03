@@ -16,7 +16,7 @@ public:
 
     void add_to_Array(const T& value)
     {
-        if (i-1 = size)
+        if (i+1 == size)
         {
             rise();
         }
@@ -51,6 +51,6 @@ public:
 private:
     T* arr;
     int size;
-    int i;
+    int i=0;
 };
 
