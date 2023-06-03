@@ -58,12 +58,6 @@ namespace TEST
 			{
 				for (Matrix<int>::str_i::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
 				{
-					if (yyy == 0)
-					{
-						arr.resize(2, 2);
-						arr.fill(1);
-						yyy++;
-					}
 					std::cout << *it2 << ' ';
 				}
 				std::cout << std::endl;

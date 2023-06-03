@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="Axys.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Canvas_console.cpp" />
@@ -29,6 +30,8 @@
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Q_new.cpp" />
+    <ClCompile Include="replacement new.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>

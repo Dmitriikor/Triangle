@@ -34,10 +34,10 @@ public:
 	struct str_i 
 	{
 		T* str;
-		size_t index;
+		//size_t index;
 		size_t M;
 
-		str_i(T* initMatrix, size_t index, size_t M) : str(initMatrix), index(index), M(M)
+		str_i(T* str/*, size_t index*/, size_t M) : str(str), /*index(index),*/ M(M)
 		{
 		}
 		T& operator[](size_t j) 
@@ -102,12 +102,13 @@ public:
 		};
 
 		iterator begin() { return iterator(str); }
-		iterator end() { return iterator((str) + M); }
+		iterator end() { return iterator(str + M); }
 	};
 
 	struct const_str_i
 	{
 		const T* const* stl;
+
 		size_t i;
 		size_t N;
 		const_str_i(const T* const* m, size_t i, size_t N) : stl(m), i(i), N(N)
@@ -267,17 +268,21 @@ public:
 	{
 	private:
 		friend class Matrix;
-		str_i obj; 
-		T** mtrx;
+		str_i proxy; 
 		size_t M;
-		size_t index;
+
+		T** ptr; //указатель на строку матрицы
 	private:
-		explicit iterator(T** is_this,size_t M, size_t index) : 
-			mtrx(is_this),
+		explicit iterator(T** ptr, size_t M) : 
+			ptr(ptr),
 			M(M),
-			index(index),
-			obj(*is_this, index , M)
+			proxy(*ptr, M)
 		{
+		}
+
+		void update_proxy()
+		{
+			proxy = str_i(*ptr, M);
 		}
 	public:
 
@@ -289,21 +294,30 @@ public:
 
 		reference operator*() const
 		{
-			return const_cast<reference>(obj);
+			return const_cast<reference>(proxy);
 		}
+
 		pointer operator->() const
 		{
-			return const_cast<pointer>(&obj);
+			//!!! придётся предоставлять адрес временного объекта
+			return const_cast<pointer>(&proxy);
 		}
 
 		bool operator==(const iterator& other) const
 		{
-			return  index  == other.index;
+			//matrix == other.matrix
+			//return  index == other.index;
+
+			return ptr == other.ptr;
 		}
 
 		iterator& operator+=(difference_type n)
 		{
-			index += n;
+			//index += n;
+
+			ptr += n;
+			update_proxy();
+
 			return *this;
 		}
 
@@ -330,7 +344,7 @@ public:
 
 		iterator& operator-=(difference_type n)
 		{
-			index -= n;
+			*this += -n;
 			return *this;
 		}
 
@@ -355,14 +369,14 @@ public:
 
 		difference_type operator-(const iterator& other) const
 		{
-			return index - other.index;
+			return ptr - other.ptr;
 		}
 
 		std::strong_ordering operator<=>(const iterator& other) const
 		{
-			if (index < other.index)
+			if (ptr < other.ptr)
 				return std::strong_ordering::less;
-			else if (index == other.index)
+			else if (ptr == other.ptr)
 				return std::strong_ordering::equal;
 			else
 				return std::strong_ordering::greater;
@@ -498,8 +512,8 @@ public:
 	//	}
 	//};
 
-	iterator begin() { return iterator(arr, get_M(), 0); }
-	iterator end() { return iterator(arr, get_M(), get_N()); }
+	iterator begin() { return iterator(arr + 0, M); }
+	iterator end() { return iterator(arr + N, M); }
 	/*const_iterator begin() const { return const_iterator(this, 0); }
 	const_iterator end() const  { return const_iterator(this, get_N()); }
 	const_iterator const_begin() const { return const_iterator(this, 0); }
@@ -864,7 +878,7 @@ Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other)
 
 template <typename T>
 typename Matrix<T>::str_i Matrix<T>::operator[](size_t i) {
-	return str_i(arr[i], i , M);
+	return str_i(arr[i], M);
 }
 
 template <typename T>
