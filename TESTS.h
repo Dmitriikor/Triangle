@@ -294,9 +294,9 @@ namespace TEST
 			*it = 20;
 			++it;
 			*it = 30;
-			if (arr[0] == 10);
-			if (arr[1] == 20);
-			if (arr[2] == 30);
+			if (arr[0] == 10)
+			if (arr[1] == 20)
+			if (arr[2] == 30)
 
 			std::cout << "\ntest_4_END\n";
 
@@ -318,7 +318,7 @@ namespace TEST
 			for (auto it = c_arr.begin(); it != c_arr.end(); ++it) {
 				sum += *it;
 			}
-			if (sum == 6);
+			if (sum == 6)
 			std::cout << "\ntest_5_END\n";
 
 		}

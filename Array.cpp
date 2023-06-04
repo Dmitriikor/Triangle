@@ -29,14 +29,33 @@ public:
     void rise(int value=10)
     {
         T* new_arr = reinterpret_cast<T*>(malloc((size + value) * sizeof(T)));
-        for (size_t s = 0; s < size; s++)
-        {
-            new_arr[s] = arr[s];
-        }
+        memcpy(new_arr, arr, i * sizeof(T));
+        //for (size_t s = 0; s < size; s++)
+        //{
+        //    new_arr[s] = arr[s];
+        //}
         free(arr);
         arr = new_arr;
 
         size = size + value;
+    }
+
+    void remove_from_Array(int index)
+    {
+        if (index < 0 || index >= i)
+        {
+            std::cout << "Invalid index!" << std::endl;
+            return;
+        }
+
+        for (int j = index; j < i - 1; j++)
+        {
+            arr[j] = arr[j + 1];
+        }
+
+        arr[i-1] = 0;
+
+        i--;
     }
 
     void printArray() 

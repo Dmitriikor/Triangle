@@ -121,7 +121,7 @@ public:
 
 		class iterator
 		{
-			friend class const_str_i;
+			friend struct const_str_i;
 			const T* const* ptr;
 			//const T* const* ptr;
 		public:
