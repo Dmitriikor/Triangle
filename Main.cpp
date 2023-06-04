@@ -9,11 +9,9 @@
 
 **/
 
-
 #include <iostream>
 #include <limits>
 #include <exception>
-
 
 /**
  * @brief Глобальная переменная, инициализирующаяся до функции main.
@@ -35,58 +33,50 @@
 
 #pragma execution_character_set("utf-8")
 
-
 #include "TESTS.h"
 #include "Interface.h"
 
-
-/**
-	@brief  main главная функция
-	@param  argc - none
-	@param  argv - none
-	@retval      -  при успехе вернет 0
-**/
+ /**
+	 @brief  main главная функция
+	 @param  argc - none
+	 @param  argv - none
+	 @retval      -  при успехе вернет 0
+ **/
 int main(int argc, char const* argv[])
 {
-	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
+	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль
 
-	Array<char> q(10);
-	 char ts = 'A';
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
-	q.add_to_Array(ts);
+	Array<int> q(10);
+
+	q.add_to_Array(9);
+	q.add_to_Array(8);
+	q.add_to_Array(7);
+	q.add_to_Array(6);
+	q.add_to_Array(5);
+	q.add_to_Array(4);
+	q.add_to_Array(3);
+	q.add_to_Array(2);
+	q.add_to_Array(1);
+	q.add_to_Array(0);
 	q.printArray();
-	q.add_to_Array(ts);
+	q.add_to_Array(-1);
 	q.printArray();
 	q.remove_from_Array(2);
 	q.printArray();
-	q.add_to_Array(ts);
+	q.add_to_Array(-999);
 	q.printArray();
 
 	return 1;
 
-
-
 	std::cout << "\n" << "2" << "\n";
-
-
-
-
 
 	/**
 	 * @brief Объявление интерфейса
 	 */
-	//Interface window;
-	/**
-	 * @brief скрытие консоли
-	 */
+	 //Interface window;
+	 /**
+	  * @brief скрытие консоли
+	  */
 
 	Ray<int> empty0;
 
@@ -108,7 +98,6 @@ int main(int argc, char const* argv[])
 	if (empty0.empty() != true)
 		std::cout << "empty0 add_to_first= " << empty0.empty() << "\n";
 
-
 	std::cout << "\ntest_START\n";
 	TEST::test_0();
 	TEST::test_1();
@@ -126,68 +115,66 @@ int main(int argc, char const* argv[])
 	/**
 	 * @brief запуск тестовой функции
 	 */
-	//window.test_nana();
-	//window.ShowConsoleWindow();
-	//window.st_diag();
+	 //window.test_nana();
+	 //window.ShowConsoleWindow();
+	 //window.st_diag();
 
-	/**
- 	* @brief запуск таймера
- 	* 
- 	*/
-	//time_t t1 = clock();													//! @param time_t t1 - запуск таймера, засекаем время
+	 /**
+	 * @brief запуск таймера
+	 *
+	 */
+	 //time_t t1 = clock();													//! @param time_t t1 - запуск таймера, засекаем время
 
-	//Triangle_hi Fin_Triangle;
-	//Fin_Triangle = Find_Triangle(point_arr, n_points);
+	 //Triangle_hi Fin_Triangle;
+	 //Fin_Triangle = Find_Triangle(point_arr, n_points);
 
+	 //Ray<Dot> copy_to_print;
+	 //if (Find_Triangle.get_dot_counter() != 0)
+	 //{
+	 //	Corner out_print;
 
-	//Ray<Dot> copy_to_print;
-	//if (Find_Triangle.get_dot_counter() != 0)
-	//{
-	//	Corner out_print;
+	 //	out_print.insert(Fin_Triangle.get_point_array(), '*');
 
-	//	out_print.insert(Fin_Triangle.get_point_array(), '*');
+	 //	//  for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
+	 //	//	copy_to_print.add_to_back(Fin_Triangle.get_point(i));
 
-	//	//  for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
-	//	//	copy_to_print.add_to_back(Fin_Triangle.get_point(i));
+	 //	out_print.insert(copy_to_print);
+	 //	out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(), '*');
+	 //	out_print.insert_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(), '*');
+	 //	out_print.insert_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(), '*');
+	 //	out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(), '+');
+	 //	out_print.render_matrix();
+	 //	out_print.print();
+	 //	out_print.print_to_file();
 
-	//	out_print.insert(copy_to_print);
-	//	out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(), '*');
-	//	out_print.insert_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(), '*');
-	//	out_print.insert_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(), '*');
-	//	out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(), '+');
-	//	out_print.render_matrix();
-	//	out_print.print();
-	//	out_print.print_to_file();
+	 //	Axys a_out_print;
+	 //	a_out_print += out_print;
+	 //	a_out_print.render_matrix();
+	 //	a_out_print.print();
+	 //	a_out_print.insert_line({ 10,10 }, { -10,-10 }, '*');
+	 //	a_out_print.render_matrix();
+	 //	a_out_print.print();
+	 //	a_out_print.remove_line({ 10,10 }, { -10,-10 });
+	 //	a_out_print.render_matrix();
+	 //	a_out_print.print();
 
-	//	Axys a_out_print;
-	//	a_out_print += out_print;
-	//	a_out_print.render_matrix();
-	//	a_out_print.print();
-	//	a_out_print.insert_line({ 10,10 }, { -10,-10 }, '*');
-	//	a_out_print.render_matrix();
-	//	a_out_print.print();
-	//	a_out_print.remove_line({ 10,10 }, { -10,-10 });
-	//	a_out_print.render_matrix();
-	//	a_out_print.print();
+	 //	Direct_draw ttst;
+	 //	ttst.insert_line({ 0,0 }, { 0,0 }, '&');
+	 //	ttst.insert_line({ 1,1 }, { 1,1 }, '/');
+	 //	ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
+	 //	ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
+	 //	ttst += out_print;
+	 //	ttst.render_matrix();
+	 //	ttst.print();
+	 //}
 
+	 ///**
+	 // * @brief запуск второго таймера
+	 // */
+	 //time_t t2 = clock();
+	 //std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 
-	//	Direct_draw ttst;
-	//	ttst.insert_line({ 0,0 }, { 0,0 }, '&');
-	//	ttst.insert_line({ 1,1 }, { 1,1 }, '/');
-	//	ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
-	//	ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
-	//	ttst += out_print;
-	//	ttst.render_matrix();
-	//	ttst.print();
-	//}
-
-	///**
-	// * @brief запуск второго таймера
-	// */
-	//time_t t2 = clock();
-	//std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
-
-	//int AV2;
-	//std::cin >> AV2;
+	 //int AV2;
+	 //std::cin >> AV2;
 	return 0;
 }
