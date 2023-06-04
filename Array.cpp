@@ -10,11 +10,6 @@ public:
 		arr = reinterpret_cast<T*>(malloc(size * sizeof(T)));
 	}
 
-	~Array()
-	{
-		free(arr);
-	}
-
 	bool operator==(const Array& other) const
 	{
 		return arr == other.arr && size == other.size && i == other.i;
@@ -24,6 +19,11 @@ public:
 
 	Array(T* arr, int size) : arr(arr), size(size)
 	{
+	}
+
+	~Array()
+	{
+		free(arr);
 	}
 
 	void add_to_Array(const T& value)
@@ -56,7 +56,7 @@ public:
 
 		//i--;
 
-		if (index < 0 || index >= i)
+		if (index < 0 || index > i)
 		{
 			std::cout << "Invalid index!" << std::endl;
 			return;
@@ -107,7 +107,7 @@ private:
 		//free(arr);
 		//arr = new_arr;
 		//size = size + value;
-		//std::cout << "realloc" << std::endl;
+		std::cout << "realloc" << std::endl;
 
 		arr = reinterpret_cast<T*>(realloc(arr, (size + value) * sizeof(T)));
 
@@ -120,7 +120,7 @@ private:
 		size = size + value;
 	}
 
-	T* arr;
+	T* arr = nullptr;
 	int size = 0;
 	int i = 0;
 };
