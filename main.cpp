@@ -50,24 +50,24 @@ int main(int argc, char const* argv[])
 {
 	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль 
 
-	Array<int> q(10);
-
-	q.add_to_Array(9);
-	q.add_to_Array(8);
-	q.add_to_Array(7);
-	q.add_to_Array(6);
-	q.add_to_Array(5);
-	q.add_to_Array(4);
-	q.add_to_Array(3);
-	q.add_to_Array(2);
-	q.add_to_Array(1);
-	q.add_to_Array(0);
+	Array<char> q(10);
+	 char ts = 'A';
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
+	q.add_to_Array(ts);
 	q.printArray();
-	q.add_to_Array(-1);
+	q.add_to_Array(ts);
 	q.printArray();
 	q.remove_from_Array(2);
 	q.printArray();
-	q.add_to_Array(-999);
+	q.add_to_Array(ts);
 	q.printArray();
 
 	return 1;
