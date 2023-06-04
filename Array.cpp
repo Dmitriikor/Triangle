@@ -107,7 +107,7 @@ private:
 		//free(arr);
 		//arr = new_arr;
 		//size = size + value;
-		std::cout << "realloc" << std::endl;
+		//std::cout << "realloc" << std::endl;
 
 		arr = reinterpret_cast<T*>(realloc(arr, (size + value) * sizeof(T)));
 
