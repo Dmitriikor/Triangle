@@ -1,7 +1,8 @@
 ﻿#include <iostream>
 
 template<typename T>
-class Array {
+class Array 
+{
 public:
     Array(int size) : size(size)
     {
@@ -14,10 +15,22 @@ public:
         free(arr);
     }
 
+    bool operator==(const Array& other) const
+    {
+        return arr == other.arr && size == other.size && i == other.i;
+    }
+
+    Array() = default;
+
+    Array(T* arr, int size) : arr(arr), size(size)
+    {
+    }
+
     void add_to_Array(const T& value)
     {
-        if (i+1 == size)
+        if (i >= size)
         {
+            //std::cout << "\n RISE \n";
             rise();
         }
 
@@ -26,6 +39,60 @@ public:
         ++i;    
     }
 
+    void remove_from_Array(int index)
+    {
+        //if (index < 0 || index >= i)
+        //{
+        //    std::cout << "Invalid index!" << std::endl;
+        //    return;
+        //}
+
+        //for (int j = index; j < i - 1; j++)
+        //{
+        //    arr[j] = arr[j + 1];
+        //}
+
+        //arr[i-1] = 0;
+
+        //i--;
+
+        if (index < 0 || index >= i)
+        {
+            std::cout << "Invalid index!" << std::endl;
+            return;
+        }
+
+        i--;
+
+        if (i > 0)
+        {
+            T* new_arr = reinterpret_cast<T*>(malloc(i * sizeof(T)));
+            if (index > 0)
+                memcpy(new_arr, arr, index * sizeof(T));
+            if (index < i)
+                memcpy(new_arr + index, arr + index + 1, (i - index) * sizeof(T));
+
+            free(arr);
+            arr = new_arr;
+        }
+        else
+        {
+            free(arr);
+            arr = nullptr;
+        }
+        size = i;
+
+    }
+
+    void printArray() 
+    {
+        for (int s = 0; s < size; s++)
+        {
+            std::cout << "s[" << s << "] = " << arr[s] << " \n";
+        }
+        std::cout << std::endl;
+    }
+private:
     void rise(int value=10)
     {
         T* new_arr = reinterpret_cast<T*>(malloc((size + value) * sizeof(T)));
@@ -40,36 +107,10 @@ public:
         size = size + value;
     }
 
-    void remove_from_Array(int index)
-    {
-        if (index < 0 || index >= i)
-        {
-            std::cout << "Invalid index!" << std::endl;
-            return;
-        }
-
-        for (int j = index; j < i - 1; j++)
-        {
-            arr[j] = arr[j + 1];
-        }
-
-        arr[i-1] = 0;
-
-        i--;
-    }
-
-    void printArray() 
-    {
-        for (int s = 0; s < size; s++)
-        {
-            std::cout << "s[" << s << "] = " << arr[s] << " \n";
-        }
-        std::cout << std::endl;
-    }
-
 private:
     T* arr;
-    int size;
+    int size=0;
     int i=0;
+
 };
 

@@ -62,6 +62,7 @@ int main(int argc, char const* argv[])
 	q.add_to_Array(2);
 	q.add_to_Array(1);
 	q.add_to_Array(0);
+	q.printArray();
 	q.add_to_Array(-1);
 	q.printArray();
 	q.remove_from_Array(2);
