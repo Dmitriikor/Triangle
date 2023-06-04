@@ -66,14 +66,18 @@ public:
 
         if (i > 0)
         {
-            T* new_arr = reinterpret_cast<T*>(malloc(i * sizeof(T)));
-            if (index > 0)
-                memcpy(new_arr, arr, index * sizeof(T));
-            if (index < i)
-                memcpy(new_arr + index, arr + index + 1, (i - index) * sizeof(T));
+            //T* new_arr = reinterpret_cast<T*>(malloc(i * sizeof(T)));
+            //if (index > 0)
+            //    memcpy(new_arr, arr, index * sizeof(T));
+            //if (index < i)
+            //    memcpy(new_arr + index, arr + index + 1, (i - index) * sizeof(T));
 
-            free(arr);
-            arr = new_arr;
+            //free(arr);
+            //arr = new_arr;
+
+            //std::cout << "memmove" << std::endl;
+            memmove(arr + index, arr + index + 1, (i - index) * sizeof(T));
+            arr = reinterpret_cast<T*>(realloc(arr, i * sizeof(T)));
         }
         else
         {
@@ -95,19 +99,31 @@ public:
 private:
     void rise(int value=10)
     {
-        T* new_arr = reinterpret_cast<T*>(malloc((size + value) * sizeof(T)));
-        memcpy(new_arr, arr, i * sizeof(T));
-        //for (size_t s = 0; s < size; s++)
-        //{
-        //    new_arr[s] = arr[s];
-        //}
-        free(arr);
-        arr = new_arr;
+        //T* new_arr = reinterpret_cast<T*>(malloc((size + value) * sizeof(T)));
+        //memcpy(new_arr, arr, i * sizeof(T));
+        ////for (size_t s = 0; s < size; s++)
+        ////{
+        ////    new_arr[s] = arr[s];
+        ////}
+        //free(arr);
+        //arr = new_arr;
+        //size = size + value;
+        //std::cout << "realloc" << std::endl;
 
+        arr = reinterpret_cast<T*>(realloc(arr, (size + value) * sizeof(T)));
+
+        if (arr == nullptr)
+        {
+            std::cout << "arr == nullptr" << std::endl;
+            throw std::bad_alloc();
+        }
+ 
         size = size + value;
+       
+
+
     }
 
-private:
     T* arr;
     int size=0;
     int i=0;
