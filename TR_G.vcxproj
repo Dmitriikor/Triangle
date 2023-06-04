@@ -209,6 +209,7 @@
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
     </ClCompile>
+    <ClCompile Include="variadic templates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Axys.h" />

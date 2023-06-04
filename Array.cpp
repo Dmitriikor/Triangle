@@ -13,12 +13,14 @@ public:
 	bool operator==(const Array& other) const
 	{
 		return arr == other.arr && size == other.size && i == other.i;
+		//лучше по индексам (по элементам)
 	}
 
 	Array() = default;
 
-	Array(T* arr, int size) : arr(arr), size(size)
+	Array(const T* arr, int size) :size(size)
 	{
+		//копирование
 	}
 
 	~Array()
@@ -26,6 +28,7 @@ public:
 		free(arr);
 	}
 
+	//push_back
 	void add_to_Array(const T& value)
 	{
 		if (i >= size)
@@ -34,10 +37,22 @@ public:
 			rise();
 		}
 
-		new(arr + i) T();
-		arr[i] = value;
+		new(arr + i) T(value);
 		++i;
 	}
+
+	//emplace_back
+	//void add_to_Array(a, b, c)
+	//{
+	//	if (i >= size)
+	//	{
+	//		//std::cout << "\n RISE \n";
+	//		rise();
+	//	}
+
+	//	new(arr + i) T(a, b, c);
+	//	++i;
+	//}
 
 	void remove_from_Array(int index)
 	{
@@ -56,7 +71,7 @@ public:
 
 		//i--;
 
-		if (index < 0 || index > i)
+		if (index < 0 || index >= i)
 		{
 			std::cout << "Invalid index!" << std::endl;
 			return;
@@ -89,10 +104,16 @@ public:
 
 	void printArray()
 	{
-		for (int s = 0; s < size; s++)
+		for (int s = 0; s < i; s++)
 		{
 			std::cout << "s[" << s << "] = " << arr[s] << " \n";
 		}
+		std::cout << "----------------+" << " \n";
+		for (int s = i; s < size; s++)
+		{
+			std::cout << "s[" << s << "] = " << arr[s] << " \n";
+		}
+		std::cout << "----------------" << " \n";
 		std::cout << std::endl;
 	}
 private:
@@ -109,14 +130,15 @@ private:
 		//size = size + value;
 		//std::cout << "realloc" << std::endl;
 
-		arr = reinterpret_cast<T*>(realloc(arr, (size + value) * sizeof(T)));
+		T* new_arr = reinterpret_cast<T*>(realloc(arr, (size + value) * sizeof(T)));
 
-		if (arr == nullptr)
+		if (new_arr == nullptr)
 		{
 			std::cout << "arr == nullptr" << std::endl;
 			throw std::bad_alloc();
 		}
 
+		arr = new_arr;
 		size = size + value;
 	}
 
