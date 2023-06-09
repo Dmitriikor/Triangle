@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <type_traits>
 
 template<typename T>
 class Array
@@ -28,18 +29,43 @@ public:
 		free(arr);
 	}
 
-	//push_back
-	void add_to_Array(const T& value)
+
+	template<typename... Elements>
+	void add_to_Array(Elements&&... values)
 	{
 		if (i >= size)
 		{
-			//std::cout << "\n RISE \n";
 			rise();
 		}
 
-		new(arr + i) T(value);
-		++i;
+		static_assert(std::is_constructible_v<T, Elements...>,"THIS IS ERROR");
+
+		if (std::is_constructible_v<T, Elements...>)
+		{
+			new(arr + i) T(std::forward<Elements>(values)...);
+			++i;
+		}
 	}
+
+
+	//push_back
+	//void add_to_Array(const T& value)
+	//{
+	//	if (i >= size)
+	//	{
+	//		rise();
+	//	}
+	//	 
+	//	if constexpr (std::is_move_constructible_v<T>)
+	//	{
+	//	new(arr + i) T(std::move(value));
+	//	}
+	//	else
+	//	{
+	//		new(arr + i) T(value);
+	//	}
+	//	++i;
+	//}
 
 	//emplace_back
 	//void add_to_Array(a, b, c)
@@ -92,7 +118,7 @@ public:
 
 			//std::cout << "memmove" << std::endl;
 			memmove(arr + index, arr + index + 1, (i - index) * sizeof(T));
-			arr = reinterpret_cast<T*>(realloc(arr, i * sizeof(T)));
+
 		}
 		else
 		{
@@ -108,14 +134,27 @@ public:
 		{
 			std::cout << "s[" << s << "] = " << arr[s] << " \n";
 		}
-		std::cout << "++----------------++"<< " \n";
-		for (int s = i; s < size; s++)
-		{
-			std::cout << "s[" << s << "] = " << arr[s] << " \n";
-		}
-		std::cout << "----------------" << " \n";
-		std::cout << std::endl;
+		std::cout << "++---INDEX_END---++"<< " \n";
+		//for (int s = i; s < size; s++)
+		//{
+		//	std::cout << "s[" << s << "] = " << arr[s] << " \n";
+		//}
+		//std::cout << "---SIZE_END---" << " \n";
+		//std::cout << std::endl;
 	}
+
+	void cutArray()
+	{
+			T* new_arr = reinterpret_cast<T*>(realloc(arr, i * sizeof(T)));
+			if (new_arr == nullptr)
+			{
+				std::cout << "arr == nullptr" << std::endl;
+				free(arr);
+				throw std::bad_alloc();
+			}
+		arr = new_arr;
+	}
+
 private:
 	void rise(int value = 10)
 	{
@@ -135,6 +174,7 @@ private:
 		if (new_arr == nullptr)
 		{
 			std::cout << "arr == nullptr" << std::endl;
+			free(arr);
 			throw std::bad_alloc();
 		}
 

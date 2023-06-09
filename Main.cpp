@@ -36,6 +36,40 @@
 #include "TESTS.h"
 #include "Interface.h"
 
+
+
+struct MyStruct {
+	int x;
+	double y;
+	std::string str;
+
+	MyStruct(int xValue, double yValue, const std::string& strValue)
+		: x(xValue), y(yValue), str(strValue)
+	{
+		std::cout << "\n" << "constr" << "\n";
+	}
+	MyStruct(MyStruct&& other) noexcept
+		: x(std::move(other.x)), y(std::move(other.y)), str(std::move(other.str))
+	{
+		std::cout << "\n" << "move" << "\n";
+	}
+	MyStruct(const MyStruct& other)
+		: x(other.x), y(other.y), str(other.str)
+	{
+		std::cout << "\n" << "copy" << "\n";
+	}
+
+	void print() const {
+		std::cout << "x: " << x << ", y: " << y << ", str: " << str << std::endl;
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const MyStruct& obj) {
+		os << "x: " << obj.x << ", y: " << obj.y << ", str: " << obj.str;
+		return os;
+	}
+};
+
+
  /**
 	 @brief  main главная функция
 	 @param  argc - none
@@ -46,23 +80,32 @@ int main(int argc, char const* argv[])
 {
 	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль
 
-	Array<int> q;
+	Array<MyStruct> q;
 
-	q.add_to_Array(9);
-	q.add_to_Array(8);
-	q.add_to_Array(7);
-	q.add_to_Array(6);
-	q.add_to_Array(5);
-	q.add_to_Array(4);
-	q.add_to_Array(3);
-	q.add_to_Array(2);
-	q.add_to_Array(1);
-	q.add_to_Array(0);
+	MyStruct msq(1,0.01, "ST");
+	q.add_to_Array(msq);
 	q.printArray();
-	q.remove_from_Array(1);
+	//q.add_to_Array(10);
+	q.add_to_Array(9,8,"ST");
 	q.printArray();
-	q.add_to_Array(-999);
+	q.add_to_Array(std::move(msq));
 	q.printArray();
+
+
+	//q.add_to_Array(6);
+	//q.add_to_Array(5);
+	//q.add_to_Array(4);
+	//q.add_to_Array(3);
+	//q.add_to_Array(2);
+	//q.add_to_Array(1);
+	//q.add_to_Array(0);
+	//q.add_to_Array(-1);
+	//q.cutArray();
+	//q.printArray();
+	//q.remove_from_Array(1);
+	//q.printArray();
+	//q.add_to_Array(-999);
+	//q.printArray();
 
 	return 1;
 
