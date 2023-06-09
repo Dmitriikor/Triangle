@@ -108,7 +108,7 @@ public:
 		{
 			std::cout << "s[" << s << "] = " << arr[s] << " \n";
 		}
-		std::cout << "+----------------+"<< " \n";
+		std::cout << "++----------------++"<< " \n";
 		for (int s = i; s < size; s++)
 		{
 			std::cout << "s[" << s << "] = " << arr[s] << " \n";
