@@ -29,7 +29,7 @@
 #include "Corner.h"
 #include "Axys.h"
 #include "Direct_draw.h"
-#include "Array.cpp"
+#include "Array.h"
 
 #pragma execution_character_set("utf-8")
 
