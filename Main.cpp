@@ -63,9 +63,23 @@ struct MyStruct {
 		std::cout << "x: " << x << ", y: " << y << ", str: " << str << std::endl;
 	}
 
-	 std::ostream& operator<<(std::ostream& os, const MyStruct& obj) {
+	friend std::ostream& operator<<(std::ostream& os, const MyStruct& obj) 
+	{
 		os << "x: " << obj.x << ", y: " << obj.y << ", str: " << obj.str;
 		return os;
+	}
+
+	bool operator!=(const MyStruct& other) const
+	{
+		//std::cout << *this << " & " << other << "\n\n";
+		if	(
+			x == other.x &&
+			y == other.y &&
+			str == other.str
+			)
+			return false;
+
+		return true;
 	}
 };
 
@@ -82,14 +96,34 @@ int main(int argc, char const* argv[])
 
 	Array<MyStruct> q;
 
-	MyStruct msq(1, 0.01, 'a');
-	q.add_to_Array(msq);
-	q.printArray();
+	MyStruct qwe(1, 0.1, 'a');
+	q.add_to_Array(qwe);
+	//q.printArray();
 	//q.add_to_Array(10);
-	q.add_to_Array(9,8, 'b');
+	q.add_to_Array(2, 0.2, 'b');
+	//q.printArray();
+	q.add_to_Array(3, 0.3, 'c');
 	q.printArray();
-	q.add_to_Array(std::move(msq));
+	q.remove_from_Array(1);
 	q.printArray();
+	MyStruct asd(99, 0.99, 'w');
+	q.add_to_Array(std::move(asd));
+	q.printArray();
+	q.remove_from_Array(2);
+	q.printArray();
+	q.add_to_Array(4, 0.4, 'd');
+	q.cutArray();
+	q.printArray();
+
+	//Array w(q);
+	//w.printArray();
+
+	////w.add_to_Array(asd);
+	////w.add_to_Array(9, 8, 'b');
+	////w.add_to_Array(std::move(asd));
+
+	//if(q==w)
+	//	w.printArray();
 
 
 	//q.add_to_Array(6);
@@ -102,7 +136,6 @@ int main(int argc, char const* argv[])
 	//q.add_to_Array(-1);
 	//q.cutArray();
 	//q.printArray();
-	//q.remove_from_Array(1);
 	//q.printArray();
 	//q.add_to_Array(-999);
 	//q.printArray();
