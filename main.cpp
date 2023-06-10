@@ -41,9 +41,9 @@
 struct MyStruct {
 	int x;
 	double y;
-	std::string str;
+	char str;
 
-	MyStruct(int xValue, double yValue, const std::string& strValue)
+	MyStruct(int xValue, double yValue, const char strValue)
 		: x(xValue), y(yValue), str(strValue)
 	{
 		std::cout << "\n" << "constr" << "\n";
@@ -63,7 +63,7 @@ struct MyStruct {
 		std::cout << "x: " << x << ", y: " << y << ", str: " << str << std::endl;
 	}
 
-	friend std::ostream& operator<<(std::ostream& os, const MyStruct& obj) {
+	 std::ostream& operator<<(std::ostream& os, const MyStruct& obj) {
 		os << "x: " << obj.x << ", y: " << obj.y << ", str: " << obj.str;
 		return os;
 	}
@@ -82,11 +82,11 @@ int main(int argc, char const* argv[])
 
 	Array<MyStruct> q;
 
-	MyStruct msq(1,0.01, "ST");
+	MyStruct msq(1, 0.01, 'a');
 	q.add_to_Array(msq);
 	q.printArray();
 	//q.add_to_Array(10);
-	q.add_to_Array(9,8,"ST");
+	q.add_to_Array(9,8, 'b');
 	q.printArray();
 	q.add_to_Array(std::move(msq));
 	q.printArray();
