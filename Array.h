@@ -135,12 +135,12 @@ public:
 			std::cout << "s[" << s << "] = " << arr[s] << " \n";
 		}
 		std::cout << "++---INDEX_END---++"<< " \n";
-		//for (int s = i; s < size; s++)
-		//{
-		//	std::cout << "s[" << s << "] = " << arr[s] << " \n";
-		//}
-		//std::cout << "---SIZE_END---" << " \n";
-		//std::cout << std::endl;
+		for (int s = i; s < size; s++)
+		{
+			std::cout << "s[" << s << "] = " << arr[s] << " \n";
+		}
+		std::cout << "-----SIZE_END-----" << " \n";
+		std::cout << std::endl;
 	}
 
 	void cutArray()
