@@ -10,6 +10,58 @@
 
 #include <iostream>
 #include <ranges>
+
+struct MyStruct {
+	int x;
+	double y;
+	char str;
+
+	MyStruct(int xValue, double yValue, const char strValue)
+		: x(xValue), y(yValue), str(strValue)
+	{
+		std::cout << "\n" << "constr" << "\n";
+	}
+	MyStruct(MyStruct&& other) noexcept
+		: x(std::move(other.x)), y(std::move(other.y)), str(std::move(other.str))
+	{
+		std::cout << "\n" << "move" << "\n";
+	}
+	MyStruct(const MyStruct& other)
+		: x(other.x), y(other.y), str(other.str)
+	{
+		std::cout << "\n" << "copy" << "\n";
+	}
+
+	~MyStruct()
+	{
+		std::cout << "\n" << "destruction!!!" << "\n";
+	}
+
+	void print() const {
+		std::cout << "x: " << x << ", y: " << y << ", str: " << str << std::endl;
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const MyStruct& obj)
+	{
+		os << "x: " << obj.x << ", y: " << obj.y << ", str: " << obj.str;
+		return os;
+	}
+
+	bool operator!=(const MyStruct& other) const
+	{
+		//std::cout << *this << " & " << other << "\n\n";
+		if (
+			x == other.x &&
+			y == other.y &&
+			str == other.str
+			)
+			return false;
+
+		return true;
+	}
+};
+
+
 namespace TEST
 {
 
@@ -437,4 +489,93 @@ namespace TEST
 		}
 		std::cout << "\ntest_9_END\n";
 	}
+
+
+	void test_10()
+	{
+		Array<MyStruct> q(-1);
+
+		//MyStruct qwe(1, 0.1, 'a');
+		//q.add(qwe);
+		////q.print();
+		////q.add(10);
+		//q.add(2, 0.2, 'b');
+		////q.print();
+		//q.add(3, 0.3, 'c');
+		//q.print();
+		//q.remove(1);
+		//q.print();
+		//MyStruct asd(99, 0.99, 'w');
+		//q.add(std::move(asd));
+		//q.print();
+		//q.remove(2);
+		//q.print();
+		//q.add(4, 0.4, 'd');
+		//q.cut();
+		//q.print();
+
+		//Array w(q);
+		//w.print();
+
+		////w.add(asd);
+		////w.add(9, 8, 'b');
+		////w.add(std::move(asd));
+
+		//if(q==w)
+		//	w.print();
+
+
+		//q.add(6);
+		//q.add(5);
+		//q.add(4);
+		//q.add(3);
+		//q.add(2);
+		//q.add(1);
+		//q.add(0);
+		//q.add(-1);
+		//q.cutArray();
+		//q.print();
+		//q.print();
+		//q.add(-999);
+		//q.print();
+	}
+
+	void test_11()
+	{
+		Ray<int> empty0;
+
+		if (empty0.empty() == true)
+			std::cout << "empty0 start= " << empty0.empty() << "\n";
+
+		empty0.add_to_back(0);
+
+		if (empty0.empty() == false)
+			std::cout << "empty0 add_to_back= " << empty0.empty() << "\n";
+
+		empty0.remove(0);
+
+		if (empty0.empty() == true)
+			std::cout << "empty0 remove= " << empty0.empty() << "\n";
+
+		empty0.add_to_first(0);
+
+		if (empty0.empty() != true)
+			std::cout << "empty0 add_to_first= " << empty0.empty() << "\n";
+	
+	}
+
+
+
+
+	//std::cout << "\ntest_START\n";
+	//TEST::test_0();
+	//TEST::test_1();
+	//TEST::test_2();
+	//TEST::test_3();
+	//TEST::test_4();
+	//TEST::test_5();
+	////TEST::test_6();
+	////TEST::test_7();
+	//TEST::test_9();
+	//std::cout << "\ntest_END\n";
 };

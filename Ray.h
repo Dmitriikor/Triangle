@@ -470,6 +470,9 @@ public:
 
 	Ray& operator=(Ray&& other) noexcept;
 
+	 
+	Ray& operator+=(const Ray& other);
+
 	void push_back(const T& value);
 
 	void push_begin(const T& value);
@@ -844,6 +847,16 @@ Ray<T>& Ray<T>::operator=(const Ray<T>& other) {
 			ray_[i] = other.ray_[i];
 	}
 
+	return *this;
+}
+
+template<typename T>
+inline Ray<T>& Ray<T>::operator+=(const Ray& other)
+{
+	for (size_t i = 0; i < other.size(); i++)
+	{
+		this->add_to_back(other[i]);
+	}
 	return *this;
 }
 

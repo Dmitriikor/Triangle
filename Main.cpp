@@ -36,54 +36,6 @@
 #include "TESTS.h"
 #include "Interface.h"
 
-
-
-struct MyStruct {
-	int x;
-	double y;
-	char str;
-
-	MyStruct(int xValue, double yValue, const char strValue)
-		: x(xValue), y(yValue), str(strValue)
-	{
-		std::cout << "\n" << "constr" << "\n";
-	}
-	MyStruct(MyStruct&& other) noexcept
-		: x(std::move(other.x)), y(std::move(other.y)), str(std::move(other.str))
-	{
-		std::cout << "\n" << "move" << "\n";
-	}
-	MyStruct(const MyStruct& other)
-		: x(other.x), y(other.y), str(other.str)
-	{
-		std::cout << "\n" << "copy" << "\n";
-	}
-
-	void print() const {
-		std::cout << "x: " << x << ", y: " << y << ", str: " << str << std::endl;
-	}
-
-	friend std::ostream& operator<<(std::ostream& os, const MyStruct& obj) 
-	{
-		os << "x: " << obj.x << ", y: " << obj.y << ", str: " << obj.str;
-		return os;
-	}
-
-	bool operator!=(const MyStruct& other) const
-	{
-		//std::cout << *this << " & " << other << "\n\n";
-		if	(
-			x == other.x &&
-			y == other.y &&
-			str == other.str
-			)
-			return false;
-
-		return true;
-	}
-};
-
-
  /**
 	 @brief  main главная функция
 	 @param  argc - none
@@ -92,163 +44,49 @@ struct MyStruct {
  **/
 int main(int argc, char const* argv[])
 {
-	setlocale(LC_ALL, "Russian");	//! @param setlocale(LC_ALL, "Russian") - принудительно устанавливает локаль
+	setlocale(LC_ALL, "Russian");	 
+	Interface in_use;
+	r_data gets;
+	gets = in_use.test_nana();
+	//Ray<Dot> point_arr;
+	//size_t n_points;
+	if (gets.points == -1)
+		return -99;
 
-	Array<MyStruct> q;
+	time_t t1 = clock();
 
-	MyStruct qwe(1, 0.1, 'a');
-	q.add_to_Array(qwe);
-	//q.printArray();
-	//q.add_to_Array(10);
-	q.add_to_Array(2, 0.2, 'b');
-	//q.printArray();
-	q.add_to_Array(3, 0.3, 'c');
-	q.printArray();
-	q.remove_from_Array(1);
-	q.printArray();
-	MyStruct asd(99, 0.99, 'w');
-	q.add_to_Array(std::move(asd));
-	q.printArray();
-	q.remove_from_Array(2);
-	q.printArray();
-	q.add_to_Array(4, 0.4, 'd');
-	q.cutArray();
-	q.printArray();
+	Triangle_hi Fin_Triangle;
+	Fin_Triangle = Find_Triangle(gets.arrs, gets.points);
+	time_t t2 = clock();
 
-	//Array w(q);
-	//w.printArray();
+	Ray<Dot> copy_to_print;
+	if (Fin_Triangle.get_dot_counter() != 0)
+	{
+		Corner out_print;
+		out_print.insert(Fin_Triangle.get_point_array(), '*');
+		out_print.insert(copy_to_print);
+		out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(), '+');
+		out_print.insert_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(), '+');
+		out_print.insert_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(), '+');
+		out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(), '+');
+		out_print.render_matrix();
+		out_print.print();
+		out_print.print_to_file();
 
-	////w.add_to_Array(asd);
-	////w.add_to_Array(9, 8, 'b');
-	////w.add_to_Array(std::move(asd));
+		Axys a_out_print;
+		a_out_print += out_print;
+		a_out_print.render_matrix();
+		a_out_print.print();
 
-	//if(q==w)
-	//	w.printArray();
+		Direct_draw ttst;
+		ttst += out_print;
+		ttst.render_matrix();
+		ttst.print();
+	}
 
+	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
 
-	//q.add_to_Array(6);
-	//q.add_to_Array(5);
-	//q.add_to_Array(4);
-	//q.add_to_Array(3);
-	//q.add_to_Array(2);
-	//q.add_to_Array(1);
-	//q.add_to_Array(0);
-	//q.add_to_Array(-1);
-	//q.cutArray();
-	//q.printArray();
-	//q.printArray();
-	//q.add_to_Array(-999);
-	//q.printArray();
-
-	return 1;
-
-	std::cout << "\n" << "2" << "\n";
-
-	/**
-	 * @brief Объявление интерфейса
-	 */
-	 //Interface window;
-	 /**
-	  * @brief скрытие консоли
-	  */
-
-	Ray<int> empty0;
-
-	if (empty0.empty() == true)
-		std::cout << "empty0 start= " << empty0.empty() << "\n";
-
-	empty0.add_to_back(0);
-
-	if (empty0.empty() == false)
-		std::cout << "empty0 add_to_back= " << empty0.empty() << "\n";
-
-	empty0.remove(0);
-
-	if (empty0.empty() == true)
-		std::cout << "empty0 remove= " << empty0.empty() << "\n";
-
-	empty0.add_to_first(0);
-
-	if (empty0.empty() != true)
-		std::cout << "empty0 add_to_first= " << empty0.empty() << "\n";
-
-	std::cout << "\ntest_START\n";
-	TEST::test_0();
-	TEST::test_1();
-	TEST::test_2();
-	TEST::test_3();
-	TEST::test_4();
-	TEST::test_5();
-	//TEST::test_6();
-	//TEST::test_7();
-	TEST::test_9();
-	std::cout << "\ntest_END\n";
-
-	/**///window.HideConsoleWindow();
-
-	/**
-	 * @brief запуск тестовой функции
-	 */
-	 //window.test_nana();
-	 //window.ShowConsoleWindow();
-	 //window.st_diag();
-
-	 /**
-	 * @brief запуск таймера
-	 *
-	 */
-	 //time_t t1 = clock();													//! @param time_t t1 - запуск таймера, засекаем время
-
-	 //Triangle_hi Fin_Triangle;
-	 //Fin_Triangle = Find_Triangle(point_arr, n_points);
-
-	 //Ray<Dot> copy_to_print;
-	 //if (Find_Triangle.get_dot_counter() != 0)
-	 //{
-	 //	Corner out_print;
-
-	 //	out_print.insert(Fin_Triangle.get_point_array(), '*');
-
-	 //	//  for (size_t i = 0; i < Fin_Triangle.size_point_array(); i++)
-	 //	//	copy_to_print.add_to_back(Fin_Triangle.get_point(i));
-
-	 //	out_print.insert(copy_to_print);
-	 //	out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_b(), '*');
-	 //	out_print.insert_line(Fin_Triangle.get_b(), Fin_Triangle.get_c(), '*');
-	 //	out_print.insert_line(Fin_Triangle.get_c(), Fin_Triangle.get_a(), '*');
-	 //	out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(), '+');
-	 //	out_print.render_matrix();
-	 //	out_print.print();
-	 //	out_print.print_to_file();
-
-	 //	Axys a_out_print;
-	 //	a_out_print += out_print;
-	 //	a_out_print.render_matrix();
-	 //	a_out_print.print();
-	 //	a_out_print.insert_line({ 10,10 }, { -10,-10 }, '*');
-	 //	a_out_print.render_matrix();
-	 //	a_out_print.print();
-	 //	a_out_print.remove_line({ 10,10 }, { -10,-10 });
-	 //	a_out_print.render_matrix();
-	 //	a_out_print.print();
-
-	 //	Direct_draw ttst;
-	 //	ttst.insert_line({ 0,0 }, { 0,0 }, '&');
-	 //	ttst.insert_line({ 1,1 }, { 1,1 }, '/');
-	 //	ttst.insert_line({ 3,1 }, { 3, 1 }, '\\');
-	 //	ttst.insert_line({ 0,10 }, { 10, 0 }, '&');
-	 //	ttst += out_print;
-	 //	ttst.render_matrix();
-	 //	ttst.print();
-	 //}
-
-	 ///**
-	 // * @brief запуск второго таймера
-	 // */
-	 //time_t t2 = clock();
-	 //std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
-
-	 //int AV2;
-	 //std::cin >> AV2;
+	int AV2;
+	std::cin >> AV2;
 	return 0;
 }

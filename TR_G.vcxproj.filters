@@ -63,6 +63,9 @@
     <ClCompile Include="Array.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
+    <ClCompile Include="forward.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Axys.h">
