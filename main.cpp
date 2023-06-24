@@ -48,10 +48,11 @@ int main(int argc, char const* argv[])
 	Interface in_use;
 	r_data gets;
 	gets = in_use.test_nana();
-	//Ray<Dot> point_arr;
-	//size_t n_points;
 	if (gets.points == -1)
 		return -99;
+
+	//Ray<Dot> point_arr;
+	//size_t n_points;
 
 	time_t t1 = clock();
 
