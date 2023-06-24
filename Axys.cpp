@@ -49,7 +49,7 @@ void Axys::calculate_matrix()
 	{
 		width_x_loc = width_x() - 1;
 	}
-	width_y_loc = width_x();
+	width_y_loc = width_y();
 	
 
 	int N, M;
