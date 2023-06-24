@@ -65,7 +65,7 @@ public:
 	static void on_button_click();
 	void  win_cl(nana::form& form);
 	void on_button_click_2(nana::label& lbl_for_button_funct)const;
-										//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
+	//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
 	HWND consoleWindow;
 	Ray<Dot> point_arr;
 	size_t n_points;
@@ -77,9 +77,9 @@ public:
 	r_data test_nana()
 	{
 
-		
-			nana::form form{ nana::API::make_center(350, 430) };
-			nana::place layout(form);
+
+		nana::form form{ nana::API::make_center(350, 430) };
+		nana::place layout(form);
 
 		//nana::form form{ nana::size{ 960, 480 } };	//! @param nana::form form - создаем форму(окно)  \a form с помощью
 		{
@@ -110,7 +110,7 @@ public:
 		test.Y_vertical = 10;
 
 		//счет запусков, неважно
-			char str[100];
+		char str[100];
 		{
 			FILE* fp;
 			int num;
@@ -130,7 +130,7 @@ public:
 			fprintf(fp, "%d", num);
 			fclose(fp);
 		}
-		std::cout << "\n"<< str <<" ";
+		std::cout << "\n" << str << " ";
 		{
 			const std::string FILENAME = "FILE_2";
 			int number;
@@ -173,7 +173,7 @@ public:
 		//button.events().click([this, &lbl_for_button_funct]() { on_button_click_2(lbl_for_button_funct); });
 		nana::checkbox checkbox{ form, "Редактировать" };
 		textbox.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, 180, 40));
-		checkbox.move(nana::rectangle(test.X_horizontal + 190, test.Y_vertical+=10, test.width_in_pixels, test.height_in_pixels));
+		checkbox.move(nana::rectangle(test.X_horizontal + 190, test.Y_vertical += 10, test.width_in_pixels, test.height_in_pixels));
 		checkbox.events().click([&] {
 			std::cout << "The checkbox is " << (checkbox.checked() ? "checked" : "unchecked") << std::endl;
 			checkbox_bool = checkbox.checked();
@@ -186,18 +186,18 @@ public:
 		r_data get_b;
 		get_b.points = -1;
 		//n_points = n;
-		
+
 		test.Y_vertical = test.Y_vertical + 50;
 		// Создание группы 1
 		nana::checkbox checkbox1(form, nana::rectangle(test.X_horizontal, test.Y_vertical + test.height_in_pixels + 10, 150, 25));
 		nana::checkbox checkbox2(form, nana::rectangle(test.X_horizontal, test.Y_vertical + test.height_in_pixels + 40, 150, 25));
 		nana::checkbox checkbox3(form, nana::rectangle(test.X_horizontal, test.Y_vertical + test.height_in_pixels + 70, 150, 25));
 		// Создание группы 2
-		nana::checkbox checkbox4(form, nana::rectangle(test.X_horizontal+200, test.Y_vertical + test.height_in_pixels + 10, 150, 25));
-		nana::checkbox checkbox5(form, nana::rectangle(test.X_horizontal+200, test.Y_vertical + test.height_in_pixels + 40, 150, 25));
-		nana::checkbox checkbox6(form, nana::rectangle(test.X_horizontal+200, test.Y_vertical + test.height_in_pixels + 70, 150, 25));
+		nana::checkbox checkbox4(form, nana::rectangle(test.X_horizontal + 200, test.Y_vertical + test.height_in_pixels + 10, 150, 25));
+		nana::checkbox checkbox5(form, nana::rectangle(test.X_horizontal + 200, test.Y_vertical + test.height_in_pixels + 40, 150, 25));
+		nana::checkbox checkbox6(form, nana::rectangle(test.X_horizontal + 200, test.Y_vertical + test.height_in_pixels + 70, 150, 25));
 		// Подписи
-		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25)); 
+		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25));
 		lbl.caption("Выберите режим:");
 
 		checkbox1.caption("input on file");
@@ -248,14 +248,14 @@ public:
 			});
 		//кнопка запуска
 		button2.move(nana::rectangle(test.X_horizontal, test.Y_vertical + test.height_in_pixels + 150, test.width_in_pixels, test.height_in_pixels));										//! @param nana::button button - создаем с заданными размерами и местоположением
-		button2.caption("Выполнить");	
+		button2.caption("Выполнить");
 		button2.events().click([&]()
 			{
-						std::string text_value;
-						text_value = textbox.caption();
-						n_points = std::stoi(text_value);
-				if (input_switch != -1 && n_points >=3)
-				{						
+				std::string text_value;
+				text_value = textbox.caption();
+				n_points = std::stoi(text_value);
+				if (input_switch != -1 && n_points >= 3)
+				{
 					get_b = st_diag();
 					win_cl(form);
 					system("cls");
@@ -380,7 +380,7 @@ public:
 			return back;
 		}
 		}
-		
+
 		back.arrs = point_arr;
 		back.points = n_points;
 		return back;
