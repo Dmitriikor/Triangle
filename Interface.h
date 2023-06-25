@@ -6,7 +6,7 @@
 #include "nana/gui/widgets/checkbox.hpp"
 #include "nana/gui/widgets/textbox.hpp"
 #include "nana/gui/place.hpp"
-
+#include "nana/gui/place.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -33,11 +33,11 @@ std::streamsize static const MAX_STREAMSIZE = std::numeric_limits<std::streamsiz
 */
 #include "Windows.h"
 
-struct r_data
-{
-	Ray<Dot> arrs;
-	size_t points;
-};
+//struct r_data
+//{
+//	Ray<Dot> arrs;
+//	size_t points;
+//};
 
 struct pos_elem
 {
@@ -66,17 +66,18 @@ public:
 	void  win_cl(nana::form& form);
 	void on_button_click_2(nana::label& lbl_for_button_funct)const;
 	//! @param n_points - задаем количество точек из которых будем пытаться создать треугольники
+
 	HWND consoleWindow;
 	Ray<Dot> point_arr;
 	size_t n_points;
 	bool checkbox_bool;
 	int input_switch = -1;
 
+	Interface();
 
-
-	r_data test_nana()
+	Ray<Dot> test_nana()
 	{
-
+		
 
 		nana::form form{ nana::API::make_center(350, 430) };
 		nana::place layout(form);
@@ -130,6 +131,7 @@ public:
 			fprintf(fp, "%d", num);
 			fclose(fp);
 		}
+
 		std::cout << "\n" << str << " ";
 		{
 			const std::string FILENAME = "FILE_2";
@@ -172,9 +174,21 @@ public:
 		//button.events().click(std::bind(on_button_click_2, std::ref(lbl_for_button_funct)));  //! @param button.events().click(std::bind_front(on_button_click_2, std::ref(lbl_for_button_funct))) - создаем эвент который по клику вызывает функцию и передает в нее ссылку \a nana::label
 		//button.events().click([this, &lbl_for_button_funct]() { on_button_click_2(lbl_for_button_funct); });
 		nana::checkbox checkbox{ form, "Редактировать" };
+
+		layout.div(
+			"vert margin=10 gap=10 <weight=90>"
+			"<weight=20><hight=10><button>"
+			"<weight=20> <button1>"
+			"<weight=20> <button2>"
+		);
+		layout["button"] << button2;
+		layout["button1"] << button2;
+		layout["button2"] << button2;
+		layout.collocate();
+
 		textbox.move(nana::rectangle(test.X_horizontal, test.Y_vertical += test.height_in_pixels, 180, 40));
 		checkbox.move(nana::rectangle(test.X_horizontal + 190, test.Y_vertical += 10, test.width_in_pixels, test.height_in_pixels));
-		checkbox.events().click([&] {
+		checkbox.events().click([&checkbox_bool = checkbox_bool, &checkbox]() {
 			std::cout << "The checkbox is " << (checkbox.checked() ? "checked" : "unchecked") << std::endl;
 			checkbox_bool = checkbox.checked();
 			});
@@ -183,8 +197,7 @@ public:
 
 		caption_text(form, textbox, test);
 
-		r_data get_b;
-		get_b.points = -1;
+		Ray<Dot> get_b;
 		//n_points = n;
 
 		test.Y_vertical = test.Y_vertical + 50;
@@ -200,13 +213,6 @@ public:
 		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25));
 		lbl.caption("Выберите режим:");
 
-		nana::radio_group group;
-		group.add(checkbox1);
-		group.add(checkbox2);
-		group.add(checkbox3);
-		group.add(checkbox4);
-		group.add(checkbox5);
-		group.add(checkbox6);
 		checkbox1.caption("input on file");
 		checkbox2.caption("generate random");
 		checkbox3.caption("Checkbox 3");
@@ -274,7 +280,7 @@ public:
 		return get_b;
 	}
 
-	Interface();
+
 
 	void caption_text(nana::form& form, nana::textbox& textbox, struct pos_elem test)
 	{
@@ -312,10 +318,8 @@ public:
 			});
 	}
 
-	r_data st_diag()
+	Ray<Dot> st_diag()
 	{
-		r_data back;
-		back.points = 0;
 		//std::cout << "\t input n_points \n";
 		//std::cin >> n_points;
 		//std::cout << n_points << std::endl;
@@ -330,7 +334,7 @@ public:
 		//std::cin.ignore(MAX_STREAMSIZE, '\n');
 		if (input_switch != 1 && input_switch != 2 && input_switch != 3) {
 			std::cout << "PROGRAM OVER\n";
-			return back;
+			return Ray<Dot>();
 		}
 
 		std::ifstream infile(path_in);
@@ -344,6 +348,7 @@ public:
 		if (input_switch == 1)
 			std::cout << "\n \tAttention! Only the above quantity will be taken from the file \n\n";
 
+		///!!! разбить на два цикла
 		for (size_t i = 0; i < n_points; i++) {							//! @param for temp - Генерируем точки с помощью функции utilities::random_INT
 			Dot temp;
 
@@ -357,6 +362,7 @@ public:
 			point_arr.add_to_back(temp);
 		}
 
+		//!!! РАДИО BUTTON ?
 		int case_to_output_file_patch_switch;							//! @param case_to_output_file_patch_switch - выбираем путь откуда будем брать список точек и куда сохраним выходные треугольники
 		std::cout << "Choise input and output file settings:\n";
 		std::cout << "\t 1 Take file from root folder, \n";
@@ -384,13 +390,11 @@ public:
 		default:
 		{
 			std::cout << "PROGRAM OVER\n";
-			return back;
+			return Ray<Dot>();
 		}
 		}
 
-		back.arrs = point_arr;
-		back.points = n_points;
-		return back;
+		return point_arr;
 	}
 
 private:

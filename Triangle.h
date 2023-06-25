@@ -1,4 +1,4 @@
-#ifndef TRIANGLE_TEST_H__
+﻿#ifndef TRIANGLE_TEST_H__
 
 #define TRIANGLE_TEST_H__
 
@@ -100,6 +100,8 @@ public:
 			is_triangle = false;
 
 	};
+
+	Triangle_hi(const Triangle_hi& other) = default;
 
 	//Triangle_hi(const Triangle_hi& other) //!!! other
 	//	: Triangle_low(other), side(other.side), dot_counter(other.dot_counter), point_in_triangle(other.point_in_triangle),

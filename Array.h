@@ -13,7 +13,7 @@ public:
 	Array(size_t capacity_) : capacity_(capacity_)
 	{
 		arr_ = reinterpret_cast<T*>(malloc(capacity_ * sizeof(T)));
-		//if ...
+		//if arr_ == nullptr ...
 	}
 	Array(const Array<T>& other)
 	{
@@ -21,20 +21,27 @@ public:
 		capacity_ = other.capacity_;
 		size_ = 0;
 		arr_ = reinterpret_cast<T*>(malloc(capacity_ * sizeof(T)));
-		//if ...
-		for (size_t cntr = 0; cntr < other.size_; cntr++)
+		//if arr_ == nullptr ...
+		
+		//=>
+
+		//delegating constructor
+		
+		for (size_t i = 0; i < other.size_; i++)
 		{
-			add_to_Array(other.arr_[cntr]);
+			//push_back(other.arr_[i]);
+			//construct as copy
 		}
 	}
 	~Array()
 	{
-		for (size_t i = 0; i < size_; i++)
+		/*for (size_t i = 0; i < size_; i++)
 		{
 			arr_[i].~T();
 		}
 		free(arr_);
-		arr_ = nullptr;
+		arr_ = nullptr;*/
+		clear();
 	}
 	bool operator==(const Array& other) const
 	{
@@ -64,7 +71,7 @@ public:
 	template<typename... Elements>
 	void push_back(Elements&&... values)
 	{
-		if (size_ >= capacity_)
+		if (size_ == capacity_)
 		{
 			increaseCapacity();
 		}
@@ -76,19 +83,20 @@ public:
 	{
 		if (size_ == 0)
 		{
+			//throw ...
 			return;
 		}
 
 		size_--;
 
-		if (size_ >= 0)
+		if (size_ > 0)
 		{
+			//деструктор
 			memmove(arr_, arr_ + 1, size_ * sizeof(T));
 		}
 		else
 		{
-			free(arr_);
-			arr_ = nullptr;
+			clear();
 		}
 	}
 	T& at(size_t index)
@@ -101,10 +109,12 @@ public:
 	}
 	T& front()
 	{
+		//throw ...
 		return arr_[0];
 	}
 	T& back()
 	{
+		//throw ...
 		return arr_[size_-1];
 	}
 	class Iterator
@@ -161,14 +171,17 @@ public:
 			return ptr_ != other.ptr_;
 		}
 	};
+
 	Iterator begin()
 	{
 		return Iterator(arr_);
 	}
+
 	Iterator end()
 	{
 		return Iterator(arr_ + size_);
 	}
+
 	void clear()
 	{
 		for (size_t i = 0; i < size_; i++)
@@ -179,19 +192,22 @@ public:
 		arr_ = nullptr;
 		size_ = 0;
 	}
+
 	void insert(size_t index, T& const value)
 	{
-		if (index < 0 || index > size_ || arr_ == nullptr)
+		//вставка по нулевому индексу в конец пустого массива?
+
+		if (index < 0 || index > size_)
 		{
 			std::cout << "Invalid index!" << '\n';
 			return;
 		}
-		if (size_ >= capacity_)
+		if (size_ == capacity_)
 		{
 			increaseCapacity();
 		}
 		//memmove(arr_ + index + 1, arr_ + index, (size_ - index) * sizeof(T));
-		std::copy(arr_ + index, arr_ + size_ - 1, arr_ + index + 1);
+		std::move_backward(arr_ + index, arr_ + size_, arr_ + index + 1);
 		arr_[index] = value;
 		size_++;
 	}
@@ -220,7 +236,7 @@ public:
 
 		size_--;
 
-		if (size_ >= 0)
+		if (size_ > 0)
 		{
 			//T* new_arr = reinterpret_cast<T*>(malloc(size_ * sizeof(T)));
 			//if (index > 0)
@@ -236,18 +252,17 @@ public:
 			arr_[index].~T();
 
 			memmove(arr_ + index, arr_ + index + 1, (size_ - index) * sizeof(T));
-
+			//std::move(...)
 		}
 		else
 		{
-			free(arr_);
-			arr_ = nullptr;
+			clear();
 		}
 	}
 	template<typename... Args>
 	void emplace(Args&&... args)
 	{
-		if (size_ >= capacity_)
+		if (size_ == capacity_)
 		{
 			increaseCapacity();
 		}
@@ -280,12 +295,12 @@ public:
 		capacity_ = size_;
 		arr_ = new_arr;
 	}
-	void resize(int index)
+	void resize(int size)
 	{
-		increaseCapacity(index);
+		increaseCapacity(size);
 	}
 private:
-	void increaseCapacity(int value = 10)
+	void increaseCapacity(int delta = 10)
 	{
 		//T* new_arr = reinterpret_cast<T*>(malloc((capacity_ + value) * sizeof(T)));
 		//memcpy(new_arr, arr_, size_ * sizeof(T));
@@ -297,7 +312,7 @@ private:
 		//arr_ = new_arr;
 		//capacity_ = capacity_ + value;
 		//std::cout << "realloc" << std::endl;
-		T* new_arr = reinterpret_cast<T*>(realloc(arr_, (capacity_ + value) * sizeof(T)));
+		T* new_arr = reinterpret_cast<T*>(realloc(arr_, (capacity_ + delta) * sizeof(T)));
 		if (new_arr == nullptr)
 		{
 			std::cout << "arr_ == nullptr" << std::endl;
@@ -305,7 +320,7 @@ private:
 			throw std::bad_alloc();
 		}
 		arr_ = new_arr;
-		capacity_ = capacity_ + value;
+		capacity_ = capacity_ + delta;
 	}
 	//push_back
 	//void add_to_Array(const T& value)
