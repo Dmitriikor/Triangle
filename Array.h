@@ -284,6 +284,29 @@ public:
 	{
 		increaseCapacity(index);
 	}
+private:
+	void increaseCapacity(int value = 10)
+	{
+		//T* new_arr = reinterpret_cast<T*>(malloc((capacity_ + value) * sizeof(T)));
+		//memcpy(new_arr, arr_, size_ * sizeof(T));
+		////for (size_t s = 0; s < capacity_; s++)
+		////{
+		////    new_arr[s] = arr_[s];
+		////}
+		//free(arr_);
+		//arr_ = new_arr;
+		//capacity_ = capacity_ + value;
+		//std::cout << "realloc" << std::endl;
+		T* new_arr = reinterpret_cast<T*>(realloc(arr_, (capacity_ + value) * sizeof(T)));
+		if (new_arr == nullptr)
+		{
+			std::cout << "arr_ == nullptr" << std::endl;
+			//free(arr_);
+			throw std::bad_alloc();
+		}
+		arr_ = new_arr;
+		capacity_ = capacity_ + value;
+	}
 	//push_back
 	//void add_to_Array(const T& value)
 	//{
@@ -313,27 +336,4 @@ public:
 	//	new(arr_ + size_) T(a, b, c);
 	//	++size_;
 	//}
-private:
-	void increaseCapacity(int value = 10)
-	{
-		//T* new_arr = reinterpret_cast<T*>(malloc((capacity_ + value) * sizeof(T)));
-		//memcpy(new_arr, arr_, size_ * sizeof(T));
-		////for (size_t s = 0; s < capacity_; s++)
-		////{
-		////    new_arr[s] = arr_[s];
-		////}
-		//free(arr_);
-		//arr_ = new_arr;
-		//capacity_ = capacity_ + value;
-		//std::cout << "realloc" << std::endl;
-		T* new_arr = reinterpret_cast<T*>(realloc(arr_, (capacity_ + value) * sizeof(T)));
-		if (new_arr == nullptr)
-		{
-			std::cout << "arr_ == nullptr" << std::endl;
-			//free(arr_);
-			throw std::bad_alloc();
-		}
-		arr_ = new_arr;
-		capacity_ = capacity_ + value;
-	}
 };
