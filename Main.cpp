@@ -54,6 +54,7 @@ int main(int argc, char const* argv[])
 
 	//Ray<Dot> point_arr;
 	//size_t n_points;
+	in_use.ShowConsoleWindow();
 
 	time_t t1 = clock();
 
@@ -87,7 +88,6 @@ int main(int argc, char const* argv[])
 	}
 
 	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
-	in_use.ShowConsoleWindow();
 	int AV2;
 	std::cin >> AV2;
 	return 0;
