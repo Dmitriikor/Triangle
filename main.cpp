@@ -31,14 +31,10 @@
 #include "Direct_draw.h"
 #include "Array.h"
 
-
 #pragma execution_character_set("utf-8")
 
 #include "TESTS.h"
 #include "Interface.h"
-#include "Nana_newWindow.h"
-#include "panel_scrolled.h"
-
 
  /**
 	 @brief  main главная функция
@@ -51,18 +47,18 @@ int main(int argc, char const* argv[])
 	setlocale(LC_ALL, "Russian");	 
 	Interface in_use;
 	in_use.HideConsoleWindow();
-	r_data gets;
-	gets = in_use.test_nana();
-	if (gets.points == -1)
+	auto gets = in_use.test_nana();
+	if (gets.size() == 0)
 		return -99;
 
 	//Ray<Dot> point_arr;
 	//size_t n_points;
+	in_use.ShowConsoleWindow();
 
 	time_t t1 = clock();
 
 	Triangle_hi Fin_Triangle;
-	Fin_Triangle = Find_Triangle(gets.arrs, gets.points);
+	Fin_Triangle = Find_Triangle(gets);
 	time_t t2 = clock();
 
 	Ray<Dot> copy_to_print;
@@ -79,9 +75,6 @@ int main(int argc, char const* argv[])
 		out_print.print();
 		out_print.print_to_file();
 
-		nana_extra::test_ex qqqq;
-		qqqq.test();
-
 		Axys a_out_print;
 		a_out_print += out_print;
 		a_out_print.render_matrix();
@@ -94,9 +87,7 @@ int main(int argc, char const* argv[])
 	}
 
 	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
-	in_use.ShowConsoleWindow();
 	int AV2;
 	std::cin >> AV2;
-
 	return 0;
 }
