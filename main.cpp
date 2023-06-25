@@ -46,6 +46,7 @@ int main(int argc, char const* argv[])
 {
 	setlocale(LC_ALL, "Russian");	 
 	Interface in_use;
+	in_use.HideConsoleWindow();
 	r_data gets;
 	gets = in_use.test_nana();
 	if (gets.points == -1)
@@ -86,7 +87,7 @@ int main(int argc, char const* argv[])
 	}
 
 	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
-
+	in_use.ShowConsoleWindow();
 	int AV2;
 	std::cin >> AV2;
 	return 0;
