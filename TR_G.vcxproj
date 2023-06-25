@@ -187,6 +187,7 @@
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
       <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
     </ClCompile>
+    <ClCompile Include="Nana_newWindow.h" />
     <ClCompile Include="Point.cpp">
       <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
@@ -225,6 +226,7 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="IT_TEST.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="panel_scrolled.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="TESTS.h" />

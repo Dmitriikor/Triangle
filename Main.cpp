@@ -31,10 +31,14 @@
 #include "Direct_draw.h"
 #include "Array.h"
 
+
 #pragma execution_character_set("utf-8")
 
 #include "TESTS.h"
 #include "Interface.h"
+#include "Nana_newWindow.h"
+#include "panel_scrolled.h"
+
 
  /**
 	 @brief  main главная функция
@@ -54,7 +58,6 @@ int main(int argc, char const* argv[])
 
 	//Ray<Dot> point_arr;
 	//size_t n_points;
-	in_use.ShowConsoleWindow();
 
 	time_t t1 = clock();
 
@@ -76,6 +79,9 @@ int main(int argc, char const* argv[])
 		out_print.print();
 		out_print.print_to_file();
 
+		nana_extra::test_ex qqqq;
+		qqqq.test();
+
 		Axys a_out_print;
 		a_out_print += out_print;
 		a_out_print.render_matrix();
@@ -88,7 +94,9 @@ int main(int argc, char const* argv[])
 	}
 
 	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
+	in_use.ShowConsoleWindow();
 	int AV2;
 	std::cin >> AV2;
+
 	return 0;
 }

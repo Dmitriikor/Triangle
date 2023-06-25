@@ -6,7 +6,7 @@
 #include "nana/gui/widgets/checkbox.hpp"
 #include "nana/gui/widgets/textbox.hpp"
 #include "nana/gui/place.hpp"
-#include "nana/gui/place.hpp"
+
 
 #include <fstream>
 #include <sstream>
@@ -200,6 +200,13 @@ public:
 		lbl.move(nana::rectangle(test.X_horizontal, test.Y_vertical, test.width_in_pixels = 200, test.height_in_pixels = 25));
 		lbl.caption("Выберите режим:");
 
+		nana::radio_group group;
+		group.add(checkbox1);
+		group.add(checkbox2);
+		group.add(checkbox3);
+		group.add(checkbox4);
+		group.add(checkbox5);
+		group.add(checkbox6);
 		checkbox1.caption("input on file");
 		checkbox2.caption("generate random");
 		checkbox3.caption("Checkbox 3");
