@@ -11,6 +11,10 @@ void  Interface::on_button_click()
 	std::cout << "Button clicked!" << std::endl;
 	
 }
+void  Interface::win_cl(nana::form& form)
+{
+	form.close();
+}
 
 /**
 	@fn    on_button_click_2

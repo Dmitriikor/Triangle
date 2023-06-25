@@ -9,12 +9,14 @@
 //include <utility>
 #include <span>
 
+#include <iterator>
 
 template <typename T>
 class Ray {
 private:
 
 	///!!! initialization in initializer-list (in constructors)
+	//friend class iterator;
 
 	T* ray_ = nullptr;
 
@@ -47,138 +49,391 @@ private:
 
 	template<typename T>
 	friend void print(const Ray<T>& Ray);
+	friend class iterator;
+	friend class с_iterator;
 
-
-	void MOVE_(Ray<T>& other);
+		void MOVE_(Ray<T>& other);
 	void SWAP_(Ray& other);
 
 public:
 
 
-	class star_it {
-	public:
-		explicit star_it(T* p) : ptr_(p) {}
+	//class star_it {
+	//public:
+	//	explicit star_it(T* p) : ptr_(p) {}
+	//	auto operator<=>(const star_it& other) const
+	//	{
+	//		return ptr_ <=> other.ptr_;
+	//	}
+	//	T& operator*() const
+	//	{
+	//		return *ptr_;
+	//	}
+	//	T* operator->() const
+	//	{
+	//		return ptr_;
+	//	}
+	//	star_it& operator++() {
+	//		++ptr_;
+	//		return *this;
+	//	}
+	//	bool operator==(star_it& other)
+	//	{
+	//		return ptr_ == other.ptr_;
+	//	}
+	//	star_it& operator+=(int n)
+	//	{
+	//		ptr_ += n;
+	//		return *ptr_;
+	//	}
+	//private:
+	//	T* ptr_;
+	//};
+	//star_it s_begin() { return star_it(ray_ + (LEFT - F_LEFT)); }
+	//star_it s_end() { return star_it(ray_ + (LEFT + F_RIGHT)); }
 
-		auto operator<=>(const star_it& other) const 
-		{
-			return ptr_ <=> other.ptr_;
-		}
-		T& operator*() const
-		{
-			return *ptr_;
-		}
-		star_it& operator++() {
-			++ptr_;
-			return *this;
-		}
-		bool operator==(star_it& other)
-		{
-			return ptr_ == other.ptr_;
-		}
 
-		star_it& operator+=(T& n)
-		{
-			ptr_ += n;
-			return *ptr_;
-		}
 
-	private:
-		T* ptr_;
-	};
-
-	star_it s_begin() { return star_it(ray_); }
-	star_it s_end() { return star_it(ray_ + (F_LEFT + F_RIGHT)); }
-	 
 	class iterator {
-	public:
-		explicit iterator(T* p) : ptr_(p)  {}
+	private:
+		friend class Ray;
 
-		T& operator*() const 
-		{ 
-			return *ptr_;
+		//!!! МОЖНО ПЕРЕДАВАТЬ THIS
+		explicit iterator(Ray* ray_sended, size_t ind) : _Ray_(ray_sended), index_(ind)
+		{
 		}
 
-		iterator& operator++() { 
-			++ptr_; 
+	public:
+		using value_type = T;
+		using pointer = T*;
+		using reference = T&;
+		using difference_type = std::ptrdiff_t;
+		using iterator_category = std::contiguous_iterator_tag;
+
+
+		///////
+
+		pointer data()
+		{
+			return _Ray_->data();
+		}
+		const pointer cdata() const {
+			return _Ray_->data();
+		}
+		const pointer data() const {
+			return _Ray_->data();
+		}
+		bool empty() const {
+			return _Ray_->empty();
+		}
+		size_t size() const {
+			return _Ray_->size();
+		}
+		reference operator[](size_t index) {
+			return *(_Ray_->ray_[index]);  
+		}
+
+		//////
+
+
+		reference operator*() const
+		{
+			return _Ray_->ray_[index_];
+		}
+		pointer operator->() const
+		{
+			return _Ray_->ray_ + index_;
+		}
+		iterator& operator++()
+		{
+			++index_;
 			return *this;
 		}
-
-		//bool operator!=(const iterator& other) const	
-		//{ 
-		//	return ptr_ != other.ptr_;
+		iterator operator++(int)
+		{
+			iterator tmp = *this;
+			++(*this);
+			return tmp;
+		}
+		iterator& operator--()
+		{
+			--index_;
+			return *this;
+		}
+		iterator operator--(int)
+		{
+			iterator tmp = *this;
+			--(*this);
+			return tmp;
+		}
+		iterator& operator+=(difference_type n)
+		{
+			index_ += n;
+			return *this;
+		}
+		iterator operator+(difference_type n) const
+		{
+			iterator tmp = *this;
+			tmp.index_ += n;
+			return tmp;
+		}
+		iterator& operator-=(difference_type n)
+		{
+			index_ -= n;
+			return *this;
+		}
+		iterator operator-(difference_type n) const
+		{
+			//return *this + (-n);
+			iterator tmp = *this;
+			tmp.index_ -= n;
+			return tmp;
+		}
+		difference_type operator-(const iterator& other) const
+		{
+			return index_ - other.index_;
+		}
+		bool operator==(const iterator& other) const
+		{
+			return index_ == other.index_;
+		}
+		/*std::strong_ordering operator<=>(const iterator& other) const
+		{
+			return index_ <=> other.index_;
+		}*/
+		//bool operator!=(const iterator& other) const
+		//{
+		//	return index_ != other.index_;
 		//}
-
-		bool operator==(iterator& other) 
+		//bool operator<(const iterator& other) const
+		//{
+		//	return index_ < other.index_;
+		//}
+		std::strong_ordering operator<=>(const iterator& other) const
 		{
-			return ptr_ == other.ptr_;
-		}
+			//return (index_ < other.index_) ? std::strong_ordering::less
+			//	: (index_ == other.index_) ? std::strong_ordering::equal
+			//	: std::strong_ordering::greater;
 
-		iterator& operator+=(T& n)
-		{
-			ptr_ += n;
-			return *ptr_;
+			if (index_ < other.index_)
+				return std::strong_ordering::less;
+			else if (index_ == other.index_)
+				return std::strong_ordering::equal;
+			else
+				return std::strong_ordering::greater;
 		}
-
-		const T* operator->() const {
-			return ptr_;
-		}
-
 	private:
-		T* ptr_;
+		Ray<T>* _Ray_;
+		size_t index_;
+
+	public:
+		//explicit iterator(T* p/*, size_t initial_size*/)
+		//	: ptr_(p)/*, initial_size_(initial_size)*/
+		//{
+		//	//saved_ptr_ = ptr_;
+		//}
+		//size_t initial_size() const { return initial_size_; }
+	//	T& operator*() const
+	//	{
+	//		return *ptr_;
+		//}
+		//T* operator->() const {
+		//	return ptr_;
+		//}
+		//iterator& operator++()
+		//{
+		//	//std::cout << " ++ iterator size = " << initial_size_ << " \n";
+		//	++ptr_;
+		//	return *this;
+		//}
+		//iterator operator++(int)
+		//{
+		//	iterator tmp = *this;
+		//	++(*this);
+		//	return tmp;
+		//}
+		//iterator& operator--() {
+		//	--ptr_;
+		//	return *this;
+		//}
+		//iterator operator--(int)
+		//{
+		//	iterator tmp = *this;
+		//	--(*this);
+		//	return tmp;
+		//}
+		//bool operator==(const iterator& other) const
+		//{
+		//	return ptr_ == other.ptr_;
+		//}
+		//iterator& operator+=(std::ptrdiff_t n)
+		//{
+		//	ptr_ += n;
+		//	return *this;
+		//}
+		//iterator operator+(std::ptrdiff_t n) const
+		//{
+		//	iterator tmp(*this);
+		//	tmp += n;
+		//	return tmp;
+		//}
+		/*
+		static void upd()
+		{
+			throw std::runtime_error("!");
+			//ptr_ = p;
+			//initial_size_ = initial_size;
+		}
+
+		iterator& saved_ptr()const
+		{
+			return saved_ptr_;
+		}
+		*/
+		//T* ptr_;
+		//size_t initial_size_;
+		//T* saved_ptr_;
+		//void iterator_check()
+		//{
+		//	auto R_size = this.F_LEFT + this.F_RIGHT;
+		//	
+		//	if (initial_size_ != R_size)
+		//	{
+		//		std::cout << " != iterator size = " << initial_size_ << "; iterator R_size " << R_size <<" \n";
+		//		iterator begin();
+		//		iterator end();
+		//	}
+		//	if (initial_size_ > R_size)
+		//	{
+		//		std::cout << " >  iterator size = " << initial_size_ << "; iterator R_size " << R_size << " \n";
+		//		//throw std::runtime_error("!");
+		//	}
+		//}
 	};
 
-	iterator begin() { return iterator(ray_);}
-	iterator end() { return iterator(ray_+(F_LEFT + F_RIGHT)); }
 
-	class с_iterator 
-	{
+	//iterator begin() { return iterator(ray_ + (LEFT - F_LEFT)/*, size()*/); }
+	//iterator end() { return iterator(ray_ + (LEFT + F_RIGHT)/*, size()*/); }
+
+	//!!! ДОБИТЬ на базе обычного итератора
+	class c_iterator {
+	private:
+		friend class Ray;
+
+		explicit c_iterator(const Ray* ray_sended, size_t ind) : _Ray_(ray_sended), index_(ind)
+		{
+		}
+
 	public:
-
-		using iterator_category = std::random_access_iterator_tag;
 		using value_type = T;
-		using difference_type = std::ptrdiff_t;
 		using pointer = const T*;
 		using reference = const T&;
+		using difference_type = std::ptrdiff_t;
+		using iterator_category = std::contiguous_iterator_tag;
 
-		explicit с_iterator(T* p) : ptr_(p) {}
+		///////
 
-		с_iterator& operator++() 
+		pointer data()
 		{
-			++ptr_;
+			return _Ray_->data();
+		}
+		const pointer cdata() const {
+			return _Ray_->data();
+		}
+		const pointer data() const {
+			return _Ray_->data();
+		}
+		bool empty() const {
+			return _Ray_->empty();   
+		}
+		size_t size() const {
+			return _Ray_->size();
+		}
+		reference operator[](size_t index) {
+			return *(_Ray_->ray_[index_]);  
+		}
+
+		//////
+
+
+		reference operator*() const
+		{
+			return _Ray_->ray_[index_];
+		}
+		pointer operator->() const
+		{
+			return _Ray_->ray_ + index_;
+		}
+		c_iterator& operator++()
+		{
+			++index_;
 			return *this;
 		}
-
-		//bool operator!=(const с_iterator& other) const 
-		//{
-		//	return ptr_ != other.ptr_;
-		//}
-
-		 T& operator*() const
+		c_iterator operator++(int)
 		{
-			return *ptr_;
+			c_iterator tmp(*this);
+			++(*this);
+			return tmp;
 		}
-
-		с_iterator& operator +=(T& n)
+		c_iterator& operator--()
 		{
-			ptr_ += n;
+			--index_;
 			return *this;
 		}
-
-		bool operator==(const с_iterator& other) const
+		c_iterator operator--(int)
 		{
-			return ptr_ == other.ptr_;
+			c_iterator tmp = *this;
+			--(*this);
+			return tmp;
 		}
-
-		pointer operator->() const {
-			return ptr_;
+		c_iterator& operator+=(difference_type n)
+		{
+			index_ += n;
+			return *this;
+		}
+		c_iterator operator+(difference_type n) const
+		{
+			c_iterator tmp = *this;
+			tmp.index_ += n;
+			return tmp;
+		}
+		c_iterator& operator-=(difference_type n)
+		{
+			index_ -= n;
+			return *this;
+		}
+		c_iterator operator-(difference_type n) const
+		{
+			c_iterator tmp = *this;
+			tmp.index_ -= n;
+			return tmp;
+		}
+		difference_type operator-(const c_iterator& other) const
+		{
+			return index_ - other.index_;
+		}
+		bool operator==(const c_iterator& other) const
+		{
+			return index_ == other.index_;
+		}
+		std::strong_ordering operator<=>(const c_iterator& other) const
+		{
+			return index_ <=> other.index_;
 		}
 
 	private:
-		T* ptr_;
+		const Ray<T>* _Ray_;
+		size_t index_;
 	};
 
-	с_iterator cbegin() const { return  с_iterator(ray_); }
-	с_iterator cend() const { return   с_iterator(ray_ + (F_LEFT + F_RIGHT)); }
+	iterator begin() { return iterator(this, (LEFT - F_LEFT)); }
+	iterator end() { return iterator(this, (LEFT + F_RIGHT)); }
+
+	c_iterator begin() const { return c_iterator(this, (LEFT - F_LEFT)); }
+	c_iterator end() const { return c_iterator(this, (LEFT + F_RIGHT)); }
+	c_iterator const_begin() const { return c_iterator(this, (LEFT - F_LEFT)); }
+	c_iterator const_end() const { return c_iterator(this, (LEFT + F_RIGHT)); }
+
 
 	Ray();
 	//LEFT, RIGHT
@@ -190,11 +445,11 @@ public:
 
 	Ray(Ray&& other) noexcept;
 
-	Ray(const std::initializer_list<T>& li);
+	explicit Ray(const std::initializer_list<T>& li);
 
 	Ray(const T* val, size_t size);
 
-	Ray(std::span<T> span);
+	explicit Ray(std::span<T> span);
 
 	~Ray();
 	// LEFT
@@ -214,6 +469,9 @@ public:
 	Ray& operator=(const Ray& other);
 
 	Ray& operator=(Ray&& other) noexcept;
+
+	 
+	Ray& operator+=(const Ray& other);
 
 	void push_back(const T& value);
 
@@ -239,6 +497,25 @@ public:
 
 	void clear();
 
+	T* data()
+	{
+		return this->ray_;
+	}
+	const T* data() const
+	{
+		return this->ray_;
+	}
+	const T* cdata() const
+	{
+		return this->ray_;
+	}
+	bool empty()
+	{
+		if ((LEFT - F_LEFT == LEFT) && (RIGHT - F_RIGHT == RIGHT))
+			return true;
+
+		return false;
+	}
 
 };
 
@@ -263,6 +540,9 @@ void Ray<T>::LEFT_increase_() {
 
 	ray_ = new_ray;
 	LEFT = new_LEFT;
+
+	//if (Ray<T>::iterator::count())
+	//	Ray<T>::iterator::upd();
 }
 
 template <typename T>
@@ -281,6 +561,9 @@ void Ray<T>::RIGHT_increase_() {
 
 	ray_ = new_ray;
 	RIGHT = new_RIGHT;
+
+	//if (Ray<T>::iterator::count())
+	//	Ray<T>::iterator::upd();
 }
 
 template <typename T>
@@ -329,7 +612,7 @@ Ray<T>::Ray(const Ray<T>& other)
 }
 
 template <typename T>
-Ray<T>::Ray(Ray<T>&& other) noexcept  :Ray()
+Ray<T>::Ray(Ray<T>&& other) noexcept :Ray()
 {
 	SWAP_(other);
 }
@@ -567,6 +850,16 @@ Ray<T>& Ray<T>::operator=(const Ray<T>& other) {
 	return *this;
 }
 
+template<typename T>
+inline Ray<T>& Ray<T>::operator+=(const Ray& other)
+{
+	for (size_t i = 0; i < other.size(); i++)
+	{
+		this->add_to_back(other[i]);
+	}
+	return *this;
+}
+
 template <typename T>
 Ray<T>& Ray<T>::operator=(Ray<T>&& other) noexcept
 {
@@ -649,8 +942,6 @@ void print(const Ray<T>& Ray) {
 		std::cout << std::setw(2) << "." << " ";
 	std::cout << "\n";
 }
-
-
 
 
 #endif // !RAY_TEMPLATE_H_ 

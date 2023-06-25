@@ -1,37 +1,53 @@
 ﻿#include "Find_Triangle.h"
+#include <omp.h>
 ///#include <future>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // { work with Dot arr, to create triangle and find max inside point
-Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points)
+Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 {
 	///Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  /// 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	Ray<Triangle_hi> triangle_arr;
 	size_t n_triangles = 0;
-	for (size_t i = 0; i < n_points; i++)
-	{
-		for (size_t j = i + 1; j < n_points; j++)  //!!! < n
+
+
+	int num_procs = omp_get_num_procs();
+	std::cout << "Number of available processors: " << num_procs << std::endl;
+	omp_set_num_threads(num_procs);
+//#pragma omp parallel
+//	{
+//Ray<Triangle_hi> local_arr;
+#pragma omp for collapse(3) schedule(dynamic) //private(local_arr)
+		for (int i = 0; i < point_arr.size(); i++)
 		{
-			for (size_t k = j + 1; k < n_points; k++)  //!!! < n
+			for (int j = i + 1; j < point_arr.size(); j++)  //!!! < n
 			{
-				Triangle_hi temp_abc(point_arr[i], point_arr[j], point_arr[k]);
+				for (int k = j + 1; k < point_arr.size(); k++)  //!!! < n
+				{
+					//printf("Процесс %d  стартовал\n", omp_get_thread_num());
+					Triangle_hi temp_abc(point_arr[i], point_arr[j], point_arr[k]);
 
-				if (utilities::isEqual(temp_abc.get_area(), 0))
-					break;
+					if (utilities::isEqual(temp_abc.get_area(), 0))
+						break;
 
-				if (temp_abc.is_triangle_()) {
-					triangle_arr.add_to_back(temp_abc);
-					++n_triangles;
+					if (temp_abc.is_triangle_())
+					{
+						#pragma omp critical
+						triangle_arr.add_to_back(temp_abc);
+						++n_triangles;
+					}
+					//triangle_arr += local_arr;
+					//printf("Процесс %d  был завершён\n", omp_get_thread_num());
 				}
 			}
 		}
-	}
+	//}
 
 	Ray<Triangle_hi> final_triangle_arr = std::move(triangle_arr);
 
 	///size_t hit = 0;
 	for (size_t i = 0; i < n_triangles; i++) {
-		for (size_t j = 0; j < n_points; j++)
+		for (size_t j = 0; j < point_arr.size(); j++)
 			if (final_triangle_arr[i].is_inside(point_arr[j])) {
 				final_triangle_arr[i].add_point_at_vector(point_arr[j]);
 			}
@@ -41,7 +57,7 @@ Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points)
 	std::string path_out2 = "out.txt";
 
 	size_t max_dot = 0;
-	size_t max_dot_index = 0;
+	size_t max_dot_index;
 	for (size_t i = 0; i < n_triangles; i++) {
 		if (final_triangle_arr[i].get_dot_counter() > max_dot) {
 			max_dot = final_triangle_arr[i].get_dot_counter();
@@ -52,12 +68,16 @@ Triangle_hi Find_Triangle(Ray<Dot>& point_arr, size_t n_points)
 
 	if (max_dot != 0)
 	{
+		//return final_triangle_arr[max_dot_index];
+
 		Triangle_hi final_triangle;
 		final_triangle = final_triangle_arr[max_dot_index];
 
 		final_triangle.print();
 		return final_triangle;
 	}
+
+	//return Triangle_hi();
 
 	Triangle_hi no_Triangle;
 	return no_Triangle;

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Triangle\TESTS.cpp" />
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="Axys.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Canvas_console.cpp" />
@@ -30,7 +30,8 @@
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Point.cpp" />
-    <ClCompile Include="TESTS.cpp" />
+    <ClCompile Include="Q_new.cpp" />
+    <ClCompile Include="replacement new.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
@@ -47,7 +48,7 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Point.h" />
-    <ClInclude Include="IT_TEST.h" />
+    <ClInclude Include="TESTS.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
