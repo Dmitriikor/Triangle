@@ -44,7 +44,10 @@
  **/
 int main(int argc, char const* argv[])
 {
-	setlocale(LC_ALL, "Russian");	 
+
+	setlocale(LC_ALL, "Russian");
+	std::locale::global(std::locale("en_US.utf8"));
+
 	Interface in_use;
 	in_use.HideConsoleWindow();
 	auto gets = in_use.test_nana();
@@ -53,13 +56,16 @@ int main(int argc, char const* argv[])
 
 	//Ray<Dot> point_arr;
 	//size_t n_points;
-
+	time_t P_start;
+	time_t P_end;
+	time_t t_launch = clock();
 	time_t t1 = clock();
 
 	Triangle_hi Fin_Triangle;
 	Fin_Triangle = Find_Triangle(gets);
-	time_t t2 = clock();
 
+	time_t t2 = clock();
+	std::chrono::seconds print_to_file_timer;
 	Ray<Dot> copy_to_print;
 	if (Fin_Triangle.get_dot_counter() != 0)
 	{
@@ -72,24 +78,31 @@ int main(int argc, char const* argv[])
 		out_print.insert_line(Fin_Triangle.get_a(), Fin_Triangle.get_a(), '+');
 		out_print.render_matrix();
 		out_print.print();
-		out_print.print_to_file();
 
+		P_start = clock();
+
+		out_print.print_to_file();
 		nana_extra::test_ex corner_wind;
 		corner_wind.test();
+
+		P_end = clock();
 
 		Axys a_out_print;
 		a_out_print += out_print;
 		a_out_print.render_matrix();
 		a_out_print.print();
+		//a_out_print.print_to_file();
 
 		Direct_draw ttst;
 		ttst += out_print;
 		ttst.render_matrix();
 		ttst.print();
 	}
-
-	std::cout << "timer = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
+	time_t t_end = clock();
 	in_use.ShowConsoleWindow();
+	std::cout << "timer SE= \t" << double(t_end - t_launch) / CLOCKS_PER_SEC << std::endl;
+	std::cout << "timer FT = \t" << double(t2 - t1) / CLOCKS_PER_SEC << std::endl;
+	std::cout << "timer FP = \t" << double(P_end - P_start) / CLOCKS_PER_SEC << std::endl;
 	int AV2;
 	std::cin >> AV2;
 	return 0;

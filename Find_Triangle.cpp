@@ -1,11 +1,40 @@
 ﻿#include "Find_Triangle.h"
 #include <omp.h>
+#include <chrono>
 ///#include <future>
+
+#include "nana/gui.hpp"
+#include "nana/gui/widgets/label.hpp"
+#include "nana/gui/widgets/button.hpp"
+#include "nana/gui/widgets/checkbox.hpp"
+#include "nana/gui/widgets/textbox.hpp"
+#include "nana/gui/place.hpp"
+#include <nana/gui/widgets/progress.hpp>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // { work with Dot arr, to create triangle and find max inside point
+	size_t count_triangles_raw(size_t n_points)
+	{
+		if (n_points < 3)
+			return 0;
+		return n_points * (n_points - 2) * (n_points - 1) / 6;
+	}
+
+	double  count_triangles_raw_comb(size_t n_points)
+	{
+		if (n_points < 3) 
+		{
+			return 0;
+		}
+		double percent = 8.0;
+		return ((n_points * (n_points - 1) * (n_points - 2)) / 6) - (((n_points * (n_points - 1) * (n_points - 2)) / 6)* percent/100);
+	}
+
+
 Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 {
+	 
+
 	///Triangle_hi* triangle_arr = new Triangle_hi[1 * 2 * 3 * (n_points - 2) * (n_points - 1) * n_points];  /// 1*2*3*(n_points-2)*(n_points-1)*n_points;
 	Ray<Triangle_hi> triangle_arr;
 	size_t n_triangles = 0;
@@ -17,6 +46,18 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 //#pragma omp parallel
 //	{
 //Ray<Triangle_hi> local_arr;
+
+	size_t final_count = count_triangles_raw_comb(point_arr.size());
+
+	nana::form fm{ nana::API::make_center(320, 29), nana::appear::bald<>()};
+	nana::progress progress(fm, nana::rectangle(0, 0, 320, 30));
+	//progress.amount(0);
+	fm.show();
+	progress.amount(final_count);
+	progress.unknown(false);
+
+
+	
 #pragma omp for collapse(3) schedule(dynamic) //private(local_arr)
 		for (int i = 0; i < point_arr.size(); i++)
 		{
@@ -24,6 +65,8 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 			{
 				for (int k = j + 1; k < point_arr.size(); k++)  //!!! < n
 				{
+					//#pragma omp atomic
+
 					//printf("Процесс %d  стартовал\n", omp_get_thread_num());
 					Triangle_hi temp_abc(point_arr[i], point_arr[j], point_arr[k]);
 
@@ -33,38 +76,75 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 					if (temp_abc.is_triangle_())
 					{
 						#pragma omp critical
-						triangle_arr.add_to_back(temp_abc);
-						++n_triangles;
+						{
+							triangle_arr.add_to_back(temp_abc);
+							++n_triangles;
+							progress.value(n_triangles);
+							nana::API::update_window(fm);
+							//progress.inc();
+						}
 					}
+
 					//triangle_arr += local_arr;
 					//printf("Процесс %d  был завершён\n", omp_get_thread_num());
 				}
 			}
 		}
+	
 	//}
 
+	std::cout	<< " count_triangles_raw = " << count_triangles_raw(point_arr.size()) 
+				<< " and count_triangles_raw_comb = " << count_triangles_raw_comb(point_arr.size()) 
+				<< " and n_triangles = " << n_triangles << "\n"
+				<< " and triangle_arr.size() = " << triangle_arr.size() << "\n";
+		
 	Ray<Triangle_hi> final_triangle_arr = std::move(triangle_arr);
 
+	progress.hide();
+	nana::progress progress2(fm, nana::rectangle(0, 0, 320, 30));
+	progress2.unknown(false);
+	progress2.amount(final_triangle_arr.size() * point_arr.size());
+
 	///size_t hit = 0;
-	for (size_t i = 0; i < n_triangles; i++) {
-		for (size_t j = 0; j < point_arr.size(); j++)
-			if (final_triangle_arr[i].is_inside(point_arr[j])) {
+#pragma omp for collapse(2) schedule(dynamic) //private(local_arr)
+	for (int i = 0; i < final_triangle_arr.size(); i++)
+	{
+		for (int j = 0; j < point_arr.size(); j++)
+		{
+			if (final_triangle_arr[i].is_inside(point_arr[j]))
+			{
+				#pragma omp critical
+				{
 				final_triangle_arr[i].add_point_at_vector(point_arr[j]);
+				progress2.inc();
+				nana::API::update_window(fm);
+				}
 			}
+		}
 	}
 
+	progress2.hide();
+	nana::progress progress3(fm, nana::rectangle(0, 0, 320, 30));
+	progress3.amount(final_triangle_arr.size());
 
 	std::string path_out2 = "out.txt";
 
 	size_t max_dot = 0;
-	size_t max_dot_index;
-	for (size_t i = 0; i < n_triangles; i++) {
-		if (final_triangle_arr[i].get_dot_counter() > max_dot) {
+	size_t max_dot_index = 0;
+	for (size_t i = 0; i < final_triangle_arr.size(); i++)
+	{
+		if (final_triangle_arr[i].get_dot_counter() > max_dot) 
+		{
 			max_dot = final_triangle_arr[i].get_dot_counter();
 			max_dot_index = i;
 		}
-		triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
+			progress3.inc();
+			nana::API::update_window(fm);
+		//triangles_print_outfile(final_triangle_arr, n_triangles, path_out2);
 	}
+
+	progress3.hide();
+	fm.close();
 
 	if (max_dot != 0)
 	{
@@ -78,13 +158,20 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 	}
 
 	//return Triangle_hi();
-
 	Triangle_hi no_Triangle;
 	return no_Triangle;
 }
 // } work with Dot arr, to create triangle and find max inside point
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+		//auto start = std::chrono::high_resolution_clock::now();
+		//auto end = std::chrono::high_resolution_clock::now();
+		//std::chrono::duration<double> duration = end - start;
+		//auto seconds = std::chrono::duration_cast<std::chrono::seconds>(duration);
+		//std::cout << "\n\n---------------------------------------\n";
+		//std::cout << "Runtime of print_to_file: " << seconds;
+		//std::cout << "\n---------------------------------------\n";
+		//print_to_file_timer = seconds;
 
 
 

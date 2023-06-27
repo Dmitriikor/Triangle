@@ -125,7 +125,7 @@ public:
     void test()
     {
         // construct application form
-        nana::form fm_ex(nana::rectangle(100, 100, 1920, 1040));
+        nana::form fm_ex(nana::rectangle(0, 40, 1920, 1040));
 
         // construct large panel with scrolling window
         const int width_scrolled_panel = 4000;
@@ -142,6 +142,8 @@ public:
         nana::label lbl_ex(S, nana::rectangle(
             0, 0,
             width_scrolled_panel, height_scrolled_panel));
+
+
 
         std::string info_ex;
 
