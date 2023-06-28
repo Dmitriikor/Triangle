@@ -79,6 +79,7 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 						{
 							triangle_arr.add_to_back(temp_abc);
 							++n_triangles;
+
 							progress.value(n_triangles);
 							nana::API::update_window(fm);
 							//progress.inc();
@@ -105,8 +106,7 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 	progress2.unknown(false);
 	progress2.amount(final_triangle_arr.size() * point_arr.size());
 
-	///size_t hit = 0;
-#pragma omp for collapse(2) schedule(dynamic) //private(local_arr)
+#pragma omp for collapse(2) schedule(dynamic)
 	for (int i = 0; i < final_triangle_arr.size(); i++)
 	{
 		for (int j = 0; j < point_arr.size(); j++)
@@ -115,13 +115,14 @@ Triangle_hi Find_Triangle(const Ray<Dot>& point_arr)
 			{
 				#pragma omp critical
 				{
-				final_triangle_arr[i].add_point_at_vector(point_arr[j]);
-				progress2.inc();
-				nana::API::update_window(fm);
+					final_triangle_arr[i].add_point_at_vector(point_arr[j]);
+					nana::API::update_window(fm);
 				}
 			}
+					progress2.inc();
 		}
 	}
+
 
 	progress2.hide();
 	nana::progress progress3(fm, nana::rectangle(0, 0, 320, 30));

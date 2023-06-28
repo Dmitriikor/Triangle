@@ -1,4 +1,4 @@
-//#pragma once
+﻿//#pragma once
 #ifndef Corner_H__
 
 #define  Corner_H__
@@ -22,7 +22,7 @@ public:
 
 	void render_matrix() override;
 	void print() const override;
-
+	std::string to_string();
 	Corner();
 
 private:

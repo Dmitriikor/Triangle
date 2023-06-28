@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "Corner.h"
 
 namespace nana_extra
 {
@@ -122,7 +123,7 @@ private:
 class test_ex
 {
 public:
-    void test()
+    void test(Corner &out_print)
     {
         // construct application form
         nana::form fm_ex(nana::rectangle(0, 40, 1920, 1040));
@@ -145,21 +146,19 @@ public:
 
 
 
-        std::string info_ex;
-
+        std::string info_ex = out_print.to_string();
+        info_ex += "\n";
+        info_ex += "\n";
         std::ifstream inputFile_n("Corner_out.txt");
-
         if (inputFile_n.is_open())
         {
             std::string fileContents_ex((std::istreambuf_iterator<char>(inputFile_n)),
                 (std::istreambuf_iterator<char>()));
-
             inputFile_n.close();
-
-            info_ex = fileContents_ex;
+            info_ex += fileContents_ex;
         }
         else {
-
+        
         }
 
         lbl_ex.caption(info_ex);

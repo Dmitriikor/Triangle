@@ -79,13 +79,13 @@ int main(int argc, char const* argv[])
 		out_print.render_matrix();
 		out_print.print();
 
-		P_start = clock();
 
+		P_start = clock();
 		out_print.print_to_file();
 		nana_extra::test_ex corner_wind;
-		corner_wind.test();
-
+		corner_wind.test(out_print);
 		P_end = clock();
+
 
 		Axys a_out_print;
 		a_out_print += out_print;

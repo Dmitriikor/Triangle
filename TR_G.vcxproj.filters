@@ -119,5 +119,8 @@
     <ClInclude Include="panel_scrolled.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

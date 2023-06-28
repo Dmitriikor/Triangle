@@ -1,5 +1,5 @@
 ﻿#include "Corner.h"
-
+#include<string>
 
 void Corner::change_file_path(const std::string& address)
 {
@@ -66,6 +66,21 @@ void Corner::print() const
 		}
 
 	}
+}
+
+std::string Corner::to_string()
+{
+	std::string summ;
+		for (size_t i = 0; i < Canvas_Matrix().get_N(); i++)
+		{
+			for (size_t j = 0; j < Canvas_Matrix().get_M(); j++)
+			{
+				summ += Canvas_Matrix()[i][j];
+
+			}
+			summ += "\n";
+		}
+		return summ;
 }
 
 Corner::Corner() : Canvas_xy()
