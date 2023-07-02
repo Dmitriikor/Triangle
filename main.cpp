@@ -30,12 +30,12 @@
 #include "Axys.h"
 #include "Direct_draw.h"
 #include "Array.h"
-
 #pragma execution_character_set("utf-8")
 
 #include "TESTS.h"
 #include "Interface.h"
 #include "panel_scrolled.h"
+#include "1.h"
  /**
 	 @brief  main главная функция
 	 @param  argc - none
@@ -48,7 +48,11 @@ int main(int argc, char const* argv[])
 	setlocale(LC_ALL, "Russian");
 	std::locale::global(std::locale("en_US.utf8"));
 
+	TEST::test_all_run();
 	TEST::Array_test::test_Array_run();
+
+	//nana::form form{ nana::API::make_center(350, 430) };
+	//nana_comp_test::nana_comp_test(form);
 
 	Interface in_use;
 	in_use.HideConsoleWindow();
