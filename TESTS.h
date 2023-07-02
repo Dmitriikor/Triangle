@@ -563,8 +563,191 @@ namespace TEST
 			std::cout << "empty0 add_to_first= " << empty0.empty() << "\n";
 	
 	}
+	namespace Array_test
+	{
+		#include <cassert>
 
+		void test_Array()
+		{
+			Array<int> arr;
+			assert(arr.size() == 0);
+			assert(arr.is_empty());
 
+		}
+		void test_Array_capacity()
+		{
+			Array<int> arr(5);
+			assert(arr.size() == 0);
+			assert(!arr.is_empty());
+		}
+		void test_Array_other()
+		{
+			Array<int> arr1;
+			arr1.push_back(1);
+			arr1.push_back(2);
+			arr1.push_back(3);
+			Array<int> arr2(arr1);
+			assert(arr2.size() == arr1.size());
+			assert(arr2 == arr1);
+		}
+		void test_Array_operator()
+		{
+			Array<int> arr1;
+			arr1.push_back(1);
+			arr1.push_back(2);
+			arr1.push_back(3);
+			Array<int> arr2(arr1);
+			assert(arr1 == arr2);
+			arr2.pop_back();
+			assert(arr1 != arr2);
+		}
+		void test_Array_size()
+		{
+			Array<int> arr;
+			assert(arr.size() == 0);
+			arr.push_back(1);
+			assert(arr.size() == 1);
+		}
+		void test_Array_is_empty()
+		{
+			Array<int> arr;
+			assert(arr.is_empty());
+			arr.push_back(1);
+			assert(!arr.is_empty());
+		}
+		void test_Array_push_back()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			assert(arr.size() == 1);
+			assert(arr.back() == 1);
+			arr.push_back(2);
+			assert(arr.size() == 2);
+			assert(arr.back() == 2);
+		}
+		void test_Array_at()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			assert(arr.at(0) == 1);
+			assert(arr.at(1) == 2);
+			assert(arr.at(2) == 3);
+		}
+		void test_Array_front()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			assert(arr.front() == 1);
+		}
+		void test_Array_back()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			assert(arr.back() == 3);
+		}
+		void test_Array_Iterator()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+
+			Array<int>::Iterator iter = arr.begin();
+			assert(*iter == 1);
+			++iter;
+			assert(*iter == 2);
+			--iter;
+			assert(*iter == 1);
+		}
+		void test_Array_clear()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			arr.clear();
+			assert(arr.size() == 0);
+			assert(arr.is_empty());
+		}
+		void test_Array_insert()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			int t_val = 3;
+			arr.insert(1, t_val);
+			assert(arr.size() == 3);
+			assert(arr.at(0) == 1);
+			assert(arr.at(1) == 3);
+			assert(arr.at(2) == 2);
+		}
+		void test_Array_erase()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			arr.erase(1);
+			assert(arr.size() == 2);
+			assert(arr.at(0) == 1);
+			assert(arr.at(1) == 3);
+		}
+		void test_Array_emplace()
+		{
+			Array<std::string> arr;
+			arr.emplace("Hello");
+			arr.emplace("World");
+			assert(arr.size() == 2);
+			assert(arr.at(0) == "Hello");
+			assert(arr.at(1) == "World");
+		}
+		void test_Array_cut()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			arr.cut();
+			assert(arr.size() == 3);
+			assert(arr.capacity() == 3);
+		}
+		void test_Array_resize()
+		{
+			Array<int> arr;
+			arr.push_back(1);
+			arr.push_back(2);
+			arr.push_back(3);
+			arr.resize(5);
+			assert(arr.size() == 3);
+			assert(arr.capacity() == 5);
+		}
+		void test_Array_run()
+		{
+			TEST::Array_test::test_Array();
+			test_Array_capacity();
+			test_Array_other();
+			test_Array_operator();
+			test_Array_size();
+			test_Array_is_empty();
+			test_Array_push_back();
+			test_Array_at();
+			test_Array_front();
+			test_Array_back();
+			test_Array_Iterator();
+			test_Array_clear();
+			test_Array_insert();
+			test_Array_erase();
+			test_Array_emplace();
+			test_Array_cut();
+			test_Array_resize();
+		}
+	}
 
 
 	//std::cout << "\ntest_START\n";

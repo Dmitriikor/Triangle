@@ -12,24 +12,24 @@ public:
 	Array() = default;
 	Array(size_t capacity_) : capacity_(capacity_)
 	{
+		size_ = 0;
 		arr_ = reinterpret_cast<T*>(malloc(capacity_ * sizeof(T)));
-		//if arr_ == nullptr ...
+		if (arr_ == nullptr)
+			throw std::bad_alloc();
 	}
 	Array(const Array<T>& other)
 	{
 		//std::cout << "Array(const Array<T>& other)\n";
-		capacity_ = other.capacity_;
-		size_ = 0;
-		arr_ = reinterpret_cast<T*>(malloc(capacity_ * sizeof(T)));
+		//arr_ = reinterpret_cast<T*>(malloc(capacity_ * sizeof(T)));
 		//if arr_ == nullptr ...
-		
 		//=>
-
 		//delegating constructor
-		
+
+		Array(other.capacity_);
 		for (size_t i = 0; i < other.size_; i++)
 		{
-			//push_back(other.arr_[i]);
+			push_back(other.arr_[i]);
+			
 			//construct as copy
 		}
 	}
@@ -62,9 +62,13 @@ public:
 	{
 		return size_;
 	}
+	size_t capacity() const
+	{
+		return capacity_;
+	}
 	bool is_empty() const
 	{
-		if (arr_ = nullptr)
+		if (arr_ == nullptr)
 			return true;
 		return false;
 	}
@@ -83,23 +87,27 @@ public:
 	{
 		if (size_ == 0)
 		{
-			//throw ...
+			throw std::length_error("size_ ==0");
 			return;
 		}
-
+		//0 1 2 3 4 (5)
 		size_--;
-
+		// 0 1 2 3 [4] (4)
 		if (size_ > 0)
 		{
 			//деструктор
-			memmove(arr_, arr_ + 1, size_ * sizeof(T));
+			// в указатель arr_, из arr_, штук (4)
+			memmove(arr_, arr_, size_ * sizeof(T));
+			// 0 1 2 3 [4] (4)
+			arr_[size_+1].~T();
+			// 0 1 2 3 (4)
 		}
 		else
 		{
 			clear();
 		}
 	}
-	T& at(size_t index)
+	T& at(size_t index) const
 	{
 		if (index >= size_)
 		{
@@ -109,12 +117,16 @@ public:
 	}
 	T& front()
 	{
-		//throw ...
+		if (arr_ == nullptr)
+			throw std::invalid_argument("invalid_argument");
+
 		return arr_[0];
 	}
 	T& back()
 	{
-		//throw ...
+		if (arr_ == nullptr)
+			throw std::invalid_argument("invalid_argument");
+
 		return arr_[size_-1];
 	}
 	class Iterator
@@ -171,17 +183,76 @@ public:
 			return ptr_ != other.ptr_;
 		}
 	};
+	class ConstIterator
+	{
+	private:
+		const T* ptr_;
 
+	public:
+		explicit ConstIterator(const T* ptr) : ptr_(ptr) {}
+
+		ConstIterator& operator++()
+		{
+			++ptr_;
+			return *this;
+		}
+
+		ConstIterator operator++(int)
+		{
+			ConstIterator iterator = *this;
+			++ptr_;
+			return iterator;
+		}
+
+		ConstIterator& operator--()
+		{
+			--ptr_;
+			return *this;
+		}
+
+		ConstIterator operator--(int)
+		{
+			ConstIterator iterator = *this;
+			--ptr_;
+			return iterator;
+		}
+
+		const T& operator*() const
+		{
+			return *ptr_;
+		}
+
+		const T* operator->() const
+		{
+			return ptr_;
+		}
+
+		bool operator==(const ConstIterator& other) const
+		{
+			return ptr_ == other.ptr_;
+		}
+
+		bool operator!=(const ConstIterator& other) const
+		{
+			return ptr_ != other.ptr_;
+		}
+	};
 	Iterator begin()
 	{
 		return Iterator(arr_);
 	}
-
 	Iterator end()
 	{
 		return Iterator(arr_ + size_);
 	}
-
+	ConstIterator begin() const
+	{
+		return ConstIterator(arr_);
+	}
+	ConstIterator end() const
+	{
+		return ConstIterator(arr_ + size_);
+	}
 	void clear()
 	{
 		for (size_t i = 0; i < size_; i++)
@@ -200,15 +271,23 @@ public:
 		if (index < 0 || index > size_)
 		{
 			std::cout << "Invalid index!" << '\n';
+			throw std::invalid_argument("Invalid index!");
 			return;
 		}
+
+		//if ((size_ == 0 && index != 0))
+		//	throw std::invalid_argument();
+		//	//index=0;
+
 		if (size_ == capacity_)
 		{
 			increaseCapacity();
 		}
 		//memmove(arr_ + index + 1, arr_ + index, (size_ - index) * sizeof(T));
-		std::move_backward(arr_ + index, arr_ + size_, arr_ + index + 1);
+		std::move_backward(arr_ + (index), arr_ + size_, arr_ + size_ + 1);
+
 		arr_[index] = value;
+
 		size_++;
 	}
 	void erase(size_t index)
@@ -297,9 +376,21 @@ public:
 	}
 	void resize(int size)
 	{
-		increaseCapacity(size);
+		T* new_arr = reinterpret_cast<T*>(realloc(arr_, size * sizeof(T)));
+		if (new_arr == nullptr)
+		{
+			std::cout << "arr_ == nullptr" << std::endl;
+			//free(arr_);
+			throw std::bad_alloc();
+		}
+		if (size_ > size)
+			size_ = size;
+		arr_ = new_arr;
+		capacity_ = size;
+
 	}
 private:
+
 	void increaseCapacity(int delta = 10)
 	{
 		//T* new_arr = reinterpret_cast<T*>(malloc((capacity_ + value) * sizeof(T)));
