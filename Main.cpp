@@ -49,7 +49,6 @@ int main(int argc, char const* argv[])
 	std::locale::global(std::locale("en_US.utf8"));
 
 	TEST::Array_test::test_Array_run();
-	return -99;
 
 	Interface in_use;
 	in_use.HideConsoleWindow();
