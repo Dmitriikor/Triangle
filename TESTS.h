@@ -64,11 +64,10 @@ struct MyStruct {
 
 namespace TEST
 {
-
-	void displayNumber(int n) {
+	void displayNumber(int n) 
+	{
 		std::cout << n << ' ';
 	}
-
 	void test_0()
 	{
 		try
@@ -147,24 +146,6 @@ namespace TEST
 			if (itr != arr.end())
 				std::cout << "\n itr != arr.end(); \n";
 
-
-			//int cntr = 0;
-			//for (auto it = arr.lbegin(); it != arr.lend(); it++)
-			//{
-			//	if (cntr == arr.get_M())
-			//	{
-			//		std::cout << std::endl;
-			//		cntr = 0;
-			//	}
-			//	std::cout << " " << *it;
-			//	cntr++;
-			//}
-			//int s_end;
-			//for (; it != arr.end(); ++it) {
-			//	s_end = *it;
-			//}
-			//if (s_end == 40);
-
 			std::cout << "\n\nsub_test_m :\n";
 
 			Matrix<int> m(2, 3);
@@ -227,7 +208,6 @@ namespace TEST
 		}
 		std::cout << "\ntest_0_END\n\n";
 	}
-
 	void test_1()
 	{
 		try
@@ -289,7 +269,6 @@ namespace TEST
 			std::cerr << "runtime_error: " << err.what() << std::endl;
 		}
 	}
-
 	void test_2()
 	{
 		try
@@ -308,7 +287,6 @@ namespace TEST
 		}
 
 	}
-
 	void test_3()
 	{
 		try
@@ -334,7 +312,6 @@ namespace TEST
 		}
 
 	}
-
 	void test_4()
 	{
 		try
@@ -359,7 +336,6 @@ namespace TEST
 		}
 
 	}
-
 	void test_5()
 	{
 		try
@@ -380,7 +356,6 @@ namespace TEST
 		}
 
 	}
-
 	void test_6()
 	{
 		try
@@ -422,8 +397,6 @@ namespace TEST
 		}
 
 	}
-
-
 	//void test_7()
 	//{
 	//     Ray<int> arr{ 7, 2, 3, 4, 5 };
@@ -431,7 +404,6 @@ namespace TEST
 	//    if(arr[0] = 2);
 	//    std::cout << "\ntest_6_END\n";
 	//}
-
 	//void test_8()
 	//    {
 	//    Ray<int> arr{ 1, 2, 3, 4, 5 };
@@ -443,7 +415,6 @@ namespace TEST
 	//    }
 	//    std::cout << "\ntest_7_END\n";
 	//}
-
 	void test_9()
 	{
 		try
@@ -489,8 +460,6 @@ namespace TEST
 		}
 		std::cout << "\ntest_9_END\n";
 	}
-
-
 	void test_10()
 	{
 		Array<MyStruct> q(-1);
@@ -539,7 +508,6 @@ namespace TEST
 		//q.add(-999);
 		//q.print();
 	}
-
 	void test_11()
 	{
 		Ray<int> empty0;
@@ -563,24 +531,42 @@ namespace TEST
 			std::cout << "empty0 add_to_first= " << empty0.empty() << "\n";
 	
 	}
+
+	void test_all_run()
+	{
+		std::cout << "\ntest_START\n";
+		TEST::test_0();
+		TEST::test_1();
+		TEST::test_2();
+		TEST::test_3();
+		TEST::test_4();
+		TEST::test_5();
+		//TEST::test_6();
+		//TEST::test_7();
+		TEST::test_9();
+		std::cout << "\ntest_END\n";
+	}
+
+
 	namespace Array_test
 	{
 		#include <cassert>
 
-		void test_Array()
+		bool test_Array()
 		{
 			Array<int> arr;
 			assert(arr.size() == 0);
 			assert(arr.is_empty());
-
+			return true;
 		}
-		void test_Array_capacity()
+		bool test_Array_capacity()
 		{
 			Array<int> arr(5);
 			assert(arr.size() == 0);
 			assert(!arr.is_empty());
+			return true;
 		}
-		void test_Array_other()
+		bool test_Array_other()
 		{
 			Array<int> arr1;
 			arr1.push_back(1);
@@ -589,8 +575,9 @@ namespace TEST
 			Array<int> arr2(arr1);
 			assert(arr2.size() == arr1.size());
 			assert(arr2 == arr1);
+			return true;
 		}
-		void test_Array_operator()
+		bool test_Array_operator()
 		{
 			Array<int> arr1;
 			arr1.push_back(1);
@@ -600,22 +587,25 @@ namespace TEST
 			assert(arr1 == arr2);
 			arr2.pop_back();
 			assert(arr1 != arr2);
+			return true;
 		}
-		void test_Array_size()
+		bool test_Array_size()
 		{
 			Array<int> arr;
 			assert(arr.size() == 0);
 			arr.push_back(1);
 			assert(arr.size() == 1);
+			return true;
 		}
-		void test_Array_is_empty()
+		bool test_Array_is_empty()
 		{
 			Array<int> arr;
 			assert(arr.is_empty());
 			arr.push_back(1);
 			assert(!arr.is_empty());
+			return true;
 		}
-		void test_Array_push_back()
+		bool test_Array_push_back()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -624,8 +614,9 @@ namespace TEST
 			arr.push_back(2);
 			assert(arr.size() == 2);
 			assert(arr.back() == 2);
+			return true;
 		}
-		void test_Array_at()
+		bool test_Array_at()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -634,24 +625,27 @@ namespace TEST
 			assert(arr.at(0) == 1);
 			assert(arr.at(1) == 2);
 			assert(arr.at(2) == 3);
+			return true;
 		}
-		void test_Array_front()
+		bool test_Array_front()
 		{
 			Array<int> arr;
 			arr.push_back(1);
 			arr.push_back(2);
 			arr.push_back(3);
 			assert(arr.front() == 1);
+			return true;
 		}
-		void test_Array_back()
+		bool test_Array_back()
 		{
 			Array<int> arr;
 			arr.push_back(1);
 			arr.push_back(2);
 			arr.push_back(3);
 			assert(arr.back() == 3);
+			return true;
 		}
-		void test_Array_Iterator()
+		bool test_Array_Iterator()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -664,8 +658,9 @@ namespace TEST
 			assert(*iter == 2);
 			--iter;
 			assert(*iter == 1);
+			return true;
 		}
-		void test_Array_clear()
+		bool test_Array_clear()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -674,8 +669,9 @@ namespace TEST
 			arr.clear();
 			assert(arr.size() == 0);
 			assert(arr.is_empty());
+			return true;
 		}
-		void test_Array_insert()
+		bool test_Array_insert()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -686,8 +682,9 @@ namespace TEST
 			assert(arr.at(0) == 1);
 			assert(arr.at(1) == 3);
 			assert(arr.at(2) == 2);
+			return true;
 		}
-		void test_Array_erase()
+		bool test_Array_erase()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -697,8 +694,9 @@ namespace TEST
 			assert(arr.size() == 2);
 			assert(arr.at(0) == 1);
 			assert(arr.at(1) == 3);
+			return true;
 		}
-		void test_Array_emplace()
+		bool test_Array_emplace()
 		{
 			Array<std::string> arr;
 			arr.emplace("Hello");
@@ -706,8 +704,9 @@ namespace TEST
 			assert(arr.size() == 2);
 			assert(arr.at(0) == "Hello");
 			assert(arr.at(1) == "World");
+			return true;
 		}
-		void test_Array_cut()
+		bool test_Array_cut()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -716,8 +715,9 @@ namespace TEST
 			arr.cut();
 			assert(arr.size() == 3);
 			assert(arr.capacity() == 3);
+			return true;
 		}
-		void test_Array_resize()
+		bool test_Array_resize()
 		{
 			Array<int> arr;
 			arr.push_back(1);
@@ -726,39 +726,48 @@ namespace TEST
 			arr.resize(5);
 			assert(arr.size() == 3);
 			assert(arr.capacity() == 5);
+			return true;
 		}
 		void test_Array_run()
 		{
-			TEST::Array_test::test_Array();
-			test_Array_capacity();
-			test_Array_other();
-			test_Array_operator();
-			test_Array_size();
-			test_Array_is_empty();
-			test_Array_push_back();
-			test_Array_at();
-			test_Array_front();
-			test_Array_back();
-			test_Array_Iterator();
-			test_Array_clear();
-			test_Array_insert();
-			test_Array_erase();
-			test_Array_emplace();
-			test_Array_cut();
-			test_Array_resize();
+			bool is_test_cpl = false;
+			is_test_cpl = test_Array();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_capacity();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_other();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_operator();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_size();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_is_empty();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_push_back();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_at();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_front();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_back();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_Iterator();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_clear();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_insert();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_erase();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_emplace();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_cut();
+			assert(is_test_cpl == true);
+			is_test_cpl = test_Array_resize();
+			assert(is_test_cpl == true);
 		}
 	}
 
 
-	//std::cout << "\ntest_START\n";
-	//TEST::test_0();
-	//TEST::test_1();
-	//TEST::test_2();
-	//TEST::test_3();
-	//TEST::test_4();
-	//TEST::test_5();
-	////TEST::test_6();
-	////TEST::test_7();
-	//TEST::test_9();
-	//std::cout << "\ntest_END\n";
+
 };
