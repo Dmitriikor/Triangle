@@ -75,8 +75,7 @@ std::string Corner::to_string()
 		{
 			for (size_t j = 0; j < Canvas_Matrix().get_M(); j++)
 			{
-				summ += Canvas_Matrix()[i][j];
-
+					summ += Canvas_Matrix()[i][j];
 			}
 			summ += "\n";
 		}
