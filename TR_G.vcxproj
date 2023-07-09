@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>include;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -135,94 +139,42 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies)nana_v143_Debug_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.h">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Axys.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Canvas.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Canvas_console.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Canvas_xy.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Corner.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Direct_draw.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Find_Triangle.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
+    <ClCompile Include="Axys.cpp" />
+    <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="Canvas_console.cpp" />
+    <ClCompile Include="Canvas_xy.cpp" />
+    <ClCompile Include="Corner.cpp" />
+    <ClCompile Include="Direct_draw.cpp" />
+    <ClCompile Include="Find_Triangle.cpp" />
     <ClCompile Include="forward.cpp" />
-    <ClCompile Include="Interface.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Q_new.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="replacement new.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
-    <ClCompile Include="utilities.cpp">
-      <ScanSourceForModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ScanSourceForModuleDependencies>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</MultiProcessorCompilation>
-    </ClCompile>
+    <ClCompile Include="include\imgui-master\imgui.cpp" />
+    <ClCompile Include="include\imgui-master\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui-master\imgui_draw.cpp" />
+    <ClCompile Include="include\imgui-master\imgui_impl_dx12.cpp" />
+    <ClCompile Include="include\imgui-master\imgui_impl_win32.cpp" />
+    <ClCompile Include="include\imgui-master\imgui_tables.cpp" />
+    <ClCompile Include="include\imgui-master\imgui_widgets.cpp" />
+    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="lyambda.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Q_new.cpp" />
+    <ClCompile Include="replacement new.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="utilities.cpp" />
     <ClCompile Include="variadic templates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="1.h" />
+    <ClInclude Include="Array.h" />
     <ClInclude Include="Axys.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Canvas_console.h" />
@@ -230,6 +182,15 @@
     <ClInclude Include="Corner.h" />
     <ClInclude Include="Direct_draw.h" />
     <ClInclude Include="Find_Triangle.h" />
+    <ClInclude Include="ImGui_.h" />
+    <ClInclude Include="include\imgui-master\imconfig.h" />
+    <ClInclude Include="include\imgui-master\imgui.h" />
+    <ClInclude Include="include\imgui-master\imgui_impl_dx12.h" />
+    <ClInclude Include="include\imgui-master\imgui_impl_win32.h" />
+    <ClInclude Include="include\imgui-master\imgui_internal.h" />
+    <ClInclude Include="include\imgui-master\imstb_rectpack.h" />
+    <ClInclude Include="include\imgui-master\imstb_textedit.h" />
+    <ClInclude Include="include\imgui-master\imstb_truetype.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="IT_TEST.h" />
     <ClInclude Include="Matrix.h" />

@@ -84,7 +84,9 @@ namespace nana_extra
                 });
 
             // arrange visible panel with scrolls at right and bottom
-            myPlace.div("<vert <<panel><scroll_vert weight=16>> <scroll_horiz weight=16>>");
+           // myPlace.div("<vert <panel> <<scroll_vert weight=16>> <fit scroll_horiz gap=16 weight=16>>");
+            myPlace.div("<vert <<panel> <scroll_vert weight=16>> <scroll_horiz weight=16>>");
+
             myPlace["panel"] << myVisible;
             myPlace["scroll_vert"] << myScrollVert;
             myPlace["scroll_horiz"] << myScrollHoriz;

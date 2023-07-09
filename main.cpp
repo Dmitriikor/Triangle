@@ -36,6 +36,11 @@
 #include "Interface.h"
 #include "panel_scrolled.h"
 #include "1.h"
+
+
+
+
+#include "ImGui_.h"
  /**
 	 @brief  main главная функция
 	 @param  argc - none
@@ -45,6 +50,9 @@
 int main(int argc, char const* argv[])
 {
 
+	ImGui_main();
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	setlocale(LC_ALL, "Russian");
 	std::locale::global(std::locale("en_US.utf8"));
 
