@@ -40,7 +40,7 @@
 
 
 
-#include "ImGui_.h"
+//#include "ImGui_.h"
  /**
 	 @brief  main главная функция
 	 @param  argc - none
@@ -50,7 +50,7 @@
 int main(int argc, char const* argv[])
 {
 
-	ImGui_main();
+	//ImGui_main();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	setlocale(LC_ALL, "Russian");
